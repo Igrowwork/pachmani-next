@@ -8,6 +8,21 @@ import MobileDrawer from "../mobileDrawer/page";
 import CartDrawer from "../cartDrawer/page";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function Navbar() {
   const [isVal, setIsVal] = useState(false);
@@ -21,32 +36,32 @@ export default function Navbar() {
           {" "}
           <IoMdMenu className="text-2xl md:hidden" />{" "}
         </div>
-        <div className="relative h-16 w-full">
+        <Link href={'/'} className="relative h-16 w-full">
           <Image
             src="/Assests/Images/HomeImage/01.png"
             alt="No Preview"
             fill
             className="object-contain"
           />
-        </div>
+        </Link>
         <div className="flex justify-end gap-4">
-          <CircleUser
-            className="cursor-pointer hover:text-[#00AB55]"
-            onClick={() => setIsDraw2(!isDraw2)}
-          />
-          <ShoppingBag
-            className="cursor-pointer hover:text-[#00AB55]"
-            onClick={() => setIsDraw(true)}
-          />
-          {isDraw2 && (
-            <div className="absolute mt-10 mr-12 shadow-lg  p-3 h-auto z-50 bg-[#e0f1e7] rounded-lg grid gap-2 font-semibold ">
-              <Link href='/signIn' onClick={() => setIsDraw2(false)}> <h1 className="capitalize">Sign in</h1></Link>
-              <Link href='/myCart' onClick={() => setIsDraw2(false)}> <h1 className="capitalize">My Cart</h1></Link>
-              <Link href='/myAccount' onClick={() => setIsDraw2(false)}> <h1 className="capitalize">My Account</h1></Link>
-              <Link href='/myWishlist' onClick={() => setIsDraw2(false)}> <h1 className="capitalize">My WishList</h1></Link>
-              <Link href='/trackYourOrder' onClick={() => setIsDraw2(false)}> <h1 className="capitalize">Track Your Order</h1></Link>
-            </div>
-          )}
+          
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <CircleUser className="cursor-pointer hover:text-[#00AB55]" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuGroup>
+                  <Link className="group cursor-pointer" href='/signIn'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">Sign in</h1></DropdownMenuItem></Link>
+                  <Link className="group cursor-pointer" href='/myCart'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My Cart</h1></DropdownMenuItem></Link>
+                  <Link className="group cursor-pointer" href='/myAccount'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My Account</h1></DropdownMenuItem></Link>
+                  <Link className="group cursor-pointer" href='/myWishlist'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My WishList</h1></DropdownMenuItem></Link>
+                  <Link className="group cursor-pointer" href='/trackYourOrder'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">Track Your Order</h1></DropdownMenuItem></Link>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <ShoppingBag className="cursor-pointer hover:text-[#00AB55]" onClick={() => setIsDraw(true)}/>
+         
         </div>
       </div>
       </div>
