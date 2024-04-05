@@ -10,7 +10,7 @@ import InGradient from "@/components/inGradient/page";
 import OurCertification from "@/components/ourCertification/page";
 import React from "react";
 
-export default function hairCareDetail() {
+export default function SkinCareComp() {
   return (
     <div>
       <HomeSlideCard />

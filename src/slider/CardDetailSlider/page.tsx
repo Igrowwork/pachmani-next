@@ -13,7 +13,7 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import Image from "next/image";
 
-export default function CardDetailSlider() {
+export default function CardDetailSlider({imgArr}:{imgArr:any[]}) {
   const arr = ["01.png", "01.png", "01.png", "01.png", "01.png"];
   return (
     <div className="h-full w-full">
@@ -31,11 +31,11 @@ export default function CardDetailSlider() {
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         className="mySwiper2 h-full w-full"
       >
-        {arr.map((ele, i) => (
+        {imgArr.map((ele, i) => (
           <SwiperSlide>
             <div className="relative h-full w-full ">
               <Image
-                src="/Assests/Images/HairImage/01.png"
+                src={`/Assests/Images/HairImage/${ele}`}
                 alt="No Preview"
                 fill
                 className="object-contain"

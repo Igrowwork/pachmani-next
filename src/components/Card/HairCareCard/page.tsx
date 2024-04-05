@@ -28,7 +28,7 @@ export default function HairCareCard({ ele , key}: CardProps) {
     <div className="border-[#00AB55] border-2 grid md:gap-2 rounded-sm shadow-[0px_4px_16px_0px_rgba(0,171,85,0.25)]">
       <div className="md:p-4 md:px-12 px-5 relative p-1">
         <div className="relative w-full h-44 ">
-          <Image src={ele?.img} alt="No Preview" fill objectFit="contain" />
+          <Image src={ele?.img === "" ? "/Assests/Images/no-image.jpg" : ele?.img} alt="No Preview" fill objectFit="contain" />
         </div>
         <div className="absolute top-0 right-0 p-5" onClick={()=>setIsVal(!isVal)}>{isVal ? <Icons.like /> : <Icons.notLike /> }</div>
       </div>

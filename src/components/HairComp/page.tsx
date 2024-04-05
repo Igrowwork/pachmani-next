@@ -6,46 +6,46 @@ import HairCareCard from '../Card/HairCareCard/page'
 export default function HairComp({name}:{name:string}) {
     const arr = [
         {
-            img:'/Assests/Images/HairImage/01.png',
+            img:'/Assests/Images/HairImage/14.jpg',
             name:'Bhringraj Oil',
             data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-            price:100,
+            price:450,
             rating:'4.6',
             review:43,
             title:'oil'
         },
         {
-            img:'/Assests/Images/HairImage/01.png',
-            name:'Bhringraj Oil',
+            img:'/Assests/Images/HairImage/15.jpg',
+            name:'Black Shine Shampoo',
             data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-            price:100,
+            price:265,
             rating:'4.6',
             review:43,
             title:'oil'
         },
         {
-            img:'/Assests/Images/HairImage/01.png',
-            name:'Bhringraj Oil',
+            img:'',
+            name:'Pachmarhi Hair Oil',
             data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-            price:100,
+            price:159,
             rating:'4.6',
             review:43,
             title:'oil'
         },
         {
-            img:'/Assests/Images/HairImage/01.png',
-            name:'Bhringraj Oil',
+            img:'',
+            name:'Pachmarhi Hair Oil (200ml)',
             data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-            price:100,
+            price:300,
             rating:'4.6',
             review:43,
             title:'oil'
         },
         {
-            img:'/Assests/Images/HairImage/01.png',
-            name:'Bhringraj Oil',
+            img:'/Assests/Images/HairImage/16.jpg',
+            name:'Red Onion Shampoo',
             data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-            price:100,
+            price:650,
             rating:'4.6',
             review:43,
             title:'oil'

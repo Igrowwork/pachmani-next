@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import React from 'react'
-import { forum } from '../font'
+import { forum } from '../../font'
 import { FaGoogle } from "react-icons/fa";
 
 export default function SignIn() {

@@ -32,7 +32,7 @@ export default function HairCareDetail() {
           <CustomHead name="Hair Care" className="w-10/12" />
           <div className=" grid md:grid-cols-2 gap-8 grid-cols-1">
             <div className="md:h-[485px] border-2 border-[#00AB55] w-full h-52">
-              <CardDetailSlider />
+              {/* <CardDetailSlider /> */}
             </div>
             <div className="grid md:gap-0 gap-3">
               <h1 className={cn("md:text-5xl text-3xl", forum.className)}>
