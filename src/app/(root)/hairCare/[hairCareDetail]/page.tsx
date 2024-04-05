@@ -1,3 +1,5 @@
+"use client";
+
 import CustomHead from "@/UI/customHead";
 import { forum, lato } from "@/app/font";
 import ClinicallyTested from "@/components/ClinicallyTested/page";
@@ -28,6 +30,17 @@ import { Button } from "@/components/ui/button";
 import { MdOutlineShoppingBag, MdOutlineShoppingCart } from "react-icons/md";
 import { AddressModal } from "@/components/AddressModal/page";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+// import required modules
+import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
+import Image from "next/image";
 
 export default function page({ 
   params ,
@@ -42,7 +55,8 @@ export default function page({
         price:450,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        imgArr: ["HairImage/productImage/01.jpg", "HairImage/productImage/01.jpg", "HairImage/productImage/01.jpg", "HairImage/productImage/01.jpg", "HairImage/productImage/01.jpg"]
     },
     {
         img:'/Assests/Images/HairImage/15.jpg',
@@ -51,7 +65,8 @@ export default function page({
         price:265,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        imgArr: ["HairImage/15.jpg", "HairImage/15.jpg", "HairImage/15.jpg", "HairImage/15.jpg", "HairImage/15.jpg"]
     },
     {
         img:'',
@@ -60,7 +75,8 @@ export default function page({
         price:159,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        imgArr: ["", "", "", "", ""],
     },
     {
         img:'',
@@ -69,7 +85,8 @@ export default function page({
         price:300,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        imgArr: ["", "", "", "", ""],
     },
     {
         img:'/Assests/Images/HairImage/16.jpg',
@@ -78,11 +95,11 @@ export default function page({
         price:650,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        imgArr: ["HairImage/16.jpg", "HairImage/16.jpg", "HairImage/16.jpg", "HairImage/16.jpg", "HairImage/16.jpg"],
     },
 ]
   const product = arr.find((item, index) => index === parseInt(params.hairCareDetail));
-  const imgArr = ["01.png", "01.png", "01.png", "01.png", "01.png"];
   return (
     <>
     {product && (
@@ -94,7 +111,35 @@ export default function page({
             <CustomHead name="Hair Care" className="w-10/12" />
             <div className=" grid md:grid-cols-2 gap-8 grid-cols-1">
               <div className="md:h-[485px] border-2 border-[#00AB55] w-full h-52">
-                <CardDetailSlider imgArr={imgArr} />
+                <div className="h-full w-full">
+                  <Swiper
+                    pagination={{
+                      clickable: true,
+                    }}
+                    spaceBetween={30}
+                    centeredSlides={true}
+                    autoplay={{
+                      delay: 5000,
+                      disableOnInteraction: false,
+                    }}
+                    navigation={true}
+                    modules={[Autoplay, FreeMode, Navigation, Thumbs]}
+                    className="mySwiper2 h-full w-full"
+                  >
+                    {product?.imgArr?.map((ele, i) => (
+                      <SwiperSlide>
+                        <div className="relative h-full w-full ">
+                          <Image
+                            src={ ele !== "" ? `/Assests/Images/${ele}` : "/Assests/Images/no-image.jpg" }
+                            alt="No Preview"
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
               </div>
               <div className="grid md:gap-0 gap-3">
                 <h1 className={cn("md:text-5xl text-3xl", forum.className)}>
