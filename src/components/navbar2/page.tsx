@@ -45,9 +45,8 @@ export default function Navbar2() {
           arr?.map((ele,i)=>(
             <Link href={ele?.page}>
               <li className={cn(`hover:text-[#00AB55] cursor-pointer group`, pathname === ele?.page ? "text-[#00AB55]":"")}>
-                <span className={cn("group-hover:border-b-2 group-hover:border-[#00AB55] pb-2" , pathname === ele?.page ? "border-b-2 border-[#00AB55]":"")}>
                   {ele?.name}
-                </span>
+                <div className={cn(`h-[2px] bg-primaryMain w-0 group-hover:w-full transition-all duration-300 ease-linear ` , pathname === ele?.page ? "w-full":"" )} />
               </li>
             </Link>
           ))

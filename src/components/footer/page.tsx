@@ -44,10 +44,10 @@ export default function Footer() {
             <div className="list-none grid md:gap-6 gap-3 md:text-base text-sm">
                 <h1 className={cn("text-3xl", forum.className)}>Help & Guide</h1>
                 <div className="grid gap-4">
-                    <li>Term and Condition</li>
-                    <li>Privacy Policy</li>
-                    <li>Shipping and Delivery</li>
-                    <li>Refund & Cancellation</li>
+                    <Link href={'/terms-and-condition'} className="hover:text-primaryMain">Term and Condition</Link>
+                    <Link href={'/privacy-policy'} className="hover:text-primaryMain">Privacy Policy</Link>
+                    <Link href={'/shipping-and-delivery'} className="hover:text-primaryMain">Shipping and Delivery</Link>
+                    <Link href={'/refund-and-cancellation'} className="hover:text-primaryMain">Refund & Cancellation</Link>
                 </div>
             </div>
             <div className="list-none grid md:gap-6 gap-3">

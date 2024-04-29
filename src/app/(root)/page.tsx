@@ -19,7 +19,7 @@ export default function Home() {
     <main className="">
       <HomeSliderComp />
         <TopRanker />
-      <div className="grid md:gap-20 w-full max-w-7xl mx-auto p-6 xl:p-0 gap-5">
+      <div className="grid md:gap-20 w-full h-full max-w-7xl mx-auto p-6 xl:p-0 gap-5">
         <OurBestSeller />
         <VideoSection />
       </div>

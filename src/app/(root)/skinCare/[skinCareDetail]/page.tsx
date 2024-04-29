@@ -41,6 +41,7 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import Image from "next/image";
+import HomeSliderComp from "@/components/HomeSliderComp/page";
 
 export default function page({ 
   params ,
@@ -74,7 +75,7 @@ export default function page({
     <>
     {product && (
     <div>
-      <HomeSlideCard />
+      <HomeSliderComp />
       <div className="max-w-7xl mx-auto w-full h-full md:p-2 p-6">        
       <div>
           <div>

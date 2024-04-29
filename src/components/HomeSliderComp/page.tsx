@@ -14,6 +14,7 @@ import { Pagination } from 'swiper/modules';
 import HomeSlideCard from './HomeSlideCard/page';
 
 export default function HomeSliderComp() {
+  const arr = ["02.png","24.png","25.png","26.png"]
   return (
     <div className='w-full md:h-[474px]'>
         <Swiper
@@ -23,11 +24,11 @@ export default function HomeSliderComp() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide><HomeSlideCard /></SwiperSlide>
-        <SwiperSlide><HomeSlideCard /></SwiperSlide>
-        <SwiperSlide><HomeSlideCard /></SwiperSlide>
-        <SwiperSlide><HomeSlideCard /></SwiperSlide>
-        <SwiperSlide><HomeSlideCard /></SwiperSlide>
+        {
+          arr?.map((ele,i)=>(
+            <SwiperSlide key={i}><HomeSlideCard  img={ele}/></SwiperSlide>
+          ))
+        }
       </Swiper>
       
     </div>

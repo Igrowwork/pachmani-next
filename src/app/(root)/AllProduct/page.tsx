@@ -481,11 +481,9 @@ export default function AllProduct() {
     },
   ];
   return (
-    <div>
-      <div className="w-full h-full max-w-7xl mx-auto">
+    <div className="w-full h-full max-w-7xl mx-auto xl:p-0 p-6">
         <CustomHead name="All Products" className="w-10/12" />
-      </div>
-      <div className="w-full h-full max-w-7xl mx-auto md:my-20  md:p-0 p-6 grid grid-cols-3 gap-10">
+      <div className="w-full h-full md:my-0 grid grid-cols-3 gap-10">
           {arr?.map((ele,i)=>(
             <div key={i} className="border-[#00AB55] border-2 grid md:gap-2 rounded-sm shadow-[0px_4px_16px_0px_rgba(0,171,85,0.25)]">
             <div className="md:p-4 md:px-12 px-5 relative p-1">

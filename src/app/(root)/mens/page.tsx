@@ -7,6 +7,7 @@ import HairCareCard from '@/components/Card/HairCareCard/page'
 import HairCareCompDetail from '@/components/HairComp/HairCareCompDetail/page'
 import HairComp from '@/components/HairComp/page'
 import HomeSlideCard from '@/components/HomeSliderComp/HomeSlideCard/page'
+import HomeSliderComp from '@/components/HomeSliderComp/page'
 import TestimonalSlider from '@/components/TestimonalSlider/page'
 import Banner2 from '@/components/banner2/page'
 import OurCertification from '@/components/ourCertification/page'
@@ -67,7 +68,7 @@ const hairCare = () => {
 ]
   return (
     <div>
-      <HomeSlideCard />
+      <HomeSliderComp />
       <div className='h-full max-w-7xl mx-auto md:p-0 p-6'>
         <CustomHead name={"Men's"} className='w-10/12' />
         <div className='grid xl:grid-cols-3 md:grid-cols-2 gap-8 my-10 p-2'>
