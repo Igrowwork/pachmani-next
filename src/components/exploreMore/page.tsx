@@ -11,7 +11,7 @@ export default function ExploreMore() {
     ""
   ]
   return (
-    <div>
+    <div className='my-10'>
       <CustomHead name="Explore More" className='w-11/12' />
       <div className='grid md:grid-cols-4 gap-8 grid-cols-1'>
         {

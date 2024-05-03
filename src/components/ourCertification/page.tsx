@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function OurCertification() {
   return (
-    <div>
+    <div className='my-10'>
       <CustomHead name='Our Certifications' className='w-10/12' />
       <div className='md:flex grid grid-cols-2 '>
         <div className='relative h-16 w-40 '>

@@ -5,7 +5,7 @@ import React from "react";
 
 export default function OurRecentArch() {
   return (
-    <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 gap-3 p-6 shadow-[0px_4px_8px_1px_rgba(0,171,85,0.08)_inset,0px_4px_16px_0px_rgba(0,171,85,0.08)]">
+    <div className="my-10 grid md:grid-cols-4 grid-cols-1 md:gap-10 gap-3 p-6 shadow-[0px_4px_8px_1px_rgba(0,171,85,0.08)_inset,0px_4px_16px_0px_rgba(0,171,85,0.08)]">
       <div className="grid text-center w-[70%]">
         <div
           className={cn(

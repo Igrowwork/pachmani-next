@@ -7,10 +7,9 @@ import React from 'react'
 
 export default function CheckTopBlog() {
   return (
-    <div>
+    <div className='my-10'>
       <CustomHead name='CHECK OUT OUR TOP BLOGS' className='w-1/2' />
 
-      <div>
         <div className='grid md:grid-cols-3 gap-8'>
             <div className='relative w-full md:h-[544px] h-96 flex items-end text-white backdrop-brightness-50'>
                 <Image src={'/Assests/Images/HomeImage/08.png'} alt='No Preview' fill objectFit='cover'/>
@@ -62,7 +61,6 @@ export default function CheckTopBlog() {
                 </div>
             </div>
         </div>
-      </div>
     </div>
   )
 }

@@ -15,9 +15,9 @@ export default function OurIngradient() {
  
   ];
   return (
-    <div>
+    <div className="my-10">
       <CustomHead name="Our Ingredients" className="w-11/12" />
-      <div className="grid md:grid-cols-4 md:gap-16 grid-cols-1 gap-3">
+      <div className="grid md:grid-cols-4 md:gap-x-16 md:gap-y-5 grid-cols-1 gap-3">
         {arr.map((ele, i) => (
           <div className="flex gap-1 bg-[#F7F7F7] md:p-8 items-center rounded-md p-4">
             <div className="relative w-full h-16">

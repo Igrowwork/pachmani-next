@@ -6,6 +6,7 @@ import { opensans } from "@/app/font";
 import { Icons } from "@/app/icons";
 import AllProductComp from "@/components/AllProductComp/page";
 import HairCareCard from "@/components/Card/HairCareCard/page";
+import OurBestSellerCard from "@/components/Card/OurBestSellerCard/page";
 import Banner from "@/components/banner/page";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -14,7 +15,7 @@ import { useState } from "react";
 import { MdAddShoppingCart } from "react-icons/md";
 
 export default function AllProduct() {
-  const [isLoad , setIsLoad] = useState(6);
+  const [isLoad , setIsLoad] = useState(8);
   const [isVal , setIsVal] = useState(false);
 
 
@@ -22,7 +23,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/productImage/251.jpg',
         name:'Gas Nivaran',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:500,
         rating:'4.6',
         review:43,
@@ -32,7 +33,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/productImage/261.jpg',
         name:'Amla Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -42,7 +43,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/productImage/271.jpg',
         name:'Psoriasis',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -52,7 +53,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/productImage/281.jpg',
         name:'Red Onion Shampoo',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -62,7 +63,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/productImage/291.jpg',
         name:'Piles Cure',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -72,7 +73,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/301.jpg',
         name:'Arjun Chaal',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -82,7 +83,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/311.jpg',
         name:'Chyawanprash',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -92,7 +93,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/321.jpg',
         name:'Musli Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -102,7 +103,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/331.jpg',
         name:'Dental Care',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -112,7 +113,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/341.jpg',
         name:'Joint Pain',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -122,7 +123,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/351.jpg',
         name:'Black Bhringraj',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -132,7 +133,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/361.jpg',
         name:'Ashwagandha',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -142,7 +143,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/371.jpg',
         name:'Musli prash',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -152,7 +153,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/381.jpg',
         name:'Nature Face Pack',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -162,7 +163,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/391.jpg',
         name:'Shilajit',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -172,7 +173,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/411.jpg',
         name:'Hair Oil',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -182,7 +183,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/421.jpg',
         name:'Forest Garlic Oil',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -192,7 +193,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/431.jpg',
         name:'Neem Face Wash',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:43,
@@ -202,7 +203,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/441.jpg',
         name:'Aasthma Cure Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:44,
@@ -212,7 +213,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/451.jpg',
         name:'Brahmi Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -222,7 +223,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/461.jpg',
         name:'Wat Rogantak Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -232,7 +233,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/471.jpg',
         name:'Diabetes Cure Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -242,7 +243,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/481.jpg',
         name:'Fit Me Herbal Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -252,7 +253,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/491.jpg',
         name:'Chandan',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -262,7 +263,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/501.jpg',
         name:'Face Whitening Pack',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -272,7 +273,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/511.jpg',
         name:'Keasar',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -282,7 +283,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/521.jpg',
         name:'Sanskrait mrittika lipa',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -292,7 +293,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/531.jpg',
         name:'Face Massage cream',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -302,7 +303,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/541.jpg',
         name:'Honey Premium and Nature',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -312,7 +313,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/551.jpg',
         name:'Black Shine Cleaner & Conditioner',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -322,7 +323,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/561.jpg',
         name:'Diabetes Cure Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -332,7 +333,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/571.jpg',
         name:'Fit Me',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -342,7 +343,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/581.jpg',
         name:'Wat Rogantak',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -352,7 +353,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/591.jpg',
         name:'Honey Gold Face Pack',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -362,7 +363,7 @@ export default function AllProduct() {
     {
         img:'/Assests/Images/HairImage/AllProductImage/601.jpg',
         name:'All Creams',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+        data:'It is a long established fact that a reader will be distracted by the readable',
         price:150,
         rating:'4.6',
         review:42,
@@ -374,7 +375,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -383,7 +384,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -392,7 +393,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -401,7 +402,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -410,7 +411,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -419,7 +420,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -428,7 +429,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -437,7 +438,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -446,7 +447,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -455,7 +456,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -464,7 +465,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -473,7 +474,7 @@ export default function AllProduct() {
     {
       img: "/Assests/Images/HairImage/01.png",
       name: "Bhringraj Oil",
-      data: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      data: "It is a long established fact that a reader will be distracted by the readable",
       price: 100,
       rating: "4.6",
       review: 43,
@@ -483,45 +484,29 @@ export default function AllProduct() {
   return (
     <div className="w-full h-full max-w-7xl mx-auto xl:p-0 p-6">
         <CustomHead name="All Products" className="w-10/12" />
-      <div className="w-full h-full md:my-0 grid grid-cols-3 gap-10">
-          {arr?.map((ele,i)=>(
-            <div key={i} className="border-[#00AB55] border-2 grid md:gap-2 rounded-sm shadow-[0px_4px_16px_0px_rgba(0,171,85,0.25)]">
-            <div className="md:p-4 md:px-12 px-5 relative p-1">
-              <div className="relative w-full h-44 ">
-                <Image src={ele?.img === "" ? "/Assests/Images/no-image.jpg" : ele?.img} alt="No Preview" fill objectFit="contain" />
-              </div>
-              <div className="absolute top-0 right-0 p-5" onClick={()=>setIsVal(!isVal)}>{isVal ? <Icons.like /> : <Icons.notLike /> }</div>
-            </div>
-            <div className="text-[#00AB55] text-xs flex justify-between font-medium md:p-2 p-2">
-              <h6 className="uppercase">{ele?.title}</h6>
-              <div>{ele?.rating} &#9733; ({ele?.review})</div>
-            </div>
-            <div className="grid md:gap-4 gap-2 md:p-2 p-1">
-              <h2 className="text-xl font-medium">{ele?.name}</h2>
-              <p className="text-[#4A3F3F] text-sm md:text-lg">
-                {ele?.data}
-              </p>
-              <h1 className={cn("text-xl", opensans.className)}>₹ {ele?.price}</h1>
-            </div>
-            <Link href={`/AllProduct/${i}`}>
-            <button className="md:text-xl text-lg bg-[#00AB55] text-white md:p-3 p-1 flex justify-center items-center gap-2 w-full">
-              <MdAddShoppingCart /> Add to Cart
-            </button>
-            </Link>
-          </div>
+        <div className='grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2'>
+          {arr?.slice(0,isLoad).map((ele,i)=>(
+            <OurBestSellerCard ele={ele} /> 
           ))}
-      </div>
+        </div>
       <Banner />
-      <div className="w-full h-full max-w-7xl mx-auto md:my-20  md:p-0 p-6 grid grid-cols-3 gap-10">
-        {arr2?.slice(0 , isLoad).map((ele, i) => (
-          <HairCareCard key={i} ele={ele} />
-        ))}
-      </div>
-      {isLoad === 12 ||
+      <div className='grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2'>
+          {arr2?.map((ele,i)=>(
+            <OurBestSellerCard ele={ele} /> 
+          ))}
+        </div>
+      {isLoad < 12 ||
       <div className="flex justify-center " >
-        <button className="bg-primaryMain text-white p-2 rounded-sm px-10" onClick={()=>setIsLoad(isLoad + 3)}>Load More</button>
+        <button className="bg-primaryMain text-white p-2 rounded-sm px-10" onClick={()=>setIsLoad(isLoad + 4)}>Load More</button>
       </div>
       }
     </div>
   );
 }
+
+
+{/* <div className="w-full h-full max-w-7xl mx-auto md:my-20  md:p-0 p-6 grid grid-cols-3 gap-10">
+{arr2?.slice(0 , isLoad).map((ele, i) => (
+  <HairCareCard key={i} ele={ele} />
+))}
+</div> */}
