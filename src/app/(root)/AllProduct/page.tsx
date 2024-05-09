@@ -28,7 +28,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/productImage/251.jpg", "HairImage/productImage/252.jpg", "HairImage/productImage/253.jpg", "HairImage/productImage/254.jpg"]
+        imgArr: ["HairImage/productImage/251.jpg", "HairImage/productImage/252.jpg", "HairImage/productImage/253.jpg", "HairImage/productImage/254.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/productImage/261.jpg',
@@ -38,7 +39,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/productImage/261.jpg", "HairImage/productImage/262.jpg", "HairImage/productImage/263.jpg", "HairImage/productImage/264.jpg"]
+        imgArr: ["HairImage/productImage/261.jpg", "HairImage/productImage/262.jpg", "HairImage/productImage/263.jpg", "HairImage/productImage/264.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/productImage/271.jpg',
@@ -48,7 +50,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/productImage/271.jpg", "HairImage/productImage/272.jpg", "HairImage/productImage/273.jpg", "HairImage/productImage/274.jpg"]
+        imgArr: ["HairImage/productImage/271.jpg", "HairImage/productImage/272.jpg", "HairImage/productImage/273.jpg", "HairImage/productImage/274.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/productImage/281.jpg',
@@ -58,7 +61,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/productImage/281.jpg", "HairImage/productImage/282.jpg", "HairImage/productImage/283.jpg", "HairImage/productImage/284.jpg"]
+        imgArr: ["HairImage/productImage/281.jpg", "HairImage/productImage/282.jpg", "HairImage/productImage/283.jpg", "HairImage/productImage/284.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/productImage/291.jpg',
@@ -68,7 +72,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/productImage/291.jpg", "HairImage/productImage/292.jpg", "HairImage/productImage/293.jpg", "HairImage/productImage/294.jpg"]
+        imgArr: ["HairImage/productImage/291.jpg", "HairImage/productImage/292.jpg", "HairImage/productImage/293.jpg", "HairImage/productImage/294.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/301.jpg',
@@ -78,7 +83,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/301.jpg", "HairImage/AllProductImage/302.jpg", "HairImage/AllProductImage/303.jpg", "HairImage/AllProductImage/304.jpg"]
+        imgArr: ["HairImage/AllProductImage/301.jpg", "HairImage/AllProductImage/302.jpg", "HairImage/AllProductImage/303.jpg", "HairImage/AllProductImage/304.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/311.jpg',
@@ -88,7 +94,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/311.jpg", "HairImage/AllProductImage/312.jpg", "HairImage/AllProductImage/313.jpg", "HairImage/AllProductImage/314.jpg"]
+        imgArr: ["HairImage/AllProductImage/311.jpg", "HairImage/AllProductImage/312.jpg", "HairImage/AllProductImage/313.jpg", "HairImage/AllProductImage/314.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/321.jpg',
@@ -98,7 +105,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/321.jpg", "HairImage/AllProductImage/322.jpg", "HairImage/AllProductImage/323.jpg", "HairImage/AllProductImage/324.jpg"]
+        imgArr: ["HairImage/AllProductImage/321.jpg", "HairImage/AllProductImage/322.jpg", "HairImage/AllProductImage/323.jpg", "HairImage/AllProductImage/324.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/331.jpg',
@@ -108,7 +116,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/331.jpg", "HairImage/AllProductImage/332.jpg", "HairImage/AllProductImage/333.jpg", "HairImage/AllProductImage/334.jpg"]
+        imgArr: ["HairImage/AllProductImage/331.jpg", "HairImage/AllProductImage/332.jpg", "HairImage/AllProductImage/333.jpg", "HairImage/AllProductImage/334.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/341.jpg',
@@ -118,7 +127,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/341.jpg", "HairImage/AllProductImage/342.jpg", "HairImage/AllProductImage/343.jpg", "HairImage/AllProductImage/344.jpg"]
+        imgArr: ["HairImage/AllProductImage/341.jpg", "HairImage/AllProductImage/342.jpg", "HairImage/AllProductImage/343.jpg", "HairImage/AllProductImage/344.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/351.jpg',
@@ -128,7 +138,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/351.jpg", "HairImage/AllProductImage/352.jpg", "HairImage/AllProductImage/353.jpg", "HairImage/AllProductImage/354.jpg"]
+        imgArr: ["HairImage/AllProductImage/351.jpg", "HairImage/AllProductImage/352.jpg", "HairImage/AllProductImage/353.jpg", "HairImage/AllProductImage/354.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/361.jpg',
@@ -138,7 +149,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/361.jpg", "HairImage/AllProductImage/362.jpg", "HairImage/AllProductImage/363.jpg", "HairImage/AllProductImage/364.jpg"]
+        imgArr: ["HairImage/AllProductImage/361.jpg", "HairImage/AllProductImage/362.jpg", "HairImage/AllProductImage/363.jpg", "HairImage/AllProductImage/364.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/371.jpg',
@@ -148,7 +160,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/371.jpg", "HairImage/AllProductImage/372.jpg", "HairImage/AllProductImage/373.jpg", "HairImage/AllProductImage/374.jpg"]
+        imgArr: ["HairImage/AllProductImage/371.jpg", "HairImage/AllProductImage/372.jpg", "HairImage/AllProductImage/373.jpg", "HairImage/AllProductImage/374.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/381.jpg',
@@ -158,7 +171,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/381.jpg", "HairImage/AllProductImage/382.jpg", "HairImage/AllProductImage/383.jpg", "HairImage/AllProductImage/384.jpg"]
+        imgArr: ["HairImage/AllProductImage/381.jpg", "HairImage/AllProductImage/382.jpg", "HairImage/AllProductImage/383.jpg", "HairImage/AllProductImage/384.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/391.jpg',
@@ -168,7 +182,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/391.jpg", "HairImage/AllProductImage/392.jpg", "HairImage/AllProductImage/393.jpg", "HairImage/AllProductImage/394.jpg", "HairImage/AllProductImage/401.jpg", "HairImage/AllProductImage/402.jpg", "HairImage/AllProductImage/403.jpg", "HairImage/AllProductImage/404.jpg"]
+        imgArr: ["HairImage/AllProductImage/391.jpg", "HairImage/AllProductImage/392.jpg", "HairImage/AllProductImage/393.jpg", "HairImage/AllProductImage/394.jpg", "HairImage/AllProductImage/401.jpg", "HairImage/AllProductImage/402.jpg", "HairImage/AllProductImage/403.jpg", "HairImage/AllProductImage/404.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/411.jpg',
@@ -178,7 +193,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/411.jpg", "HairImage/AllProductImage/412.jpg", "HairImage/AllProductImage/413.jpg", "HairImage/AllProductImage/414.jpg", "HairImage/AllProductImage/415.jpg"]
+        imgArr: ["HairImage/AllProductImage/411.jpg", "HairImage/AllProductImage/412.jpg", "HairImage/AllProductImage/413.jpg", "HairImage/AllProductImage/414.jpg", "HairImage/AllProductImage/415.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/421.jpg',
@@ -188,7 +204,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/421.jpg", "HairImage/AllProductImage/422.jpg", "HairImage/AllProductImage/423.jpg", "HairImage/AllProductImage/424.jpg"]
+        imgArr: ["HairImage/AllProductImage/421.jpg", "HairImage/AllProductImage/422.jpg", "HairImage/AllProductImage/423.jpg", "HairImage/AllProductImage/424.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/431.jpg',
@@ -198,7 +215,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/431.jpg", "HairImage/AllProductImage/432.jpg", "HairImage/AllProductImage/433.jpg", "HairImage/AllProductImage/434.jpg"]
+        imgArr: ["HairImage/AllProductImage/431.jpg", "HairImage/AllProductImage/432.jpg", "HairImage/AllProductImage/433.jpg", "HairImage/AllProductImage/434.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/441.jpg',
@@ -208,7 +226,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:44,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/441.jpg", "HairImage/AllProductImage/442.jpg", "HairImage/AllProductImage/443.jpg", "HairImage/AllProductImage/444.jpg"]
+        imgArr: ["HairImage/AllProductImage/441.jpg", "HairImage/AllProductImage/442.jpg", "HairImage/AllProductImage/443.jpg", "HairImage/AllProductImage/444.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/451.jpg',
@@ -218,7 +237,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/451.jpg", "HairImage/AllProductImage/452.jpg", "HairImage/AllProductImage/453.jpg", "HairImage/AllProductImage/454.jpg"]
+        imgArr: ["HairImage/AllProductImage/451.jpg", "HairImage/AllProductImage/452.jpg", "HairImage/AllProductImage/453.jpg", "HairImage/AllProductImage/454.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/461.jpg',
@@ -228,7 +248,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/461.jpg", "HairImage/AllProductImage/462.jpg", "HairImage/AllProductImage/463.jpg", "HairImage/AllProductImage/464.jpg"]
+        imgArr: ["HairImage/AllProductImage/461.jpg", "HairImage/AllProductImage/462.jpg", "HairImage/AllProductImage/463.jpg", "HairImage/AllProductImage/464.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/471.jpg',
@@ -238,7 +259,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/471.jpg", "HairImage/AllProductImage/472.jpg", "HairImage/AllProductImage/473.jpg", "HairImage/AllProductImage/474.jpg"]
+        imgArr: ["HairImage/AllProductImage/471.jpg", "HairImage/AllProductImage/472.jpg", "HairImage/AllProductImage/473.jpg", "HairImage/AllProductImage/474.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/481.jpg',
@@ -248,7 +270,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/481.jpg", "HairImage/AllProductImage/482.jpg", "HairImage/AllProductImage/483.jpg", "HairImage/AllProductImage/484.jpg"]
+        imgArr: ["HairImage/AllProductImage/481.jpg", "HairImage/AllProductImage/482.jpg", "HairImage/AllProductImage/483.jpg", "HairImage/AllProductImage/484.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/491.jpg',
@@ -258,7 +281,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/491.jpg", "HairImage/AllProductImage/492.jpg", "HairImage/AllProductImage/493.jpg", "HairImage/AllProductImage/494.jpg", "HairImage/AllProductImage/495.jpg", "HairImage/AllProductImage/496.jpg", "HairImage/AllProductImage/497.jpg"]
+        imgArr: ["HairImage/AllProductImage/491.jpg", "HairImage/AllProductImage/492.jpg", "HairImage/AllProductImage/493.jpg", "HairImage/AllProductImage/494.jpg", "HairImage/AllProductImage/495.jpg", "HairImage/AllProductImage/496.jpg", "HairImage/AllProductImage/497.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/501.jpg',
@@ -268,7 +292,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/501.jpg", "HairImage/AllProductImage/502.jpg", "HairImage/AllProductImage/503.jpg", "HairImage/AllProductImage/504.jpg"]
+        imgArr: ["HairImage/AllProductImage/501.jpg", "HairImage/AllProductImage/502.jpg", "HairImage/AllProductImage/503.jpg", "HairImage/AllProductImage/504.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/511.jpg',
@@ -278,7 +303,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/511.jpg", "HairImage/AllProductImage/512.jpg", "HairImage/AllProductImage/513.jpg", "HairImage/AllProductImage/514.jpg"]
+        imgArr: ["HairImage/AllProductImage/511.jpg", "HairImage/AllProductImage/512.jpg", "HairImage/AllProductImage/513.jpg", "HairImage/AllProductImage/514.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/521.jpg',
@@ -288,7 +314,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/521.jpg", "HairImage/AllProductImage/522.jpg", "HairImage/AllProductImage/523.jpg"]
+        imgArr: ["HairImage/AllProductImage/521.jpg", "HairImage/AllProductImage/522.jpg", "HairImage/AllProductImage/523.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/531.jpg',
@@ -298,7 +325,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/531.jpg", "HairImage/AllProductImage/532.jpg", "HairImage/AllProductImage/533.jpg"]
+        imgArr: ["HairImage/AllProductImage/531.jpg", "HairImage/AllProductImage/532.jpg", "HairImage/AllProductImage/533.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/541.jpg',
@@ -308,7 +336,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/541.jpg", "HairImage/AllProductImage/542.jpg", "HairImage/AllProductImage/543.jpg", "HairImage/AllProductImage/544.jpg"]
+        imgArr: ["HairImage/AllProductImage/541.jpg", "HairImage/AllProductImage/542.jpg", "HairImage/AllProductImage/543.jpg", "HairImage/AllProductImage/544.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/551.jpg',
@@ -318,7 +347,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/551.jpg", "HairImage/AllProductImage/552.jpg", "HairImage/AllProductImage/553.jpg", "HairImage/AllProductImage/554.jpg", "HairImage/AllProductImage/555.jpg"]
+        imgArr: ["HairImage/AllProductImage/551.jpg", "HairImage/AllProductImage/552.jpg", "HairImage/AllProductImage/553.jpg", "HairImage/AllProductImage/554.jpg", "HairImage/AllProductImage/555.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/561.jpg',
@@ -328,7 +358,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/561.jpg", "HairImage/AllProductImage/562.jpg", "HairImage/AllProductImage/563.jpg", "HairImage/AllProductImage/564.jpg"]
+        imgArr: ["HairImage/AllProductImage/561.jpg", "HairImage/AllProductImage/562.jpg", "HairImage/AllProductImage/563.jpg", "HairImage/AllProductImage/564.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/571.jpg',
@@ -338,7 +369,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/571.jpg", "HairImage/AllProductImage/572.jpg", "HairImage/AllProductImage/573.jpg", "HairImage/AllProductImage/574.jpg"]
+        imgArr: ["HairImage/AllProductImage/571.jpg", "HairImage/AllProductImage/572.jpg", "HairImage/AllProductImage/573.jpg", "HairImage/AllProductImage/574.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/581.jpg',
@@ -348,7 +380,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/581.jpg", "HairImage/AllProductImage/582.jpg", "HairImage/AllProductImage/583.jpg", "HairImage/AllProductImage/584.jpg"]
+        imgArr: ["HairImage/AllProductImage/581.jpg", "HairImage/AllProductImage/582.jpg", "HairImage/AllProductImage/583.jpg", "HairImage/AllProductImage/584.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/591.jpg',
@@ -358,7 +391,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/591.jpg", "HairImage/AllProductImage/592.jpg", "HairImage/AllProductImage/593.jpg"]
+        imgArr: ["HairImage/AllProductImage/591.jpg", "HairImage/AllProductImage/592.jpg", "HairImage/AllProductImage/593.jpg"],
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/601.jpg',
@@ -368,7 +402,8 @@ export default function AllProduct() {
         rating:'4.6',
         review:42,
         title:'oil',
-        imgArr: ["HairImage/AllProductImage/601.jpg", "HairImage/AllProductImage/602.jpg", "HairImage/AllProductImage/603.jpg", "HairImage/AllProductImage/604.jpg", "HairImage/AllProductImage/605.jpg"]
+        imgArr: ["HairImage/AllProductImage/601.jpg", "HairImage/AllProductImage/602.jpg", "HairImage/AllProductImage/603.jpg", "HairImage/AllProductImage/604.jpg", "HairImage/AllProductImage/605.jpg"],
+        page:'01'
     },
 ]
   const arr2 = [
@@ -380,6 +415,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -389,6 +425,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -398,6 +435,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -407,6 +445,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -416,6 +455,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -425,6 +465,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -434,6 +475,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -443,6 +485,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -452,6 +495,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -461,6 +505,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -470,6 +515,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
     {
       img: "/Assests/Images/HairImage/01.png",
@@ -479,6 +525,7 @@ export default function AllProduct() {
       rating: "4.6",
       review: 43,
       title: "oil",
+      page:'01',
     },
   ];
   return (

@@ -35,7 +35,7 @@ export default function CartDrawer({ val }: { val: () => void }) {
                 <FaLongArrowAltLeft onClick={val} className="cursor-pointer" />
                 <h1>My Cart</h1>
               </div>
-              <div className="h-screen w-full overflow-scroll ">
+              <div className="h-[70%] w-full overflow-scroll ">
                 <div className="p-4 grid gap-2 ">
                   {arr?.map((ele, i) => (
                     <div className="grid md:grid-cols-6 grid-cols-1 items-center gap-3 border-2 p-3 rounded-md">
@@ -78,33 +78,36 @@ export default function CartDrawer({ val }: { val: () => void }) {
                 <div className="border-[#00AB55] border-2 text-center m-2 rounded-lg mx-3 text-[#00AB55] cursor-pointer hover:bg-[#00AB55] hover:text-white">
                   Add More items
                 </div>
-                <div className="mx-4 rounded-lg p-1 px-5 border-2 mb-16">
+
+                <div className="fixed bottom-0 right-0 bg-white md:w-[500px]">
+                <div className="mx-4 rounded-lg p-1 px-5 w-full">
                   <h1 className="text-[#B5B5B5] font-semibold">Payment detail</h1>
                   <div className=" px-5 text-sm grid gap-1">
-                    <div className="flex justify-between">
-                      MRP Total <span>₹ 706.00</span>
+                    <div className="flex justify-between border-2 border-black">
+                      MRP Total <span className="text-black">₹ 706.00</span>
                     </div>
-                    <div className="flex justify-between">
-                      Discount<span>₹ 100.00</span>
+                    <div className="flex justify-between border-2 border-black">
+                      Discount<span className="text-black">₹ 100.00</span>
                     </div>
-                    <div className="flex justify-between">
-                      Promo Code<span>₹ 0.00</span>
+                    <div className="flex justify-between border-2 border-black">
+                      Promo Code<span className="text-black">₹ 0.00</span>
                     </div>
-                    <div className="flex justify-between">
-                      Delivery charge<span>₹ 0.00</span>
+                    <div className="flex justify-between border-2 border-black">
+                      Delivery charge<span className="text-black">₹ 0.00</span>
                     </div>
-                    <div className="flex justify-between text-[#00AB55]">
-                      Total Payable<span>₹ 606.00</span>
+                    <div className="flex justify-between border-2 border-black text-[#00AB55]">
+                      Total Payable<span className="text-black">₹ 606.00</span>
                     </div>
                   </div>
                 </div>
-                <div className=" mt-1 p-2 px-10 drop-shadow-xl flex bg-[#a6d8bf] fixed bottom-0 w-full gap-52">
+                <div className=" p-2 px-10 drop-shadow-xl flex bg-[#a6d8bf] w-full gap-52">
                   <div className="text-[#00AB55] text-2xl font-semibold">
                     ₹ 606
                   </div>
                   <button className="bg-[#00AB55] text-white rounded-lg border-2 px-3 p-1  hover:bg-white hover:text-[#00AB55]">
                     continue
                   </button>
+                </div>
                 </div>
 
               </div>

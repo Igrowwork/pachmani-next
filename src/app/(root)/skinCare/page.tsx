@@ -28,7 +28,8 @@ const hairCare = () => {
         price:300,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        page:"01"
     },
     {
         img:'/Assests/Images/HairImage/16.jpg',
@@ -37,7 +38,8 @@ const hairCare = () => {
         price:650,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        page:"01"
     },
 ]
   return (

@@ -23,7 +23,8 @@ export default function OurBestSeller() {
         price:450,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        page:'01'
     },
     {
         img:'/Assests/Images/HairImage/15.jpg',
@@ -32,7 +33,8 @@ export default function OurBestSeller() {
         price:265,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        page:'02'
     },
     {
         img:'',
@@ -41,7 +43,8 @@ export default function OurBestSeller() {
         price:159,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        page:'03'
     },
     {
         img:'',
@@ -50,7 +53,8 @@ export default function OurBestSeller() {
         price:300,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        page:'04'
     },
     {
         img:'/Assests/Images/HairImage/16.jpg',
@@ -59,7 +63,8 @@ export default function OurBestSeller() {
         price:650,
         rating:'4.6',
         review:43,
-        title:'oil'
+        title:'oil',
+        page:'05'
     },
 ]
   return (

@@ -56,7 +56,7 @@ export default function page({
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["HairImage/productImage/251.jpg", "HairImage/productImage/252.jpg", "HairImage/productImage/253.jpg", "HairImage/productImage/254.jpg"]
+        imgArr: ["01.png","01.png", "02.jpeg", "03.png", "04.png"]
     },
     {
         img:'/Assests/Images/HairImage/productImage/261.jpg',
@@ -410,44 +410,18 @@ export default function page({
           <div>
             <CustomHead name="Hair Care" className="w-10/12" />
             <div className=" grid md:grid-cols-2 gap-8 grid-cols-1">
-              <div className="md:h-[485px] border-2 border-[#00AB55] w-full h-52">
+              <div className="md:h-96 border-2 border-[#00AB55] w-full h-52 rounded-md overflow-hidden">
                 <div className="h-full w-full">
-                  <Swiper
-                    pagination={{
-                      clickable: true,
-                    }}
-                    spaceBetween={30}
-                    centeredSlides={true}
-                    autoplay={{
-                      delay: 5000,
-                      disableOnInteraction: false,
-                    }}
-                    navigation={true}
-                    modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-                    className="mySwiper2 h-full w-full"
-                  >
-                    {product?.imgArr?.map((ele, i) => (
-                      <SwiperSlide>
-                        <div className="relative h-full w-full ">
-                          <Image
-                            src={ ele !== "" ? `/Assests/Images/${ele}` : "/Assests/Images/no-image.jpg" }
-                            alt="No Preview"
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
+                  <CardDetailSlider imgArr={arr?.[0].imgArr} />
                 </div>
               </div>
               <div className="grid md:gap-0 gap-3">
-                <h1 className={cn("md:text-5xl text-3xl", forum.className)}>
+                <h1 className={cn("md:text-4xl text-3xl", forum.className)}>
                   {product?.name}
                 </h1>
                 <div className="text-xs text-[#00AB55]">{product?.rating} &#9733; ({product?.review})</div>
-                <p className="md:text-2xl text-sm text-[#4A3F3F] ">{product?.data} </p>
-                <h2 className={cn("md:text-3xl text-xl", forum.className)}>
+                <p className="md:text-xl text-sm text-[#4A3F3F] ">{product?.data} </p>
+                <h2 className={cn("md:text-2xl text-xl", forum.className)}>
                   MRP{" "}
                   <span className={cn("font-normal", lato.className)}>
                     {" "}
@@ -457,17 +431,17 @@ export default function page({
                 <p className="md:text-sm text-xs text-[#4A3F3F]">
                   (incl. off all taxes)
                 </p>
-                <h4 className="md:text-2xl text-lg text-[#4A3F3F]">
+                <h4 className="md:text-xl text-lg text-[#4A3F3F]">
                   Available in : (Net Quantity)
                 </h4>
                 <div className="flex md:gap-8 gap-2">
-                  <span className="rounded-full flex justify-center items-center md:text-lg md:h-14 md:w-14 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
+                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
                     8g
                   </span>
-                  <span className="rounded-full flex justify-center items-center md:text-lg md:h-14 md:w-14 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
+                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
                     25g
                   </span>
-                  <span className="rounded-full flex justify-center items-center md:text-lg md:h-14 md:w-14 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
+                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
                     50g
                   </span>
                 </div>

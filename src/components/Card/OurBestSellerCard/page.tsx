@@ -4,6 +4,7 @@ import { lato } from '@/app/font'
 import { Icons } from '@/app/icons'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 
@@ -16,7 +17,8 @@ interface CardDetails  {
   price:number ,
   rating:string,
   review:number,
-  title:string
+  title:string,
+  page:string
   }
 }
 
@@ -52,7 +54,7 @@ export default function OurBestSellerCard(ele :CardDetails ) {
 
             </div>
         </div>
-        <button className={cn('flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1 justify-center items-center text-lg font-medium text-white rounded-b-2xl' , lato.className)}><HiOutlineShoppingBag className='text-xl' />Add  to Cart</button>
+        <Link href={`/AllProduct/${ele?.ele?.page}`} className={cn('flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1 justify-center items-center text-lg font-medium text-white rounded-b-2xl' , lato.className)}><HiOutlineShoppingBag className='text-xl' />Add  to Cart</Link>
     </div>
   )
 }
