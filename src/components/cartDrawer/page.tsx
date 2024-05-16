@@ -6,7 +6,7 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 
-export default function CartDrawer({ val }: { val: () => void }) {
+export default function   CartDrawer({ val }: { val: () => void }) {
   const [isSet, setIsSet] = useState(0);
   const handleInce = () => {
     if (isSet < 7) {
@@ -83,19 +83,19 @@ export default function CartDrawer({ val }: { val: () => void }) {
                 <div className="mx-4 rounded-lg p-1 px-5 w-full">
                   <h1 className="text-[#B5B5B5] font-semibold">Payment detail</h1>
                   <div className=" px-5 text-sm grid gap-1">
-                    <div className="flex justify-between border-2 border-black">
+                    <div className="flex justify-between">
                       MRP Total <span className="text-black">₹ 706.00</span>
                     </div>
-                    <div className="flex justify-between border-2 border-black">
+                    <div className="flex justify-between">
                       Discount<span className="text-black">₹ 100.00</span>
                     </div>
-                    <div className="flex justify-between border-2 border-black">
+                    <div className="flex justify-between">
                       Promo Code<span className="text-black">₹ 0.00</span>
                     </div>
-                    <div className="flex justify-between border-2 border-black">
+                    <div className="flex justify-between">
                       Delivery charge<span className="text-black">₹ 0.00</span>
                     </div>
-                    <div className="flex justify-between border-2 border-black text-[#00AB55]">
+                    <div className="flex justify-between text-[#00AB55]">
                       Total Payable<span className="text-black">₹ 606.00</span>
                     </div>
                   </div>

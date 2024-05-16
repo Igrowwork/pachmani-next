@@ -39,7 +39,7 @@ export default function CardDetailSlider({imgArr}:{imgArr:any[]}) {
                                     src={`/Assests/Images/HairImage/${slide}`}
                                     fill
                                     alt="Picture of the author"
-                                    className='object-cover'
+                                    className='object-contain cursor-pointer'
                                 />
                             </div>
                         </SwiperSlide>

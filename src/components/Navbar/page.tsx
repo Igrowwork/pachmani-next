@@ -55,7 +55,7 @@ export default function Navbar() {
                   <Link className="group cursor-pointer" href='/signIn'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">Sign in</h1></DropdownMenuItem></Link>
                   <Link className="group cursor-pointer" href='/myCart'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My Cart</h1></DropdownMenuItem></Link>
                   <Link className="group cursor-pointer" href='/myAccount/profile'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My Account</h1></DropdownMenuItem></Link>
-                  <Link className="group cursor-pointer" href='/myWishlist'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My WishList</h1></DropdownMenuItem></Link>
+                  <Link className="group cursor-pointer" href='/myAccount/wishlist'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My WishList</h1></DropdownMenuItem></Link>
                   <Link className="group cursor-pointer" href='/trackYourOrder'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">Track Your Order</h1></DropdownMenuItem></Link>
             </DropdownMenuGroup>
           </DropdownMenuContent>
