@@ -24,12 +24,12 @@ export default function AllProduct() {
   useEffect(()=> {
     const apiFetch = async () => {
       try{
-        const res = await axios.get("http://localhost:8080/api/product");
-        console.log(res?.data?.products,"dfgh");
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/product`);
+        // console.log(res?.data?.products,"dfgh");
         setIsData(res?.data?.products)
       }
       catch(e){
-        console.log(e)
+        console.log(e, "all product")
       }
     }
     apiFetch();
