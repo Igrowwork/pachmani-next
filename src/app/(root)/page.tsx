@@ -19,22 +19,20 @@ export default function Home() {
     <main className="">
       <HomeSliderComp />
         <TopRanker />
-      <div className="w-full h-full max-w-7xl mx-auto">
         <OurBestSeller />
-        <CustomerReview />
-      </div>
-      <Banner />
+
+        {/* video section */}
+        {/* <CustomerReview /> */}
+        {/* <Banner /> */}
       <div className="max-w-7xl mx-auto">
         <ExploreMore />
         <OurRecentArch />
-        <OurIngradient />
         <WhyChoose />
+        <OurIngradient />
       </div>
-      <Banner />
-      <div className="max-w-7xl mx-auto">
+      {/* <Banner /> */}
         <CheckTopBlog />
-        <OurCertification />
-      </div>
+        {/* <OurCertification /> */}
     </main>
   );
 }

@@ -7,14 +7,13 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className=" mt-10 relative w-full bg-[#EEEDEC] text-[#212B36] md:p-10 p-6">
-        <Image src='/Assests/Images/HomeImage/22.png' alt="No Preview" fill className="object-contain max-sm:hidden object-left-bottom"/>
-        <Image src='/Assests/Images/HomeImage/23.png' alt="No Preview" fill className="object-contain max-sm:hidden object-right"/>
-        <div className=" md:py-10 grid xl:grid-cols-4 md:gap-16 gap-5 mx-auto max-w-7xl relative z-20 grid-cols-1 p-4 md:p-0 items-start">
+    <div className=" mt-10 relative w-full bg-[#EEEDEC] text-[#212B36] md:p-10 p-8 ">
+        <Image src='/Assests/Images/HomeImage/footer.png' alt="No Preview" fill className=" bg-cover max-sm:hidden w-full"/>
+        <div className=" md:py-10 grid xl:grid-cols-4 md:gap-16 gap-5 mx-auto max-w-7xl relative z-20 grid-cols-1 p-4 md:p-0 items-start mb-4">
             <div className="p-2 grid md:gap-6 gap-3">
                 <div className="relative h-11 w-24 ml-2">
                 <Image
-                    src="/Assests/Images/HomeImage/01.png"
+                    src="/Assests/Images/HomeImage/logo.png"
                     alt="No Preview"
                     fill
                     className="object-contain scale-125"
@@ -68,6 +67,11 @@ export default function Footer() {
                     <span  className="text-sm md:text-[1rem] hover:text-primaryMain cursor-pointer">Arvind Mark, Main Market, Madhya Pradesh</span>
                 </div>
             </div>
+        </div>
+        <div className="absolute bottom-0 right-28 flex gap-6 border  p-8">
+            <Icons.fb className="hover:transition-transform cursor-pointer" />
+            <Icons.insta className="hover:transition-transform cursor-pointer" />
+            <Icons.twit className="hover:transition-transform cursor-pointer" />
         </div>
     </div>
   );

@@ -17,6 +17,10 @@ export default function Navbar2() {
       page : '/hairCare'
     },
     {
+      name : "Healthcare",
+      page : '/healthCare'
+    },
+    {
       name : "Skincare",
       page : '/skinCare'
     },
@@ -39,14 +43,14 @@ export default function Navbar2() {
     
   ]
   return (
-    <div className=" border-t-[1px] border-[#00AB55] bg-white sticky top-0 z-40 shadow-md xl:px-0 px-6">
-      <div className="list-none md:flex hidden justify-between text-xl py-7 font-medium text-[#000000] mx-auto max-w-7xl h-full">
+    <div className=" border-t-[1px] border-[#00AB55] bg-white sticky top-0 z-40 shadow-md py-3">
+      <div className="list-none md:flex hidden justify-between text-xl py-5 font-medium text-[#000000] mx-auto max-w-7xl h-full">
         {
           arr?.map((ele,i)=>(
             <Link href={ele?.page}>
               <li className={cn(`hover:text-[#00AB55] cursor-pointer group`, pathname === ele?.page ? "text-[#00AB55]":"")}>
                   {ele?.name}
-                {/* <div className={cn(`h-[2px] bg-primaryMain w-0 group-hover:w-full transition-all duration-300 ease-linear ` , pathname === ele?.page ? "w-full":"" )} /> */}
+                <div className={cn(`h-[1px] bg-primaryMain w-0 group-hover:w-full transition-all duration-300 ease-linear ` , pathname === ele?.page ? "w-full":"" )} />
               </li>
             </Link>
           ))

@@ -9,19 +9,14 @@ import Review from "@/components/Review/page";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike/page";
 import Banner from "@/components/banner/page";
 import Benifit from "@/components/benefit/page";
-import HairCareDetail from "@/components/hairCardDetail/page";
-import InGradient from "@/components/inGradient/page";
 import OurCertification from "@/components/ourCertification/page";
 import { cn } from "@/lib/utils";
 import CardDetailSlider from "@/slider/CardDetailSlider/page";
 import React from "react";
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -41,6 +36,7 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import Image from "next/image";
+import OurIngradient from "@/components/ourIngradient/page";
 
 export default function page({ 
   params ,
@@ -56,337 +52,7 @@ export default function page({
         rating:'4.6',
         review:43,
         title:'oil',
-        imgArr: ["01.png","01.png", "02.jpeg", "03.png", "04.png"]
-    },
-    {
-        img:'/Assests/Images/HairImage/productImage/261.jpg',
-        name:'Amla Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/productImage/261.jpg", "HairImage/productImage/262.jpg", "HairImage/productImage/263.jpg", "HairImage/productImage/264.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/productImage/271.jpg',
-        name:'Psoriasis',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/productImage/271.jpg", "HairImage/productImage/272.jpg", "HairImage/productImage/273.jpg", "HairImage/productImage/274.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/productImage/281.jpg',
-        name:'Red Onion Shampoo',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/productImage/281.jpg", "HairImage/productImage/282.jpg", "HairImage/productImage/283.jpg", "HairImage/productImage/284.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/productImage/291.jpg',
-        name:'Piles Cure',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/productImage/291.jpg", "HairImage/productImage/292.jpg", "HairImage/productImage/293.jpg", "HairImage/productImage/294.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/301.jpg',
-        name:'Arjun Chaal',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/301.jpg", "HairImage/AllProductImage/302.jpg", "HairImage/AllProductImage/303.jpg", "HairImage/AllProductImage/304.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/311.jpg',
-        name:'Chyawanprash',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/311.jpg", "HairImage/AllProductImage/312.jpg", "HairImage/AllProductImage/313.jpg", "HairImage/AllProductImage/314.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/321.jpg',
-        name:'Musli Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/321.jpg", "HairImage/AllProductImage/322.jpg", "HairImage/AllProductImage/323.jpg", "HairImage/AllProductImage/324.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/331.jpg',
-        name:'Dental Care',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/331.jpg", "HairImage/AllProductImage/332.jpg", "HairImage/AllProductImage/333.jpg", "HairImage/AllProductImage/334.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/341.jpg',
-        name:'Joint Pain',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/341.jpg", "HairImage/AllProductImage/342.jpg", "HairImage/AllProductImage/343.jpg", "HairImage/AllProductImage/344.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/351.jpg',
-        name:'Black Bhringraj',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/351.jpg", "HairImage/AllProductImage/352.jpg", "HairImage/AllProductImage/353.jpg", "HairImage/AllProductImage/354.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/361.jpg',
-        name:'Ashwagandha',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/361.jpg", "HairImage/AllProductImage/362.jpg", "HairImage/AllProductImage/363.jpg", "HairImage/AllProductImage/364.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/371.jpg',
-        name:'Musli prash',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/371.jpg", "HairImage/AllProductImage/372.jpg", "HairImage/AllProductImage/373.jpg", "HairImage/AllProductImage/374.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/381.jpg',
-        name:'Nature Face Pack',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/381.jpg", "HairImage/AllProductImage/382.jpg", "HairImage/AllProductImage/383.jpg", "HairImage/AllProductImage/384.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/391.jpg',
-        name:'Shilajit',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/391.jpg", "HairImage/AllProductImage/392.jpg", "HairImage/AllProductImage/393.jpg", "HairImage/AllProductImage/394.jpg", "HairImage/AllProductImage/401.jpg", "HairImage/AllProductImage/402.jpg", "HairImage/AllProductImage/403.jpg", "HairImage/AllProductImage/404.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/411.jpg',
-        name:'Hair Oil',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/411.jpg", "HairImage/AllProductImage/412.jpg", "HairImage/AllProductImage/413.jpg", "HairImage/AllProductImage/414.jpg", "HairImage/AllProductImage/415.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/421.jpg',
-        name:'Forest Garlic Oil',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/421.jpg", "HairImage/AllProductImage/422.jpg", "HairImage/AllProductImage/423.jpg", "HairImage/AllProductImage/424.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/431.jpg',
-        name:'Neem Face Wash',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:43,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/431.jpg", "HairImage/AllProductImage/432.jpg", "HairImage/AllProductImage/433.jpg", "HairImage/AllProductImage/434.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/441.jpg',
-        name:'Aasthma Cure Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:44,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/441.jpg", "HairImage/AllProductImage/442.jpg", "HairImage/AllProductImage/443.jpg", "HairImage/AllProductImage/444.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/451.jpg',
-        name:'Brahmi Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/451.jpg", "HairImage/AllProductImage/452.jpg", "HairImage/AllProductImage/453.jpg", "HairImage/AllProductImage/454.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/461.jpg',
-        name:'Wat Rogantak Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/461.jpg", "HairImage/AllProductImage/462.jpg", "HairImage/AllProductImage/463.jpg", "HairImage/AllProductImage/464.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/471.jpg',
-        name:'Diabetes Cure Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/471.jpg", "HairImage/AllProductImage/472.jpg", "HairImage/AllProductImage/473.jpg", "HairImage/AllProductImage/474.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/481.jpg',
-        name:'Fit Me Herbal Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/481.jpg", "HairImage/AllProductImage/482.jpg", "HairImage/AllProductImage/483.jpg", "HairImage/AllProductImage/484.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/491.jpg',
-        name:'Chandan',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/491.jpg", "HairImage/AllProductImage/492.jpg", "HairImage/AllProductImage/493.jpg", "HairImage/AllProductImage/494.jpg", "HairImage/AllProductImage/495.jpg", "HairImage/AllProductImage/496.jpg", "HairImage/AllProductImage/497.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/501.jpg',
-        name:'Face Whitening Pack',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/501.jpg", "HairImage/AllProductImage/502.jpg", "HairImage/AllProductImage/503.jpg", "HairImage/AllProductImage/504.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/511.jpg',
-        name:'Keasar',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/511.jpg", "HairImage/AllProductImage/512.jpg", "HairImage/AllProductImage/513.jpg", "HairImage/AllProductImage/514.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/521.jpg',
-        name:'Sanskrait mrittika lipa',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/521.jpg", "HairImage/AllProductImage/522.jpg", "HairImage/AllProductImage/523.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/531.jpg',
-        name:'Face Massage cream',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/531.jpg", "HairImage/AllProductImage/532.jpg", "HairImage/AllProductImage/533.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/541.jpg',
-        name:'Honey Premium and Nature',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/541.jpg", "HairImage/AllProductImage/542.jpg", "HairImage/AllProductImage/543.jpg", "HairImage/AllProductImage/544.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/551.jpg',
-        name:'Black Shine Cleaner & Conditioner',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/551.jpg", "HairImage/AllProductImage/552.jpg", "HairImage/AllProductImage/553.jpg", "HairImage/AllProductImage/554.jpg", "HairImage/AllProductImage/555.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/561.jpg',
-        name:'Diabetes Cure Powder',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/561.jpg", "HairImage/AllProductImage/562.jpg", "HairImage/AllProductImage/563.jpg", "HairImage/AllProductImage/564.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/571.jpg',
-        name:'Fit Me',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/571.jpg", "HairImage/AllProductImage/572.jpg", "HairImage/AllProductImage/573.jpg", "HairImage/AllProductImage/574.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/581.jpg',
-        name:'Wat Rogantak',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/581.jpg", "HairImage/AllProductImage/582.jpg", "HairImage/AllProductImage/583.jpg", "HairImage/AllProductImage/584.jpg"]
-    },
-    {
-        img:'/Assests/Images/HairImage/AllProductImage/591.jpg',
-        name:'Honey Gold Face Pack',
-        data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-        price:150,
-        rating:'4.6',
-        review:42,
-        title:'oil',
-        imgArr: ["HairImage/AllProductImage/591.jpg", "HairImage/AllProductImage/592.jpg", "HairImage/AllProductImage/593.jpg"]
+        imgArr: ["/Assests/Images/HomeImage/28.png","/Assests/Images/HomeImage/28.png", "/Assests/Images/HomeImage/28.png", "/Assests/Images/HomeImage/28.png", "/Assests/Images/HomeImage/28.png"]
     },
     {
         img:'/Assests/Images/HairImage/AllProductImage/601.jpg',
@@ -409,45 +75,42 @@ export default function page({
       <div>
           <div>
             <CustomHead name="Hair Care" className="w-10/12" />
-            <div className=" grid md:grid-cols-2 gap-8 grid-cols-1">
-              <div className="md:h-96 border-2 border-[#00AB55] w-full h-52 rounded-md overflow-hidden">
+            <div className=" grid md:grid-cols-7 gap-8 grid-cols-1">
+              <div className="col-span-3 w-full rounded-md overflow-hidden">
                 <div className="h-full w-full">
                   <CardDetailSlider imgArr={arr?.[0].imgArr} />
                 </div>
               </div>
-              <div className="grid md:gap-0 gap-3">
-                <h1 className={cn("md:text-4xl text-3xl", forum.className)}>
+              <div className="grid col-span-4 w-[80%]">
+                <h1 className={cn("md:text-[2.5rem] text-3xl", forum.className)}>
                   {product?.name}
                 </h1>
-                <div className="text-xs text-[#00AB55]">{product?.rating} &#9733; ({product?.review})</div>
-                <p className="md:text-xl text-sm text-[#4A3F3F] ">{product?.data} </p>
-                <h2 className={cn("md:text-2xl text-xl", forum.className)}>
-                  MRP{" "}
-                  <span className={cn("font-normal", lato.className)}>
-                    {" "}
-                    ₹{product?.price}
-                  </span>
+                <div className="text-xs text-[#00AB55] mt-3">{product?.rating} &#9733; ({product?.review})</div>
+                <p className="md:text-xl text-sm text-[#4A3F3F] mt-2">{product?.data} </p>
+                <h2 className={cn("md:text-[1.75rem] text-xl mt-6 flex gap-4 items-center", forum.className)}>
+                  MRP
+                  <span className={cn("font-normal text-[2rem]", lato.className)}>  ₹{product?.price}.00 </span>
                 </h2>
-                <p className="md:text-sm text-xs text-[#4A3F3F]">
+                <p className="md:text-sm text-xs text-[#4A3F3F] mt-2">
                   (incl. off all taxes)
                 </p>
-                <h4 className="md:text-xl text-lg text-[#4A3F3F]">
+                <h4 className="md:text-xl text-lg text-[#4A3F3F] mt-6">
                   Available in : (Net Quantity)
                 </h4>
-                <div className="flex md:gap-8 gap-2">
-                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
+                <div className="flex md:gap-8 gap-2 mt-4">
+                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5">
                     8g
                   </span>
-                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
+                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5">
                     25g
                   </span>
-                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px]">
+                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5">
                     50g
                   </span>
                 </div>
 
                 <AlertDialog>
-                  <div className="grid md:grid-cols-2 md:gap-8 gap-3">
+                  <div className="grid md:grid-cols-2 md:gap-8 gap-3 mt-8">
                     <AlertDialogTrigger asChild>
                       {/* <Button variant="outline">Show Dialog</Button> */}
                       <Button className="flex gap-3 p-3  bg-whitejustify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
@@ -465,7 +128,7 @@ export default function page({
                       </AlertDialogHeader>
                     </AlertDialogContent>
 
-                    <button className="flex gap-3 p-3 justify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
+                    <button className="flex gap-3 p-3 justify-center items-center bg-primaryMain  md:text-xl text-sm font-medium text-white border-[#00A958] border-2 rounded-md md:h-12 h-8">
                       <MdOutlineShoppingCart /> Add to Cart
                     </button>
                   </div>
@@ -479,9 +142,8 @@ export default function page({
 
         <ClinicallyTested />
       </div>
-      <Banner />
-      <InGradient />
-      <div className="md:p-10 p-6 text-center text-4xl">Video Section pending hai</div>
+      {/* <Banner /> */}
+      <OurIngradient />
       <Benifit />
       <div className="max-w-7xl mx-auto w-full h-full md:p-0 p-6">
         <OurCertification />
