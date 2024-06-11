@@ -54,6 +54,7 @@ const config = {
         },
         "primaryMain": "#00AB55",
         "secondary-main": "#313131",
+        "ternary-main":"#625D60",
       },
       borderRadius: {
         lg: "var(--radius)",

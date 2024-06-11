@@ -59,7 +59,7 @@ export default function CardDetailSlider({imgArr}:{imgArr:any[]}) {
             slidesPerView={3}
             // freeMode={true}
             // watchSlidesProgress={true}
-            loop={true}
+            // loop={true}
             modules={[FreeMode, Navigation, Thumbs , Pagination]}
             navigation={{
                 prevEl: `.HomeSlidePrev`,
@@ -70,7 +70,7 @@ export default function CardDetailSlider({imgArr}:{imgArr:any[]}) {
         >
             {imgArr.map((slide, index) => (
                     <SwiperSlide key={index} className='h-full w-full'>
-                        <div className="h-full w-full relative">
+                        <div className="h-full w-full relative active:border-2 border-primaryMain rounded-sm">
                             <Image
                                 src={`${slide}`}
                                 fill

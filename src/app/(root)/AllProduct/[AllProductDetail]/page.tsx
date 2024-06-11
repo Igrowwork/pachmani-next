@@ -12,7 +12,7 @@ import Benifit from "@/components/benefit/page";
 import OurCertification from "@/components/ourCertification/page";
 import { cn } from "@/lib/utils";
 import CardDetailSlider from "@/slider/CardDetailSlider/page";
-import React from "react";
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -42,6 +42,7 @@ export default function page({
   params ,
 }: {params : {AllProductDetail: string}
 })  {
+  const [isQuant , setIsQuant] = useState('0');
  
   const arr = [
     {
@@ -98,13 +99,13 @@ export default function page({
                   Available in : (Net Quantity)
                 </h4>
                 <div className="flex md:gap-8 gap-2 mt-4">
-                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5">
+                  <span className={cn("rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5" , isQuant === '0' ? "text-white bg-primaryMain" : "")}  onClick={()=> setIsQuant('0')}>
                     8g
                   </span>
-                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5">
+                  <span className={cn("rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5" , isQuant === '1' ? "text-white bg-primaryMain" : "")} onClick={()=> setIsQuant('1')}>
                     25g
                   </span>
-                  <span className="rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10  hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5">
+                  <span className={cn("rounded-full flex justify-center items-center md:text-base md:h-10 md:w-10 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5" ,isQuant === '2' ? "text-white bg-primaryMain" : "" )}  onClick={()=> setIsQuant('2')}>
                     50g
                   </span>
                 </div>

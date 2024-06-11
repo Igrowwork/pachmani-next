@@ -53,7 +53,7 @@ export default function Navbar() {
             <DropdownMenuTrigger asChild>
               <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-full">
               <DropdownMenuGroup>
                     <Link className="group cursor-pointer" href='/signIn'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">Sign in</h1></DropdownMenuItem></Link>
                     <Link className="group cursor-pointer" href='/myCart'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My Cart</h1></DropdownMenuItem></Link>
