@@ -9,6 +9,8 @@ import { RiDeleteBin5Line, RiDeleteBinLine } from "react-icons/ri";
 import { Icons } from "@/app/icons";
 import CustomHead from "@/UI/customHead";
 import DrawerSlider from "@/app/(root)/_components/DrawerSlider";
+import OfferDrawer from "./offerDrawer/page";
+import Link from "next/link";
 
 
 export default function   CartDrawer({ val }: { val: () => void }) {
@@ -24,6 +26,7 @@ export default function   CartDrawer({ val }: { val: () => void }) {
     }
   };
   const arr = ["", "", ""];
+  const [isSide , setIsSide] = useState(false)
   return (
       <div className="fixed top-0 left-0 h-screen w-full z-50">
         <motion.div
@@ -32,102 +35,108 @@ export default function   CartDrawer({ val }: { val: () => void }) {
           transition={{ duration: 1 }}
           className=""
         >
-          <div className="h-full w-full absolute top-0 left-0 bg-black/10 backdrop-blur" onClick={val}/>
+          <div className="h-full w-full absolute top-0 left-0 bg-black/10 backdrop-blur" />
           <div className="fixed top-0 right-0 md:w-[31.25rem] bg-white h-full">
-            <div className="">
-              <div className="flex text-xs text-center items-center gap-5 p-3 text-primaryMain font-normal shadow-lg w-full">
-                <h1 className="text-center w-full">{arr?.length} Items in your bag</h1>
-                <RxCross1 onClick={val} className="cursor-pointer text-2xl text-[#625D60] hover:text-red-400" />
-              </div>
-              <div className="h-screen w-full overflow-y-scroll custom-scrollbar p-4 pb-28">
-                <div className="grid gap-4 ">
-                  {arr?.map((ele, i) => (
-                    <div key={i} className="grid md:grid-cols-7 grid-cols-1 items-center gap-2 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]  p-3 rounded-md">
-                      <div className="md:col-span-3">
-                        <div className="relative w-full md:h-28">
-                          <Image
-                            src="/Assests/Images/HomeImage/27.png"
-                            alt="No Preview"
-                            fill
-                            className="md:object-contain object-cover rounded-sm scale-105"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="md:col-span-4 grid gap-1">
-                        <h1 className="text-base font-semibold">Bhringraj Oil</h1>
-                        <p className="text-xs text-ternary-main">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Iure, qui.
-                        </p>
-                        <div className="text-xs flex items-center gap-1 text-ternary-main mt-2"> <span className="bg-[#2D8A40] text-white px-1.5 py-0.5 text-[0.625rem] rounded-full">4.5 &#9733;</span> 763 Rating</div>
-                        <h2>₹ 353</h2>
-                      </div>
-                      <div className="col-span-7 grid grid-cols-7">
-                        <div className="col-span-3">
-                          <div className="text-primaryMain flex border border-primaryMain items-center justify-around rounded-[2px] mt-3 md:w-[55%] text-sm mx-auto">
-                            <h4 onClick={handleDec} className="cursor-pointer"><AiOutlineMinus /> </h4>
-                            <h4>{isSet}</h4>
-                            <h4 onClick={handleInce} className="cursor-pointer"><AiOutlinePlus /> </h4>
+            { isSide ?
+              <OfferDrawer val={ () => setIsSide(false)} />
+              :
+              
+              <div className="">
+                <div className="flex text-xs text-center items-center gap-5 p-3 text-primaryMain font-normal shadow-lg w-full">
+                  <h1 className="text-center w-full">{arr?.length} Items in your bag</h1>
+                  <RxCross1 onClick={val} className="cursor-pointer text-2xl text-[#625D60] hover:text-red-400" />
+                </div>
+                <div className="h-screen w-full overflow-y-scroll custom-scrollbar p-4 pb-28">
+                  <div className="grid gap-4 ">
+                    {arr?.map((ele, i) => (
+                      <div key={i} className="grid md:grid-cols-7 grid-cols-1 items-center gap-2 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]  p-3 rounded-md">
+                        <div className="md:col-span-3">
+                          <div className="relative w-full md:h-28">
+                            <Image
+                              src="/Assests/Images/HomeImage/27.png"
+                              alt="No Preview"
+                              fill
+                              className="md:object-contain object-cover rounded-sm scale-105"
+                            />
                           </div>
                         </div>
-                        <div className="col-span-4">
-                          <div className="border-primaryMain/25 border  w-full h-[0.5px] border-dashed"/>
-                          <div className="text-[#625D60] text-sm flex gap-2 mt-3 items-center justify-between"><span className="flex gap-2"> Subtotal <span className="font-semibold text-[#313131]">₹265.00</span> </span><Icons.delete /></div>
-                          
+
+                        <div className="md:col-span-4 grid gap-1">
+                          <h1 className="text-base font-semibold">Bhringraj Oil</h1>
+                          <p className="text-xs text-ternary-main">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Iure, qui.
+                          </p>
+                          <div className="text-xs flex items-center gap-1 text-ternary-main mt-2"> <span className="bg-[#2D8A40] text-white px-1.5 py-0.5 text-[0.625rem] rounded-full">4.5 &#9733;</span> 763 Rating</div>
+                          <h2>₹ 353</h2>
                         </div>
+                        <div className="col-span-7 grid grid-cols-7">
+                          <div className="col-span-3">
+                            <div className="text-primaryMain flex border border-primaryMain items-center justify-around rounded-[2px] mt-3 md:w-[55%] text-sm mx-auto">
+                              <h4 onClick={handleDec} className="cursor-pointer"><AiOutlineMinus /> </h4>
+                              <h4>{isSet}</h4>
+                              <h4 onClick={handleInce} className="cursor-pointer"><AiOutlinePlus /> </h4>
+                            </div>
+                          </div>
+                          <div className="col-span-4">
+                            <div className="border-primaryMain/25 border  w-full h-[0.5px] border-dashed"/>
+                            <div className="text-[#625D60] text-sm flex gap-2 mt-3 items-center justify-between"><span className="flex gap-2"> Subtotal <span className="font-semibold text-[#313131]">₹265.00</span> </span><Icons.delete /></div>
+                            
+                          </div>
 
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="text-center rounded-lg text-[#332F32] font-medium cursor-pointer p-4 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-2 flex justify-between items-center" >
-                 <span className="flex items-center gap-2"> <Icons.discount /> Apply Promo code</span> <AiOutlineRight className="text-xl" />
-                </div>
-
-                <div className="">
-                <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4 my-4">
-                  <h1 className="text-[#332F32] text-base font-bold">Payment detail</h1>
-                  <div className="text-sm grid gap-1 mt-4">
-                    <div className="flex justify-between text-[#625D60] font-medium">
-                      MRP Total <span className="text-[#332F32] font-semibold">₹ 706.00</span>
-                    </div>
-                    <div className="flex justify-between text-[#625D60] font-medium">
-                      Discount<span className="text-[#332F32] font-semibold">₹ 100.00</span>
-                    </div>
-                    <div className="flex justify-between text-[#625D60] font-medium">
-                      Promo Code<span className="text-[#332F32] font-semibold">₹ 0.00</span>
-                    </div>
-                    <div className="flex justify-between text-[#625D60] font-medium">
-                      Delivery charge<span className="text-[#332F32] font-semibold">₹ 0.00</span>
-                    </div>
-                    <div className="border-primaryMain/25 border  w-full h-[0.5px] border-dashed"/>
-                    
-                    <div className="flex justify-between text-primaryMain">
-                      Total Payable<span className="font-semibold">₹ 606.00</span>
-                    </div>
-                    <p className="text-xs font-normal text-[#625D60] mt-1">You are save ₹ 100.00 on this order </p>
+                    ))}
                   </div>
-                </div>
+                  <div onClick={()=> setIsSide(true)} className="text-center rounded-lg text-[#332F32] font-medium cursor-pointer p-4 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-2 flex justify-between items-center" >
+                  <span className="flex items-center gap-2"> <Icons.discount /> Apply Promo code</span> <AiOutlineRight className="text-xl" />
+                  </div>
 
-                <div>
-                  <CustomHead name="Recommendations" className="" />
-                  {/* <DrawerSlider /> */}
-                </div>
-                </div>
+                  <div className="">
+                  <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4 my-4">
+                    <h1 className="text-[#332F32] text-base font-bold">Payment detail</h1>
+                    <div className="text-sm grid gap-1 mt-4">
+                      <div className="flex justify-between text-[#625D60] font-medium">
+                        MRP Total <span className="text-[#332F32] font-semibold">₹ 706.00</span>
+                      </div>
+                      <div className="flex justify-between text-[#625D60] font-medium">
+                        Discount<span className="text-[#332F32] font-semibold">₹ 100.00</span>
+                      </div>
+                      <div className="flex justify-between text-[#625D60] font-medium">
+                        Promo Code<span className="text-[#332F32] font-semibold">₹ 0.00</span>
+                      </div>
+                      <div className="flex justify-between text-[#625D60] font-medium">
+                        Delivery charge<span className="text-[#332F32] font-semibold">₹ 0.00</span>
+                      </div>
+                      <div className="border-primaryMain/25 border  w-full h-[0.5px] border-dashed"/>
+                      
+                      <div className="flex justify-between text-primaryMain">
+                        Total Payable<span className="font-semibold">₹ 606.00</span>
+                      </div>
+                      <p className="text-xs font-normal text-[#625D60] mt-1">You are save ₹ 100.00 on this order </p>
+                    </div>
+                  </div>
 
+                  <div>
+                    <CustomHead name="Recommendations" className="" />
+                    {/* <DrawerSlider /> */}
+                  </div>
+                  </div>
+
+                </div>
+                  <div className="grid grid-cols-2 drop-shadow-xl bg-white rounded-md shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] fixed bottom-1 w-[29rem] right-6">
+                    <div className="flex flex-col justify-center items-center rounded-l-md">
+                      <span className="text-[#625D60] text-sm">Grand Total</span>
+                      <span className="text-primaryMain text-xl font-semibold my-1.5">₹ 606</span>
+                    </div>
+                    <Link href={'/myCart/shipping-cost'} onClick={val} className="text-white bg-primaryMain p-3 flex gap-2 w-full justify-center items-center font-medium rounded-r-md">
+                      <span className="text-xl">Checkout</span>
+                      <span className="mt-1.5"><AiOutlineRight className="text-xl" /></span>
+                    </Link>
+                  </div>
               </div>
-                <div className="grid grid-cols-2 drop-shadow-xl bg-white rounded-md shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] fixed bottom-1 w-[29rem] right-6">
-                  <div className="flex flex-col justify-center items-center rounded-l-md">
-                    <span className="text-[#625D60] text-sm">Grand Total</span>
-                    <span className="text-primaryMain text-xl font-semibold my-1.5">₹ 606</span>
-                  </div>
-                  <div className="text-white bg-primaryMain p-3 flex gap-2 w-full justify-center items-center font-medium rounded-r-md">
-                    <span className="text-xl">Checkout</span>
-                    <span className="mt-1.5"><AiOutlineRight className="text-xl" /></span>
-                  </div>
-                </div>
-            </div>
+
+            }
           </div>
         </motion.div>
       </div>
