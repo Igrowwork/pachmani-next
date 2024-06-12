@@ -1,4 +1,4 @@
-import { Bitter ,Forum ,Open_Sans , Lato , Source_Serif_4 , Inter} from "next/font/google"
+import { Bitter ,Forum ,Open_Sans , Lato , Source_Serif_4 , Inter , Poppins} from "next/font/google"
 
 export const bitter = Bitter({
     subsets:['latin'],
@@ -26,6 +26,11 @@ export const soureSerif = Source_Serif_4({
 })
 
 export const inter = Inter({
+    subsets:['latin'],
+    weight:['400','500','600','700'],
+})
+
+export const poppin = Poppins({
     subsets:['latin'],
     weight:['400','500','600','700'],
 })
