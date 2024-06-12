@@ -1,15 +1,27 @@
 "use client";
 import { forum } from "@/app/font";
 import { cn } from "@/lib/utils";
+import { loginAsyn } from "@/redux/action/userAction";
+import { AppDispatch, RootState } from "@/redux/store";
 import axios from "axios";
+import { Loader } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Login() {
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const { user, loading, error, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+
   const [isVal, setIsVal] = useState({
     email: "",
     password: "",
   });
+
   const onChangeHandle = (e: any) => {
     setIsVal({
       ...isVal,
@@ -19,21 +31,14 @@ export default function Login() {
 
   const onSubmitHandle = async (e: any) => {
     e.preventDefault();
-    console.log(isVal);
-    setIsVal({
-      email: "",
-      password: "",
-    });
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/user/login",
-        isVal
-      );
-      // console.log(response, "aa gya");
-    } catch (e) {
-      console.log(e, "login page error hai");
-    }
+    dispatch(loginAsyn(isVal));
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/");
+    }
+  }, [isAuthenticated, user]);
 
   return (
     <div className=" min-h-screen">
@@ -71,9 +76,10 @@ export default function Login() {
             />
             <button
               type="submit"
-              className="border bg-primaryMain text-white p-2 rounded-md w-44"
+              className="border bg-primaryMain text-white p-2 rounded-md w-44 flex items-center justify-center gap-2"
             >
-              Submit
+              {loading && <Loader className="animate-spin w-4 h-4"></Loader>}
+              <p>Submit</p>
             </button>
           </form>
         </div>

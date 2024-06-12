@@ -5,6 +5,7 @@ import Offer from "@/components/Offer/page";
 import Navbar from "@/components/Navbar/page";
 import Navbar2 from "@/components/navbar2/page";
 import Footer from "@/components/footer/page";
+import { Providers } from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,15 +21,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div>
-          <Offer />
-          <Navbar />
-          <Navbar2 />
-          <main>{children}</main>
-          <Footer />
-        </div>
-      </body>
+      <Providers>
+        <body className={inter.className}>
+          <div>
+            <Offer />
+            <Navbar />
+            <Navbar2 />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </body>
+      </Providers>
     </html>
   );
 }
