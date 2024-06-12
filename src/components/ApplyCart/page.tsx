@@ -3,46 +3,50 @@ import { LuBadgePercent } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { forum } from "@/app/font";
+import { AiOutlineRight } from "react-icons/ai";
+import { Icons } from "@/app/icons";
+import Link from "next/link";
 
 export default function ApplyCart() {
   return (
     <div className="grid gap-5">
-      <div className="flex justify-between items-center shadow-2xl p-5 rounded-xl px-3">
-        <div className="flex gap-3 items-center">
-          <LuBadgePercent className="text-primaryMain"/>
-          <div>Apply Offers</div>
+      <div className="flex justify-between items-center shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] p-4 rounded-sm px-3">
+        <div className="flex gap-2 items-center">
+          <Icons.discount className="text-primaryMain"/>
+          <div className="font-medium text-[#332F32]">Apply Promo code</div>
         </div>
-        <FaAngleRight className="text-primaryMain"/>
+          <AiOutlineRight className="text-xl text-[#625D60]" />
       </div>
-      <div className="bg-[#e0f1e7] p-5 rounded-lg">
-        <h2 className={cn("text-3xl", forum.className)}>Order Summary</h2>
-        <div className="p-2">
-          <div className="grid grid-cols-2">
-            <h6>Bag Total</h6>
-            <h6>₹ 2535</h6>
-          </div>
-          <div className="grid grid-cols-2">
-            <h6>Promo applied</h6>
-            <h6>₹ 2535</h6>
+     <div>
+      <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4 my-4">
+          <h1 className="text-[#332F32] text-base font-bold">Payment detail</h1>
+          <div className="text-sm grid gap-1 mt-4">
+            <div className="flex justify-between text-[#625D60] font-medium">
+              MRP Total <span className="text-[#332F32] font-semibold">₹ 706.00</span>
+            </div>
+            <div className="flex justify-between text-[#625D60] font-medium">
+              Discount<span className="text-[#332F32] font-semibold">₹ 100.00</span>
+            </div>
+            <div className="flex justify-between text-[#625D60] font-medium">
+              Promo Code<span className="text-[#332F32] font-semibold">₹ 0.00</span>
+            </div>
+            <div className="flex justify-between text-[#625D60] font-medium">
+              Delivery charge<span className="text-[#332F32] font-semibold">₹ 0.00</span>
+            </div>
+            <div className="border-primaryMain/25 border  w-full h-[0.5px] border-dashed"/>
+            
+            <div className="flex justify-between text-primaryMain">
+              Total Payable<span className="font-semibold">₹ 606.00</span>
+            </div>
+            <p className="text-xs font-normal text-[#625D60] mt-1">You are save ₹ 100.00 on this order </p>
           </div>
         </div>
-        <div>
-          <div className="grid grid-cols-2 border-t-[1px] border-b-[1px] border-primaryMain p-2">
-            <h6 className="text-xl">Grand total</h6>
-            <h6 className="text-xl">₹ 2535</h6>
-          </div>
-        </div>
-      </div>
-      <div className="p-5 border-[1px] border-[#e0f1e7] rounded-lg">
-        <div className={cn("text-xl", forum.className)}>Note</div>
-        <div className="text-sm italic">
-          Amaaya points, Vouchers & Gift Cards can be redeemed during payment
-          (cannot be clubbed with any other offer) *T&C
-        </div>
-      </div>
-      <button className="text-white bg-primaryMain w-full rounded-md p-2 text-lg">
+
+     </div>
+      <Link href={'/myCart/shipping-cost'} className="text-white bg-primaryMain w-[60%] rounded-sm p-2 text-xl font-medium flex justify-center items-center gap-2">
         checkout
-      </button>
+        <AiOutlineRight className="text-xl" />
+      </Link>
     </div>
   );
 }

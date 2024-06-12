@@ -8,16 +8,17 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 // import required modules
-import { Keyboard, Pagination, Navigation } from 'swiper/modules';
+import { Keyboard, Pagination, Navigation, Autoplay } from 'swiper/modules';
 import OurBestSellerCard from '../Card/OurBestSellerCard/page';
 import CustomHead from '@/UI/customHead';
 import { FaChevronLeft } from "react-icons/fa6";
 import { FaChevronRight } from 'react-icons/fa';
+import Link from 'next/link';
 
 export default function OurBestSeller() {
   const arr = [
     {
-        img:'/Assests/Images/HairImage/14.jpg',
+        img:'/Assests/Images/HomeImage/28.png',
         name:'Bhringraj Oil',
         data:'It is a long established fact that a reader will be distracted by the distracted.',
         price:450,
@@ -27,7 +28,7 @@ export default function OurBestSeller() {
         page:'01'
     },
     {
-        img:'/Assests/Images/HairImage/15.jpg',
+        img:'/Assests/Images/HomeImage/28.png',
         name:'Black Shine Shampoo',
         data:'It is a long established fact that a reader will be distracted by the distracted.',
         price:265,
@@ -47,7 +48,7 @@ export default function OurBestSeller() {
         page:'03'
     },
     {
-        img:'',
+        img:'/Assests/Images/HomeImage/28.png',
         name:'Pachmarhi Hair Oil (200ml)',
         data:'It is a long established fact that a reader will be distracted by the distracted.',
         price:300,
@@ -68,12 +69,15 @@ export default function OurBestSeller() {
     },
 ]
   return (
-    <div className='my-10'>
-      <CustomHead name='OUR BESTSELLERS' className='w-11/12' />
-      <div className='relative h-full w-full'>
+    <div className='my-10 w-full h-full max-w-7xl mx-auto'>
+      <div className='flex justify-between items-center'>
+        <CustomHead name='Our Bestsellers' className='w-2/3' />
+        <Link href={'/our-best-seller'} className='text-xl text-primaryMain font-medium hover:underline transition-transform'>View More</Link>
+      </div>
+      <div className='relative h-full w-full mt-6'>
         <div className=' w-full h-full text-3xl'>
-        <button className='HomeSlidePrev text-primaryMain absolute top-1/2 -translate-y-1/2 -left-10 z-10'><FaChevronLeft /></button>
-        <button className='HomeSlideNext text-primaryMain absolute top-1/2 -translate-y-1/2 -right-10 z-10'><FaChevronRight /></button>
+        {/* <button className='HomeSlidePrev text-primaryMain absolute top-1/2 -translate-y-1/2 -left-10 z-10'><FaChevronLeft /></button>
+        <button className='HomeSlideNext text-primaryMain absolute top-1/2 -translate-y-1/2 -right-10 z-10'><FaChevronRight /></button> */}
         </div>
         <Swiper
         slidesPerView={4}
@@ -88,8 +92,12 @@ export default function OurBestSeller() {
           prevEl: `.HomeSlidePrev`,
           nextEl: `.HomeSlideNext`,
       }}
+      autoplay={{
+        delay: 3000, // Delay between slides in milliseconds
+        disableOnInteraction: false, // Continue autoplay after user interactions
+      }}
       loop={true}
-        modules={[Keyboard , Navigation]}
+        modules={[Keyboard , Navigation , Autoplay]}
         className="mySwiper"
       >
         {

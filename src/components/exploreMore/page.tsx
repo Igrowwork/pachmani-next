@@ -5,10 +5,22 @@ import ExploreMoreCard from '../Card/ExploreMoreCard/page'
 
 export default function ExploreMore() {
   const arr = [ 
-    "",
-    "",
-    "",
-    ""
+    {
+      name:'Haircare',
+      img:'/Assests/Images/HomeImage/05.png'
+    },
+    {
+      name:'Skincare',
+      img:'/Assests/Images/HomeImage/skincare.png'
+    },
+    {
+      name:'Health Care',
+      img:'/Assests/Images/HomeImage/men.png'
+    },
+    {
+      name:"Men's",
+      img:'/Assests/Images/HomeImage/health.png'
+    },
   ]
   return (
     <div className='my-10'>
@@ -16,7 +28,7 @@ export default function ExploreMore() {
       <div className='grid md:grid-cols-4 gap-8 grid-cols-1'>
         {
           arr?.map((ele,i)=>(
-            <ExploreMoreCard key={i} name='/Assests/Images/HomeImage/05.png' />
+            <ExploreMoreCard key={i} val={ele} />
           ))
         }
       </div>

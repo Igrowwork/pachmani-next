@@ -42,7 +42,7 @@ export default function FAQ() {
           <div className="md:p-6 p-3 grid gap-3 border-b-[#E4E4E7] border-b-[1px]">
             <h1
               className={cn(
-                "text-[#12141D] font-bold md:text-lg text-sm flex justify-between cursor-pointer",
+                "text-[#12141D] font-bold md:text-lg text-sm flex justify-between cursor-pointer peer peer-focus:text-primaryMain",
                 soureSerif.className
               )}
               onClick={() => toggleFaq(i)}

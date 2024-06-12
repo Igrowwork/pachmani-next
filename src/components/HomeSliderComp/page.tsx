@@ -16,7 +16,7 @@ import HomeSlideCard from './HomeSlideCard/page';
 export default function HomeSliderComp() {
   const arr = ["02.png","24.png","25.png","26.png"]
   return (
-    <div className='w-full md:h-[474px]'>
+    <div className='w-full '>
         <Swiper
         pagination={{
           dynamicBullets: true,
