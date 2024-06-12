@@ -1,0 +1,72 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface Address {
+  street: string;
+  city: string;
+  zip: string;
+}
+
+interface IUser extends Document {
+  username: string;
+  email: string;
+  password: string;
+  role: "user" | "admin";
+  cartItems?: [];
+  orders?: [];
+  comparePassword(password: string): Promise<boolean>;
+  addresses?: Address[];
+  phoneNumber?: string;
+  otp: string;
+  otpExpiry: Date;
+  verified: boolean;
+}
+
+interface AuthState {
+  loading: boolean;
+  error: string | null;
+  isAuthenticated: boolean;
+  user: IUser | null;
+}
+
+const initialState: AuthState = {
+  loading: false,
+  error: null,
+  isAuthenticated: false,
+  user: null,
+};
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    login(state, action) {
+      state.loading = false;
+      state.error = null;
+      state.isAuthenticated = true;
+      state.user = action.payload;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+      state.user = null;
+      state.error = null;
+    },
+    register(state, action) {
+      state.loading = false;
+      state.isAuthenticated = true;
+      state.user = action.payload;
+      state.error = null;
+    },
+    setError(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+      state.error = null;
+    },
+    setLoading(state, action) {
+      state.loading = action.payload;
+      state.error = null;
+    },
+  },
+});
+export const { logout, login, register, setLoading, setError } =
+  authSlice.actions;
+export default authSlice.reducer;
