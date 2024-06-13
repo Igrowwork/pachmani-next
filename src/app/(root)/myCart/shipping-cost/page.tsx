@@ -3,12 +3,15 @@
 import { forum } from "@/app/font";
 import { Icons } from "@/app/icons";
 import { cn } from "@/lib/utils";
+import { getAllCartItemsAsync } from "@/redux/action/addTocartAction";
+import { AppDispatch, RootState } from "@/redux/store";
 import CustomHead from "@/UI/customHead";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ShippingCost() {
   const router = useRouter()
@@ -190,6 +193,11 @@ export default function ShippingCost() {
               />
             </div>
             <input type="submit" value={' Proceed to Payment'} className="w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white cursor-pointer" />             
+            <input
+              type="submit"
+              value={" Proceed to Payment"}
+              className="w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white"
+            />
           </form>
         </div>
       </div>
