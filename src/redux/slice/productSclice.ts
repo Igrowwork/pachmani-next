@@ -1,6 +1,21 @@
+import { IProduct } from "@/lib/types/products";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+
+
+interface ProductList {
+  products: IProduct[];
+  totalPages: number;
+  currentPage: number;
+}
+
+interface AppState {
+  loading: boolean;
+  error: Error | null;
+  products: ProductList;
+}
+
+const initialState: AppState = {
   loading: false,
   error: null,
   products: {
