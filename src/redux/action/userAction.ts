@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   login,
   logout,
@@ -7,14 +6,7 @@ import {
   setLoading,
 } from "../slice/userSclice";
 import { Dispatch } from "@reduxjs/toolkit";
-
-const api = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_URL}/api/`,
-  withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import api from "@/lib/axios";
 
 export const loginAsyn = (userData: {}) => async (dispatch: Dispatch) => {
   try {
@@ -34,12 +26,12 @@ export const getLoginUserAsyn = () => async (dispatch: Dispatch) => {
     const { data } = await api.post(`user`);
     dispatch(login(data.user));
   } catch (error) {
+    console.log(error, "===");
     dispatch(setError("jwtError"));
   } finally {
     dispatch(setLoading(false));
   }
 };
-
 
 export const signAsyn = (userData: {}) => async (dispatch: Dispatch) => {
   try {
@@ -47,7 +39,8 @@ export const signAsyn = (userData: {}) => async (dispatch: Dispatch) => {
     const { data } = await api.post(`user/sign-up`, userData);
     dispatch(register(data.user));
   } catch (error) {
-    dispatch(setError("Login failed"));
+    const err = error as { response?: { data?: { message?: string } } };
+    dispatch(setError(err?.response?.data?.message || "signup error"));
   } finally {
     dispatch(setLoading(false));
   }

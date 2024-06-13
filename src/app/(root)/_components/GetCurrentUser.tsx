@@ -9,19 +9,22 @@ import { useDispatch, useSelector } from "react-redux";
 const GetCurrentUser = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const { user, loading, error, isAuthenticated } = useSelector(
+  const { user, loading, UnauthorizedError, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
   );
+
   useEffect(() => {
     if (!isAuthenticated) {
       dispatch(getLoginUserAsyn());
     }
   }, [isAuthenticated, user]);
+
   useEffect(() => {
-    if (error == "jwtError") {
+    if (UnauthorizedError == "jwtError" || UnauthorizedError == 'Unauthorized') {
       router.push("/login");
     }
-  }, [error]);
+  }, [UnauthorizedError]);
+
   return <></>;
 };
 export default GetCurrentUser;

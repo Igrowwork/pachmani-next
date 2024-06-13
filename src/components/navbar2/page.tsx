@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,52 +8,59 @@ export default function Navbar2() {
   const pathname = usePathname();
   const arr = [
     {
-      name : "Home",
-      page : '/'
+      name: "Home",
+      page: "/",
     },
     {
-      name : "Haircare",
-      page : '/hairCare'
+      name: "Haircare",
+      page: "/hairCare",
     },
     {
-      name : "Healthcare",
-      page : '/healthCare'
+      name: "Healthcare",
+      page: "/healthCare",
     },
     {
-      name : "Skincare",
-      page : '/skinCare'
+      name: "Skincare",
+      page: "/skinCare",
     },
     {
-      name : "Men's",
-      page : '/mens'
+      name: "Men's",
+      page: "/mens",
     },
     {
-      name : "All Products",
-      page : '/AllProduct'
+      name: "All Products",
+      page: "/AllProduct",
     },
     {
-      name : "About Us",
-      page : '/AboutUs'
+      name: "About Us",
+      page: "/AboutUs",
     },
     {
-      name : "Contact Us",
-      page : '/ContactUs'
+      name: "Contact Us",
+      page: "/ContactUs",
     },
-    
-  ]
+  ];
   return (
     <div className=" border-t-[1px] border-[#00AB55] bg-white sticky top-0 z-40 shadow-md py-3">
       <div className="list-none md:flex hidden justify-between text-xl py-5 font-medium text-[#000000] mx-auto max-w-7xl h-full">
-        {
-          arr?.map((ele,i)=>(
-            <Link href={ele?.page}>
-              <li className={cn(`hover:text-[#00AB55] cursor-pointer group`, pathname === ele?.page ? "text-[#00AB55]":"")}>
-                  {ele?.name}
-                <div className={cn(`h-[1px] bg-primaryMain w-0 group-hover:w-full transition-all duration-300 ease-linear ` , pathname === ele?.page ? "w-full":"" )} />
-              </li>
-            </Link>
-          ))
-        }
+        {arr?.map((ele, i) => (
+          <Link href={ele?.page}>
+            <li
+              className={cn(
+                `hover:text-[#00AB55] cursor-pointer group`,
+                pathname === ele?.page ? "text-[#00AB55]" : ""
+              )}
+            >
+              {ele?.name}
+              <div
+                className={cn(
+                  `h-[1px] bg-primaryMain w-0 group-hover:w-full transition-all duration-300 ease-linear `,
+                  pathname === ele?.page ? "w-full" : ""
+                )}
+              />
+            </li>
+          </Link>
+        ))}
       </div>
     </div>
   );

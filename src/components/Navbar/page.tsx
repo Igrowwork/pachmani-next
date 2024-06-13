@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleUser, ShoppingBag } from "lucide-react";
+import { CircleUser, Loader, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
@@ -24,58 +24,122 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import { AppDispatch, RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { logoutAsyn } from "@/redux/action/userAction";
 
 export default function Navbar() {
   const [isVal, setIsVal] = useState(false);
   const [isDraw, setIsDraw] = useState(false);
   const [isDraw2, setIsDraw2] = useState(false);
+
+  const { user, loading, error, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handelLogout = async () => {
+    dispatch(logoutAsyn());
+    router.push("/");
+  };
+
   return (
     <>
-    <div className="bg-white">
-      <div className="flex justify-between w-full items-center max-w-7xl mx-auto z-40 py-2">
-       
-        <Link href={'/'} className="relative h-16 w-40">
-          <Image
-            src="/Assests/Images/HomeImage/logo.png"
-            alt="No Preview"
-            fill
-            className="object-contain"
-          />
-        </Link>
-        <div className="flex justify-end gap-4 items-center">
-          <div className="flex items-center gap-3 border-b border-b-[#E0E0E0] rounded-md p-2">
-            <FiSearch className="h-6 w-6 text-[#828282]"/>
-            <input type="text" placeholder="Search" className="outline-none" />
+      <div className="bg-white">
+        <div className="flex justify-between w-full items-center max-w-7xl mx-auto z-40 py-2">
+          <Link href={"/"} className="relative h-16 w-40">
+            <Image
+              src="/Assests/Images/HomeImage/logo.png"
+              alt="No Preview"
+              fill
+              className="object-contain"
+            />
+          </Link>
+          <div className="flex justify-end gap-4 items-center">
+            <div className="flex items-center gap-3 border-b border-b-[#E0E0E0] rounded-md p-2">
+              <FiSearch className="h-6 w-6 text-[#828282]" />
+              <input
+                type="text"
+                placeholder="Search"
+                className="outline-none"
+              />
+            </div>
+            <HiOutlineShoppingBag
+              className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
+              onClick={() => setIsDraw(true)}
+            />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-full">
+                <DropdownMenuGroup>
+                  <Link className="group cursor-pointer" href="/signIn">
+                    <DropdownMenuItem>
+                      <h1 className="capitalize group-hover:text-primaryMain">
+                        Sign in
+                      </h1>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link className="group cursor-pointer" href="/myCart">
+                    <DropdownMenuItem>
+                      <h1 className="capitalize group-hover:text-primaryMain">
+                        My Cart
+                      </h1>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    className="group cursor-pointer"
+                    href="/myAccount/profile"
+                  >
+                    <DropdownMenuItem>
+                      <h1 className="capitalize group-hover:text-primaryMain">
+                        My Account
+                      </h1>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    className="group cursor-pointer"
+                    href="/myAccount/wishlist"
+                  >
+                    <DropdownMenuItem>
+                      <h1 className="capitalize group-hover:text-primaryMain">
+                        My WishList
+                      </h1>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link className="group cursor-pointer" href="/trackYourOrder">
+                    <DropdownMenuItem>
+                      <h1 className="capitalize group-hover:text-primaryMain">
+                        Track Your Order
+                      </h1>
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            {loading ? (
+              <Loader className="w-4 h-4 animate-spin" />
+            ) : isAuthenticated ? (
+              <button onClick={handelLogout}>Log Out</button>
+            ) : (
+              <Link href="/login">Log In</Link>
+            )}
           </div>
-          <HiOutlineShoppingBag className="cursor-pointer hover:text-[#00AB55] h-6 w-6" onClick={() => setIsDraw(true)}/>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-full">
-              <DropdownMenuGroup>
-                    <Link className="group cursor-pointer" href='/signIn'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">Sign in</h1></DropdownMenuItem></Link>
-                    <Link className="group cursor-pointer" href='/myCart'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My Cart</h1></DropdownMenuItem></Link>
-                    <Link className="group cursor-pointer" href='/myAccount/profile'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My Account</h1></DropdownMenuItem></Link>
-                    <Link className="group cursor-pointer" href='/myAccount/wishlist'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">My WishList</h1></DropdownMenuItem></Link>
-                    <Link className="group cursor-pointer" href='/trackYourOrder'><DropdownMenuItem> <h1 className="capitalize group-hover:text-primaryMain">Track Your Order</h1></DropdownMenuItem></Link>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
-      </div>
       </div>
       {isVal && (
         <div>
           <MobileDrawer />
         </div>
       )}
-
       <AnimatePresence>
         {isDraw && <CartDrawer val={() => setIsDraw(false)} />}
       </AnimatePresence>
-      
     </>
   );
 }

@@ -64,7 +64,6 @@ export default function page({ params }: { params: { id: string } }) {
     const fetchData = async () => {
       try {
         const { data } = await api.get(`product/${params.id}`);
-        console.log(data, "===");
         setProduct(data.product);
         setPrice(data.product.variants[0].price);
         setIsQuant(data.product.variants[0]._id);
@@ -190,6 +189,9 @@ export default function page({ params }: { params: { id: string } }) {
                                 productId: product._id,
                                 variantId: isQuant,
                                 quantity: 1,
+                                _id: undefined,
+                                variant: undefined,
+                                product: undefined,
                               })
                             )
                           }
