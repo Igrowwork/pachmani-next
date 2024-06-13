@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar/page";
 import Navbar2 from "@/components/navbar2/page";
 import Footer from "@/components/footer/page";
 import { Providers } from "@/redux/provider";
+import GetCurrentUser from "./_components/GetCurrentUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body className={inter.className}>
+          <GetCurrentUser />
           <div>
             <Offer />
             <Navbar />

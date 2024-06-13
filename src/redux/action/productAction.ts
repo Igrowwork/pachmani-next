@@ -11,25 +11,30 @@ const api = axios.create({
   },
 });
 
-export const getAllProductsAsyn = (filter:{}) => async (dispatch: Dispatch) => {
-  try {
-    dispatch(setLoading(true));
-   
-    let queryString = '';
-    for (const key in filter) {
-      if (filter.hasOwnProperty(key)) {
-        // queryString += `${key}=${filter[key]}&`;
+interface Filter {
+  [key: string]: string | number | boolean; // Define the types of values filter can have
+}
+
+export const getAllProductsAsyn =
+  (filter: Filter) => async (dispatch: Dispatch) => {
+    try {
+      dispatch(setLoading(true));
+
+      let queryString = "";
+      for (const key in filter) {
+        if (filter.hasOwnProperty(key)) {
+          queryString += `${key}=${filter[key]}&`;
+        }
       }
+      queryString = queryString.slice(0, -1);
+
+      const { data } = await api.get(`product?${queryString}`);
+      console.log(data);
+      dispatch(products(data));
+    } catch (error) {
+      console.log(error);
+      dispatch(setError("get all products error"));
+    } finally {
+      dispatch(setLoading(false));
     }
-    queryString = queryString.slice(0, -1);
-   
-    const { data } = await api.get(`product?${queryString}`);
-    console.log(data);
-    dispatch(products(data));
-  } catch (error) {
-    console.log(error);
-    dispatch(setError("get all products error"));
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
+  };

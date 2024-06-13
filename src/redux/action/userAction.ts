@@ -28,6 +28,19 @@ export const loginAsyn = (userData: {}) => async (dispatch: Dispatch) => {
   }
 };
 
+export const getLoginUserAsyn = () => async (dispatch: Dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    const { data } = await api.post(`user`);
+    dispatch(login(data.user));
+  } catch (error) {
+    dispatch(setError("jwtError"));
+  } finally {
+    dispatch(setLoading(false));
+  }
+};
+
+
 export const signAsyn = (userData: {}) => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
