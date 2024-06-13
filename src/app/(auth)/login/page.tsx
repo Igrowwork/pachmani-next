@@ -4,14 +4,22 @@ import { poppin } from "@/app/font";
 import { Icons } from "@/app/icons";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import LeftSlider from "../_components/left-slider";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { loginAsyn } from "@/redux/action/userAction";
+import { Loader } from "lucide-react";
 
 export default function Login() {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const { user, loading, error, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
   const [isPass1, setisPass1] = useState(true);
   const [isVal, setIsVal] = useState({
     email: "",
@@ -23,15 +31,22 @@ export default function Login() {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    router.push("/")
-    console.log(isVal);
-    setIsVal({
-      email: "",
-      password: "",
-    });
+    dispatch(loginAsyn(isVal));
+    // router.push("/")
+    // console.log(isVal);
+    // setIsVal({
+    //   email: "",
+    //   password: "",
+    // });
   };
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/");
+    }
+  }, [isAuthenticated, user]);
+
   return (
     <div className=" max-w-7xl mx-auto ">
       <div className="flex py-10">
@@ -96,11 +111,12 @@ export default function Login() {
               </label>
               <Link href={'/forget-password'} className="text-[#FF8682] font-medium" >Forgot Password</Link>
             </div>
-            <input
+            <button
               type="submit"
-              value={"Login"}
-              className="w-full p-2 text-sm font-medium rounded-sm bg-primaryMain text-white cursor-pointer"
-            />
+              className="w-full flex justify-center items-center p-2 text-sm font-medium rounded-sm bg-primaryMain text-white cursor-pointer"
+            >
+            {loading && <Loader className="animate-spin w-4 h-4"></Loader>}
+            <p>Login</p></button>
           </form>
           <div className="text-[#313131] text-sm font-semibold text-center my-4">Don’t have an account? <Link href={'/sign-up'} className="text-[#FF8682]">Sign up</Link></div>
           <div className="flex items-center w-full text-sm text-[#313131]/70 my-10">

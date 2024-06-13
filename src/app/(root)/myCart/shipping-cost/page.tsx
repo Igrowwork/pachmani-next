@@ -6,10 +6,12 @@ import { cn } from "@/lib/utils";
 import CustomHead from "@/UI/customHead";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 export default function ShippingCost() {
+  const router = useRouter()
   const [isSet, setIsSet] = useState(0);
   const [isVal, setIsVal] = useState({
     firstname: "",
@@ -31,17 +33,18 @@ export default function ShippingCost() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log(isVal);
-    setIsVal({
-      firstname: "",
-      lastname: "",
-      mobile: "",
-      email: "",
-      pincode: "",
-      city: "",
-      country: "",
-      state: "",
-      address: "",
-    });
+    router.push("/myCart/payment")
+    // setIsVal({
+    //   firstname: "",
+    //   lastname: "",
+    //   mobile: "",
+    //   email: "",
+    //   pincode: "",
+    //   city: "",
+    //   country: "",
+    //   state: "",
+    //   address: "",
+    // });
   };
   const handleInce = () => {
     if (isSet < 7) {
@@ -186,7 +189,7 @@ export default function ShippingCost() {
                 required
               />
             </div>
-            <input type="submit" value={' Proceed to Payment'} className="w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white" />             
+            <input type="submit" value={' Proceed to Payment'} className="w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white cursor-pointer" />             
           </form>
         </div>
       </div>
