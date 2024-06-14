@@ -193,11 +193,6 @@ export default function ShippingCost() {
               />
             </div>
             <input type="submit" value={' Proceed to Payment'} className="w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white cursor-pointer" />             
-            <input
-              type="submit"
-              value={" Proceed to Payment"}
-              className="w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white"
-            />
           </form>
         </div>
       </div>

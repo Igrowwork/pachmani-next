@@ -13,6 +13,7 @@ import TopRanker from "@/components/topRanker/page";
 import WhyChoose from "@/components/whyChoose/page";
 import Image from "next/image";
 import CustomerReview from "@/components/customer-review/page";
+import Ayurvedexpert from "../(auth)/_components/ayurvedexpert";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
       {/* <Banner /> */}
         <CheckTopBlog />
         {/* <OurCertification /> */}
+        <Ayurvedexpert />
     </main>
   );
 }
