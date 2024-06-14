@@ -59,7 +59,7 @@ const productSlice = createSlice({
     mens(state, action) {
       state.loading = false;
       state.error = null;
-      state.products = action.payload;
+      state.mens = action.payload;
     },
     skincare(state, action) {
       state.loading = false;

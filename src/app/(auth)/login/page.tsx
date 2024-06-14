@@ -106,6 +106,7 @@ export default function Login() {
                 Forgot Password
               </Link>
             </div>
+            <p className="text-red-400">{error}</p>
             <button
               type="submit"
               className="w-full flex justify-center items-center p-2 text-sm font-medium rounded-sm bg-primaryMain text-white cursor-pointer"

@@ -29,6 +29,8 @@ export default function AllProduct() {
     (state: RootState) => state.products
   );
 
+  console.log(products,"==");
+
   useEffect(() => {
     if (products.products.length == 0) dispatch(getAllProductsAsyn({}));
   }, []);
@@ -112,7 +114,7 @@ export default function AllProduct() {
           )
         )}
       </div>
-        {Array.from(Array(products.totalPages).keys()).map((pageNumber) => (
+        {products.totalPages > 1 &&  Array.from(Array(products.totalPages).keys()).map((pageNumber) => (
           <button
             onClick={() => dispatch(getAllProductsAsyn({ page: pageNumber + 1 }))}
             key={pageNumber}
