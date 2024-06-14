@@ -112,17 +112,17 @@ export default function AllProduct() {
           )
         )}
       </div>
-      {Array.from(Array(products.totalPages).keys()).map((pageNumber) => (
-        <button
-          onClick={() => dispatch(getAllProductsAsyn({ page: pageNumber + 1 }))}
-          key={pageNumber}
-          style={{
-            color: products.currentPage === pageNumber + 1 ? "red" : "black",
-          }}
-        >
-          {pageNumber + 1}
-        </button>
-      ))}
+        {Array.from(Array(products.totalPages).keys()).map((pageNumber) => (
+          <button
+            onClick={() => dispatch(getAllProductsAsyn({ page: pageNumber + 1 }))}
+            key={pageNumber}
+            style={{
+              color: products.currentPage === pageNumber + 1 ? "red" : "black",
+            }}
+          >
+            {pageNumber + 1}
+          </button>
+        ))}
 
       {/* <Banner /> */}
       {isLoad < 12 || (

@@ -17,7 +17,6 @@ export default function OtpVerify() {
     }
     const onSubmitHandle = (e : any) =>{
         e.preventDefault();
-        // console.log(isVal);
         setIsVal({
             email:'',
             number:''

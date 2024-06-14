@@ -28,7 +28,6 @@ export default function ForgetPassword() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     router.push("/login")
-    console.log(isVal);
     setIsVal({
         password: "",
         cpassword:"",

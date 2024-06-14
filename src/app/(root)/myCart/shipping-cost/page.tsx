@@ -33,7 +33,6 @@ export default function ShippingCost() {
   };
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(isVal);
     setIsVal({
       firstname: "",
       lastname: "",

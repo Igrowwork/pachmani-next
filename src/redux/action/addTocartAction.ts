@@ -7,6 +7,7 @@ import {
   setLoading,
   getAllCartItems,
 } from "../slice/addToCartSlice";
+import { setUnauthorized } from "../slice/userSclice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { CartItem } from "@/lib/types/addToCart";
 import api from "@/lib/axios";
@@ -17,7 +18,13 @@ export const getAllCartItemsAsync = () => async (dispatch: Dispatch) => {
     const { data } = await api.get(`cart`);
     dispatch(getAllCartItems(data.cartItems));
   } catch (error) {
-    dispatch(setError("Failed to get cart items"));
+    const err = error as { response?: { data?: { message?: string } } };
+    if (err?.response?.data?.message == "Unauthorized") {
+      dispatch(setUnauthorized(err?.response?.data?.message));
+    }
+    dispatch(
+      setError(err?.response?.data?.message || "getAllCartItemsAsync error")
+    );
   } finally {
     dispatch(setLoading(false));
   }
@@ -28,11 +35,15 @@ export const addToCartAsync =
     try {
       dispatch(setLoading(true));
       const { data } = await api.post(`cart/add`, cartItem);
-      console.log(data, "==");
       dispatch(addItemToCart(data.cartItem));
     } catch (error) {
-      console.log(error, "==");
-      dispatch(setError("Failed to add item to cart"));
+      const err = error as { response?: { data?: { message?: string } } };
+      if (err?.response?.data?.message == "Unauthorized") {
+        dispatch(setUnauthorized(err?.response?.data?.message));
+      }
+      dispatch(
+        setError(err?.response?.data?.message || "addToCartAsync error")
+      );
     } finally {
       dispatch(setLoading(false));
     }
@@ -45,7 +56,13 @@ export const removeFromCartAsync =
       const { data } = await api.delete(`cart/remove/${cartId}`);
       dispatch(removeItemFromCart(cartId));
     } catch (error) {
-      dispatch(setError("Failed to remove item from cart"));
+      const err = error as { response?: { data?: { message?: string } } };
+      if (err?.response?.data?.message == "Unauthorized") {
+        dispatch(setUnauthorized(err?.response?.data?.message));
+      }
+      dispatch(
+        setError(err?.response?.data?.message || "removeFromCartAsync error")
+      );
     } finally {
       dispatch(setLoading(false));
     }
@@ -54,13 +71,17 @@ export const removeFromCartAsync =
 export const updateCartAsync =
   (cartItems: CartItem[]) => async (dispatch: Dispatch) => {
     try {
-      console.log(cartItems,"===");
       dispatch(setLoading(true));
       const { data } = await api.patch(`cart/update`, { items: cartItems });
       dispatch(updateCart(data.cartItems));
     } catch (error) {
-      console.log(error, "===");
-      dispatch(setError("Failed to update cart"));
+      const err = error as { response?: { data?: { message?: string } } };
+      if (err?.response?.data?.message == "Unauthorized") {
+        dispatch(setUnauthorized(err?.response?.data?.message));
+      }
+      dispatch(
+        setError(err?.response?.data?.message || "updateCartAsync error")
+      );
     } finally {
       dispatch(setLoading(false));
     }

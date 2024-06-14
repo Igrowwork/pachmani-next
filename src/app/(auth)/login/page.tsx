@@ -4,14 +4,22 @@ import { poppin } from "@/app/font";
 import { Icons } from "@/app/icons";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import LeftSlider from "../_components/left-slider";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAsyn } from "@/redux/action/userAction";
+import { Loader } from "lucide-react";
+import { AppDispatch, RootState } from "@/redux/store";
 
 export default function Login() {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const { user, loading, error, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
   const [isPass1, setisPass1] = useState(true);
   const [isVal, setIsVal] = useState({
     email: "",
@@ -23,15 +31,16 @@ export default function Login() {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    router.push("/")
-    console.log(isVal);
-    setIsVal({
-      email: "",
-      password: "",
-    });
+    dispatch(loginAsyn(isVal));
   };
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/");
+    }
+  }, [isAuthenticated, user]);
+
   return (
     <div className=" max-w-7xl mx-auto ">
       <div className="flex py-10">
@@ -45,18 +54,12 @@ export default function Login() {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-10">
-        
-      <div className={cn(" my-3", poppin.className)}>
-          <h1 className="text-[2.5rem] font-semibold text-[#313131]">
-            Login
-          </h1>
+        <div className={cn(" my-3", poppin.className)}>
+          <h1 className="text-[2.5rem] font-semibold text-[#313131]">Login</h1>
           <p className="text-[#625D60] my-4 font-normal text-base">
-          Login to access your travelwise  account
+            Login to access your travelwise account
           </p>
-          <form
-            onSubmit={handleSubmit}
-            className="grid gap-6"
-          >
+          <form onSubmit={handleSubmit} className="grid gap-6">
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">Email</h3>
               <input
@@ -91,18 +94,32 @@ export default function Login() {
             </div>
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 font-semibold cursor-pointer w-fit">
-                  <input type="checkbox" required className="text-2xl"/>
-                  <p className="text-[#313131] text-sm font-medium">Remember me</p>
+                <input type="checkbox" required className="text-2xl" />
+                <p className="text-[#313131] text-sm font-medium">
+                  Remember me
+                </p>
               </label>
-              <Link href={'/forget-password'} className="text-[#FF8682] font-medium" >Forgot Password</Link>
+              <Link
+                href={"/forget-password"}
+                className="text-[#FF8682] font-medium"
+              >
+                Forgot Password
+              </Link>
             </div>
-            <input
+            <button
               type="submit"
-              value={"Login"}
-              className="w-full p-2 text-sm font-medium rounded-sm bg-primaryMain text-white cursor-pointer"
-            />
+              className="w-full flex justify-center items-center p-2 text-sm font-medium rounded-sm bg-primaryMain text-white cursor-pointer"
+            >
+              {loading && <Loader className="animate-spin w-4 h-4"></Loader>}
+              <p>Login</p>
+            </button>
           </form>
-          <div className="text-[#313131] text-sm font-semibold text-center my-4">Don’t have an account? <Link href={'/sign-up'} className="text-[#FF8682]">Sign up</Link></div>
+          <div className="text-[#313131] text-sm font-semibold text-center my-4">
+            Don’t have an account?{" "}
+            <Link href={"/sign-up"} className="text-[#FF8682]">
+              Sign up
+            </Link>
+          </div>
           <div className="flex items-center w-full text-sm text-[#313131]/70 my-10">
             <div className="h-[0.5px] w-full bg-[#313131]/70" />
             <span className="w-72 text-center"> Or Sign up with </span>
@@ -110,20 +127,19 @@ export default function Login() {
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div className="border border-[#00AB55] rounded-sm p-4 w-full flex justify-center items-center">
-                <Icons.fb2 />
+              <Icons.fb2 />
             </div>
             <div className="border border-[#00AB55] rounded-sm p-4 w-full flex justify-center items-center">
-                <Icons.google />
+              <Icons.google />
             </div>
             <div className="border border-[#00AB55] rounded-sm p-4 w-full flex justify-center items-center">
-                <Icons.apple />
+              <Icons.apple />
             </div>
           </div>
         </div>
         <div className="w-full sticky top-0 h-[80vh]">
-            <LeftSlider img={"/Assests/Images/LoginImage/02.png"} />
+          <LeftSlider img={"/Assests/Images/LoginImage/02.png"} />
         </div>
-        
       </div>
     </div>
   );
