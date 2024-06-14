@@ -68,60 +68,67 @@ export default function Navbar() {
                 className="outline-none"
               />
             </div>
-            <HiOutlineShoppingBag
-              className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
-              onClick={() => setIsDraw(true)}
-            />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-full">
-                <DropdownMenuGroup>
-                  <Link className="group cursor-pointer" href="/signIn">
-                    <DropdownMenuItem>
-                      <h1 className="capitalize group-hover:text-primaryMain">
-                        Sign in
-                      </h1>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link className="group cursor-pointer" href="/myCart">
-                    <DropdownMenuItem>
-                      <h1 className="capitalize group-hover:text-primaryMain">
-                        My Cart
-                      </h1>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link
-                    className="group cursor-pointer"
-                    href="/myAccount/profile"
-                  >
-                    <DropdownMenuItem>
-                      <h1 className="capitalize group-hover:text-primaryMain">
-                        My Account
-                      </h1>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link
-                    className="group cursor-pointer"
-                    href="/myAccount/wishlist"
-                  >
-                    <DropdownMenuItem>
-                      <h1 className="capitalize group-hover:text-primaryMain">
-                        My WishList
-                      </h1>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link className="group cursor-pointer" href="/trackYourOrder">
-                    <DropdownMenuItem>
-                      <h1 className="capitalize group-hover:text-primaryMain">
-                        Track Your Order
-                      </h1>
-                    </DropdownMenuItem>
-                  </Link>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {isAuthenticated && (
+              <>
+                <HiOutlineShoppingBag
+                  className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
+                  onClick={() => setIsDraw(true)}
+                />
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-full">
+                    <DropdownMenuGroup>
+                      <Link className="group cursor-pointer" href="/signIn">
+                        <DropdownMenuItem>
+                          <h1 className="capitalize group-hover:text-primaryMain">
+                            Sign in
+                          </h1>
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link className="group cursor-pointer" href="/myCart">
+                        <DropdownMenuItem>
+                          <h1 className="capitalize group-hover:text-primaryMain">
+                            My Cart
+                          </h1>
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link
+                        className="group cursor-pointer"
+                        href="/myAccount/profile"
+                      >
+                        <DropdownMenuItem>
+                          <h1 className="capitalize group-hover:text-primaryMain">
+                            My Account
+                          </h1>
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link
+                        className="group cursor-pointer"
+                        href="/myAccount/wishlist"
+                      >
+                        <DropdownMenuItem>
+                          <h1 className="capitalize group-hover:text-primaryMain">
+                            My WishList
+                          </h1>
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link
+                        className="group cursor-pointer"
+                        href="/trackYourOrder"
+                      >
+                        <DropdownMenuItem>
+                          <h1 className="capitalize group-hover:text-primaryMain">
+                            Track Your Order
+                          </h1>
+                        </DropdownMenuItem>
+                      </Link>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            )}
             {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
             ) : isAuthenticated ? (

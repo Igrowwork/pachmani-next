@@ -122,7 +122,7 @@ const mens = () => {
             )
           )}
         </div>
-        { Array.from(Array(mens.totalPages).keys()).map((pageNumber) => (
+        {mens.totalPages > 1 && Array.from(Array(mens.totalPages).keys()).map((pageNumber) => (
           <button
             onClick={() =>
               dispatch(getAllMensAsyn({ page: pageNumber + 1 }))

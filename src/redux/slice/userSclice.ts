@@ -64,7 +64,6 @@ const authSlice = createSlice({
     },
     setLoading(state, action) {
       state.loading = action.payload;
-      // state.error = null;
     },
     setUnauthorized(state, action) {
       state.loading = false;

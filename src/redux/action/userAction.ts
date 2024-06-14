@@ -14,7 +14,10 @@ export const loginAsyn = (userData: {}) => async (dispatch: Dispatch) => {
     const { data } = await api.post(`user/login`, userData);
     dispatch(login(data.user));
   } catch (error) {
-    dispatch(setError("Login failed"));
+    console.log(error,"==");
+    const err = error as { response?: { data?: { message?: string } } };
+    console.log(err?.response?.data?.message,"===");
+    dispatch(setError(err?.response?.data?.message || "login error"));
   } finally {
     dispatch(setLoading(false));
   }
