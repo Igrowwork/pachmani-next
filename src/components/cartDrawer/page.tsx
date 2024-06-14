@@ -52,8 +52,12 @@ export default function CartDrawer({ val }: { val: () => void }) {
   // };
 
   useEffect(() => {
-    dispatch(updateCartAsync(cartItems));
-  }, [dispatch, cartItems, quantityMap]);
+    const updatedCartItems = cartItems.map((item) => ({
+      ...item,
+      quantity: quantityMap[item._id] || item.quantity,
+    }));
+    dispatch(updateCartAsync(updatedCartItems));
+  }, [dispatch, quantityMap]);
 
   return (
     // <div className="fixed top-0 left-0 h-screen w-full z-50 bg-white/50">

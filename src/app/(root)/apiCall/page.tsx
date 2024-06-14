@@ -10,7 +10,6 @@ const Page = () => {
       }
       try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}`);
-        console.log(res, "===");
       } catch (err) {
         console.log(err, "error in api call");
       }

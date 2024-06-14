@@ -26,6 +26,7 @@ interface AuthState {
   error: string | null;
   isAuthenticated: boolean;
   user: IUser | null;
+  UnauthorizedError: string | null;
 }
 
 const initialState: AuthState = {
@@ -33,6 +34,7 @@ const initialState: AuthState = {
   error: null,
   isAuthenticated: false,
   user: null,
+  UnauthorizedError:null
 };
 
 const authSlice = createSlice({
@@ -59,14 +61,16 @@ const authSlice = createSlice({
     setError(state, action) {
       state.loading = false;
       state.error = action.payload;
-      state.error = null;
     },
     setLoading(state, action) {
       state.loading = action.payload;
-      state.error = null;
+    },
+    setUnauthorized(state, action) {
+      state.loading = false;
+      state.UnauthorizedError = action.payload;
     },
   },
 });
-export const { logout, login, register, setLoading, setError } =
+export const { logout, login, register, setLoading, setError,setUnauthorized   } =
   authSlice.actions;
 export default authSlice.reducer;

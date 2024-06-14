@@ -23,7 +23,6 @@ export default function page() {
         setIsSet(isSet - 1);
       }
     };
-    // console.log(isRadio)
   return (
     
     <div className='shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] grid grid-cols-5 px-6 gap-x-12 pb-6 rounded-sm'>

@@ -48,6 +48,17 @@ export default function ShippingCost() {
     //   state: "",
     //   address: "",
     // });
+    setIsVal({
+      firstname: "",
+      lastname: "",
+      mobile: "",
+      email: "",
+      pincode: "",
+      city: "",
+      country: "",
+      state: "",
+      address: "",
+    });
   };
   const handleInce = () => {
     if (isSet < 7) {
