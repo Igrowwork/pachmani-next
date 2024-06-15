@@ -5,12 +5,14 @@ export interface IReview {
 }
 
 export interface IProductVariant extends Document {
+  discount: number;
   _id: string;
   packSize: number;
   price: number;
   stock: number;
   unit: "ml" | "mg" | "kg" | "gram";
   howToUse: string[];
+  priceAfterDiscount?: number;
 }
 
 export interface IProduct {

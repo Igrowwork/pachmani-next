@@ -29,7 +29,7 @@ export default function AllProduct() {
     (state: RootState) => state.products
   );
 
-  console.log(products,"==");
+  console.log(products, "==");
 
   useEffect(() => {
     if (products.products.length == 0) dispatch(getAllProductsAsyn({}));
@@ -74,13 +74,15 @@ export default function AllProduct() {
                 </div>
                 <div className="my-2 ">
                   <div className="flex items-center gap-2">
-                    <span className="text-black font-semibold">₹252</span>
-                    <span className="text-[#858585] font-extralight line-through">
-                      ₹950
+                    <span className="text-black font-semibold">
+                      ₹{(variants[0]?.priceAfterDiscount)?.toFixed(2)}
+                    </span>
+                    <span className="text-[hsl(0,0%,52%)] font-extralight line-through">
+                      ₹{(variants[0]?.price).toFixed(2)}
                     </span>
                     <span className="text-[#858585]">|</span>
                     <span className="text-primaryMain font-extralight">
-                      35%
+                      {variants[0]?.discount}%
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
@@ -114,9 +116,12 @@ export default function AllProduct() {
           )
         )}
       </div>
-        {products.totalPages > 1 &&  Array.from(Array(products.totalPages).keys()).map((pageNumber) => (
+      {products.totalPages > 1 &&
+        Array.from(Array(products.totalPages).keys()).map((pageNumber) => (
           <button
-            onClick={() => dispatch(getAllProductsAsyn({ page: pageNumber + 1 }))}
+            onClick={() =>
+              dispatch(getAllProductsAsyn({ page: pageNumber + 1 }))
+            }
             key={pageNumber}
             style={{
               color: products.currentPage === pageNumber + 1 ? "red" : "black",
