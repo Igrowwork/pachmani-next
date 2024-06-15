@@ -47,7 +47,17 @@ import { addToCartAsync } from "@/redux/action/addTocartAction";
 
 export default function page({ params }: { params: { id: string } }) {
   const [isQuant, setIsQuant] = useState<string>("");
-  const [sPrice, setPrice] = useState(0);
+  interface Price {
+    priceAfterDiscount: string;
+    price: string;
+    discount: number;
+  }
+
+  const [sPrice, setPrice] = useState<Price>({
+    priceAfterDiscount: "0.00",
+    price: "0.00",
+    discount: 0,
+  });
   const [product, setProduct] = useState<IProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -65,11 +75,15 @@ export default function page({ params }: { params: { id: string } }) {
       try {
         const { data } = await api.get(`product/${params.id}`);
         setProduct(data.product);
-        setPrice(data.product.variants[0].price);
+        setPrice({
+          priceAfterDiscount:
+            data.product.variants[0].priceAfterDiscount.toFixed(2),
+          price: data.product.variants[0].price.toFixed(2),
+          discount: data.product.variants[0].discount,
+        });
         setIsQuant(data.product.variants[0]._id);
         setLoading(false);
       } catch (error: any) {
-        console.log(error, "====");
         setError(error);
         setLoading(false);
       }
@@ -136,7 +150,23 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        ₹{sPrice}{" "}
+                        ₹{sPrice.priceAfterDiscount}
+                      </span>
+                      <span
+                        className={cn(
+                          "font-normal text-[1rem] line-through",
+                          lato.className
+                        )}
+                      >
+                        ₹{sPrice.price}
+                      </span>
+                      <span
+                        className={cn(
+                          "font-normal text-[1rem] ",
+                          lato.className
+                        )}
+                      >
+                        {sPrice.discount}%
                       </span>
                     </h2>
                     <p className="md:text-sm text-xs text-[#4A3F3F] mt-2">
@@ -147,7 +177,18 @@ export default function page({ params }: { params: { id: string } }) {
                     </h4>
                     <div className="flex md:gap-8 gap-2 mt-4">
                       {product.variants.map(
-                        ({ packSize, price, unit, stock, _id }, i) => (
+                        (
+                          {
+                            packSize,
+                            price,
+                            priceAfterDiscount,
+                            discount,
+                            unit,
+                            stock,
+                            _id,
+                          },
+                          i
+                        ) => (
                           <span
                             key={i}
                             className={cn(
@@ -155,8 +196,13 @@ export default function page({ params }: { params: { id: string } }) {
                               isQuant === _id ? "text-white bg-primaryMain" : ""
                             )}
                             onClick={() => {
-                              setPrice(price);
-                              setIsQuant(_id);
+                              setPrice({
+                                priceAfterDiscount:
+                                  priceAfterDiscount?.toFixed(2) ??
+                                  price.toFixed(2),
+                                price: price.toFixed(2),
+                                discount: discount,
+                              });
                             }}
                           >
                             {packSize}
@@ -223,213 +269,3 @@ export default function page({ params }: { params: { id: string } }) {
     </>
   );
 }
-
-// {
-//   img:'/Assests/Images/HairImage/productImage/03.jpg',
-//   name:'Garlic Oil',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:100,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/03.jpg", "HairImage/productImage/03.jpg", "HairImage/productImage/03.jpg", "HairImage/productImage/03.jpg", "HairImage/productImage/03.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/02.jpg',
-//   name:'Astrignt',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:250,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/02.jpg", "HairImage/productImage/02.jpg", "HairImage/productImage/02.jpg", "HairImage/productImage/02.jpg", "HairImage/productImage/02.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/04.jpg',
-//   name:'Rose Skin Toner',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:350,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/05.jpg',
-//   name:'Neem Moisturing Lotion',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:450,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/05.jpg", "HairImage/productImage/05.jpg", "HairImage/productImage/05.jpg", "HairImage/productImage/05.jpg", "HairImage/productImage/05.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/07.jpg',
-//   name:'Neem Face Wash',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:125,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/07.jpg", "HairImage/productImage/07.jpg", "HairImage/productImage/07.jpg", "HairImage/productImage/07.jpg", "HairImage/productImage/07.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/08.jpg',
-//   name:'Fit Me',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:700,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/08.jpg", "HairImage/productImage/08.jpg", "HairImage/productImage/08.jpg", "HairImage/productImage/08.jpg", "HairImage/productImage/08.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/09.jpg',
-//   name:'Diabetes Cure',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:700,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/09.jpg", "HairImage/productImage/09.jpg", "HairImage/productImage/09.jpg", "HairImage/productImage/09.jpg", "HairImage/productImage/09.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/10.jpg',
-//   name:'Wat Rogantak Powder',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:600,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/10.jpg", "HairImage/productImage/10.jpg", "HairImage/productImage/10.jpg", "HairImage/productImage/10.jpg", "HairImage/productImage/10.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/11.jpg',
-//   name:'Joint Pain Oil',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:333,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/11.jpg", "HairImage/productImage/11.jpg", "HairImage/productImage/11.jpg", "HairImage/productImage/11.jpg", "HairImage/productImage/11.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/12.jpg',
-//   name:'Dental Care',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:100,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/12.jpg", "HairImage/productImage/12.jpg", "HairImage/productImage/12.jpg", "HairImage/productImage/12.jpg", "HairImage/productImage/12.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/13.jpg',
-//   name:'Hingot Skin Cleansing Milk',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:450,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/13.jpg", "HairImage/productImage/13.jpg", "HairImage/productImage/13.jpg", "HairImage/productImage/13.jpg", "HairImage/productImage/13.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/14.jpg',
-//   name:'Honey Gold Face Pack',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:150,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/14.jpg", "HairImage/productImage/14.jpg", "HairImage/productImage/14.jpg", "HairImage/productImage/14.jpg", "HairImage/productImage/14.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/15.jpg',
-//   name:'Natural Face Pack',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:150,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/15.jpg", "HairImage/productImage/15.jpg", "HairImage/productImage/15.jpg", "HairImage/productImage/15.jpg", "HairImage/productImage/15.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/16.jpg',
-//   name:'Mrittika Lepa',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:275,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/16.jpg", "HairImage/productImage/16.jpg", "HairImage/productImage/16.jpg", "HairImage/productImage/16.jpg", "HairImage/productImage/16.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/18.jpg',
-//   name:'Arjuna Chall',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:150,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/18.jpg", "HairImage/productImage/18.jpg", "HairImage/productImage/18.jpg", "HairImage/productImage/18.jpg", "HairImage/productImage/18.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/19.jpg',
-//   name:'Asthma Cure',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:200,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/19.jpg", "HairImage/productImage/19.jpg", "HairImage/productImage/19.jpg", "HairImage/productImage/19.jpg", "HairImage/productImage/19.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/20.jpg',
-//   name:'Chandan Cream',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:390,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/20.jpg", "HairImage/productImage/20.jpg", "HairImage/productImage/20.jpg", "HairImage/productImage/20.jpg", "HairImage/productImage/20.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/21.jpg',
-//   name:'Keshar Cream',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:450,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/21.jpg", "HairImage/productImage/21.jpg", "HairImage/productImage/21.jpg", "HairImage/productImage/21.jpg", "HairImage/productImage/21.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/22.jpg',
-//   name:'Musli Powder',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:1000,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/22.jpg", "HairImage/productImage/22.jpg", "HairImage/productImage/22.jpg", "HairImage/productImage/22.jpg", "HairImage/productImage/22.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/23.jpg',
-//   name:'Musli Prash',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:900,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/23.jpg", "HairImage/productImage/23.jpg", "HairImage/productImage/23.jpg", "HairImage/productImage/23.jpg", "HairImage/productImage/23.jpg"]
-// },
-// {
-//   img:'/Assests/Images/HairImage/productImage/24.jpg',
-//   name:'Pachmarhi Chyawanprash',
-//   data:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-//   price:500,
-//   rating:'4.6',
-//   review:43,
-//   title:'oil',
-//   imgArr: ["HairImage/productImage/24.jpg", "HairImage/productImage/24.jpg", "HairImage/productImage/24.jpg", "HairImage/productImage/24.jpg", "HairImage/productImage/24.jpg"]
-// },

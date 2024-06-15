@@ -7,6 +7,7 @@ import Navbar2 from "@/components/navbar2/page";
 import Footer from "@/components/footer/page";
 import { Providers } from "@/redux/provider";
 import GetCurrentUser from "./_components/GetCurrentUser";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      </Head>
+
       <Providers>
         <body className={inter.className}>
           <GetCurrentUser />
