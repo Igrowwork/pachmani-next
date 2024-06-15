@@ -2,18 +2,28 @@
 
 import { forum } from "@/app/font";
 import { Icons } from "@/app/icons";
+import api from "@/lib/axios";
 import { cn } from "@/lib/utils";
+import { addAddress, getAddress } from "@/redux/action/addressAction";
 import { getAllCartItemsAsync } from "@/redux/action/addTocartAction";
 import { AppDispatch, RootState } from "@/redux/store";
 import CustomHead from "@/UI/customHead";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ShippingCost() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, error , address } = useSelector(
+    (state: RootState) => state.addressCheckout
+  );
+
+// console.log(address,"===?")  
+
   const router = useRouter()
   const [isSet, setIsSet] = useState(0);
   const [isVal, setIsVal] = useState({
@@ -23,8 +33,8 @@ export default function ShippingCost() {
     email: "",
     pincode: "",
     city: "",
-    country: "",
-    state: "",
+    zip: "",
+    street: "",
     address: "",
   });
   const handleChange = (e: { target: { name: any; value: any } }) => {
@@ -33,32 +43,24 @@ export default function ShippingCost() {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+
+
+  useEffect(()=> {
+    dispatch(getAddress());
+
+  } , [])
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(isVal);
+    dispatch(addAddress(isVal));
+      // try{
+      //   const resp = await axios.post(`http://localhost8080/user/address`, isVal)
+      //   console.log(resp , "qwert");
+      // }
+      // catch(err){
+      //   console.log(err,"12345")
+      // }
     router.push("/myCart/payment")
-    // setIsVal({
-    //   firstname: "",
-    //   lastname: "",
-    //   mobile: "",
-    //   email: "",
-    //   pincode: "",
-    //   city: "",
-    //   country: "",
-    //   state: "",
-    //   address: "",
-    // });
-    setIsVal({
-      firstname: "",
-      lastname: "",
-      mobile: "",
-      email: "",
-      pincode: "",
-      city: "",
-      country: "",
-      state: "",
-      address: "",
-    });
   };
   const handleInce = () => {
     if (isSet < 7) {
@@ -172,8 +174,8 @@ export default function ShippingCost() {
               <h3 className="text-sm text-[#332F32] font-medium">Country</h3>
               <input
                 type="text"
-                name="country"
-                value={isVal.country}
+                name="street"
+                value={isVal.street}
                 onChange={handleChange}
                 className="border border-[#625D60] outline-none p-2.5 rounded-lg w-full mt-1.5"
                 placeholder="Please Enter Your Country"
@@ -184,8 +186,8 @@ export default function ShippingCost() {
               <h3 className="text-sm text-[#332F32] font-medium">State</h3>
               <input
                 type="text"
-                name="state"
-                value={isVal.state}
+                name="city"
+                value={isVal.city}
                 onChange={handleChange}
                 className="border border-[#625D60] outline-none p-2.5 rounded-lg w-full mt-1.5"
                 placeholder="Please Enter Your State"
@@ -195,8 +197,8 @@ export default function ShippingCost() {
             <div className="col-span-2">
               <h3 className="text-sm text-[#332F32] font-medium">Address</h3>
               <textarea
-                name="address"
-                value={isVal.address}
+                name="zip"
+                value={isVal.zip}
                 onChange={handleChange}
                 className="border border-[#625D60] outline-none p-2.5 rounded-lg w-full mt-1.5 resize-none"
                 placeholder="Please Enter Your Address"
@@ -206,6 +208,10 @@ export default function ShippingCost() {
             <input type="submit" value={' Proceed to Payment'} className="w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white cursor-pointer" />             
           </form>
         </div>
+
+        {/* {address.map((ele,i) => (
+          <div></div>
+        ))} */}
       </div>
       <div className=" col-span-2">
         <div className="flex text-xs text-center items-center gap-5 p-3 text-primaryMain font-normal shadow-lg w-full mb-4">

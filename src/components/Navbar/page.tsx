@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleUser, Loader, ShoppingBag } from "lucide-react";
+import { CircleUser, Loader, MenuIcon, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
@@ -29,11 +29,18 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logoutAsyn } from "@/redux/action/userAction";
+import NavbarDrawer from "../navbarDrawer/page";
 
 export default function Navbar() {
   const [isVal, setIsVal] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+
+  const handleIconClick = () => {
+    setShowInput(!showInput);
+  };
   const [isDraw, setIsDraw] = useState(false);
   const [isDraw2, setIsDraw2] = useState(false);
+  const [isMenu, setIsMenu] = useState(false);
 
   const { user, loading, error, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
@@ -51,6 +58,22 @@ export default function Navbar() {
     <>
       <div className="bg-white">
         <div className="flex justify-between w-full items-center max-w-7xl mx-auto z-40 py-2">
+          <div className="flex items-center">
+            <AnimatePresence>
+              <MenuIcon className="text-black" onClick={() => setIsMenu(true)} />
+            </AnimatePresence>
+            <div className="flex items-center gap-3 rounded-md p-2 relative cursor-pointer">
+              <FiSearch className="h-6 w-6 text-black" onClick={handleIconClick} />
+              {showInput && (
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="outline-none border-b border-b-[#E0E0E0] absolute left-10"
+                />
+              )}
+            </div>
+            
+          </div>
           <Link href={"/"} className="relative h-16 w-40">
             <Image
               src="/Assests/Images/HomeImage/logo.png"
@@ -60,14 +83,7 @@ export default function Navbar() {
             />
           </Link>
           <div className="flex justify-end gap-4 items-center">
-            <div className="flex items-center gap-3 border-b border-b-[#E0E0E0] rounded-md p-2">
-              <FiSearch className="h-6 w-6 text-[#828282]" />
-              <input
-                type="text"
-                placeholder="Search"
-                className="outline-none"
-              />
-            </div>
+            
             {isAuthenticated && (
               <>
                 <HiOutlineShoppingBag
@@ -129,13 +145,13 @@ export default function Navbar() {
                 </DropdownMenu>
               </>
             )}
-            {loading ? (
+            {/* {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
             ) : isAuthenticated ? (
               <button onClick={handelLogout}>Log Out</button>
             ) : (
               <Link href="/login">Log In</Link>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -144,6 +160,10 @@ export default function Navbar() {
           <MobileDrawer />
         </div>
       )}
+      
+      <AnimatePresence>
+        {isMenu && <NavbarDrawer val={() => setIsMenu(false)} />}
+      </AnimatePresence>
       <AnimatePresence>
         {isDraw && <CartDrawer val={() => setIsDraw(false)} />}
       </AnimatePresence>
