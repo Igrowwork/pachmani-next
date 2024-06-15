@@ -1,9 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Address {
-  street: string;
+  firstname: string;
+  lastname: string;
+  mobile?: string;
+  email: string;
+  pincode: string;
   city: string;
+  street: string;
   zip: string;
+  address: string;
+  state: string;
 }
 
 interface IUser extends Document {
@@ -34,7 +41,7 @@ const initialState: AuthState = {
   error: null,
   isAuthenticated: false,
   user: null,
-  UnauthorizedError:null
+  UnauthorizedError: null,
 };
 
 const authSlice = createSlice({
@@ -71,6 +78,12 @@ const authSlice = createSlice({
     },
   },
 });
-export const { logout, login, register, setLoading, setError,setUnauthorized   } =
-  authSlice.actions;
+export const {
+  logout,
+  login,
+  register,
+  setLoading,
+  setError,
+  setUnauthorized,
+} = authSlice.actions;
 export default authSlice.reducer;

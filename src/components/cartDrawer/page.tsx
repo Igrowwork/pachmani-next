@@ -14,6 +14,7 @@ import {
   removeFromCartAsync,
   updateCartAsync,
 } from "@/redux/action/addTocartAction";
+import Link from "next/link";
 
 export default function CartDrawer({ val }: { val: () => void }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,12 +45,12 @@ export default function CartDrawer({ val }: { val: () => void }) {
     }));
   };
 
-  // const calculateTotal = () => {
-  //   return cartItems?.reduce((acc, item) => {
-  //     const quantity = quantityMap[item._id] || item.quantity;
-  //     return acc + quantity * item.variant.price;
-  //   }, 0);
-  // };
+  const calculateTotal = () => {
+    return cartItems?.reduce((acc, item) => {
+      const quantity = quantityMap[item._id] || item.quantity;
+      return acc + quantity * item.variant.price;
+    }, 0);
+  };
 
   useEffect(() => {
     const updatedCartItems = cartItems.map((item) => ({
@@ -58,6 +59,31 @@ export default function CartDrawer({ val }: { val: () => void }) {
     }));
     dispatch(updateCartAsync(updatedCartItems));
   }, [dispatch, quantityMap]);
+
+  const calculateDiscount = () => {
+    return cartItems?.reduce((acc, item) => {
+      const quantity = quantityMap[item._id] || item.quantity;
+      return (
+        acc + quantity * (item.variant.price - item.variant.priceAfterDiscount)
+      );
+    }, 0);
+  };
+
+  const calculateTotalPayable = () => {
+    return cartItems?.reduce((acc, item) => {
+      const quantity = quantityMap[item._id] || item.quantity;
+      return acc + quantity * item.variant.priceAfterDiscount;
+    }, 0);
+  };
+
+  const calculateSavings = () => {
+    return cartItems?.reduce((acc, item) => {
+      const quantity = quantityMap[item._id] || item.quantity;
+      return (
+        acc + quantity * (item.variant.price - item.variant.priceAfterDiscount)
+      );
+    }, 0);
+  };
 
   return (
     <div className="fixed top-0 left-0 h-screen w-full z-50 bg-white/50">
