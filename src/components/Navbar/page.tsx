@@ -145,13 +145,13 @@ export default function Navbar() {
                 </DropdownMenu>
               </>
             )}
-            {/* {loading ? (
+            {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
             ) : isAuthenticated ? (
               <button onClick={handelLogout}>Log Out</button>
             ) : (
               <Link href="/login">Log In</Link>
-            )} */}
+            )}
           </div>
         </div>
       </div>

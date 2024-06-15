@@ -54,7 +54,7 @@ export default function OurBestSellerCard(ele :CardDetails ) {
 
             </div>
         </div>
-        {/* <Link href={`/AllProduct/${ele?.ele?.page}`} className={cn('flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1 justify-center items-center text-lg font-medium text-white rounded-b-2xl' , lato.className)}><HiOutlineShoppingBag className='text-xl' />Add  to Cart</Link> */}
+        <Link href={`/AllProduct/${ele?.ele?.page}`} className={cn('flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1 justify-center items-center text-lg font-medium text-white rounded-b-2xl' , lato.className)}><HiOutlineShoppingBag className='text-xl' />Add  to Cart</Link>
     </div>
   )
 }
