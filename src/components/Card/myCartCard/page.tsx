@@ -30,7 +30,7 @@ export default function MyCartCard() {
 
   const arr = ["", ""];
   return (
-    <div className="grid grid-cols-3 gap-10 h-auto bg-red-400 ">
+    <div className="grid grid-cols-3 gap-10 h-auto">
       <div className="col-span-2 flex flex-col gap-5 h-full w-full">
         <div className=" grid gap-2">
           {arr?.map((ele, i) => (

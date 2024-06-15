@@ -5,8 +5,12 @@ import { Icons } from "@/app/icons";
 import AboutComp from "@/components/AboutComp/page";
 import { cn } from "@/lib/utils";
 import { getuserProfile, updateProfile } from "@/redux/action/profileAction";
+import { logoutAsyn } from "@/redux/action/userAction";
 import { AppDispatch, RootState } from "@/redux/store";
 import CustomHead from "@/UI/customHead";
+import { Loader } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -36,6 +40,9 @@ export default function Profile() {
     }
   }, [user, dispatch]);
 
+  const {isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => ({
@@ -44,6 +51,12 @@ export default function Profile() {
     }));
   };
 
+  const router = useRouter();
+  
+  const handelLogout = async () => {
+    dispatch(logoutAsyn());
+    router.push("/");
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(updateProfile(formValues));
@@ -136,6 +149,16 @@ export default function Profile() {
               <p className="border border-[#625D60] p-2.5 rounded-lg w-full mt-1.5 bg-transparent">
                 {user?.phoneNumber}
               </p>
+            </div>
+            <div className="col-span-2 text-primaryMain font-medium text-xl">
+              {loading ? (
+                <Loader className="w-4 h-4 animate-spin" />
+              ) : isAuthenticated ? (
+                <button onClick={handelLogout}>Log Out</button>
+              ) : (
+                <Link href="/login" className="">Log In</Link>
+              )}
+
             </div>
           </div>
         )}

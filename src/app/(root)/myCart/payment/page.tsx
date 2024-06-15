@@ -77,7 +77,7 @@ export default function page() {
                     </div>
                 </label>
                 
-                <button className='w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white'>Proceed to Payment</button>
+                <Link href={'/paymentfailed'} className='w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white'>Proceed to Payment</Link>
             </form>
          </div>
 
