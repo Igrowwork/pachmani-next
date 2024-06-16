@@ -32,10 +32,6 @@ export default function Navbar2() {
       page: "/AllProduct",
     },
     {
-      name: "About Us",
-      page: "/AboutUs",
-    },
-    {
       name: "Contact Us",
       page: "/ContactUs",
     },

@@ -53,7 +53,7 @@ const skinCare = () => {
     <div>
       <HomeSliderComp />
       <div className="h-full max-w-7xl mx-auto md:p-0 p-6">
-        <CustomHead name={"Men's"} className="w-10/12" />
+        <CustomHead name={"Skin Care"} className="w-10/12" />
         <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
           {skincare.products?.map(
             ({ productName, description, reviews, variants, _id }, i) => (
