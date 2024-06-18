@@ -38,7 +38,7 @@ export default function Navbar2() {
   ];
   return (
     <div className=" border-t-[1px] border-[#00AB55] bg-white sticky top-0 z-40 shadow-md py-3">
-      <div className="list-none md:flex hidden justify-between text-xl py-5 font-medium text-[#000000] mx-auto max-w-7xl h-full">
+      <div className="list-none md:flex hidden justify-between text-xl md:py-5 font-medium text-[#000000] mx-auto max-w-7xl h-full xl:p-0 px-6 max-md:text-base">
         {arr?.map((ele, i) => (
           <Link href={ele?.page}>
             <li

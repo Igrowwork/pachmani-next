@@ -23,7 +23,7 @@ export default function ExploreMore() {
     },
   ]
   return (
-    <div className='my-10'>
+    <div className='my-10 xl:px-0 px-6'>
       <CustomHead name="Explore More" className='w-11/12' />
       <div className='grid md:grid-cols-4 gap-8 grid-cols-1'>
         {

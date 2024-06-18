@@ -7,7 +7,7 @@ import React from 'react'
 
 export default function CheckTopBlog() {
   return (
-    <div className='my-10 max-w-7xl mx-auto'>
+    <div className='my-10 max-w-7xl mx-auto xl:px-0 px-6'>
       <CustomHead name='CHECK OUT OUR TOP BLOGS' className='w-1/2' />
 
         <div className='grid md:grid-cols-3 gap-8'>

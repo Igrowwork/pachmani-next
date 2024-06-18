@@ -7,7 +7,7 @@ import React from 'react'
 
 export default function WhyChoose() {
   return (
-    <div className='my-10'>
+    <div className='my-10 xl:px-0 px-6'>
       <CustomHead name='WHY CHOOSE US' className='w-7/12' />
       <div className='grid md:grid-cols-2 gap-16 items-center grid-cols-1'>
         <div className='grid gap-4'>

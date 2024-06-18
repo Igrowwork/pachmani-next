@@ -93,10 +93,10 @@ export default function OurBestSeller() {
   //     },
   // ]
   return (
-    <div className='my-10 w-full h-full max-w-7xl mx-auto'>
+    <div className='my-10 w-full h-full max-w-7xl mx-auto xl:px-0 px-6'>
       <div className='flex justify-between items-center'>
         <CustomHead name='Our Bestsellers' className='w-2/3' />
-        <Link href={'/our-best-seller'} className='text-xl text-primaryMain font-medium hover:underline transition-transform'>View More</Link>
+        <Link href={'/our-best-seller'} className='md:text-xl text-primaryMain font-medium hover:underline transition-transform text-base'>View More</Link>
       </div>
       <div className='relative h-full w-full mt-6'>
         <div className=' w-full h-full text-3xl'>
@@ -104,10 +104,26 @@ export default function OurBestSeller() {
         <button className='HomeSlideNext text-primaryMain absolute top-1/2 -translate-y-1/2 -right-10 z-10'><FaChevronRight /></button> */}
         </div>
         <Swiper
-        slidesPerView={4}
-        spaceBetween={10}
         keyboard={{
           enabled: true,
+        }}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          600: {
+            slidesPerView: 2,
+            spaceBetween: 4,
+          },
+          900: {
+            slidesPerView: 3,
+            spaceBetween: 8,
+          },
+          1124: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
         }}
         pagination={{
           clickable: true,

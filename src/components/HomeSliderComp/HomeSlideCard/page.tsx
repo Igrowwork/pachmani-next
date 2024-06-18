@@ -8,7 +8,7 @@ export default function HomeSlideCard(img:{img:string}) {
     <div>
       <div className='relative w-full md:h-[29rem]'>
         <Image src={`/Assests/Images/HomeImage/${img.img}`} alt='No Preview' fill className='object-cover'/>
-        <div className='grid md:grid-cols-3 lg:grid-cols-2 h-full w-full max-w-7xl mx-auto items-center'>
+        <div className='grid md:grid-cols-3 lg:grid-cols-2 h-full w-full max-w-7xl mx-auto items-center xl:px-0 px'>
             <div className='relative grid md:col-span-2 lg:col-span-1 font-normal p-2 xl:p-0'>
                 <h1 className={cn('md:text-[2.5rem] text-2xl ' ,forum.className)}>AYURVEDA EXPERTISE IN A OIL</h1>
                 <h3 className={cn('md:text-[2rem] text-xl mt-2' ,forum.className)}>For fresh, balanced scalp & shiny hair</h3>

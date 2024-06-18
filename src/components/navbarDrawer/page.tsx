@@ -48,7 +48,7 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
             </div>
             <RxCross1
               onClick={val}
-              className="cursor-pointer text-2xl text-[#625D60] hover:text-red-400"
+              className="cursor-pointer text-2xl text-[#625D60] hover:text-primaryMain"
             />
           </div>
           <div className={cn('px-4 grid grid-cols-2 text-lg gap-6' , forum.className)}>

@@ -57,10 +57,10 @@ export default function Navbar() {
   return (
     <>
       <div className="bg-white">
-        <div className="flex justify-between w-full items-center max-w-7xl mx-auto z-40 py-2">
+        <div className="flex justify-between w-full items-center max-w-7xl mx-auto xl:px-0 px-6 z-40 py-2">
           <div className="flex items-center">
             <AnimatePresence>
-              <MenuIcon className="text-black" onClick={() => setIsMenu(true)} />
+              <MenuIcon className="text-black cursor-pointer" onClick={() => setIsMenu(true)} />
             </AnimatePresence>
             <div className="flex items-center gap-3 rounded-md p-2 relative cursor-pointer">
               <FiSearch className="h-6 w-6 text-black" onClick={handleIconClick} />
@@ -148,7 +148,7 @@ export default function Navbar() {
             {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
             ) : isAuthenticated ? (
-              <button onClick={handelLogout}>Log Out</button>
+              <button onClick={handelLogout}></button>
             ) : (
               <Link href="/login">Log In</Link>
             )}

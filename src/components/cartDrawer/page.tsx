@@ -91,21 +91,17 @@ export default function CartDrawer({ val }: { val: () => void }) {
         animate={{ x: "-100" }}
         exit={{ x: "100%", opacity: 0 }}
         transition={{ duration: 1 }}
-        className=""
       >
-        <div
-          className="h-full w-full absolute top-0 left-0 bg-black/10 backdrop-blur"
-          onClick={val}
-        />
-        <div className="fixed top-0 right-0 md:w-[31.25rem] bg-white h-full">
-          <div className="">
+        <div className="h-full w-full absolute top-0 left-0 bg-black/10 backdrop-blur" />
+        <div className="fixed top-0 right-0 md:w-[31.25rem] h-full">
+          <div className="bg-white">
             <div className="flex text-xs text-center items-center gap-5 p-3 text-primaryMain font-normal shadow-lg w-full">
               <h1 className="text-center w-full">
                 {cartItems?.length || 0} Items in your bag
               </h1>
               <RxCross1
                 onClick={val}
-                className="cursor-pointer text-2xl text-[#625D60] hover:text-red-400"
+                className="cursor-pointer text-2xl text-[#625D60] hover:text-primaryMain"
               />
             </div>
             <div className="h-screen w-full overflow-y-scroll custom-scrollbar p-4 pb-28">
