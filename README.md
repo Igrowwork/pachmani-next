@@ -1,4 +1,4 @@
-Pachmarhi Ayurveda Ecommerce Website
+## Pachmarhi Ayurveda Ecommerce Website
 
 Welcome to the Pachmarhi Ayurveda ecommerce website repository. This project is designed to create a modern, user-friendly online store for Pachmarhi Ayurveda, leveraging the latest web technologies for optimal performance and scalability.
 
