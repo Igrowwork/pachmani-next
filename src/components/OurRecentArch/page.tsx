@@ -24,21 +24,18 @@ export default function OurRecentArch() {
   ]
   return (
     <div className="my-10 xl:px-0 px-6">
-      <CustomHead name="OUR RECENT ACHIEVEMENTS" className="w-1/3" />
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 mt-8 gap-8">
+      <CustomHead name="Our Recent Achievements" className="w-1/3" />
+      <div className="grid grid-cols-3 mt-8 xl:gap-8 lg:gap-6 sm:gap-4 gap-2">
         {
           arr?.map((ele,i) => (
-          <div className="border border-primaryMain w-full rounded grid justify-items-center gap-4 xl:p-6 md:p-5 sm:p-4 p-3 relative">
-            <div className="absolute -top-5 bg-white shadow p-1.5 rounded-full"><ele.icons className="p-0.5 scale-105" /></div>
-            <h1 className="xl:text-4xl md:text-3xl font-bold text-primaryMain">{ele?.data}</h1>
-            <h3 className="xl:text-3xl md:text-2xl text-[#333333] font-bold">{ele?.name}</h3>
+          <div className="border border-primaryMain w-full rounded grid justify-items-center sm:gap-4 gap-2 xl:p-6 lg:p-5 md:p-4 sm:p-3 p-1 relative">
+            <div className="absolute -top-5 bg-white shadow sm:p-1.5 p-1 rounded-full"><ele.icons className="p-0.5 md:scale-105 sm:scale-100 scale-90" /></div>
+            <h1 className="xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-xs max-sm:mt-4 font-bold text-primaryMain">{ele?.data}</h1>
+            <h3 className="xl:text-3xl lg:text-2xl md:text-xl sm:text-base text-[8px] text-[#333333] font-bold">{ele?.name}</h3>
           </div>
-
           ))
         }
-
       </div>
-
     </div>
   );
 }

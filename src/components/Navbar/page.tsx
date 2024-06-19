@@ -60,10 +60,10 @@ export default function Navbar() {
         <div className="flex justify-between w-full items-center max-w-7xl mx-auto xl:px-0 px-6 z-40 py-2">
           <div className="flex items-center">
             <AnimatePresence>
-              <MenuIcon className="text-black cursor-pointer" onClick={() => setIsMenu(true)} />
+              <MenuIcon className="text-black cursor-pointer h-6 w-6 max-sm:h-5 max-sm:w-5 " onClick={() => setIsMenu(true)} />
             </AnimatePresence>
             <div className="flex items-center gap-3 rounded-md p-2 relative cursor-pointer">
-              <FiSearch className="h-6 w-6 text-black" onClick={handleIconClick} />
+              <FiSearch className="maxsm h-6 w-6 max-sm:h-5 max-sm:w-5 text-black" onClick={handleIconClick} />
               {showInput && (
                 <input
                   type="text"
@@ -74,12 +74,12 @@ export default function Navbar() {
             </div>
             
           </div>
-          <Link href={"/"} className="relative h-16 w-40">
+          <Link href={"/"} className="relative h-16 w-40 ">
             <Image
               src="/Assests/Images/HomeImage/logo.png"
               alt="No Preview"
               fill
-              className="object-contain"
+              className="object-contain max-sm:scale-75"
             />
           </Link>
           <div className="flex justify-end gap-4 items-center">
@@ -92,59 +92,6 @@ export default function Navbar() {
                 />
                 
                 <Link href={'/profile'}><FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" /></Link>
-                {/* <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-full">
-                    <DropdownMenuGroup>
-                      <Link className="group cursor-pointer" href="/signIn">
-                        <DropdownMenuItem>
-                          <h1 className="capitalize group-hover:text-primaryMain">
-                            Sign in
-                          </h1>
-                        </DropdownMenuItem>
-                      </Link>
-                      <Link className="group cursor-pointer" href="/myCart">
-                        <DropdownMenuItem>
-                          <h1 className="capitalize group-hover:text-primaryMain">
-                            My Cart
-                          </h1>
-                        </DropdownMenuItem>
-                      </Link>
-                      <Link
-                        className="group cursor-pointer"
-                        href="/myAccount/profile"
-                      >
-                        <DropdownMenuItem>
-                          <h1 className="capitalize group-hover:text-primaryMain">
-                            My Account
-                          </h1>
-                        </DropdownMenuItem>
-                      </Link>
-                      <Link
-                        className="group cursor-pointer"
-                        href="/myAccount/wishlist"
-                      >
-                        <DropdownMenuItem>
-                          <h1 className="capitalize group-hover:text-primaryMain">
-                            My WishList
-                          </h1>
-                        </DropdownMenuItem>
-                      </Link>
-                      <Link
-                        className="group cursor-pointer"
-                        href="/trackYourOrder"
-                      >
-                        <DropdownMenuItem>
-                          <h1 className="capitalize group-hover:text-primaryMain">
-                            Track Your Order
-                          </h1>
-                        </DropdownMenuItem>
-                      </Link>
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu> */}
               </>
             )}
             {loading ? (

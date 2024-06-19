@@ -24,26 +24,26 @@ export default function OurIngradient() {
  
   ];
   return (
-    <div className="my-10 max-w-7xl mx-auto w-full h-full xl:px-0 px-6">
+    <div className="md:my-10 sm:my-8 my-6 max-w-7xl mx-auto w-full h-full xl:px-0 px-6">
       <CustomHead name="Ingredients" className="w-11/12" />
-      <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-x-8 md:gap-y-5  sm:gap-3 gap-2 max-sm:hidden">
+      <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-x-8 md:gap-y-5  sm:gap-3 gap-2">
         {arr.map((ele, i) => (
-          <div className="grid gap-1 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)]  items-center rounded-md p-4 border-[#00AB5533] border">
+          <div className="grid gap-1 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)]  items-center rounded-md p-2 border-[#00AB5533] border">
             <div className="relative w-full h-20">
               <Image
                 src={`/Assests/Images/HomeImage/${ele.img}`}
                 alt="No Preview"
                 fill
                 objectFit="contain"
-                className="scale-110"
+                className="md:scale-110 sm:scale-100 scale-100"
               />
               {/* <div className=" h-full w-[60%] rounded-full mx-auto  shadow-[0px_1px_1px_0px_rgba(0,0,0,0.15)]" /> */}
             </div>
-            <div className="capitalize text-xl font-normal text-center">{ele?.name}</div>
+            <div className="capitalize md:text-xl sm:text-lg text-base font-normal text-center">{ele?.name}</div>
           </div>
         ))}
       </div>
-      <div className=" sm:hidden inline">
+      {/* <div className=" sm:hidden inline">
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
@@ -65,7 +65,6 @@ export default function OurIngradient() {
                   objectFit="contain"
                   className="scale-110"
                 />
-                {/* <div className=" h-full w-[60%] rounded-full mx-auto  shadow-[0px_1px_1px_0px_rgba(0,0,0,0.15)]" /> */}
               </div>
               <div className="capitalize text-xl font-normal text-center">{ele?.name}</div>
             </div>
@@ -76,7 +75,7 @@ export default function OurIngradient() {
 
         </Swiper>
 
-      </div>
+      </div> */}
     </div>
   );
 }
