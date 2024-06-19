@@ -39,7 +39,7 @@ export default function ContactUs() {
           <span className='text-[#332F32] text-2xl font-bold'>Pachmarhi Ayurveda ,</span>
           based in Pachmarhi, Madhya Pradesh, began offering Ayurvedic medicines in 2010. Our medicines are made with specific herbs from the Pachmarhi forest to help address health, skin, and hair issues, as well as prevent future ones — they are effective, authentic, time-tested, and well-balanced.
       </div>
-      <div className='grid grid-cols-4 gap-8 max-w-7xl mx-auto my-6'>
+      <div className='grid md:grid-cols-4 sm:grid-cols-2 gap-8 max-w-7xl mx-auto my-6'>
         <div className='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)] border-[rgba(0,171,85,0.20)] border-[1px] p-6 grid justify-items-center gap-4 rounded-sm'>
           <Icons.contactCall />
           <p className='text-xl text-[#625D60] font-medium'>+91 8989091645</p>

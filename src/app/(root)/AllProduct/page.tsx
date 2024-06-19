@@ -7,9 +7,11 @@ import AllProductComp from "@/components/AllProductComp/page";
 import HairCareCard from "@/components/Card/HairCareCard/page";
 import OurBestSellerCard from "@/components/Card/OurBestSellerCard/page";
 import Banner from "@/components/banner/page";
+import api from "@/lib/axios";
 import { IProductVariant } from "@/lib/types/products";
 import { cn } from "@/lib/utils";
 import { getAllProductsAsyn } from "@/redux/action/productAction";
+import { addWish } from "@/redux/action/wishlistAddAction";
 import { AppDispatch, RootState } from "@/redux/store";
 import axios from "axios";
 import { Loader } from "lucide-react";
@@ -29,7 +31,7 @@ export default function AllProduct() {
     (state: RootState) => state.products
   );
 
-  console.log(products, "==");
+  // console.log(products, "==");
 
   useEffect(() => {
     if (products.products.length == 0) dispatch(getAllProductsAsyn({}));
@@ -43,12 +45,23 @@ export default function AllProduct() {
     );
   }
 
+  // // like dislike functionality
+  // const addWish = async (id : string) => {
+  //   try{
+  //     const res = await api.post("product/wishlist/"+id)
+  //     // console.log(res, );
+  //   }
+  //   catch(err){
+  //     console.log(err , "error");
+  //   }
+  // }
+
   return (
     <div className="w-full h-full max-w-7xl mx-auto xl:p-0 p-6 min-h-screen">
       <CustomHead name="All Products" className="w-10/12" />
       <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
         {products.products?.map(
-          ({ productName, description, reviews, variants, _id }, i) => (
+          ({ productName, description, reviews, variants, _id , isLike }, i) => (
             <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
               <div className="relative md:h-52 h-44 w-full">
                 <Image
@@ -59,9 +72,9 @@ export default function AllProduct() {
                 />
                 <div
                   className="absolute top-0 right-0 p-5 cursor-pointer"
-                  onClick={() => setIsVal(!isVal)}
+                  onClick={() => addWish(_id)}
                 >
-                  {isVal ? <Icons.like /> : <Icons.notLike />}
+                  {isLike ? <Icons.like /> : <Icons.notLike />}
                 </div>
               </div>
               <div className="grid p-2 gap-1">

@@ -23,6 +23,7 @@ import { Icons } from '@/app/icons';
 import { cn } from '@/lib/utils';
 import { lato } from '@/app/font';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
+import api from '@/lib/axios';
 
 interface Product {
   category: string;
@@ -40,58 +41,17 @@ export default function OurBestSeller() {
     dispatch(getHomeCart())
   }, [])
 
-  //   const arr = [
-  //     {
-  //         img:'/Assests/Images/HomeImage/28.png',
-  //         name:'Bhringraj Oil',
-  //         data:'It is a long established fact that a reader will be distracted by the distracted.',
-  //         price:450,
-  //         rating:'4.6',
-  //         review:43,
-  //         title:'oil',
-  //         page:'01'
-  //     },
-  //     {
-  //         img:'/Assests/Images/HomeImage/28.png',
-  //         name:'Black Shine Shampoo',
-  //         data:'It is a long established fact that a reader will be distracted by the distracted.',
-  //         price:265,
-  //         rating:'4.6',
-  //         review:43,
-  //         title:'oil',
-  //         page:'02'
-  //     },
-  //     {
-  //         img:'',
-  //         name:'Pachmarhi Hair Oil',
-  //         data:'It is a long established fact that a reader will be distracted by the distracted.',
-  //         price:159,
-  //         rating:'4.6',
-  //         review:43,
-  //         title:'oil',
-  //         page:'03'
-  //     },
-  //     {
-  //         img:'/Assests/Images/HomeImage/28.png',
-  //         name:'Pachmarhi Hair Oil (200ml)',
-  //         data:'It is a long established fact that a reader will be distracted by the distracted.',
-  //         price:300,
-  //         rating:'4.6',
-  //         review:43,
-  //         title:'oil',
-  //         page:'04'
-  //     },
-  //     {
-  //         img:'/Assests/Images/HairImage/16.jpg',
-  //         name:'Red Onion Shampoo',
-  //         data:'It is a long established fact that a reader will be distracted by the distracted.',
-  //         price:650,
-  //         rating:'4.6',
-  //         review:43,
-  //         title:'oil',
-  //         page:'05'
-  //     },
-  // ]
+  // like dislike functionality
+  const addWish = async (id : string) => {
+    try{
+      const res = await api.post("product/wishlist/"+id)
+      // console.log(res, );
+    }
+    catch(err){
+      console.log(err , "home error");
+    }
+  }
+
   return (
     <div className='my-10 w-full h-full max-w-7xl mx-auto xl:px-0 px-6'>
       <div className='flex justify-between items-center'>
@@ -153,9 +113,9 @@ export default function OurBestSeller() {
                   />
                   <div
                     className="absolute top-0 right-0 p-5 cursor-pointer"
-                    onClick={() => setIsVal(!isVal)}
+                    onClick={() => addWish(ele?._id)}
                   >
-                    {isVal ? <Icons.like /> : <Icons.notLike />}
+                    {ele.isLike ? <Icons.like /> : <Icons.notLike />}
                   </div>
                 </div>
                 <div className="grid p-2 gap-1">

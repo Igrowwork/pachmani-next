@@ -16,6 +16,7 @@ export interface IProductVariant extends Document {
 }
 
 export interface IProduct {
+  isLike: any;
   _id: string;
   productName: string;
   description: string;

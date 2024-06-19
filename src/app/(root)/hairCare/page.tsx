@@ -22,6 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { Loader } from "lucide-react";
 import { getAllHaircareAsyn, getAllMensAsyn, getAllProductsAsyn } from "@/redux/action/productAction";
+import api from "@/lib/axios";
+import { addWish } from "@/redux/action/wishlistAddAction";
 
 interface Product {
   category: string;
@@ -49,6 +51,18 @@ const hairCare = () => {
     );
   }
 
+    // // like dislike functionality
+    // const addWish = async (id : string) => {
+    //   try{
+    //     const res = await api.post("product/wishlist/"+id)
+    //     // console.log(res, );
+    //   }
+    //   catch(err){
+    //     console.log(err , "home error");
+    //   }
+    // }
+  
+
   return (
     <div>
       <HomeSliderComp />
@@ -56,7 +70,7 @@ const hairCare = () => {
         <CustomHead name={"HairCare"} className="w-10/12" />
         <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
           {haircare.products?.map(
-            ({ productName, description, reviews, variants, _id }, i) => (
+            ({ productName, description, reviews, variants, _id , isLike }, i) => (
               <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
                 <div className="relative md:h-52 h-44 w-full">
                   <Image
@@ -67,9 +81,9 @@ const hairCare = () => {
                   />
                   <div
                     className="absolute top-0 right-0 p-5 cursor-pointer"
-                    onClick={() => setIsVal(!isVal)}
+                    onClick={() => addWish(_id)}
                   >
-                    {isVal ? <Icons.like /> : <Icons.notLike />}
+                    {isLike ? <Icons.like /> : <Icons.notLike />}
                   </div>
                 </div>
                 <div className="grid p-2 gap-1">
