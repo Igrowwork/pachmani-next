@@ -35,7 +35,7 @@ export default function OurBestSeller() {
 
   const dispatch = useDispatch<AppDispatch>();
   const {error , loading ,product} = useSelector((state:RootState) => state.homeProducts);
-  console.log(product)
+  // console.log(product)
   useEffect(()=> {
     dispatch(getHomeCart())
   }, [])

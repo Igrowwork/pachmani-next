@@ -90,7 +90,9 @@ export default function Navbar() {
                   className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
                   onClick={() => setIsDraw(true)}
                 />
-                <DropdownMenu>
+                
+                <Link href={'/profile'}><FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" /></Link>
+                {/* <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
                   </DropdownMenuTrigger>
@@ -142,7 +144,7 @@ export default function Navbar() {
                       </Link>
                     </DropdownMenuGroup>
                   </DropdownMenuContent>
-                </DropdownMenu>
+                </DropdownMenu> */}
               </>
             )}
             {loading ? (

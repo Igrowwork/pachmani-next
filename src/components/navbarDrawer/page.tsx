@@ -5,8 +5,15 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { forum } from '@/app/font';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/redux/store';
 
 export default function NavbarDrawer( {val} : {val : () => void }) {
+
+  const {isAuthenticated ,error,loading,user} = useSelector(
+    (state : RootState) => state.auth
+  )
+  const dispatch = useDispatch<AppDispatch>()
     const arr = [
       {
         name:'Home',
@@ -51,6 +58,8 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
               className="cursor-pointer text-2xl text-[#625D60] hover:text-primaryMain"
             />
           </div>
+          {
+            !isAuthenticated && (
           <div className={cn('px-4 grid grid-cols-2 text-lg gap-6' , forum.className)}>
               <Link href={'/login'} className='flex justify-center items-center border-b-[0.5px] border-b-[#D0D5DD] rounded-sm p-5'>
                   Login
@@ -60,6 +69,9 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
               </Link>
               
           </div>
+
+            )
+          }
           <div>
             {
               arr?.map((ele,i) => (

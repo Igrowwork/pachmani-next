@@ -3,14 +3,34 @@
 import { forum } from '@/app/font'
 import { Icons } from '@/app/icons'
 import AboutComp from '@/components/AboutComp/page'
+import api from '@/lib/axios'
 import { cn } from '@/lib/utils'
 import CustomHead from '@/UI/customHead'
+import axios from 'axios'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 export default function OrderDetail() {
     const [isSet, setIsSet] = useState(0);
+    const [isApi , setIsApi] = useState([]);
+    
+    const isFetch  = async () => {
+        try{
+            const res = await api.get("order");
+            console.log(res?.data,"qwert")
+            setIsApi(res?.data)
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+    useEffect(()=> {
+        isFetch();
+    } , [])
+        
+
     const handleInce = () => {
       if (isSet < 7) {
         setIsSet(isSet + 1);
@@ -76,8 +96,8 @@ export default function OrderDetail() {
             </div>
         </div>
         <div className="col-span-9 grid gap-2 h-[70vh] overflow-y-scroll scroll-smooth p-2">
-        {arr?.map((ele, i) => (
-            <div className="grid md:grid-cols-9 grid-cols-1 items-start gap-3 rounded-md p-4 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]">
+        {isApi?.map((ele, i) => (
+            <Link href={'/order-detail/orders-process'} className="grid md:grid-cols-9 grid-cols-1 items-start gap-3 rounded-md p-4 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]">
             <div className="md:col-span-2 flex items-start">
                 <div className="relative w-full md:h-32 h-44 ">
                 <Image
@@ -110,14 +130,14 @@ export default function OrderDetail() {
             
             </div>
                 <div className="text-sm gap-2 font-semibold text-[#313131] col-span-1 mt-1">
-                    ₹265.00
+                    ₹250.00
                 </div>
             <div className="h-full w-full col-span-3 text-[#625D60] pl-10">
                 <h1 className='font-medium flex items-center gap-1'><span className='h-2 w-2 bg-primaryMain rounded-full'></span> Delivered on Mon 11 jun</h1>
                 <p className='text-[#625D60] text-xs my-2'>Your item has been delivered</p>
                 <div className='text-primaryMain text-xs'> &#9733; Rate & Review Product</div>
             </div>
-            </div>
+            </Link>
         ))}
         </div>
             
