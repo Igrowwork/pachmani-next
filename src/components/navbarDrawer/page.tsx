@@ -13,7 +13,7 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
   const {isAuthenticated ,error,loading,user} = useSelector(
     (state : RootState) => state.auth
   )
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>() 
     const arr = [
       {
         name:'Home',
@@ -62,7 +62,7 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
             !isAuthenticated && (
           <div className={cn('px-4 grid grid-cols-2 text-lg gap-6' , forum.className)}>
               <Link href={'/login'} className='flex justify-center items-center border-b-[0.5px] border-b-[#D0D5DD] rounded-sm p-5'>
-                  Login
+              Login
               </Link>
               <Link href={'/sign-up'} className='flex justify-center items-center border-b-[0.5px] border-b-[#D0D5DD] rounded-sm p-5'>
               Sign up
@@ -75,7 +75,7 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
           <div>
             {
               arr?.map((ele,i) => (
-                <Link href={ele?.path} key={i} className='flex justify-between p-5 hover:border-b-primaryMain border-b rounded-sm text-[#332F32] hover:text-primaryMain text-lg items-center transition-shadow font-medium' onLoadedMetadataCapture={val}>{ele.name} <FaChevronRight /> </Link>
+                <Link href={ele?.path} key={i} className={cn('flex justify-between p-5 hover:border-b-primaryMain border-b rounded-sm text-[#332F32] hover:text-primaryMain text-lg items-center transition-shadow font-medium' , ele.path)}  onClick={val}>{ele.name} <FaChevronRight /> </Link>
               ))
             }
           </div>

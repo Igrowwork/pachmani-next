@@ -49,7 +49,7 @@ export default function ForgetPassword() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto md:p-0 p-6">
       <div className="flex py-10">
         <div className="relative h-14 w-40">
           <Image
@@ -60,7 +60,7 @@ export default function ForgetPassword() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 gap-10">
         <div className={cn("my-3", poppin.className)}>
           <Link
             href="/login"
@@ -101,7 +101,7 @@ export default function ForgetPassword() {
           </form>
           <div className="flex items-center w-full text-sm text-[#313131]/70 my-10">
             <div className="h-[0.5px] w-full bg-[#313131]/70" />
-            <span className="w-72 text-center"> Or login with </span>
+            <span className="md:w-72 w-52 text-center"> Or login with </span>
             <div className="h-[0.5px] w-full bg-[#313131]/70" />
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -116,7 +116,7 @@ export default function ForgetPassword() {
             </div>
           </div>
         </div>
-        <div className="w-full sticky top-0 h-[80vh]">
+        <div className="w-full sticky top-0 h-[80vh] max-md:hidden">
           <LeftSlider img="/Assests/Images/LoginImage/02.png" />
         </div>
       </div>

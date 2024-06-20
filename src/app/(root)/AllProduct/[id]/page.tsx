@@ -117,12 +117,12 @@ export default function page({ params }: { params: { id: string } }) {
               <div>
                 <CustomHead name={product?.category} className="w-10/12" />
                 <div className=" grid md:grid-cols-7 gap-8 grid-cols-1">
-                  <div className="col-span-3 w-full rounded-md overflow-hidden">
+                  <div className="md:col-span-3 w-full rounded-md overflow-hidden">
                     <div className="h-full w-full">
                       <CardDetailSlider imgArr={imgArr} />
                     </div>
                   </div>
-                  <div className="grid col-span-4 w-[80%]">
+                  <div className="grid md:col-span-4 md:w-[80%]">
                     <h1
                       className={cn(
                         "md:text-[2.5rem] text-3xl",

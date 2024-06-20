@@ -72,18 +72,18 @@ export default function Profile() {
           <div onClick={() => setIsEdit(!isEdit)}>
             <p
               className={cn(
-                "text-xl text-black font-normal flex gap-2 items-center mr-10 cursor-pointer",
+                "text-xl text-black font-normal flex gap-2 items-center sm:mr-10 cursor-pointer",
                 forum.className
               )}
             >
-              <Icons.edit /> {isEdit ? 'Cancel' : 'Edit'}
+              <Icons.edit /> {isEdit ? '' : 'Edit'}
             </p>
           </div>
         </div>
         {isEdit ? (
           <form
             onSubmit={handleSubmit}
-            className="grid grid-cols-2 gap-6 gap-x-8"
+            className="grid md:grid-cols-2 gap-6 gap-x-8"
           >
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">Full Name</h3>
@@ -92,7 +92,7 @@ export default function Profile() {
                 name="username"
                 value={formValues.username}
                 onChange={handleChange}
-                className="border border-[#625D60] outline-none p-2.5 rounded-lg w-full mt-1.5 bg-transparent"
+                className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent"
                 placeholder="Please Enter Your Name"
                 required
               />
@@ -104,7 +104,7 @@ export default function Profile() {
                 name="email"
                 value={formValues.email}
                 onChange={handleChange}
-                className="border border-[#625D60] outline-none p-2.5 rounded-lg w-full mt-1.5 bg-transparent"
+                className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent"
                 placeholder="Please Enter Your Email"
                 required
               />
@@ -118,39 +118,39 @@ export default function Profile() {
                 name="phoneNumber"
                 value={formValues.phoneNumber}
                 onChange={handleChange}
-                className="border border-[#625D60] outline-none p-2.5 rounded-lg w-full mt-1.5 bg-transparent"
+                className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent"
                 placeholder="Please Enter Your Number"
                 required
               />
             </div>
             <button
               type="submit"
-              className="col-span-2 w-44 bg-primaryMain text-white p-2 rounded-sm"
+              className="md:col-span-2 w-44 bg-primaryMain text-white p-2 rounded-sm"
             >
               Update
             </button>
           </form>
         ) : (
-          <div className="grid grid-cols-2 gap-6 gap-x-8">
+          <div className="grid md:grid-cols-2 gap-6 gap-x-8">
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">Full Name</h3>
-              <p className="border border-[#625D60] p-2.5 rounded-lg w-full mt-1.5 bg-transparent">
+              <p className="border border-[#625D60] md:p-2.5 sm:p-2 p-1.5  rounded-lg w-full mt-1.5 bg-transparent">
                 {user?.username}
               </p>
             </div>
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">Email Id</h3>
-              <p className="border border-[#625D60] p-2.5 rounded-lg w-full mt-1.5 bg-transparent">
+              <p className="border border-[#625D60] md:p-2.5 sm:p-2 p-1.5  rounded-lg w-full mt-1.5 bg-transparent">
                 {user?.email}
               </p>
             </div>
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">Phone Number</h3>
-              <p className="border border-[#625D60] p-2.5 rounded-lg w-full mt-1.5 bg-transparent">
+              <p className="border border-[#625D60] md:p-2.5 sm:p-2 p-1.5  rounded-lg w-full mt-1.5 bg-transparent">
                 {user?.phoneNumber}
               </p>
             </div>
-            <div className="col-span-2 text-primaryMain font-medium text-xl">
+            <div className="md:col-span-2 text-primaryMain font-medium text-xl">
               {loading ? (
                 <Loader className="w-4 h-4 animate-spin" />
               ) : isAuthenticated ? (

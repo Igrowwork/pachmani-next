@@ -150,7 +150,6 @@ const skinCare = () => {
         <TestimonalSlider />
         <OurCertification />
       </div>
-      <Banner2 />
     </div>
   );
 };

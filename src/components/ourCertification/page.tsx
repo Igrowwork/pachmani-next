@@ -4,19 +4,19 @@ import React from 'react'
 
 export default function OurCertification() {
   return (
-    <div className='my-10'>
+    <div className='md:my-10 sm:my-8 my-6 '>
       <CustomHead name='Our Certifications' className='w-10/12' />
-      <div className='md:flex grid grid-cols-2 '>
-        <div className='relative h-16 w-40 '>
+      <div className='flex gap-1'>
+        <div className='relative h-12 w-32'>
             <Image src={'/Assests/Images/HomeImage/10.png'} alt='No Preview' fill objectFit='contain'/>
         </div>
-        <div className='relative h-16 w-40'>
+        <div className='relative h-12 w-32'>
             <Image src={'/Assests/Images/HomeImage/10.png'} alt='No Preview' fill objectFit='contain'/>
         </div>
-        <div className='relative h-16 w-40'>
+        <div className='relative h-12 w-32'>
             <Image src={'/Assests/Images/HomeImage/10.png'} alt='No Preview' fill objectFit='contain'/>
         </div>
-        <div className='relative h-16 w-40'>
+        <div className='relative h-12 w-32'>
             <Image src={'/Assests/Images/HomeImage/10.png'} alt='No Preview' fill objectFit='contain'/>
         </div>
       </div>

@@ -68,7 +68,7 @@ export default function Footer() {
                 </div>
             </div>
         </div>
-        <div className="absolute bottom-0 xl:right-28 md:right-20 sm:right-10  flex max-sm:justify-center max-sm:mt-2 gap-6 border  p-8">
+        <div className="absolute bottom-0 xl:right-28 md:right-20 sm:right-10  flex max-sm:justify-center max-sm:mt-2 gap-6 sm:p-8 max-sm:w-full max-sm:left-0 p-4">
             <Icons.fb className="hover:transition-transform cursor-pointer" />
             <Icons.insta className="hover:transition-transform cursor-pointer" />
             <Icons.twit className="hover:transition-transform cursor-pointer" />

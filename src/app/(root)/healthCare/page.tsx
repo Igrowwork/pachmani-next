@@ -157,7 +157,6 @@ const healthCare = () => {
         <TestimonalSlider />
         <OurCertification />
       </div>
-      <Banner2 />
     </div>
   );
 };

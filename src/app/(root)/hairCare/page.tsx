@@ -153,7 +153,7 @@ const hairCare = () => {
         <TestimonalSlider />
         <OurCertification />
       </div>
-      <Banner2 />
+      {/* <Banner2 /> */}
     </div>
   );
 };

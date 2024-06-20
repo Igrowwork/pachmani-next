@@ -236,20 +236,21 @@ export default function CartDrawer({ val }: { val: () => void }) {
                 <div>
                   <CustomHead name="Recommendations" className="" />
                 </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 drop-shadow-xl bg-white rounded-md shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] fixed bottom-1 w-[29rem] right-6">
+            <div className="grid grid-cols-2 drop-shadow-xl bg-white rounded-md shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]w-[29rem] right-6 ">
               <div className="flex flex-col justify-center items-center rounded-l-md">
                 <span className="text-[#625D60] text-sm">Grand Total</span>
                 <span className="text-primaryMain text-xl font-semibold my-1.5">
                   {/* ₹ {calculateTotal()} */}
                 </span>
               </div>
-              <div className="text-white bg-primaryMain p-3 flex gap-2 w-full justify-center items-center font-medium rounded-r-md">
+              <Link href={'/myCart/shipping-cost'} className="text-white bg-primaryMain p-3 flex gap-2 w-full justify-center items-center font-medium rounded-r-md" 
+                onClick={val}>
                 <span className="text-xl">Checkout</span>
                 <span className="mt-1.5">
                   <AiOutlineRight className="text-xl" />
                 </span>
+              </Link>
+            </div>
               </div>
             </div>
           </div>

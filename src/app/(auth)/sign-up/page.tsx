@@ -68,12 +68,12 @@ export default function Login() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-24">
-        <div className="col-span-2 w-full sticky top-5 h-[95vh]">
+      <div className="grid md:grid-cols-5 gap-24 xl:p-0 p-6">
+        <div className="md:col-span-2 w-full sticky top-5 h-[95vh] max-md:hidden">
           <LeftSlider img={"/Assests/Images/LoginImage/01.png"} />
         </div>
 
-        <div className={cn("col-span-3 mb-3", poppin.className)}>
+        <div className={cn("md:col-span-3 mb-3", poppin.className)}>
           <h1 className="text-[2.5rem] font-semibold text-[#313131]">
             Sign up
           </h1>
@@ -82,7 +82,7 @@ export default function Login() {
           </p>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-6"
+            className="grid md:grid-cols-2 grid-cols-1 gap-6"
           >
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">username</h3>
@@ -169,7 +169,7 @@ export default function Login() {
                 <p className="text-red-400">{errors.phoneNumber.message}</p>
               )}
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <h3 className="text-sm text-[#332F32] font-medium">Password</h3>
               <div className="flex border border-[#625D60] rounded-lg mt-1.5 items-center">
                 <input
@@ -191,7 +191,7 @@ export default function Login() {
                 <p className="text-red-400">Password is required</p>
               )}
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <h3 className="text-sm text-[#332F32] font-medium">
                 Confirm Password
               </h3>
@@ -223,7 +223,7 @@ export default function Login() {
             </div>
             {/* Other form fields and components */}
            {reduxError && <p className="text-red-500">{reduxError + ''}</p>}
-            <div className="w-full col-span-2 p-2 text-sm font-medium rounded-sm bg-primaryMain text-white flex items-center justify-center gap-2">
+            <div className="w-full md:col-span-2 p-2 text-sm font-medium rounded-sm bg-primaryMain text-white flex items-center justify-center gap-2">
               <button type="submit">SignUp</button>
               {loading && <Loader className="animate-spin w-4 h-4" />}
             </div>
@@ -236,7 +236,7 @@ export default function Login() {
           </div>
           <div className="flex items-center w-full text-sm text-[#313131]/70 my-10">
             <div className="h-[0.5px] w-full bg-[#313131]/70" />
-            <span className="w-72 text-center"> Or Sign up with </span>
+            <span className="md:w-72 w-52 text-center"> Or Sign up with </span>
             <div className="h-[0.5px] w-full bg-[#313131]/70" />
           </div>
           <div className="grid grid-cols-3 gap-4">

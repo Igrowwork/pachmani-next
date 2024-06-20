@@ -152,7 +152,6 @@ const mens = () => {
         <TestimonalSlider />
         <OurCertification />
       </div>
-      <Banner2 />
     </div>
   );
 };

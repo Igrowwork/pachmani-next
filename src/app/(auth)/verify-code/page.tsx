@@ -47,7 +47,7 @@ export default function VerifyCode() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto md:p-0 p-6">
       <div className="flex py-10">
         <div className="relative h-14 w-40">
           <Image
@@ -58,7 +58,7 @@ export default function VerifyCode() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 gap-10">
         <div className={cn("my-3", poppin.className)}>
           <Link
             href="/login"
@@ -117,7 +117,7 @@ export default function VerifyCode() {
             </button>
           </form>
         </div>
-        <div className="w-full sticky top-0 h-[80vh]">
+        <div className="w-full sticky top-0 h-[80vh] max-md:hidden">
           <LeftSlider img="/Assests/Images/LoginImage/02.png" />
         </div>
       </div>

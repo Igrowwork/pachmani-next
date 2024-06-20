@@ -72,13 +72,13 @@ export default function ShippingCost() {
     setSelectedAddressIndex(index);
   };
   return (
-    <div className="shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] grid grid-cols-5 p-6 gap-12">
-      <div className="col-span-3">
+    <div className="shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] grid md:grid-cols-5 p-6 gap-12">
+      <div className="md:col-span-3">
         <div>
           <CustomHead name="Sign in or Checkout as guest" className="w-1/2" />
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-6"
+            className="grid md:grid-cols-2 gap-6"
           >
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">First Name</h3>
@@ -103,7 +103,7 @@ export default function ShippingCost() {
               {errors.lastname && (
                 <p className="text-red-500 text-xs">Last name is required</p>
               )}
-            </div>Property 'email' does not exist on type 'Address
+            </div>
             <div>
               <h3 className="text-sm text-[#332F32] font-medium">
                 Mobile Number
@@ -180,7 +180,7 @@ export default function ShippingCost() {
                 <p className="text-red-500 text-xs">zip is required</p>
               )}
             </div>
-            <div>
+            <div className="md:col-span-2">
               <h3 className="text-sm text-[#332F32] font-medium">State</h3>
               <input
                 type="text"
@@ -192,7 +192,7 @@ export default function ShippingCost() {
                 <p className="text-red-500 text-xs">State is required</p>
               )}
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <h3 className="text-sm text-[#332F32] font-medium">Address</h3>
               <textarea
                 {...register("address", { required: true })}
@@ -231,7 +231,7 @@ export default function ShippingCost() {
           </div>
         </div>
       </div>
-      <div className=" col-span-2">
+      <div className=" md:col-span-2">
         <CheckOutCartItems></CheckOutCartItems>
       </div>
     </div>

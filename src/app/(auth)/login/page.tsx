@@ -53,9 +53,9 @@ export default function Login() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 gap-10 xl:p-0 p-6">
         <div className={cn(" my-3", poppin.className)}>
-          <h1 className="text-[2.5rem] font-semibold text-[#313131]">Login</h1>
+          <h1 className="text-[2.5rem]  font-semibold text-[#313131]">Login</h1>
           <p className="text-[#625D60] my-4 font-normal text-base">
             Login to access your travelwise account
           </p>
@@ -123,7 +123,7 @@ export default function Login() {
           </div>
           <div className="flex items-center w-full text-sm text-[#313131]/70 my-10">
             <div className="h-[0.5px] w-full bg-[#313131]/70" />
-            <span className="w-72 text-center"> Or Sign up with </span>
+            <span className="md:w-72 w-52 text-center"> Or Sign up with </span>
             <div className="h-[0.5px] w-full bg-[#313131]/70" />
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -138,7 +138,7 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="w-full sticky top-0 h-[80vh]">
+        <div className="w-full sticky top-0 md:h-[80vh] max-md:hidden">
           <LeftSlider img={"/Assests/Images/LoginImage/02.png"} />
         </div>
       </div>

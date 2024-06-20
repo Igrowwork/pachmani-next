@@ -66,9 +66,9 @@ export default function WishList() {
   return (
     <div>
       <AboutComp name='WishList' />
-            <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2 max-w-7xl mx-auto">
+            <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 max-w-7xl mx-auto xl:p-2 p-6">
           {product?.map((ele, i) => (
-            <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
+            <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out">
               <div className="relative md:h-52 h-44 w-full">
                 <Image
                   src={"/Assests/Images/HomeImage/27.png"}
