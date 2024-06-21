@@ -161,7 +161,7 @@ export default function OurBestSeller() {
                     lato.className
                   )}
                 >
-                  <HiOutlineShoppingBag className="text-xl" />
+                  <HiOutlineShoppingBag className="md:text-xl sm:text-lg text-base" />
                   Add to Cart
                 </Link>
               </div>

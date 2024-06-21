@@ -3,11 +3,10 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-// import './styles.css';
+import '../../app/(root)/style.css';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
@@ -18,18 +17,20 @@ export default function HomeSliderComp() {
   return (
     <div className='w-full '>
         <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        {
-          arr?.map((ele,i)=>(
-            <SwiperSlide key={i}><HomeSlideCard  img={ele}/></SwiperSlide>
-          ))
-        }
-      </Swiper>
+      pagination={{
+        dynamicBullets: true,
+        el: '.swiper-pagination.custom-pagination'
+      }}
+      modules={[Pagination]}
+      className="mySwiper"
+    >
+      {
+        arr?.map((ele, i) => (
+          <SwiperSlide key={i}><HomeSlideCard img={ele} /></SwiperSlide>
+        ))
+      }
+      <div className="swiper-pagination custom-pagination"></div>
+    </Swiper>
       
     </div>
   )

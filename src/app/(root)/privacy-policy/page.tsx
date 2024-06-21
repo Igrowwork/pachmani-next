@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function PrivacyPolicy() {
   return (
-    <div className='min-h-screen max-w-7xl mx-auto'>
+    <div className='min-h-screen max-w-7xl mx-auto xl:p-0 p-6'>
       <CustomHead name='Privacy Policy' className=' w-20' />
       <div>
         <h1 className='text-3xl font-semibold my-3'>Welcome to the Pachmarhi Ayurveda.</h1>

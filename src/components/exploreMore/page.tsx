@@ -7,19 +7,23 @@ export default function ExploreMore() {
   const arr = [ 
     {
       name:'Haircare',
-      img:'/Assests/Images/HomeImage/05.png'
+      img:'/Assests/Images/HomeImage/05.png',
+      link:'/hairCare'
     },
     {
       name:'Skincare',
-      img:'/Assests/Images/HomeImage/skincare.png'
+      img:'/Assests/Images/HomeImage/skincare.png',
+      link:'/skinCare'
     },
     {
       name:'Health Care',
-      img:'/Assests/Images/HomeImage/men.png'
+      img:'/Assests/Images/HomeImage/men.png',
+      link:'/healthCare'
     },
     {
       name:"Men's",
-      img:'/Assests/Images/HomeImage/health.png'
+      img:'/Assests/Images/HomeImage/health.png',
+      link:'/mens'
     },
   ]
   return (

@@ -4,6 +4,7 @@ import CustomHead from "@/UI/customHead";
 import React from "react"; // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import '../../app/(root)/style.css';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -47,8 +48,8 @@ export default function TestimonalSlider() {
       
       <div className="relative mt-6 w-full h-full">
         <div className=' w-full h-full text-3xl'>
-            <button className='HomeSlidePrev text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 left-0 z-10 rounded-sm hover:bg-primaryMain/80'><FaArrowLeftLong  className="px-1.5 "/></button>
-            <button className='HomeSlideNext text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 right-0 z-10 rounded-sm hover:bg-primaryMain/80'><FaArrowRightLong className="px-1.5 " /></button>
+            <button className='HomeSlidePrev text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 left-0 z-10 rounded-sm hover:bg-primaryMain/80 max-sm:hidden'><FaArrowLeftLong  className="px-1.5 "/></button>
+            <button className='HomeSlideNext text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 right-0 z-10 rounded-sm hover:bg-primaryMain/80 max-sm:hidden'><FaArrowRightLong className="px-1.5 " /></button>
           </div>
         <Swiper
           spaceBetween={20}

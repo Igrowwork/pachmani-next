@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <div className=" mt-10 relative w-full bg-[#EEEDEC] text-[#212B36] md:p-10 sm:p-8 p-4">
         <Image src='/Assests/Images/HomeImage/footer.png' alt="No Preview" fill className=" bg-cover max-sm:hidden w-full"/>
-        <div className=" md:py-10 grid xl:grid-cols-4 md:gap-16 gap-5 mx-auto max-w-7xl relative z-20 grid-cols-1 p-4 md:p-0 items-start mb-4">
+        <div className=" md:py-10 grid xl:grid-cols-4 md:gap-16 gap-5 mx-auto max-w-7xl relative z-20 grid-cols-1 p-4 md:p-0 items-start sm:mb-4 mb-10">
             <div className="p-2 grid md:gap-6 gap-3">
                 <div className="relative h-11 w-24 ml-2">
                 <Image
@@ -68,7 +68,8 @@ export default function Footer() {
                 </div>
             </div>
         </div>
-        <div className="absolute bottom-0 xl:right-28 md:right-20 sm:right-10  flex max-sm:justify-center max-sm:mt-2 gap-6 sm:p-8 max-sm:w-full max-sm:left-0 p-4">
+        <div className="absolute bottom-0 xl:right-28 md:right-20 flex-wrap sm:right-10  flex max-sm:justify-center md:gap-6 gap-2 sm:p-8 max-sm:w-full max-sm:left-0 p-4 max-sm:pt-44">
+            <div className="w-full h-[2px] bg-[#5B7700] sm:hidden "></div>
             <Icons.fb className="hover:transition-transform cursor-pointer" />
             <Icons.insta className="hover:transition-transform cursor-pointer" />
             <Icons.twit className="hover:transition-transform cursor-pointer" />

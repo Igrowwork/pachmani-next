@@ -55,16 +55,16 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
             </div>
             <RxCross1
               onClick={val}
-              className="cursor-pointer text-2xl text-[#625D60] hover:text-primaryMain"
+              className="cursor-pointer md:text-2xl text-xl text-[#625D60] hover:text-primaryMain"
             />
           </div>
           {
             !isAuthenticated && (
-          <div className={cn('px-4 grid grid-cols-2 text-lg gap-6' , forum.className)}>
-              <Link href={'/login'} className='flex justify-center items-center border-b-[0.5px] border-b-[#D0D5DD] rounded-sm p-5'>
+          <div className={cn('px-4 grid grid-cols-2 sm:text-lg text-base gap-6' , forum.className)}>
+              <Link href={'/login'} className='flex justify-center items-center border-b-[0.5px] border-b-[#D0D5DD] rounded-sm  md:p-5 sm:p-4 p-3'>
               Login
               </Link>
-              <Link href={'/sign-up'} className='flex justify-center items-center border-b-[0.5px] border-b-[#D0D5DD] rounded-sm p-5'>
+              <Link href={'/sign-up'} className='flex justify-center items-center border-b-[0.5px] border-b-[#D0D5DD] rounded-sm  md:p-5 sm:p-4 p-3'>
               Sign up
               </Link>
               
@@ -75,7 +75,7 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
           <div>
             {
               arr?.map((ele,i) => (
-                <Link href={ele?.path} key={i} className={cn('flex justify-between p-5 hover:border-b-primaryMain border-b rounded-sm text-[#332F32] hover:text-primaryMain text-lg items-center transition-shadow font-medium' , ele.path)}  onClick={val}>{ele.name} <FaChevronRight /> </Link>
+                <Link href={ele?.path} key={i} className={cn('flex justify-between md:p-5 p-4 hover:border-b-primaryMain border-b rounded-sm text-[#332F32] hover:text-primaryMain md:text-lg sm:text-base text-sm items-center transition-shadow font-medium' , ele.path)}  onClick={val}>{ele.name} <FaChevronRight /> </Link>
               ))
             }
           </div>

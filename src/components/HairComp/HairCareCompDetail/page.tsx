@@ -21,8 +21,8 @@ export default function HairCareCompDetail() {
     <div className='grid gap-8 my-10'>
         {arr.map((ele,i)=>(
             <div className='grid gap-2'>
-                <h1 className={cn('md:text-2xl text-xl capital', forum.className)}>{ele?.val}</h1>
-                <p className='text-[#4A3F3F] text-sm md:text-base capital'>{ele?.val2}</p>
+                <h1 className={cn('md:text-2xl text-xl capital ', forum.className)}>{ele?.val}</h1>
+                <p className='text-[#4A3F3F] text-sm md:text-base capital text-justify'>{ele?.val2}</p>
             </div>
         ))}
 

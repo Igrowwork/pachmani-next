@@ -43,7 +43,7 @@ export default function Navbar2() {
           <Link href={ele?.page}>
             <li
               className={cn(
-                `hover:text-[#00AB55] cursor-pointer group`,
+                `hover:text-[#00AB55] cursor-pointer group `,
                 pathname === ele?.page ? "text-[#00AB55]" : ""
               )}
             >

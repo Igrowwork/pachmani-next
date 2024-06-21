@@ -51,28 +51,28 @@ export default function ContactUs() {
   return (
     <div>
       <AboutComp name="Contact Us"/>
-      <div className='max-w-7xl mx-auto h-full w-full md:text-xl sm:text-base text-sm font-medium text-[#625D60] leading-8 my-6 xl:px-0 px-6 text-justify'>
+      <div className='max-w-7xl mx-auto h-full w-full md:text-xl sm:text-base text-sm font-medium text-[#625D60] my-6 xl:px-0 px-6 text-justify'>
           <span className='text-[#332F32] md:text-2xl sm:text-xl text-base font-bold'>Pachmarhi Ayurveda ,</span>
           based in Pachmarhi, Madhya Pradesh, began offering Ayurvedic medicines in 2010. Our medicines are made with specific herbs from the Pachmarhi forest to help address health, skin, and hair issues, as well as prevent future ones — they are effective, authentic, time-tested, and well-balanced.
       </div>
       <div className='grid lg:grid-cols-4 sm:grid-cols-2 gap-8 max-w-7xl mx-auto my-6 xl:px-0 px-6'>
         <div className='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)] border-[rgba(0,171,85,0.20)] border-[1px] xl:p-6 md:p-5 sm:p-4 p-2 grid justify-items-center gap-4 rounded-sm'>
-          <Icons.contactCall />
+          <Icons.contactCall className='max-sm:scale-75' />
           <p className='xl:text-xl sm:text-base text-sm text-[#625D60] font-medium'>+91 8989091645</p>
           <Link href={"tel:+91 8989091645"} className=' text-primaryMain border-primaryMain md:p-2.5 sm:p-2 p-1.5 text-center w-full rounded-sm md:text-xl sm:text-base text-sm  font-medium border'>Contact us</Link>
         </div>
         <div className='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)] border-[rgba(0,171,85,0.20)] border-[1px] xl:p-6 md:p-5 sm:p-4 p-2 grid justify-items-center gap-4 rounded-sm'>
-          <Icons.contactMess />
+          <Icons.contactMess className='max-sm:scale-75' />
           <p className='xl:text-xl sm:text-base text-sm text-[#625D60] font-medium'>pachmadi@gmail.com</p>
           <Link href={'mailto:pachmadi@gmail.com'} className='text-primaryMain border-primaryMain md:p-2.5 sm:p-2 p-1.5 text-center w-full rounded-sm md:text-xl sm:text-base text-sm  font-medium border'>Email</Link>
         </div>
         <div className='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)] border-[rgba(0,171,85,0.20)] border-[1px] xl:p-6 md:p-5 sm:p-4 p-2 grid justify-items-center gap-4 rounded-sm'>
-          <Icons.contactChat />
+          <Icons.contactChat className='max-sm:scale-75' />
           <p className='xl:text-xl sm:text-base text-sm text-[#625D60] font-medium'>Chat with us</p>
           <Link href={'https://wa.me/8989091645'} className='text-primaryMain border-primaryMain md:p-2.5 sm:p-2 p-1.5 text-center w-full rounded-sm md:text-xl sm:text-base text-sm  font-medium border'>Chat</Link>
         </div>
         <div className='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)] border-[rgba(0,171,85,0.20)] border-[1px] xl:p-6 md:p-5 sm:p-4 p-2 grid justify-items-center gap-4 rounded-sm'>
-          <Icons.contactWhat />
+          <Icons.contactWhat className='max-sm:scale-75' />
           <p className='xl:text-xl sm:text-base text-sm text-[#625D60] font-medium text-center'>Reach out on WhatsApp</p>
           <Link href={'https://wa.me/8989091645'} className='text-primaryMain border-primaryMain md:p-2.5 sm:p-2 p-1.5 text-center w-full rounded-sm md:text-xl sm:text-base text-sm  font-medium border'>WhatsApp</Link>
         </div>

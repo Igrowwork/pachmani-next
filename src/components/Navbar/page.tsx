@@ -68,7 +68,7 @@ export default function Navbar() {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="outline-none border-b border-b-[#E0E0E0] absolute left-10"
+                  className="outline-none border-b border-b-[#E0E0E0] absolute left-10 max-sm:hidden"
                 />
               )}
             </div>
@@ -84,7 +84,7 @@ export default function Navbar() {
           </Link>
           <div className="flex justify-end gap-4 items-center">
             
-            {isAuthenticated && (
+            {/* {isAuthenticated && ( */}
               <>
                 <HiOutlineShoppingBag
                   className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
@@ -93,14 +93,14 @@ export default function Navbar() {
                 
                 <Link href={'/profile'}><FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" /></Link>
               </>
-            )}
-            {loading ? (
+            {/* )} */}
+            {/* {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
             ) : isAuthenticated ? (
               <button onClick={handelLogout}></button>
             ) : (
               <Link href="/login">Log In</Link>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -109,7 +109,13 @@ export default function Navbar() {
           <MobileDrawer />
         </div>
       )}
-      
+       {showInput && (
+          <input
+            type="text"
+            placeholder="Search"
+            className="outline-none border-b border-b-[#E0E0E0] px-2 sm:hidden"
+          />
+        )}
       <AnimatePresence>
         {isMenu && <NavbarDrawer val={() => setIsMenu(false)} />}
       </AnimatePresence>
