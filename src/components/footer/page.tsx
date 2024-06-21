@@ -7,7 +7,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className=" mt-10 relative w-full bg-[#EEEDEC] text-[#212B36] md:p-10 p-8 ">
+    <div className=" mt-10 relative w-full bg-[#EEEDEC] text-[#212B36] md:p-10 sm:p-8 p-4">
         <Image src='/Assests/Images/HomeImage/footer.png' alt="No Preview" fill className=" bg-cover max-sm:hidden w-full"/>
         <div className=" md:py-10 grid xl:grid-cols-4 md:gap-16 gap-5 mx-auto max-w-7xl relative z-20 grid-cols-1 p-4 md:p-0 items-start mb-4">
             <div className="p-2 grid md:gap-6 gap-3">

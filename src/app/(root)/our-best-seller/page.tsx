@@ -59,10 +59,10 @@ export default function OurBestSeller() {
   return (
     <div>
         <HomeSliderComp />
-        <div className='max-w-7xl mx-auto'>
+        <div className='max-w-7xl mx-auto xl:p-0 p-6'>
             <CustomHead name='OUR BESTSELLERS' className='w-2/3' />
         </div>
-        <div className='max-w-7xl mx-auto grid grid-cols-4 gap-8'>
+        <div className='max-w-7xl mx-auto grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 xl:p-0 p-6'>
             { arr?.map((ele,i) => (
                 <OurBestSellerCard ele={ele} />
             ))}

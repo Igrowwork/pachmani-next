@@ -4,11 +4,15 @@ import { forum } from '@/app/font'
 import { Icons } from '@/app/icons'
 import AboutComp from '@/components/AboutComp/page'
 import { Toast } from '@/components/ui/toast'
+import { useToast } from '@/components/ui/use-toast'
 import { cn } from '@/lib/utils'
+import axios from 'axios'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
 export default function ContactUs() {
+  
+  const { toast } = useToast()
   const [isVal , setIsVal] = useState({
     name:'',
     email:"",
@@ -21,9 +25,21 @@ export default function ContactUs() {
     })
   }
 
+  const isFetch = async () => {
+    try{
+      const res = await axios.post("https://sheetdb.io/api/v1/59aqknib5ssla" , isVal)
+      console.log(res);
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log(isVal)
+    toast({title : "data submitted succeful"})
+    isFetch();
     setIsVal({
       name:'',
       email:"",
