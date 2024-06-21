@@ -25,11 +25,11 @@ export default function page() {
     };
   return (
     
-    <div className='shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] grid md:grid-cols-5 px-6 max-md:p-6 md:gap-x-12 max-md:gap-6 pb-6 rounded-sm'>
-        <div className='md:col-span-5'>
-            <CustomHead name='Select Payment Method' className='w-1/2' />
-        </div>
+    <div className='shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] grid md:grid-cols-5 px-6 max-md:p-6 md:gap-x-12 max-md:gap-6 pb-6 rounded-sm max-md:flex max-md:flex-col-reverse'>
         <div className='md:col-span-3'>
+          <div className='md:col-span-3'>
+              <CustomHead name='Select Payment Method' className='w-1/2' />
+          </div>
             <form className='grid gap-6'>
                 <label className={cn('flex text-base font-medium items-center justify-between shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] p-5 rounded-sm' , isRadio === "option1" ? "text-primaryMain" : "")} onClick={() => setIsRadio("option1")}>
                     <div className="radio flex items-center gap-2">
@@ -80,7 +80,7 @@ export default function page() {
                 <Link href={'/paymentfailed'} className='w-fit p-2 text-xl font-medium rounded-sm bg-primaryMain text-white'>Proceed to Payment</Link>
             </form>
         </div>
-        <div className='md:col-span-2'>
+        <div className='md:col-span-2 md:mt-[5.4rem]'>
           <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4">
             <h1 className="text-[#332F32] text-base font-bold">Payment detail</h1>
             <div className="text-sm grid gap-1 mt-4">

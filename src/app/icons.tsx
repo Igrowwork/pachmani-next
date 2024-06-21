@@ -231,5 +231,77 @@ export const Icons = {
         </clipPath>
       </defs>
     </svg>
-  )
+  ),
+  admin1:(props : LucideProps) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="85" height="41" viewBox="0 0 85 41" fill="none">
+      <g filter="url(#filter0_d_750_6620)">
+        <path d="M5 24.3152C7.01238 25.1501 12.3839 25.0894 17.7709 18.1671C24.5046 9.51427 30.774 11.7913 38.2043 21.5827C45.6347 31.3741 50.743 36.156 58.4056 22.7213C66.0681 9.2866 66.9969 4.73248 80 2" stroke="#00AB55" stroke-width="3"/>
+      </g>
+      <defs>
+        <filter id="filter0_d_750_6620" x="0.425171" y="0.532059" width="83.8833" height="39.9683" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="4"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0.141176 0 0 0 0 0.278431 0 0 0 0 0.941176 0 0 0 0.16 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_750_6620"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_750_6620" result="shape"/>
+        </filter>
+      </defs>
+    </svg>
+  ),
+  admin2:(props:LucideProps) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="94" height="41" viewBox="0 0 94 41" fill="none">
+      <g filter="url(#filter0_d_760_6070)">
+        <path d="M5 31C8.47023 30.3005 16.278 26.5515 22.2728 17.0965C23.7212 14.8122 25.0841 12.442 26.9605 10.4938C37.3448 -0.287839 51.3764 -2.63624 64.9623 14.3392C76.7962 29.1257 85.9182 28.8306 89 26.8348" stroke="#FF392B" stroke-width="3"/>
+      </g>
+      <defs>
+        <filter id="filter0_d_760_6070" x="0.703613" y="0.499969" width="93.1118" height="39.9705" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="4"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.223529 0 0 0 0 0.168627 0 0 0 0.16 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_760_6070"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_760_6070" result="shape"/>
+        </filter>
+      </defs>
+    </svg>
+  ),
+  admin3:(props:LucideProps) => (
+<svg {...props} xmlns="http://www.w3.org/2000/svg" width="85" height="41" viewBox="0 0 85 41" fill="none">
+  <g filter="url(#filter0_d_760_6073)">
+    <path d="M5 24.3152C7.01238 25.1501 12.3839 25.0894 17.7709 18.1671C24.5046 9.51427 30.774 11.7913 38.2043 21.5827C45.6347 31.3741 50.743 36.156 58.4056 22.7213C66.0681 9.2866 66.9969 4.73248 80 2" stroke="#279F51" stroke-width="3"/>
+  </g>
+  <defs>
+    <filter id="filter0_d_760_6073" x="0.425171" y="0.532059" width="83.8833" height="39.9683" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.129412 0 0 0 0 0.588235 0 0 0 0 0.32549 0 0 0 0.16 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_760_6073"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_760_6073" result="shape"/>
+    </filter>
+  </defs>
+</svg>
+  ),
+  admin4:(props:LucideProps) => (
+<svg {...props} xmlns="http://www.w3.org/2000/svg" width="98" height="39" viewBox="0 0 98 39" fill="none">
+  <g filter="url(#filter0_d_760_6076)">
+    <path d="M6 26.8067C12.289 14.1922 16.7057 4.47642 45.5166 24.6719C47.5128 26.0711 49.6088 27.4397 51.9223 28.2081C75.1908 35.9362 67.1894 -7.001 93 3.82772" stroke="#FFA000" stroke-width="3"/>
+  </g>
+  <defs>
+    <filter id="filter0_d_760_6076" x="0.657593" y="0.566177" width="96.9227" height="38.0789" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.94902 0 0 0 0 0.6 0 0 0 0 0.290196 0 0 0 0.16 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_760_6076"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_760_6076" result="shape"/>
+    </filter>
+  </defs>
+</svg>
+  ),
 };
