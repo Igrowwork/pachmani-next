@@ -1,5 +1,4 @@
 "use client";
-
 import CustomHead from "@/UI/customHead";
 import { forum, lato } from "@/app/font";
 import ClinicallyTested from "@/components/ClinicallyTested/page";
@@ -44,9 +43,10 @@ import { Loader, Loader2 } from "lucide-react";
 import { IProduct } from "@/lib/types/products";
 import { addItemToCart } from "@/redux/slice/addToCartSlice";
 import { addToCartAsync } from "@/redux/action/addTocartAction";
+import axios from "axios";
 
 export default function page({ params }: { params: { id: string } }) {
-  const [isQuant, setIsQuant] = useState<string>("");
+  const [isQuant, setIsQuant] = useState("");
   interface Price {
     priceAfterDiscount: string;
     price: string;
@@ -58,9 +58,10 @@ export default function page({ params }: { params: { id: string } }) {
     price: "0.00",
     discount: 0,
   });
-  const [product, setProduct] = useState<IProduct | null>(null);
+  const [product, setProduct] = useState<IProduct>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   const {
     cartItems,
@@ -74,6 +75,7 @@ export default function page({ params }: { params: { id: string } }) {
     const fetchData = async () => {
       try {
         const { data } = await api.get(`product/${params.id}`);
+        console.log(data.product,"====");
         setProduct(data.product);
         setPrice({
           priceAfterDiscount:
@@ -109,33 +111,33 @@ export default function page({ params }: { params: { id: string } }) {
   ];
 
   return (
-    <>
+    <div>
       {product && (
         <div>
           <div className="max-w-7xl mx-auto w-full h-full md:p-2 p-6">
             <div>
               <div>
-                <CustomHead name={product?.category} className="w-10/12" />
+                <CustomHead name={product.category + '' } className="w-10/12" />
                 <div className=" grid md:grid-cols-7 gap-8 grid-cols-1">
-                  <div className="md:col-span-3 w-full rounded-md overflow-hidden">
+                  <div className="col-span-3 w-full rounded-md overflow-hidden">
                     <div className="h-full w-full">
                       <CardDetailSlider imgArr={imgArr} />
                     </div>
                   </div>
-                  <div className="grid md:col-span-4 md:w-[80%]">
+                  <div className="grid col-span-4 w-[80%]">
                     <h1
                       className={cn(
                         "md:text-[2.5rem] text-3xl",
                         forum.className
                       )}
                     >
-                      {product?.productName}
+                      {product.productName  + ''}
                     </h1>
                     <div className="text-xs text-[#00AB55] mt-3">
                       4.3 &#9733;
                     </div>
                     <p className="md:text-xl text-sm text-[#4A3F3F] mt-2">
-                      {product?.description}
+                      {product.description  + ''}
                     </p>
                     <h2
                       className={cn(
@@ -150,7 +152,7 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        ₹{sPrice.priceAfterDiscount}
+                        ₹{sPrice.priceAfterDiscount + ''}
                       </span>
                       <span
                         className={cn(
@@ -158,7 +160,7 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        ₹{sPrice.price}
+                        ₹{sPrice.price + ''}
                       </span>
                       <span
                         className={cn(
@@ -166,7 +168,7 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        {sPrice.discount}%
+                        {sPrice.discount + ''}%
                       </span>
                     </h2>
                     <p className="md:text-sm text-xs text-[#4A3F3F] mt-2">
@@ -203,10 +205,11 @@ export default function page({ params }: { params: { id: string } }) {
                                 price: price.toFixed(2),
                                 discount: discount,
                               });
+                              setIsQuant(_id);
                             }}
                           >
-                            {packSize}
-                            {unit}
+                            {packSize + ''}
+                            {unit + ''}
                           </span>
                         )
                       )}
@@ -266,6 +269,6 @@ export default function page({ params }: { params: { id: string } }) {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
