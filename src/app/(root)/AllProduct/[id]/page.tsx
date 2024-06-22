@@ -187,7 +187,7 @@ export default function page({ params }: { params: { id: string } }) {
                             discount,
                             unit,
                             stock,
-                            _id,
+                           _id,
                           },
                           i
                         ) => (
@@ -205,7 +205,11 @@ export default function page({ params }: { params: { id: string } }) {
                                 price: price.toFixed(2),
                                 discount: discount,
                               });
+<<<<<<< Updated upstream
                               setIsQuant(_id);
+=======
+                              setIsQuant(_id)
+>>>>>>> Stashed changes
                             }}
                           >
                             {packSize + ''}

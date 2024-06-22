@@ -23,69 +23,71 @@ export default function CartDrawer({ val }: { val: () => void }) {
     (state: RootState) => state.addToCart
   );
 
-  useEffect(() => {
-    dispatch(getAllCartItemsAsync());
-  }, [dispatch]);
-
   const handleDelete = (id: string) => {
     dispatch(removeFromCartAsync(id));
   };
 
+  useEffect(() => {
+    dispatch(getAllCartItemsAsync());
+  }, [dispatch, handleDelete]);
+
   const handleIncrement = (id: string) => {
     setQuantityMap((prev) => ({
       ...prev,
-      [id]: (prev[id] || 1) + 1,
+      [id]: (prev?.[id] || 1) + 1,
     }));
   };
 
   const handleDecrement = (id: string) => {
     setQuantityMap((prev) => ({
       ...prev,
-      [id]: prev[id] > 1 ? prev[id] - 1 : 1,
+      [id]: prev?.[id] > 1 ? prev?.[id] - 1 : 1,
     }));
   };
 
   const calculateTotal = () => {
     return cartItems?.reduce((acc, item) => {
-      const quantity = quantityMap[item._id] || item.quantity;
-      return acc + quantity * item.variant.price;
+      const quantity = quantityMap?.[item?._id] || item?.quantity;
+      return acc + quantity * item?.variant?.price;
     }, 0);
   };
 
   useEffect(() => {
-    const updatedCartItems = cartItems.map((item) => ({
+    const updatedCartItems = cartItems?.map((item) => ({
       ...item,
-      quantity: quantityMap[item._id] || item.quantity,
+      quantity: quantityMap?.[item._id] || item?.quantity,
     }));
     dispatch(updateCartAsync(updatedCartItems));
   }, [dispatch, quantityMap]);
 
   const calculateDiscount = () => {
     return cartItems?.reduce((acc, item) => {
-      const quantity = quantityMap[item._id] || item.quantity;
+      const quantity = quantityMap?.[item?._id] || item?.quantity;
       return (
-        acc + quantity * (item.variant.price - item.variant.priceAfterDiscount)
+        acc +
+        quantity * (item?.variant?.price - item?.variant?.priceAfterDiscount)
       );
     }, 0);
   };
 
   const calculateTotalPayable = () => {
     return cartItems?.reduce((acc, item) => {
-      const quantity = quantityMap[item._id] || item.quantity;
-      return acc + quantity * item.variant.priceAfterDiscount;
+      const quantity = quantityMap?.[item?._id] || item?.quantity;
+      return acc + quantity * item?.variant?.priceAfterDiscount;
     }, 0);
   };
 
   const calculateSavings = () => {
     return cartItems?.reduce((acc, item) => {
-      const quantity = quantityMap[item._id] || item.quantity;
+      const quantity = quantityMap?.[item?._id] || item?.quantity;
       return (
-        acc + quantity * (item.variant.price - item.variant.priceAfterDiscount)
+        acc +
+        quantity * (item?.variant?.price - item?.variant?.priceAfterDiscount)
       );
     }, 0);
   };
-
   return (
+<<<<<<< Updated upstream
     <div className="fixed top-0 left-0 h-screen w-full z-50 bg-white/50">
        <motion.div
         animate={{ x: "-100" }}
@@ -172,6 +174,104 @@ export default function CartDrawer({ val }: { val: () => void }) {
                               onClick={() => handleDelete(_id)}
                             >
                               <Icons.delete />
+=======
+    <>
+      <div className="fixed top-0 left-0 h-screen w-full z-50 bg-white/50">
+        <motion.div
+          animate={{ x: "-100" }}
+          exit={{ x: "100%", opacity: 0 }}
+          transition={{ duration: 1 }}
+          className=""
+        >
+          <div
+            className="h-full w-full absolute top-0 left-0 bg-black/10 backdrop-blur"
+            onClick={val}
+          />
+          <div className="fixed top-0 right-0 md:w-[31.25rem] bg-white h-full">
+            <div className="bg-white">
+              <div className="flex text-xs text-center items-center gap-5 p-3 text-primaryMain font-normal shadow-lg w-full">
+                <h1 className="text-center w-full">
+                  {cartItems?.length || 0} Items in your bag
+                </h1>
+                <RxCross1
+                  onClick={val}
+                  className="cursor-pointer text-2xl text-[#625D60] hover:text-red-400"
+                />
+              </div>
+              <div className="h-screen w-full overflow-y-scroll custom-scrollbar p-4 pb-28">
+                <div className="grid gap-4 ">
+                  {cartItems && cartItems.length > 0 ? (
+                    // _id, product, variant, quantity
+                    cartItems?.map((items, i) => (
+                      <div
+                        key={i}
+                        className="grid md:grid-cols-7 grid-cols-1 items-center gap-2 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]  p-3 rounded-md"
+                      >
+                        <div className="md:col-span-3">
+                          <div className="relative w-full md:h-28">
+                            <Image
+                              src="/Assests/Images/HomeImage/27.png"
+                              alt="No Preview"
+                              fill
+                              className="md:object-contain object-cover rounded-sm scale-105"
+                            />
+                          </div>
+                        </div>
+                        <div className="md:col-span-4 grid gap-1">
+                          <h1 className="text-base font-semibold">
+                            {items?.product.productName}
+                          </h1>
+                          <p className="text-xs text-ternary-main">
+                            {items?.product.description}
+                          </p>
+                          <div className="text-xs flex items-center gap-1 text-ternary-main mt-2">
+                            <span className="bg-[#2D8A40] text-white px-1.5 py-0.5 text-[0.625rem] rounded-full">
+                              4.5 &#9733;
+                            </span>
+                            763 Rating
+                          </div>
+                          <h2>₹ {items?.variant.price}</h2>
+                        </div>
+                        <div className="col-span-7 grid grid-cols-7">
+                          <div className="col-span-3">
+                            <div className="text-primaryMain flex border border-primaryMain items-center justify-around rounded-[2px] mt-3 md:w-[55%] text-sm mx-auto">
+                              <h4
+                                onClick={() => handleDecrement(items?._id)}
+                                className="cursor-pointer"
+                              >
+                                <AiOutlineMinus />
+                              </h4>
+                              <h4>
+                                {quantityMap[items?._id] || items?.quantity}
+                              </h4>
+                              <h4
+                                onClick={() => handleIncrement(items?._id)}
+                                className="cursor-pointer"
+                              >
+                                <AiOutlinePlus />
+                              </h4>
+                            </div>
+                          </div>
+                          <div className="col-span-4">
+                            <div className="border-primaryMain/25 border w-full h-[0.5px] border-dashed" />
+                            <div className="text-[#625D60] text-sm flex gap-2 mt-3 items-center justify-between">
+                              <span className="flex gap-2">
+                                Subtotal{" "}
+                                <span className="font-semibold text-[#313131]">
+                                  ₹
+                                  {(
+                                    (quantityMap[items?._id] ||
+                                      items?.quantity) * items?.variant.price
+                                  ).toFixed(2)}
+                                </span>
+                              </span>
+                              <div
+                                className="cursor-pointer"
+                                onClick={() => handleDelete(items?._id)}
+                              >
+                                <Icons.delete />
+                              </div>
+>>>>>>> Stashed changes
                             </div>
                           </div>
                         </div>
@@ -189,6 +289,7 @@ export default function CartDrawer({ val }: { val: () => void }) {
                 <AiOutlineRight className="text-xl" />
               </div>
 
+<<<<<<< Updated upstream
               <div className="">
                 <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4 my-4">
                   <h1 className="text-[#332F32] text-base font-bold">
@@ -231,6 +332,17 @@ export default function CartDrawer({ val }: { val: () => void }) {
                       You are saving ₹ 100.00 on this order
                     </p>
                   </div>
+=======
+                  <Link
+                    href={"/myCart/shipping-cost"}
+                    className="text-white bg-primaryMain p-3 flex gap-2 w-full justify-center items-center font-medium rounded-r-md"
+                  >
+                    <span className="text-xl">Checkout</span>
+                    <span className="mt-1.5">
+                      <AiOutlineRight className="text-xl" />
+                    </span>
+                  </Link>
+>>>>>>> Stashed changes
                 </div>
 
                 <div>
