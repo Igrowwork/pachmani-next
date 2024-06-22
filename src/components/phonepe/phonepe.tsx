@@ -3,9 +3,20 @@ import { RootState } from "@/redux/store";
 import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
-import { number } from "zod";
 
-const loadRazorpayScript = (src: string) => {
+// Define interface for the props
+interface PhonePayProps {
+  shippingAddress: number;
+}
+
+// Extend the Window interface for Razorpay
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
+const loadRazorpayScript = (src: string): Promise<boolean> => {
   return new Promise((resolve) => {
     const script = document.createElement("script");
     script.src = src;
@@ -19,12 +30,12 @@ const loadRazorpayScript = (src: string) => {
   });
 };
 
-const PhonePay = () => {
-  const { cartItems, loading, error } = useSelector(
+const PhonePay = ({ shippingAddress }: { shippingAddress: number }) => {
+  const { cartItems, loading } = useSelector(
     (state: RootState) => state.addToCart
   );
 
-  const calculateTotalPayable = () => {
+  const calculateTotalPayable = (): number => {
     return cartItems?.reduce((acc, item) => {
       const quantity = item.quantity;
       return acc + quantity * item.variant.priceAfterDiscount;
@@ -55,7 +66,7 @@ const PhonePay = () => {
       description: "Tutorial of RazorPay",
       image: "https://avatars.githubusercontent.com/u/25058652?v=4",
       order_id: order.id,
-      callback_url: "http://localhost:8080/api/order/paymentverification",
+      callback_url: `http://localhost:8080/api/order/paymentverification/${shippingAddress}`,
       prefill: {
         name: "Gaurav Kumar",
         email: "gaurav.kumar@example.com",
@@ -73,7 +84,15 @@ const PhonePay = () => {
   };
 
   return (
-    <div onClick={() => checkoutHandler(calculateTotalPayable().toFixed(0))}>
+    <div
+      onClick={() => {
+        if (shippingAddress == -1) {
+          alert("Please select a shipping address");
+        } else {
+          checkoutHandler(parseFloat(calculateTotalPayable().toFixed(0)) + 100);
+        }
+      }}
+    >
       PhonePay
     </div>
   );

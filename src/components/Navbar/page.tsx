@@ -60,10 +60,16 @@ export default function Navbar() {
         <div className="flex justify-between w-full items-center max-w-7xl mx-auto xl:px-0 px-6 z-40 py-2">
           <div className="flex items-center">
             <AnimatePresence>
-              <MenuIcon className="text-black cursor-pointer h-6 w-6 max-sm:h-5 max-sm:w-5 " onClick={() => setIsMenu(true)} />
+              <MenuIcon
+                className="text-black cursor-pointer h-6 w-6 max-sm:h-5 max-sm:w-5 "
+                onClick={() => setIsMenu(true)}
+              />
             </AnimatePresence>
             <div className="flex items-center gap-3 rounded-md p-2 relative cursor-pointer">
-              <FiSearch className="maxsm h-6 w-6 max-sm:h-5 max-sm:w-5 text-black" onClick={handleIconClick} />
+              <FiSearch
+                className="maxsm h-6 w-6 max-sm:h-5 max-sm:w-5 text-black"
+                onClick={handleIconClick}
+              />
               {showInput && (
                 <input
                   type="text"
@@ -72,7 +78,6 @@ export default function Navbar() {
                 />
               )}
             </div>
-            
           </div>
           <Link href={"/"} className="relative h-16 w-40 ">
             <Image
@@ -83,16 +88,17 @@ export default function Navbar() {
             />
           </Link>
           <div className="flex justify-end gap-4 items-center">
-            
             {/* {isAuthenticated && ( */}
-              <>
-                <HiOutlineShoppingBag
-                  className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
-                  onClick={() => setIsDraw(true)}
-                />
-                
-                <Link href={'/profile'}><FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" /></Link>
-              </>
+            <>
+              <HiOutlineShoppingBag
+                className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
+                onClick={() => setIsDraw(true)}
+              />
+
+              <Link href={"/profile"}>
+                <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
+              </Link>
+            </>
             {/* )} */}
             {/* {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
@@ -109,13 +115,13 @@ export default function Navbar() {
           <MobileDrawer />
         </div>
       )}
-       {showInput && (
-          <input
-            type="text"
-            placeholder="Search"
-            className="outline-none border-b border-b-[#E0E0E0] px-2 sm:hidden"
-          />
-        )}
+      {showInput && (
+        <input
+          type="text"
+          placeholder="Search"
+          className="outline-none border-b border-b-[#E0E0E0] px-2 sm:hidden"
+        />
+      )}
       <AnimatePresence>
         {isMenu && <NavbarDrawer val={() => setIsMenu(false)} />}
       </AnimatePresence>

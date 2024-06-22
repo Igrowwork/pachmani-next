@@ -208,7 +208,6 @@ export default function page({ params }: { params: { id: string } }) {
 <<<<<<< Updated upstream
                               setIsQuant(_id);
 =======
-                              setIsQuant(_id)
 >>>>>>> Stashed changes
                             }}
                           >

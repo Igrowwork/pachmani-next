@@ -1,7 +1,7 @@
 "use client";
 import CustomHead from "@/UI/customHead";
 import CheckOutCartItems from "@/components/cartDrawer/cheackOut/page";
-import PhonePay from "@/components/phonepe/page";
+import PhonePay from "@/components/phonepe/phonepe";
 import { Address } from "@/lib/types/address";
 import {
   addAddress,
@@ -14,7 +14,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import PhonePay from "../../phonepe/page";
 import { Loader } from "lucide-react";
 
 export default function ShippingCost() {
@@ -25,9 +24,7 @@ export default function ShippingCost() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [selectedAddressIndex, setSelectedAddressIndex] = useState<
-    number | null
-  >(null);
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState<number>(-1);
 
   const {
     register,
@@ -253,12 +250,7 @@ export default function ShippingCost() {
       </div>
       <div className=" md:col-span-2">
         <CheckOutCartItems></CheckOutCartItems>
-<<<<<<< Updated upstream
-        {/* <myCart /> */}
         <PhonePay shippingAddress={selectedAddressIndex}></PhonePay>
-=======
-        <PhonePay></PhonePay>
->>>>>>> Stashed changes
       </div>
     </div>
   );

@@ -1,13 +1,19 @@
 import { Address } from "./address";
+import { IProduct, IProductVariant } from "./products";
 import { IUser } from "./user";
 
 export interface IOrderItem {
-  product: String;
-  variant: String; 
+  product: IProduct;
+  variant: IProductVariant; 
   quantity: number;
 }
 
 export interface IOrder extends Document {
+  _id: any;
+  createdAt:string;
+  order(createdAt: any): import("react").ReactNode;
+  productName: string;
+  id: string;
   user: IUser[];
   items: IOrderItem[];
   shippingAddress: Address;

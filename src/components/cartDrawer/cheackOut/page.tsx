@@ -14,7 +14,7 @@ import {
   updateCartAsync,
 } from "@/redux/action/addTocartAction";
 import Link from "next/link";
-import PaymentButton from "@/components/phonepe/page";
+import PaymentButton from "@/components/phonepe/phonepe";
 
 export default function CheckOutCartItems() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,6 +26,8 @@ export default function CheckOutCartItems() {
   useEffect(() => {
     dispatch(getAllCartItemsAsync());
   }, [dispatch]);
+
+  const DELIVERY_CHARGE = 100;
 
   const handleDelete = (id: string) => {
     dispatch(removeFromCartAsync(id));
@@ -70,10 +72,12 @@ export default function CheckOutCartItems() {
   };
 
   const calculateTotalPayable = () => {
-    return cartItems?.reduce((acc, item) => {
-      const quantity = quantityMap[item._id] || item.quantity;
-      return acc + quantity * item.variant.priceAfterDiscount;
-    }, 0);
+    return (
+      cartItems?.reduce((acc, item) => {
+        const quantity = quantityMap[item._id] || item.quantity;
+        return acc + quantity * item.variant.priceAfterDiscount;
+      }, 0) + DELIVERY_CHARGE
+    );
   };
 
   const calculateSavings = () => {
@@ -150,11 +154,10 @@ export default function CheckOutCartItems() {
                     <div className="border-primaryMain/25 border  w-full h-[0.5px] border-dashed" />
                     <div className="text-[#625D60] text-sm flex gap-2 mt-3 items-center justify-between">
                       <span className="flex gap-2">
-                        {" "}
-                        Subtotal{" "}
+                        Subtotal
                         <span className="font-semibold text-[#313131]">
                           ₹ {calculateTotal().toFixed(2)}
-                        </span>{" "}
+                        </span>
                       </span>
                       <Icons.delete />
                     </div>
@@ -181,6 +184,12 @@ export default function CheckOutCartItems() {
                 ₹ {calculateDiscount().toFixed(2)}
               </span>
             </div>
+            <div className="flex justify-between text-[#625D60] font-medium">
+              Delivery charge
+              <span className="text-[#332F32] font-semibold">
+                ₹ {DELIVERY_CHARGE.toFixed(2)}
+              </span>
+            </div>
             {/* <div className="flex justify-between text-[#625D60] font-medium">
               Promo Code
               <span className="text-[#332F32] font-semibold">₹ 0.00</span>
@@ -198,7 +207,7 @@ export default function CheckOutCartItems() {
               </span>
             </div>
             <p className="text-xs font-normal text-[#625D60] mt-1">
-              You are save ₹ 100.00 on this order{" "}
+              You are save ₹ {calculateDiscount().toFixed(2)}
             </p>
           </div>
         </div>

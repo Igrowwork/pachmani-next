@@ -39,6 +39,10 @@ export default function NavbarDrawer( {val} : {val : () => void }) {
         name:"Wishlist",
         path:'/wishlist',
       },
+      {
+        name:"Order",
+        path:'/order-detail',
+      },
     ]
   return (
     <div className='fixed top-0 left-0 h-screen w-full z-50 bg-white/50'>
