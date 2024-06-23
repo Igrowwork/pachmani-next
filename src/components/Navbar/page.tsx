@@ -88,22 +88,21 @@ export default function Navbar() {
             />
           </Link>
           <div className="flex justify-end gap-4 items-center">
-            {/* {isAuthenticated && ( */}
+             {isAuthenticated && (
             <>
               <HiOutlineShoppingBag
                 className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
                 onClick={() => setIsDraw(true)}
               />
-
               <Link href={"/profile"}>
                 <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
               </Link>
             </>
-            {/* )} */}
+             )}
             {/* {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
             ) : isAuthenticated ? (
-              <button onClick={handelLogout}></button>
+              <button onClick={handelLogout}>Logout</button>
             ) : (
               <Link href="/login">Log In</Link>
             )} */}
