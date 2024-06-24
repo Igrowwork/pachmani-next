@@ -92,10 +92,10 @@ export default function Navbar() {
             {isAuthenticated && (
               <>
                 <div>
-                  {cartItems.length > 0 && <p>{cartItems.length}</p> }
+                  {cartItems.length > 0 && <p>{cartItems.length}</p>}
                   <HiOutlineShoppingBag
                     className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
-                    onClick={() => setIsDraw(true)}
+                    onClick={() => cartItems.length > 0 && setIsDraw(true)}
                   />
                 </div>
                 <Link href={"/profile"}>
