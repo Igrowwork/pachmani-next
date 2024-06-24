@@ -53,15 +53,25 @@ export default function ShippingCost() {
     };
 
     if (isEditing && editIndex !== null) {
-      reset();
       dispatch(updateAddress(editIndex, addressData));
       setIsEditing(false);
       setEditIndex(null);
     } else {
       dispatch(addAddress(addressData));
     }
-    reset();
     dispatch(getAddress());
+    reset({
+      firstname: "",
+      lastname: "",
+      email: "",
+      mobile: "",
+      pincode: "",  
+      city: "",
+      street: "",
+      zip: "",
+      state: "",
+      address: "",
+    });
   };
 
   const handleDelete = (index: number) => {
