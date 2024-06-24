@@ -1,6 +1,7 @@
 "use client";
 import CustomHead from "@/UI/customHead";
 import CheckOutCartItems from "@/components/cartDrawer/cheackOut/page";
+import PhonePay from "@/components/phonepe/phonepe";
 import { Address } from "@/lib/types/address";
 import {
   addAddress,
@@ -13,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { Loader } from "lucide-react";
 
 export default function ShippingCost() {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,9 +24,15 @@ export default function ShippingCost() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [selectedAddressIndex, setSelectedAddressIndex] = useState<number | null>(null);
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState<number>(-1);
 
-  const { register, handleSubmit, formState, reset, formState: { errors } } = useForm<Address>();
+  const {
+    register,
+    handleSubmit,
+    formState,
+    reset,
+    formState: { errors },
+  } = useForm<Address>();
 
   useEffect(() => {
     dispatch(getAddress());
@@ -71,6 +79,15 @@ export default function ShippingCost() {
   const handleSelectAddress = (index: number) => {
     setSelectedAddressIndex(index);
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader className="animate-spin w-8 h-8"></Loader>
+      </div>
+    );
+  }
+
   return (
     <div className="shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] grid md:grid-cols-5 p-6 gap-12">
       <div className="md:col-span-3">
@@ -233,6 +250,7 @@ export default function ShippingCost() {
       </div>
       <div className=" md:col-span-2">
         <CheckOutCartItems></CheckOutCartItems>
+        <PhonePay shippingAddress={selectedAddressIndex}></PhonePay>
       </div>
     </div>
   );

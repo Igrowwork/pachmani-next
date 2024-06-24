@@ -1,21 +1,21 @@
-// // src/orderSlice.ts
-// import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-// import axios from 'axios';
-// import { RootState } from '../store';
-// import { fetchOrders } from '../action/orderAction';
+// // // src/orderSlice.ts
+// // import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+// // import axios from 'axios';
+// // import { RootState } from '../store';
+// // import { fetchOrders } from '../action/orderAction';
 
-// // Define a type for the order
-// interface Order {
-//   id: number;
-//   name: string;
-// }
+// // // Define a type for the order
+// // interface Order {
+// //   id: number;
+// //   name: string;
+// // }
 
-// // Define the initial state using that type
-// interface OrderState {
-//   data: Order[];
-//   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-//   error: string | null;
-// }
+// // // Define the initial state using that type
+// // interface OrderState {
+// //   data: Order[];
+// //   status: 'idle' | 'loading' | 'succeeded' | 'failed';
+// //   error: string | null;
+// // }
 
 // const initialState: OrderState = {
 //   data: [],

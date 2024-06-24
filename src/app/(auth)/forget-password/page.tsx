@@ -21,6 +21,7 @@ export default function ForgetPassword() {
   const router = useRouter();
   const [isPass1, setisPass1] = useState(true);
   const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const {
     register,
@@ -41,8 +42,9 @@ export default function ForgetPassword() {
         router.push("/verify-code");
       }
     } catch (error) {
-      console.error(error);
+      setLoading(false);
       console.error((error as any)?.response?.data?.message);
+      setError((error as any)?.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -88,6 +90,7 @@ export default function ForgetPassword() {
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
               )}
             </div>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
             <button
               type="submit"
               disabled={isLoading}
