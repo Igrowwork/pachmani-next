@@ -9,7 +9,9 @@ export const addWish = async (
     const res = await api.post("product/wishlist/" + id);
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product._id === id ? { ...product, isLike: !product.isLike } : product
+        product._id === id
+          ? ({ ...product, isLiked: !product.isLiked } as unknown as IProduct)
+          : product
       )
     );
     console.log(res, "==");
