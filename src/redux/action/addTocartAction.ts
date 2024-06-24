@@ -17,6 +17,7 @@ export const getAllCartItemsAsync = () => async (dispatch: Dispatch) => {
     dispatch(setLoading(true));
     const { data } = await api.get(`cart`);
     dispatch(getAllCartItems(data.cartItems));
+    dispatch(setLoading(false));
   } catch (error) {
     const err = error as { response?: { data?: { message?: string } } };
     if (err?.response?.data?.message == "Unauthorized") {

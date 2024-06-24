@@ -37,9 +37,11 @@ export default function VerifyCode() {
         password: isVal.password,
       });
       router.push("/login");
-    } catch (error) {
-      console.error(error);
-      setError("An error occurred. Please try again.");
+    } catch (error: any) {
+      console.error(error.data.response.message);
+      setError(
+        error.data.response.message || "An error occurred. Please try again."
+      );
     } finally {
       setLoading(false);
       setIsVal({ otp: "", password: "" });
