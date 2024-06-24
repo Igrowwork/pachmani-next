@@ -41,7 +41,7 @@ export default function Categories() {
                     <div className='p-4'>
                         <h1 className='text-xl font-medium'>{ele?.name}</h1>
                         <div className='text-[#332F32] font-normal mt-2'>Totals Product - {ele?.product}</div>
-                        <Link href={'categories/add-product'}><button className='bg-primaryMain p-2 text-white rounded-sm w-full mt-4'>Add Product</button></Link>
+                        <div><button className='bg-primaryMain p-2 text-white rounded-sm w-full mt-4'>Add Product</button></div>
                         <Link href={'categories/view-product'}><button className='text-primaryMain p-2 rounded-sm block w-full'>View all Product</button></Link>
                     </div>
 

@@ -97,8 +97,8 @@ export default function ViewProduct() {
                  <Link href={`/AllProduct/${ele?.page}`} className={cn('flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1 justify-center items-center text-lg font-medium text-white rounded-b-2xl' , lato.className)}><HiOutlineShoppingBag className='text-xl' />Add  to Cart</Link>
              </div>
             ))}
-        <div className=''>
-            <div className='border border-dashed border-primaryMain bg-white'>
+        <div className='flex justify-center items-start h-full w-full'>
+            <div className='border border-dashed border-primaryMain bg-white grid justify-items-center gap-3 p-14 rounded-2xl  my-auto'>
                 <Icons.adminShop />
                 <div className='text-lg font-medium text-primaryMain capitalize'>Add more product</div>
             </div>

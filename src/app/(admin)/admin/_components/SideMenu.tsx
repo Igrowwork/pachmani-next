@@ -34,6 +34,11 @@ export default function SideMenu() {
       icon:"",
       path:"/admin/categories",
     },
+    {
+      name:"Add Banners",
+      icon:"",
+      path:"/admin/add-banners",
+    },
   ]
   return (
     <div className='p-4'>

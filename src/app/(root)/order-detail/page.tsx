@@ -93,7 +93,7 @@ const OrderDetail: React.FC = () => {
                 </h1>
                 <h1 className="text-base font-medium text-black">
                   Payment Status
-                  <p>{order.paymentStatus + ""}</p>
+                  <p>{order.paymentStatus}</p>
                 </h1>
                 <div className="grid grid-cols-2 items-center">
                   <div className="text-xs flex items-center gap-1 text-ternary-main mt-2">

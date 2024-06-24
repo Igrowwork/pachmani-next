@@ -3,7 +3,7 @@
 import api from '@/lib/axios'
 import { RootState } from '@/redux/store'
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiEdit } from 'react-icons/ci'
 import { MdDeleteOutline } from 'react-icons/md'
 import {  useDispatch, useSelector } from 'react-redux'
@@ -11,22 +11,23 @@ import {  useDispatch, useSelector } from 'react-redux'
 export default function Orders() {
   const arr = ["","","",""]
   const dispatch = useDispatch();
-  // const  {data,error,status} = useSelector((state: RootState) => state.order)
-  useEffect(()=>{
-    // useDispatch(fetchOrders())
-  },[])
-  // const isFetch = async () => {
-  //   try{
-  //     const res = await api.get(`order`)
-  //     console.log(res , "dasdsa");
-  //   }
-  //   catch(err){
-  //     console.log(err, "dryjikohgfg");
-  //   }
-  // }
-  // useEffect(()=> {
-  //   isFetch();
+  const [isApi ,setIsApi] = useState([])
+  // useEffect(()=>{
+  //   // useDispatch(fetchOrders())
   // },[])
+  const isFetch = async () => {
+    try{
+      const res = await api.get(`order`)
+      console.log(res?.data , "dasdsa");
+      setIsApi(res?.data)
+    }
+    catch(err){
+      console.log(err, "dryjikohgfg");
+    }
+  }
+  useEffect(()=> {
+    isFetch();
+  },[])
     
   return (
     <div>
@@ -48,18 +49,18 @@ export default function Orders() {
             </div>
             <div className='w-full overflow-x-scroll  '>
             {
-                arr?.map((ele,i) => (
+                isApi?.map((ele: any,i: React.Key | null | undefined) => (
                 <div key={i} className='text-[#555F7E] flex justify-center items-center w-full p-6 border-b-2 border-b-[#E9EAF3] text-sm'>
-                    <div className='flex w-56'>#32000200</div>
+                    <div className='flex w-56'>{ele?._id}</div>
                     <div className='flex items-center w-72'>
-                        <div className='relative h-12 w-12 rounded-full overflow-hidden'>
+                        <div className='relative h-10 w-10 rounded-full overflow-hidden'>
                             <Image src={'/Assests/Images/admin/01.png'} alt='No Preview' fill className='object-cover' />
                         </div>
                         <div className=''>Priscilla Warren</div>
                     </div>
                     <div className='w-44'>2</div>
                     <div className='w-56'>Jan 10, 2020</div>
-                    <div className='w-56'>$253.82</div>
+                    <div className='w-56'> ₹ {ele.totalPrice}</div>
                     <div className='w-56'>$60.76</div>
                     <div className='w-56'>Completed</div>
                     <div className='flex text-xl gap-2 text-[#C8CAD8] w-56'>
