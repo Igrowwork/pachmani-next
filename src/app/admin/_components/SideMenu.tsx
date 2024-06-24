@@ -1,33 +1,38 @@
+"use client"
+
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 import React from 'react'
 
 export default function SideMenu() {
+  const path = usePathname();
   const arr = [
     {
       name:"Dashboard",
       icon:"",
-      path:"",
+      path:"/admin",
     },
     {
       name:"Order",
       icon:"",
-      path:"",
+      path:"/admin/orders",
     },
     {
-      name:"Listing",
+      name:"Add Products",
       icon:"",
-      path:"",
+      path:"/admin/add-product",
     },
     {
       name:"Admin",
       icon:"",
-      path:"",
+      path:"/admin/admin-profile",
     },
     {
       name:"Category",
       icon:"",
-      path:"",
+      path:"/admin/categories",
     },
   ]
   return (
@@ -40,9 +45,9 @@ export default function SideMenu() {
             className="object-contain"
           />
         </div>
-        <div className='mt-6'>
+        <div className='mt-6 grid gap-1'>
           { arr?.map((ele,i) => (
-              <div key={i} className='p-3 hover:bg-primaryMain hover:text-white rounded-sm cursor-pointer'>{ele.name}</div>
+              <Link href={ele.path} key={i} className={cn('p-3 hover:bg-primaryMain hover:text-white rounded-sm cursor-pointer block' , ele.path === path  ? "bg-primaryMain text-white" : "")}>{ele.name}</Link>
             ))
           }
         </div>
