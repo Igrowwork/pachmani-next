@@ -1,11 +1,33 @@
+"use client"
+
+import api from '@/lib/axios'
+import { RootState } from '@/redux/store'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CiEdit } from 'react-icons/ci'
 import { MdDeleteOutline } from 'react-icons/md'
+import {  useDispatch, useSelector } from 'react-redux'
 
 export default function Orders() {
-    
   const arr = ["","","",""]
+  const dispatch = useDispatch();
+  // const  {data,error,status} = useSelector((state: RootState) => state.order)
+  useEffect(()=>{
+    // useDispatch(fetchOrders())
+  },[])
+  // const isFetch = async () => {
+  //   try{
+  //     const res = await api.get(`order`)
+  //     console.log(res , "dasdsa");
+  //   }
+  //   catch(err){
+  //     console.log(err, "dryjikohgfg");
+  //   }
+  // }
+  // useEffect(()=> {
+  //   isFetch();
+  // },[])
+    
   return (
     <div>
       <div className='shadow-[0px_8px_32px_0px_rgba(51,38,174,0.08)] bg-white p-8 rounded-2xl'>

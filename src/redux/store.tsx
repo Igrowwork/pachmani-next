@@ -6,6 +6,7 @@ import userProfileSclice from "./slice/profileSlice";
 import addresSclice from "./slice/addresSlice";
 import homeProductSlice from "./slice/homeProductSlice";
 import wishlistSlice from "./slice/wishlistSlice";
+// import orderSlice from "./slice/orderSlice";
 export const store = configureStore({
   reducer: {
     auth: authSlice,
@@ -14,7 +15,8 @@ export const store = configureStore({
     profile: userProfileSclice,
     address:addresSclice,
     homeProducts : homeProductSlice,
-    wishlist : wishlistSlice
+    wishlist : wishlistSlice,
+    // order : orderSlice
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

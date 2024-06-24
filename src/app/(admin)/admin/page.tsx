@@ -1,11 +1,16 @@
-import React from 'react'
-import { Icons } from '../icons'
-import AdminLeftGraph from './_components/adminLeftGraph'
+"use client"
+
+import React, { useEffect } from 'react'
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
+import api from '@/lib/axios';
+import axios from 'axios';
+import { Icons } from '@/app/icons';
+import AdminLeftGraph from './_components/adminLeftGraph';
 
 export default function Admin() {
   const arr = ["","","",""]
+ 
   return (
     <div>
       <div className='grid grid-cols-4 gap-6'>

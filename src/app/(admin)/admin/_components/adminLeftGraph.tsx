@@ -56,7 +56,7 @@ const data = [
   },
 ];
 
-export default function App() {
+export default function AdminLeftGraph() {
   return (
     <div className='p-2 shadow-[0px_4px_16.3px_0px_rgba(0,0,0,0.08)] sm:p-4 md:p-5 xl:p-6 bg-white my-6 rounded-xl'>
         <div className="pb-6 text-base font-medium capitalize text-[#4C535F]">Recent Orders</div>
