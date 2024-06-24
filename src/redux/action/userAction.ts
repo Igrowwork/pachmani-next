@@ -13,10 +13,11 @@ export const loginAsyn = (userData: {}) => async (dispatch: Dispatch) => {
     dispatch(setLoading(true));
     const { data } = await api.post(`user/login`, userData);
     dispatch(login(data.user));
+    localStorage.setItem("token", data.token);
   } catch (error) {
-    console.log(error,"==");
+    console.log(error, "==");
     const err = error as { response?: { data?: { message?: string } } };
-    console.log(err?.response?.data?.message,"===");
+    console.log(err?.response?.data?.message, "===");
     dispatch(setError(err?.response?.data?.message || "login error"));
   } finally {
     dispatch(setLoading(false));
@@ -28,6 +29,7 @@ export const getLoginUserAsyn = () => async (dispatch: Dispatch) => {
     dispatch(setLoading(true));
     const { data } = await api.post(`user`);
     dispatch(login(data.user));
+    localStorage.setItem("token", data.token);
   } catch (error) {
     console.log(error, "===");
     dispatch(setError("jwtError"));
@@ -41,6 +43,7 @@ export const signAsyn = (userData: {}) => async (dispatch: Dispatch) => {
     dispatch(setLoading(true));
     const { data } = await api.post(`user/sign-up`, userData);
     dispatch(register(data.user));
+    localStorage.setItem("token", data.token);
   } catch (error) {
     const err = error as { response?: { data?: { message?: string } } };
     dispatch(setError(err?.response?.data?.message || "signup error"));

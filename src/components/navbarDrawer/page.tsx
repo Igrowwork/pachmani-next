@@ -12,17 +12,20 @@ import { logoutAsyn } from "@/redux/action/userAction";
 import { useRouter } from "next/navigation";
 
 export default function NavbarDrawer({ val }: { val: () => void }) {
-  const router = useRouter();
 
   const { isAuthenticated, error, loading, user } = useSelector(
     (state: RootState) => state.auth
   ); 
   const dispatch = useDispatch<AppDispatch>();
-  
-  function handelLogout() {
-    dispatch(logoutAsyn());
-    router.push("/Logout");
+  const router = useRouter();
+
+  function handleLogout() {
+    dispatch(logoutAsyn()).then(() => {
+      router.push("/login");
+    });
+    return val;
   }
+
 
   const arr = [
     {
@@ -128,8 +131,8 @@ export default function NavbarDrawer({ val }: { val: () => void }) {
               className={cn(
                 "flex justify-between md:p-5 p-4 hover:border-b-primaryMain border-b rounded-sm text-[#332F32] hover:text-primaryMain md:text-lg sm:text-base text-sm items-center transition-shadow font-medium"
               )}
-              onClick={handelLogout}
-            >
+              onClick={()=>
+                handleLogout()}>
               Logout
               <FaChevronRight />
             </div>

@@ -21,7 +21,11 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { Loader } from "lucide-react";
-import { getAllHaircareAsyn, getAllMensAsyn, getAllProductsAsyn } from "@/redux/action/productAction";
+import {
+  getAllHaircareAsyn,
+  getAllMensAsyn,
+  getAllProductsAsyn,
+} from "@/redux/action/productAction";
 import api from "@/lib/axios";
 import { addWish } from "@/redux/action/wishlistAddAction";
 
@@ -38,10 +42,20 @@ const hairCare = () => {
   const { haircare, loading, error } = useSelector(
     (state: RootState) => state.products
   );
+  const [products, setProducts] = useState(haircare.products);
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (haircare.products.length == 0) dispatch(getAllHaircareAsyn({category:"hairCare"}));
-  }, []);
+    if (haircare.products.length === 0) {
+      dispatch(getAllHaircareAsyn({ category: "hairCare" }));
+    } else {
+      setProducts(haircare.products);
+    }
+  }, [dispatch, haircare.products]);
+
+  useEffect(() => {
+    setProducts(haircare.products);
+  }, [haircare.products]);
 
   if (loading) {
     return (
@@ -51,26 +65,17 @@ const hairCare = () => {
     );
   }
 
-    // // like dislike functionality
-    // const addWish = async (id : string) => {
-    //   try{
-    //     const res = await api.post("product/wishlist/"+id)
-    //     // console.log(res, );
-    //   }
-    //   catch(err){
-    //     console.log(err , "home error");
-    //   }
-    // }
-  
-
   return (
     <div>
       <HomeSliderComp />
       <div className="h-full max-w-7xl mx-auto md:p-0 p-6">
         <CustomHead name={"HairCare"} className="w-10/12" />
         <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
-          {haircare.products?.map(
-            ({ productName, description, reviews, variants, _id , isLike }, i) => (
+          {products?.map(
+            (
+              { productName, description, reviews, variants, _id, isLiked },
+              i
+            ) => (
               <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
                 <div className="relative md:h-52 h-44 w-full">
                   <Image
@@ -79,12 +84,14 @@ const hairCare = () => {
                     fill
                     className="object-cover rounded-t-2xl"
                   />
-                  <div
-                    className="absolute top-0 right-0 p-5 cursor-pointer"
-                    onClick={() => addWish(_id)}
-                  >
-                    {isLike ? <Icons.like /> : <Icons.notLike />}
-                  </div>
+                  {isAuthenticated && (
+                    <div
+                      className="absolute top-0 right-0 p-5 cursor-pointer"
+                      onClick={() => addWish(_id, setProducts)}
+                    >
+                      <> {isLiked ? <Icons.like /> : <Icons.notLike />}</>
+                    </div>
+                  )}
                 </div>
                 <div className="grid p-2 gap-1">
                   <h3 className="text-xs text-primaryMain font-medium capitalize">
@@ -136,19 +143,21 @@ const hairCare = () => {
             )
           )}
         </div>
-        {haircare.totalPages > 1 &&  Array.from(Array(haircare.totalPages).keys()).map((pageNumber) => (
-          <button
-            onClick={() =>
-              dispatch(getAllHaircareAsyn({ page: pageNumber + 1 }))
-            }
-            key={pageNumber}
-            style={{
-              color: haircare.currentPage === pageNumber + 1 ? "red" : "black",
-            }}
-          >
-            {pageNumber + 1}
-          </button>
-        ))}
+        {haircare.totalPages > 1 &&
+          Array.from(Array(haircare.totalPages).keys()).map((pageNumber) => (
+            <button
+              onClick={() =>
+                dispatch(getAllHaircareAsyn({ page: pageNumber + 1 }))
+              }
+              key={pageNumber}
+              style={{
+                color:
+                  haircare.currentPage === pageNumber + 1 ? "red" : "black",
+              }}
+            >
+              {pageNumber + 1}
+            </button>
+          ))}
         <HairCareCompDetail />
         <TestimonalSlider />
         <OurCertification />

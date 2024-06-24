@@ -38,6 +38,10 @@ const mens = () => {
   const { mens, loading, error } = useSelector(
     (state: RootState) => state.products
   );
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+
+  const [products, setProducts] = useState(mens.products);
+
 
   useEffect(() => {
     if (mens.products.length == 0) dispatch(getAllMensAsyn({category:"mens"}));
@@ -51,16 +55,10 @@ const mens = () => {
       );
     }
 
-  //  // like dislike functionality
-  //  const addWish = async (id : string) => {
-  //   try{
-  //     const res = await api.post("product/wishlist/"+id)
-  //     // console.log(res, );
-  //   }
-  //   catch(err){
-  //     console.log(err , "error");
-  //   }
-  // }
+    useEffect(()=>{
+      setProducts(mens.products)
+    },[mens.products])
+  
 
   return (
     <div>
@@ -68,8 +66,8 @@ const mens = () => {
       <div className="h-full max-w-7xl mx-auto md:p-0 p-6">
         <CustomHead name={"Men's"} className="w-10/12" />
         <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
-          {mens.products?.map(
-            ({ productName, description, reviews, variants, _id , isLike }, i) => (
+          {products?.map(
+            ({ productName, description, reviews, variants, _id , isLiked }, i) => (
               <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
                 <div className="relative md:h-52 h-44 w-full">
                   <Image
@@ -80,9 +78,9 @@ const mens = () => {
                   />
                   <div
                     className="absolute top-0 right-0 p-5 cursor-pointer"
-                    onClick={() => addWish(_id)}
+                    onClick={() => addWish(_id,setProducts)}
                   >
-                    {isLike ? <Icons.like /> : <Icons.notLike />}
+                    {isLiked && isAuthenticated ? <Icons.like /> : <Icons.notLike />}
                   </div>
                 </div>
                 <div className="grid p-2 gap-1">

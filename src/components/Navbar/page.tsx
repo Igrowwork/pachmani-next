@@ -46,12 +46,13 @@ export default function Navbar() {
     (state: RootState) => state.auth
   );
 
+  const { cartItems } = useSelector((state: RootState) => state.addToCart);
+
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
   const handelLogout = async () => {
     dispatch(logoutAsyn());
-    router.push("/");
   };
 
   return (
@@ -88,17 +89,20 @@ export default function Navbar() {
             />
           </Link>
           <div className="flex justify-end gap-4 items-center">
-             {isAuthenticated && (
-            <>
-              <HiOutlineShoppingBag
-                className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
-                onClick={() => setIsDraw(true)}
-              />
-              <Link href={"/profile"}>
-                <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
-              </Link>
-            </>
-             )}
+            {isAuthenticated && (
+              <>
+                <div>
+                  {cartItems.length > 0 && <p>{cartItems.length}</p> }
+                  <HiOutlineShoppingBag
+                    className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
+                    onClick={() => setIsDraw(true)}
+                  />
+                </div>
+                <Link href={"/profile"}>
+                  <FaRegUser className="cursor-pointer hover:text-[#00AB55] h-5 w-5" />
+                </Link>
+              </>
+            )}
             {/* {loading ? (
               <Loader className="w-4 h-4 animate-spin" />
             ) : isAuthenticated ? (
