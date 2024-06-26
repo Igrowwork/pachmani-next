@@ -1,8 +1,10 @@
 "use client"
 
 import api from '@/lib/axios'
+import { IOrder } from '@/lib/types/order'
 import { RootState } from '@/redux/store'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { CiEdit } from 'react-icons/ci'
 import { MdDeleteOutline } from 'react-icons/md'
@@ -10,24 +12,33 @@ import {  useDispatch, useSelector } from 'react-redux'
 
 export default function Orders() {
   const arr = ["","","",""]
-  const dispatch = useDispatch();
-  const [isApi ,setIsApi] = useState([])
-  // useEffect(()=>{
-  //   // useDispatch(fetchOrders())
-  // },[])
+  const [isApi ,setIsApi] = useState<IOrder[]>([])
+  const [error, setError] = useState<string | null>(null);
+
+  const {isAuthenticated ,loading : authLoading} = useSelector((state: RootState) => state.auth);
+
+  const router = useRouter();
+
+  useEffect(()=>{
+    if(isAuthenticated && ! authLoading){
+      router.push("/login");
+    }
+  }, [isAuthenticated ,authLoading ,router])
+
   const isFetch = async () => {
     try{
       const res = await api.get(`order`)
-      console.log(res?.data , "dasdsa");
+      // console.log(res?.data , "dasdsa");
       setIsApi(res?.data)
     }
     catch(err){
-      console.log(err, "dryjikohgfg");
+      console.log(err, "admin-order error");
     }
   }
   useEffect(()=> {
     isFetch();
   },[])
+  
     
   return (
     <div>
@@ -37,7 +48,7 @@ export default function Orders() {
             <span className='text-sm font-semibold'>More &#8594;</span>
         </div>
         <div className='overflow-hidden'>
-            <div className='text-[#8E95A9] flex justify-center items-center bg-[#F8F8F8] w-fit p-5 rounded-t-lg mt-8 border-b border-b-[#E9EAF3] text-sm'>
+            <div className='text-[#8E95A9] flex justify-center items-center bg-[#F8F8F8] w-fit p-5 rounded-t-lg mt-8 border-b border-b-[#E9EAF3] text-sm overflow-scroll'>
             <div className='w-56'>Orders</div>
             <div className='w-72'>Customers</div>
             <div className='w-44'>Qty</div>
@@ -49,9 +60,9 @@ export default function Orders() {
             </div>
             <div className='w-full overflow-x-scroll  '>
             {
-                isApi?.map((ele: any,i: React.Key | null | undefined) => (
-                <div key={i} className='text-[#555F7E] flex justify-center items-center w-full p-6 border-b-2 border-b-[#E9EAF3] text-sm'>
-                    <div className='flex w-56'>{ele?._id}</div>
+                isApi?.map((ele) => (
+                <div key={ele?.id} className='text-[#555F7E] flex justify-center items-center w-full p-6 border-b-2 border-b-[#E9EAF3] text-sm '>
+                    <div className='flex w-72'>{ele?._id}</div>
                     <div className='flex items-center w-72'>
                         <div className='relative h-10 w-10 rounded-full overflow-hidden'>
                             <Image src={'/Assests/Images/admin/01.png'} alt='No Preview' fill className='object-cover' />
@@ -59,10 +70,10 @@ export default function Orders() {
                         <div className=''>Priscilla Warren</div>
                     </div>
                     <div className='w-44'>2</div>
-                    <div className='w-56'>Jan 10, 2020</div>
+                    <div className='w-56'>{ele?.createdAt}</div>
                     <div className='w-56'> ₹ {ele.totalPrice}</div>
                     <div className='w-56'>$60.76</div>
-                    <div className='w-56'>Completed</div>
+                    <div className='w-56'>{ele?.paymentStatus}</div>
                     <div className='flex text-xl gap-2 text-[#C8CAD8] w-56'>
                     <CiEdit />
                     <MdDeleteOutline />
