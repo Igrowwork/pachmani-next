@@ -66,7 +66,7 @@ export default function AddProduct() {
       <div className='grid grid-cols-4 gap-6 py-6'>
       
         <div>
-            <div className='border border-dashed border-primaryMain'>
+            <div className='border border-dashed border-primaryMain h-40'>
 
             </div>
         </div>
