@@ -29,5 +29,5 @@ export interface IProduct {
   images?: { fileId: string; url: string }[];
   ingredients?: string[];
   howToUse: string[];
-  isLiked:string
+  isLiked:boolean
 }

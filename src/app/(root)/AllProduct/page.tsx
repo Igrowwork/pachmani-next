@@ -52,6 +52,7 @@ export default function AllProduct() {
   }
 
 
+
   return (
     <div className="w-full h-full max-w-7xl mx-auto xl:p-0 p-6 min-h-screen">
       <CustomHead name="All Products" className="w-10/12" />

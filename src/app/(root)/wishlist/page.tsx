@@ -21,9 +21,7 @@ export default function WishList() {
   const { error, loading, product } = useSelector(
     (state: RootState) => state.wishlist
   );
-  const { isAuthenticated } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [products, setProducts] = useState(product);
 
   useEffect(() => {
@@ -52,7 +50,9 @@ export default function WishList() {
                   className="absolute top-0 right-0 p-5 cursor-pointer"
                   onClick={() => addWish(ele._id, setProducts)}
                 >
-                  <> {ele.isLiked ? <Icons.like /> : <Icons.notLike />}</>
+                  <>
+                    <Icons.like />
+                  </>
                 </div>
               )}
             </div>
