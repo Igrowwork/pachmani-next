@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import {
@@ -55,12 +55,23 @@ const data = [
     amt: 2100,
   },
 ];
-
-export default function AdminLeftGraph() {
+interface RecentActivity {
+  name: string;
+  count: number;
+}
+export default function AdminLeftGraph({
+  recentUsers,
+  text,
+}: {
+  recentUsers: RecentActivity[];
+  text: string;
+}) {
   return (
-    <div className='p-2 shadow-[0px_4px_16.3px_0px_rgba(0,0,0,0.08)] sm:p-4 md:p-5 xl:p-6 bg-white my-6 rounded-xl'>
-        <div className="pb-6 text-base font-medium capitalize text-[#4C535F]">Recent Orders</div>
-      <LineChart width={500} height={200} data={data}>
+    <div className="p-2 shadow-[0px_4px_16.3px_0px_rgba(0,0,0,0.08)] sm:p-4 md:p-5 xl:p-6 bg-white my-6 rounded-xl">
+      <div className="pb-6 text-base font-medium capitalize text-[#4C535F]">
+        {text}
+      </div>
+      <LineChart width={500} height={200} data={recentUsers}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
         <YAxis />
@@ -68,19 +79,14 @@ export default function AdminLeftGraph() {
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="count"
           stroke="#00AB55"
           activeDot={{ r: 1 }}
         />
       </LineChart>
-      </div>
+    </div>
   );
 }
-
-
-
-
-
 
 // "use client";
 
@@ -93,8 +99,6 @@ export default function AdminLeftGraph() {
 //   Tooltip,
 //   ResponsiveContainer,
 // } from "recharts";
-
-
 
 // // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // export default function AdminGraphLeft() {

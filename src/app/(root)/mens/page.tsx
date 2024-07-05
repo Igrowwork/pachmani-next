@@ -21,7 +21,11 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { Loader } from "lucide-react";
-import { getAllHaircareAsyn, getAllMensAsyn, getAllProductsAsyn } from "@/redux/action/productAction";
+import {
+  getAllHaircareAsyn,
+  getAllMensAsyn,
+  getAllProductsAsyn,
+} from "@/redux/action/productAction";
 import api from "@/lib/axios";
 import { addWish } from "@/redux/action/wishlistAddAction";
 
@@ -38,29 +42,26 @@ const mens = () => {
   const { mens, loading, error } = useSelector(
     (state: RootState) => state.products
   );
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+
+  const [products, setProducts] = useState(mens.products);
 
   useEffect(() => {
-    if (mens.products.length == 0) dispatch(getAllMensAsyn({category:"mens"}));
+    if (mens.products.length == 0)
+      dispatch(getAllMensAsyn({ category: "mens" }));
   }, []);
 
-    if (loading) {
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <Loader className="animate-spin w-8 h-8"></Loader>
-        </div>
-      );
-    }
+  useEffect(() => {
+    setProducts(mens.products);
+  }, [mens.products]);
 
-  //  // like dislike functionality
-  //  const addWish = async (id : string) => {
-  //   try{
-  //     const res = await api.post("product/wishlist/"+id)
-  //     // console.log(res, );
-  //   }
-  //   catch(err){
-  //     console.log(err , "error");
-  //   }
-  // }
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader className="animate-spin w-8 h-8"></Loader>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -68,9 +69,15 @@ const mens = () => {
       <div className="h-full max-w-7xl mx-auto md:p-0 p-6">
         <CustomHead name={"Men's"} className="w-10/12" />
         <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
-          {mens.products?.map(
-            ({ productName, description, reviews, variants, _id , isLike }, i) => (
-              <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
+          {products?.map(
+            (
+              { productName, description, reviews, variants, _id, isLiked },
+              i
+            ) => (
+              <div
+                key={i}
+                className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out "
+              >
                 <div className="relative md:h-52 h-44 w-full">
                   <Image
                     src={"/Assests/Images/HomeImage/27.png"}
@@ -80,9 +87,13 @@ const mens = () => {
                   />
                   <div
                     className="absolute top-0 right-0 p-5 cursor-pointer"
-                    onClick={() => addWish(_id)}
+                    onClick={() => addWish(_id, setProducts)}
                   >
-                    {isLike ? <Icons.like /> : <Icons.notLike />}
+                    {isLiked && isAuthenticated ? (
+                      <Icons.like />
+                    ) : (
+                      <Icons.notLike />
+                    )}
                   </div>
                 </div>
                 <div className="grid p-2 gap-1">
@@ -135,19 +146,18 @@ const mens = () => {
             )
           )}
         </div>
-        {mens.totalPages > 1 && Array.from(Array(mens.totalPages).keys()).map((pageNumber) => (
-          <button
-            onClick={() =>
-              dispatch(getAllMensAsyn({ page: pageNumber + 1 }))
-            }
-            key={pageNumber}
-            style={{
-              color: mens.currentPage === pageNumber + 1 ? "red" : "black",
-            }}
-          >
-            {pageNumber + 1}
-          </button>
-        ))}
+        {mens.totalPages > 1 &&
+          Array.from(Array(mens.totalPages).keys()).map((pageNumber) => (
+            <button
+              onClick={() => dispatch(getAllMensAsyn({ page: pageNumber + 1 }))}
+              key={pageNumber}
+              style={{
+                color: mens.currentPage === pageNumber + 1 ? "red" : "black",
+              }}
+            >
+              {pageNumber + 1}
+            </button>
+          ))}
         <HairCareCompDetail />
         <TestimonalSlider />
         <OurCertification />

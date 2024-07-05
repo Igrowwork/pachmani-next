@@ -2,7 +2,7 @@ import HomeSliderComp from "@/components/HomeSliderComp/page";
 import OurRecentArch from "@/components/OurRecentArch/page";
 import CheckTopBlog from "@/components/checkTopBlog/page";
 import ExploreMore from "@/components/exploreMore/page";
-import OurBestSeller from "@/components/ourBestSeller/page";
+import OurBestSeller from '@/components/ourBestSeller/OurBestSeller';
 import OurIngradient from "@/components/ourIngradient/page";
 import TopRanker from "@/components/topRanker/page";
 import WhyChoose from "@/components/whyChoose/page";

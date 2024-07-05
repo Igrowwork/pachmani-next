@@ -31,17 +31,22 @@ interface Product {
 }
 
 const skinCare = () => {
-  const [isVal, setIsVal] = useState(false);
-  const [isData, setIsData] = useState<Product[]>([]);
-
   const dispatch = useDispatch<AppDispatch>();
   const { skincare, loading, error } = useSelector(
     (state: RootState) => state.products
   );
+  const { isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const [products, setProducts] = useState(skincare.products);
 
   useEffect(() => {
     if (skincare.products.length == 0) dispatch(getAllSkincareAsyn({category:"skincare"}));
   }, []);
+
+  useEffect(()=>{
+    setProducts(skincare.products)
+  },[skincare.products])
 
   if (loading) {
     return (
@@ -50,24 +55,15 @@ const skinCare = () => {
       </div>
     );
   }
-  // // like dislike functionality
-  // const addWish = async (id : string) => {
-  //   try{
-  //     const res = await api.post("product/wishlist/"+id)
-  //     // console.log(res, );
-  //   }
-  //   catch(err){
-  //     console.log(err , "error");
-  //   }
-  // }
+
   return (
     <div>
       <HomeSliderComp />
       <div className="h-full max-w-7xl mx-auto md:p-0 p-6">
         <CustomHead name={"Skin Care"} className="w-10/12" />
         <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
-          {skincare.products?.map(
-            ({ productName, description, reviews, variants, _id , isLike }, i) => (
+          {products?.map(
+            ({ productName, description, reviews, variants, _id , isLiked }, i) => (
               <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
                 <div className="relative md:h-52 h-44 w-full">
                   <Image
@@ -76,12 +72,14 @@ const skinCare = () => {
                     fill
                     className="object-cover rounded-t-2xl"
                   />
-                  <div
-                    className="absolute top-0 right-0 p-5 cursor-pointer"
-                    onClick={() => addWish(_id)}
-                  >
-                    {isLike ? <Icons.like /> : <Icons.notLike />}
-                  </div>
+                   {isAuthenticated && (
+                    <div
+                      className="absolute top-0 right-0 p-5 cursor-pointer"
+                      onClick={() => addWish(_id, setProducts)}
+                    >
+                      <> {isLiked ? <Icons.like /> : <Icons.notLike />}</>
+                    </div>
+                  )}
                 </div>
                 <div className="grid p-2 gap-1">
                   <h3 className="text-xs text-primaryMain font-medium capitalize">

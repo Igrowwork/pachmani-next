@@ -23,19 +23,25 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function AllProduct() {
-  const [isLoad, setIsLoad] = useState(8);
-  const [isVal, setIsVal] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products
   );
-
-  // console.log(products, "==");
+  const { isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const [product, setProducts] = useState(products.products);
 
   useEffect(() => {
     if (products.products.length == 0) dispatch(getAllProductsAsyn({}));
   }, []);
+
+  
+  useEffect(()=>{
+    setProducts(products.products)
+  },[products.products])
+
 
   if (loading) {
     return (
@@ -45,37 +51,30 @@ export default function AllProduct() {
     );
   }
 
-  // // like dislike functionality
-  // const addWish = async (id : string) => {
-  //   try{
-  //     const res = await api.post("product/wishlist/"+id)
-  //     // console.log(res, );
-  //   }
-  //   catch(err){
-  //     console.log(err , "error");
-  //   }
-  // }
+
 
   return (
     <div className="w-full h-full max-w-7xl mx-auto xl:p-0 p-6 min-h-screen">
       <CustomHead name="All Products" className="w-10/12" />
       <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
-        {products.products?.map(
-          ({ productName, description, reviews, variants, _id , isLike }, i) => (
+        {product?.map(
+          ({ productName, description, reviews, variants, _id , isLiked,thumbnail }, i) => (
             <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
               <div className="relative md:h-52 h-44 w-full">
                 <Image
-                  src={"/Assests/Images/HomeImage/27.png"}
+                  src={thumbnail.url}
                   alt="No Preview"
                   fill
                   className="object-cover rounded-t-2xl"
                 />
-                <div
-                  className="absolute top-0 right-0 p-5 cursor-pointer"
-                  onClick={() => addWish(_id)}
-                >
-                  {isLike ? <Icons.like /> : <Icons.notLike />}
-                </div>
+                 {isAuthenticated && (
+                    <div
+                      className="absolute top-0 right-0 p-5 cursor-pointer"
+                      onClick={() => addWish(_id, setProducts)}
+                    >
+                      <> {isLiked ? <Icons.like /> : <Icons.notLike />}</>
+                    </div>
+                  )}
               </div>
               <div className="grid p-2 gap-1">
                 <h3 className="text-xs text-primaryMain font-medium capitalize">
@@ -143,18 +142,6 @@ export default function AllProduct() {
             {pageNumber + 1}
           </button>
         ))}
-
-      {/* <Banner /> */}
-      {isLoad < 12 || (
-        <div className="flex justify-center ">
-          <button
-            className="bg-primaryMain text-white p-2 rounded-sm px-10"
-            onClick={() => setIsLoad(isLoad + 4)}
-          >
-            Load More
-          </button>
-        </div>
-      )}
     </div>
   );
 }

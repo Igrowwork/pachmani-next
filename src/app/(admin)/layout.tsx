@@ -4,6 +4,7 @@ import "./globals.css"
 import SideMenu from "./admin/_components/SideMenu"
 import TopMenu from "./admin/_components/topMenu"
 import { Providers } from "@/redux/provider"
+import GetCurrentUser from "../(root)/_components/GetCurrentUser"
 
 
 export const metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
+        <GetCurrentUser userType={'admin'}></GetCurrentUser>
         <div className={cn('grid grid-cols-10 bg-[#F8F8F8] min-h-screen w-full fixed top-0 left-0' , inter.className)}>
               <div className='col-span-2 h-full w-full bg-white'>
                 <SideMenu />
@@ -31,7 +33,6 @@ export default function RootLayout({
                 </div>
               </div>
           </div>
-
         </Providers>
         </body>
     </html>
