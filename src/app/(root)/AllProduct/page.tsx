@@ -58,11 +58,11 @@ export default function AllProduct() {
       <CustomHead name="All Products" className="w-10/12" />
       <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
         {product?.map(
-          ({ productName, description, reviews, variants, _id , isLiked }, i) => (
+          ({ productName, description, reviews, variants, _id , isLiked,thumbnail }, i) => (
             <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
               <div className="relative md:h-52 h-44 w-full">
                 <Image
-                  src={"/Assests/Images/HomeImage/27.png"}
+                  src={thumbnail.url}
                   alt="No Preview"
                   fill
                   className="object-cover rounded-t-2xl"

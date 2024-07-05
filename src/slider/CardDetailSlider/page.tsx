@@ -34,11 +34,10 @@ export default function CardDetailSlider({ imgArr }: { imgArr: any[] }) {
             {imgArr?.map((slide, index) => (
               <SwiperSlide key={index} className="h-full w-full">
                 <div className="h-full w-full relative">
-                  <Image
-                    src={`/${slide}`}
-                    fill
+                  <img
+                    src={slide}
                     alt="Picture of the author"
-                    className="object-cover rounded-sm"
+                    className="object-cover rounded-sm w-full h-full"
                   />
                 </div>
               </SwiperSlide>

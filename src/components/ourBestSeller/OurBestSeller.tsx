@@ -89,7 +89,7 @@ export default function OurBestSeller() {
               <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
                 <div className="relative md:h-52 h-44 w-full">
                   <Image
-                    src={"/Assests/Images/HomeImage/27.png"}
+                    src={ele?.thumbnail?.url ?? "/Assests/Images/HomeImage/27.png"}
                     alt="No Preview"
                     fill
                     className="object-cover rounded-t-2xl"

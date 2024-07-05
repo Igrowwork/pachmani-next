@@ -1,107 +1,126 @@
-"use client"
+"use client";
+import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
 
-import React, { useEffect } from 'react'
-import { CiEdit } from "react-icons/ci";
-import { MdDeleteOutline } from "react-icons/md";
-import api from '@/lib/axios';
-import axios from 'axios';
-import { Icons } from '@/app/icons';
-import AdminLeftGraph from './_components/adminLeftGraph';
+import api from "@/lib/axios";
+import axios from "axios";
+import { Icons } from "@/app/icons";
+import AdminLeftGraph from "./_components/adminLeftGraph";
+import { Loader } from "lucide-react";
+import RecentOrders from "./_components/recentOrders";
+
+interface RecentActivity {
+  name: string;
+  count: number;
+}
+
+interface DashboardStats {
+  totalProducts: number;
+  totalOrders: number;
+  totalUsers: string;
+  totalRevenue: number;
+  recentUsers: RecentActivity[];
+  recentOrders: RecentActivity[];
+}
+
+const initialState: DashboardStats = {
+  totalProducts: 0,
+  totalOrders: 0,
+  totalUsers: "0",
+  totalRevenue: 0,
+  recentUsers: [],
+  recentOrders: [],
+};
 
 export default function Admin() {
-  const arr = ["","","",""]
- 
+  const [posts, setPosts] = useState<DashboardStats>(initialState);
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/admin/info");
+        setPosts(response.data.data);
+        setLoading(false);
+      } catch (err) {
+        console.log("error", err);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    return () => {
+      let source = axios.CancelToken.source();
+      source.cancel("Component unmounted, operation canceled");
+    };
+  }, []);
+
+  if (isLoading)
+    return (
+      <div className="w-full h-[80vh]  flex items-center justify-center">
+        <Loader className="w-8 h-8 animate-spin mr-2" />
+      </div>
+    );
+
   return (
     <div>
-      <div className='grid grid-cols-4 gap-6'>
-        <div className='bg-white w-full px-4 py-6 rounded-xl flex justify-between'>
+      <div className="grid grid-cols-4 gap-6">
+        <div className="bg-white w-full px-4 py-6 rounded-xl flex justify-between">
           <div>
-            <p className='text-sm text-[#8E95A9] font-medium'>Total Product</p>
-            <h1 className='text-2xl text-[#1C2A53] font-semibold'>32</h1>
+            <p className="text-sm text-[#8E95A9] font-medium">Total Product</p>
+            <h1 className="text-2xl text-[#1C2A53] font-semibold">
+              {posts?.totalProducts + ""}
+            </h1>
           </div>
-          <div className=''>
-            <p className='font-bold text-primaryMain text-end w-full'>+ 22%</p>
+          <div className="">
+            {/* <p className="font-bold text-primaryMain text-end w-full">+ 22%</p> */}
             <Icons.admin1 />
           </div>
         </div>
-        <div className='bg-white w-full px-4 py-6 rounded-xl flex justify-between'>
+        <div className="bg-white w-full px-4 py-6 rounded-xl flex justify-between">
           <div>
-            <p className='text-sm text-[#8E95A9] font-medium'>Total order</p>
-            <h1 className='text-2xl text-[#1C2A53] font-semibold'>925</h1>
+            <p className="text-sm text-[#8E95A9] font-medium">Total order</p>
+            <h1 className="text-2xl text-[#1C2A53] font-semibold">
+              {posts.totalOrders}
+            </h1>
           </div>
-          <div className=''>
-            <p className='font-bold text-[#FF392B] text-end w-full'>+ 22%</p>
+          <div className="">
+            {/* <p className="font-bold text-[#FF392B] text-end w-full">+ 22%</p> */}
             <Icons.admin2 />
           </div>
         </div>
-        <div className='bg-white w-full px-4 py-6 rounded-xl flex justify-between'>
+        <div className="bg-white w-full px-4 py-6 rounded-xl flex justify-between">
           <div>
-            <p className='text-sm text-[#8E95A9] font-medium'>Total user</p>
-            <h1 className='text-2xl text-[#1C2A53] font-semibold'>15.5K</h1>
+            <p className="text-sm text-[#8E95A9] font-medium">Total user</p>
+            <h1 className="text-2xl text-[#1C2A53] font-semibold">
+              {posts.totalUsers}
+            </h1>
           </div>
-          <div className=''>
-            <p className='font-bold text-primaryMain text-end w-full'>+ 22%</p>
+          <div className="">
+            {/* <p className="font-bold text-primaryMain text-end w-full">+ 22%</p> */}
             <Icons.admin3 />
           </div>
         </div>
-        <div className='bg-white w-full px-4 py-6 rounded-xl flex justify-between'>
+        <div className="bg-white w-full px-4 py-6 rounded-xl flex justify-between">
           <div>
-            <p className='text-sm text-[#8E95A9] font-medium'>Total Revenue</p>
-            <h1 className='text-2xl text-[#1C2A53] font-semibold'>28%</h1>
+            <p className="text-sm text-[#8E95A9] font-medium">Total Revenue</p>
+            <h1 className="text-2xl text-[#1C2A53] font-semibold">
+              {(posts.totalRevenue ?? 0).toFixed(2)}
+            </h1>
           </div>
-          <div className=''>
-            <p className='font-bold text-[#FFA000] text-end w-full'>+ 22%</p>
+          <div className="">
+            {/* <p className="font-bold text-[#FFA000] text-end w-full">+ 22%</p> */}
             <Icons.admin4 />
           </div>
         </div>
-
       </div>
 
-      <div className='grid grid-cols-2 gap-6'>
-        <AdminLeftGraph />
-        <AdminLeftGraph />
+      <div className="grid grid-cols-2 gap-6">
+        <AdminLeftGraph recentUsers={posts.recentUsers} text={"users register in past 7 days"}/>
+        <AdminLeftGraph recentUsers={posts.recentOrders} text={"order in past 7 days"}/>
       </div>
-      <div className='shadow-[0px_4px_16.3px_0px_rgba(0,0,0,0.08)]  bg-white rounded-xl'>
-        <div className='flex justify-between items-center sm:p-4 md:p-5 xl:p-6 font-medium'>
-          <div className="text-xl font-medium capitalize text-[#4C535F]">Recent Orders</div>
-          <div>More &#8594;</div>
-        </div>
-        <div className='text-[#8E95A9] grid grid-cols-8 justify-items-center bg-[#F8F8F8] w-full p-5'>
-          <div>Orders</div>
-          <div>Customers</div>
-          <div>Qty</div>
-          <div>Date</div>
-          <div>Revenue</div>
-          <div>Net Profit</div>
-          <div>Status</div>
-          <div>Action</div>
-        </div>
-        <div className=''>
-          {
-            arr?.map((ele,i) => (
-              <div key={i} className='text-[#555F7E] grid grid-cols-8 justify-items-center w-full p-5'>
-                <div>#32000200</div>
-                <div>Priscilla Warren</div>
-                <div>2</div>
-                <div>Jan 10, 2020</div>
-                <div>$253.82</div>
-                <div>$60.76</div>
-                <div>Completed</div>
-                <div className='flex text-xl gap-2 text-[#C8CAD8]'>
-                  <CiEdit />
-                  <MdDeleteOutline />
-                </div>
-              </div>
-
-            ))
-
-          }
-          
-        </div>
-
-      </div>
-      
-      
+      <RecentOrders></RecentOrders>
     </div>
-  )
+  );
 }

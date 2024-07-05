@@ -103,11 +103,11 @@ export default function page({ params }: { params: { id: string } }) {
   }
 
   const imgArr = [
-    "HairImage/productImage/04.jpg",
-    "HairImage/productImage/04.jpg",
-    "HairImage/productImage/04.jpg",
-    "HairImage/productImage/04.jpg",
-    "HairImage/productImage/04.jpg",
+    "Assests/Images/HairImage/01.png",
+    "Assests/Images/HairImage/02.jpg",
+    "Assests/Images/HairImage/03.jpg",
+    "Assests/Images/HairImage/04.jpg",
+    "Assests/Images/HairImage/05.jpg",
   ];
 
   return (
