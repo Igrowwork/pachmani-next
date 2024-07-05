@@ -50,9 +50,7 @@ export default function AllProduct() {
       </div>
     );
   }
-
-
-
+  
   return (
     <div className="w-full h-full max-w-7xl mx-auto xl:p-0 p-6 min-h-screen">
       <CustomHead name="All Products" className="w-10/12" />
@@ -62,7 +60,7 @@ export default function AllProduct() {
             <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
               <div className="relative md:h-52 h-44 w-full">
                 <Image
-                  src={thumbnail.url}
+                  src={thumbnail?.url ?? ""}
                   alt="No Preview"
                   fill
                   className="object-cover rounded-t-2xl"
