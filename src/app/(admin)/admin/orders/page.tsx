@@ -1,6 +1,6 @@
 "use client";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import api from "@/lib/axios";
 import { IOrder } from "@/lib/types/order";
 import Image from "next/image";
@@ -62,24 +62,27 @@ const UpdateProducts: React.FC = () => {
           <span>Orders</span>
           <span className="text-sm font-semibold">More &#8594;</span>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden my-4">
           <div className="text-[#8E95A9] flex justify-center items-center bg-[#F8F8F8] w-fit p-5 rounded-t-lg mt-8 border-b border-b-[#E9EAF3] text-sm overflow-scroll">
-            <div className="w-56">Orders</div>
-            <div className="w-72">Customers</div>
-            <div className="w-44">Qty</div>
-            <div className="w-56">Date</div>
-            <div className="w-56">Revenue</div>
-            <div className="w-56">Net Profit</div>
-            <div className="w-56">Status</div>
-            <div className="w-56">Action</div>
+            <div className="w-14 text-center">S.no.</div>
+            <div className="w-56 text-center">Orders</div>
+            <div className="w-56 text-center">Customers</div>
+            <div className="w-20 text-center">Qty</div>
+            <div className="w-20 text-center">Date</div>
+            <div className="w-56 text-center">Revenue</div>
+            <div className="w-40 text-center">Net Profit</div>
+            <div className="w-40 text-center">Status</div>
+            <div className="w-40 text-center">Action</div>
           </div>
-          <div className="w-full overflow-x-scroll  ">
-            {orders?.map((order) => (
+          <div className="w-full overflow-x-scroll">
+            {orders?.map((order, index) => (
               <div
                 key={order?._id}
-                className="text-[#555F7E] flex justify-center items-center w-full p-6 border-b-2 border-b-[#E9EAF3] text-sm "
+                className="text-[#555F7E] flex justify-center items-center w-full p-6 border-b-2 border-b-[#E9EAF3] text-sm bg-white"
               >
-                <div className="flex items-center w-72">
+                <div className="w-14 font-bold text-center pr-3">{index + 1}</div>
+                <div className="flex w-56">{order?._id}</div>
+                <div className="flex items-center w-56 gap-2 justify-center">
                   <div className="relative h-10 w-10 rounded-full overflow-hidden">
                     <Image
                       src={"/Assests/Images/admin/01.png"}
@@ -88,25 +91,30 @@ const UpdateProducts: React.FC = () => {
                       className="object-cover"
                     />
                   </div>
+                  <div>Priscilla Warren</div>
                 </div>
-                <div className="w-44">2</div>
-                <div className="w-56"> ₹ {order.totalPrice.toFixed(2)}</div>
-                <div className="w-56">{order?.paymentStatus}</div>
-                <div className="flex text-xl gap-2 text-[#C8CAD8] w-56">
-                  <div className="w-36">
-                    <select
-                      value={order.status}
-                      onChange={(e) => updateStatus(order._id, e.target.value as IOrder["status"])}
-                      className={`bg-transparent ${getStatusColor(order?.status)}`}
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="processing">Processing</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="delivered">Delivered</option>
-                    </select>
-                  </div>
+                <div className="w-20 text-center">2</div>
+                <div className="w-20 text-center">
+                  {new Date(order?.createdAt).toLocaleDateString()}
+                </div>
+                <div className="w-56 text-center"> ₹ {order.totalPrice.toFixed(2)}</div>
+                <div className="w-40 text-center">$60.76</div>
+                <div className="w-40 text-sm">
+                  <select
+                    value={order.status}
+                    onChange={(e) => updateStatus(order._id, e.target.value as IOrder["status"])}
+                    className={`bg-transparent ${getStatusColor(order?.status)}`}
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                  </select>
+                </div>
+                <div className="flex text-xl gap-2 text-[#C8CAD8] w-40">
                   <CiEdit />
                   <MdDeleteOutline />
+                  <span>...</span>
                 </div>
               </div>
             ))}
