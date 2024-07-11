@@ -3,10 +3,10 @@ import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 
 const RecentOrders = () => {
-  const arr = ["", "", "", ""];
+  const arr = [""];
   return (
     <div>
-      <div className="shadow-[0px_4px_16.3px_0px_rgba(0,0,0,0.08)]  bg-white rounded-xl">
+      {/* <div className="shadow-[0px_4px_16.3px_0px_rgba(0,0,0,0.08)]  bg-white rounded-xl">
         <div className="flex justify-between items-center sm:p-4 md:p-5 xl:p-6 font-medium">
           <div className="text-xl font-medium capitalize text-[#4C535F]">
             Recent Orders
@@ -43,7 +43,7 @@ const RecentOrders = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

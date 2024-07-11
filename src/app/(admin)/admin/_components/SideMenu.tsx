@@ -20,25 +20,25 @@ export default function SideMenu() {
       path:"/admin/orders",
     },
     {
-      name:"Add Products",
-      icon:"",
-      path:"/admin/add-product",
-    },
-    {
-      name:"Admin",
-      icon:"",
-      path:"/admin/admin-profile",
-    },
-    {
       name:"Category",
       icon:"",
       path:"/admin/categories",
     },
-    {
-      name:"Add Banners",
-      icon:"",
-      path:"/admin/add-banners",
-    },
+    // {
+    //   name:"Add Products",
+    //   icon:"",
+    //   path:"/admin/add-product",
+    // },
+    // {
+    //   name:"Admin",
+    //   icon:"",
+    //   path:"/admin/admin-profile",
+    // },
+    // {
+    //   name:"Add Banners",
+    //   icon:"",
+    //   path:"/admin/add-banners",
+    // },
   ]
   return (
     <div className='p-4'>
