@@ -16,26 +16,35 @@ import { AppDispatch, RootState } from "@/redux/store";
 
 export default function Login() {
   const router = useRouter();
+  
   const dispatch = useDispatch<AppDispatch>();
+
   const { user, loading, error, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
   );
   const [isPass1, setisPass1] = useState(true);
+
   const [isVal, setIsVal] = useState({
     email: "",
     password: "",
   });
+
   const handleChange = (e: { target: { name: any; value: any } }) => {
     setIsVal({
       ...isVal,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     dispatch(loginAsyn(isVal));
   };
+
   useEffect(() => {
+    if (isAuthenticated && user?.role == "admin" ) {
+      router.replace("/admin");
+    }
     if (isAuthenticated) {
       router.replace("/");
     }

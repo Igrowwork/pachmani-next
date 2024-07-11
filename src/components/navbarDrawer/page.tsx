@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { RxCross1 } from "react-icons/rx";
 import { FaChevronRight } from "react-icons/fa";
@@ -12,10 +12,9 @@ import { logoutAsyn } from "@/redux/action/userAction";
 import { useRouter } from "next/navigation";
 
 export default function NavbarDrawer({ val }: { val: () => void }) {
-
   const { isAuthenticated, error, loading, user } = useSelector(
     (state: RootState) => state.auth
-  ); 
+  );
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
@@ -25,7 +24,6 @@ export default function NavbarDrawer({ val }: { val: () => void }) {
     });
     return val;
   }
-
 
   const arr = [
     {
@@ -89,6 +87,17 @@ export default function NavbarDrawer({ val }: { val: () => void }) {
           </div>
         )}
         <div>
+          {isAuthenticated && user?.role == "admin" && (
+            <Link
+              href={"/admin"}
+              className={cn(
+                "flex justify-between md:p-5 p-4 hover:border-b-primaryMain border-b rounded-sm text-[#332F32] hover:text-primaryMain md:text-lg sm:text-base text-sm items-center transition-shadow font-medium"
+              )}
+              onClick={val}
+            >
+              Dashboard 
+            </Link>
+          )}
           {arr?.map((ele, i) => (
             <Link
               href={ele?.path}
@@ -131,8 +140,8 @@ export default function NavbarDrawer({ val }: { val: () => void }) {
               className={cn(
                 "flex justify-between md:p-5 p-4 hover:border-b-primaryMain border-b rounded-sm text-[#332F32] hover:text-primaryMain md:text-lg sm:text-base text-sm items-center transition-shadow font-medium"
               )}
-              onClick={()=>
-                handleLogout()}>
+              onClick={() => handleLogout()}
+            >
               Logout
               <FaChevronRight />
             </div>

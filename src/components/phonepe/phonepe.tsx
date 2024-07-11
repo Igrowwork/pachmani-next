@@ -66,7 +66,7 @@ const PhonePay = ({ shippingAddress }: { shippingAddress: number }) => {
       description: "Tutorial of RazorPay",
       image: "https://avatars.githubusercontent.com/u/25058652?v=4",
       order_id: order.id,
-      callback_url: `http://localhost:8080/api/order/paymentverification/${shippingAddress}`,
+      callback_url: `${process.env.NEXT_PUBLIC_URL}/api/order/paymentverification/${shippingAddress}`,
       prefill: {
         name: "Gaurav Kumar",
         email: "gaurav.kumar@example.com",

@@ -12,26 +12,29 @@ const GetCurrentUser = ({ userType = "user" }: { userType?: string }) => {
   const { user, loading, UnauthorizedError, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
   );
+
   useEffect(() => {
     if (!isAuthenticated) {
       dispatch(getLoginUserAsyn());
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, dispatch]);
+
   useEffect(() => {
     if (
-      UnauthorizedError == "jwtError" ||
-      UnauthorizedError == "Unauthorized"
+      UnauthorizedError === "jwtError" ||
+      (UnauthorizedError === "Unauthorized" && !loading)
     ) {
       router.push("/login");
     }
-  }, [UnauthorizedError]);
+  }, [UnauthorizedError, loading, router]);
 
   useEffect(() => {
-    if (user?.role != userType) {
+    if (isAuthenticated && !loading && user?.role !== userType) {
       router.push("/");
     }
-  }, [user]);
+  }, [user, userType, loading, isAuthenticated, router]);
 
   return <></>;
 };
+
 export default GetCurrentUser;

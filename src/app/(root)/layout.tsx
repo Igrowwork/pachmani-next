@@ -26,9 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-        
       </Head>
-
       <Providers>
         <body className={inter.className}>
           <GetCurrentUser />
