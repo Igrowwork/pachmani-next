@@ -15,7 +15,7 @@ import { FreeMode, Navigation, Pagination, Thumbs } from "swiper/modules";
 import Image from "next/image";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
-export default function CardDetailSlider({ imgArr }: { imgArr: any[] }) {
+export default function CardDetailSlider({ imgArr }: { imgArr:{ fileId: string; url: string }[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div>
@@ -31,12 +31,12 @@ export default function CardDetailSlider({ imgArr }: { imgArr: any[] }) {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper h-full w-full"
           >
-            {imgArr?.map((slide, index) => (
+            {imgArr?.map(({url}, index) => (
               <SwiperSlide key={index} className="h-full w-full">
                 <div className="h-full w-full relative">
                   <img
-                    src={slide}
-                    alt="Picture of the author"
+                    src={url}
+                    alt={url}
                     className="object-cover rounded-sm w-full h-full"
                   />
                 </div>
@@ -69,11 +69,11 @@ export default function CardDetailSlider({ imgArr }: { imgArr: any[] }) {
             }}
             className="mySwiper2 h-32 w-full mt-4"
           >
-            {imgArr.map((slide, index) => (
+            {imgArr.map(({url}, index) => (
               <SwiperSlide key={index} className="h-full w-full">
                 <div className="h-full w-full relative active:border-2 border-primaryMain rounded-sm">
                   <Image
-                    src={`/${slide}`}
+                    src={`${url}`}
                     fill
                     alt="Picture of the author"
                     className="object-cover cursor-pointer rounded-sm"

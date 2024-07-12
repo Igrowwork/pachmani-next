@@ -28,7 +28,6 @@ export default function ContactUs() {
   const isFetch = async () => {
     try{
       const res = await axios.post("https://sheetdb.io/api/v1/59aqknib5ssla" , isVal)
-      console.log(res);
     }
     catch(err){
       console.log(err)
@@ -37,7 +36,6 @@ export default function ContactUs() {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(isVal)
     toast({title : "data submitted succeful"})
     isFetch();
     setIsVal({

@@ -9,7 +9,6 @@ export const addAddress = (address: Address) => async (dispatch: Dispatch) => {
     dispatch(setLoading(true));
     const { data } = await api.post(`user/address`, address);
     dispatch(addAddressCheckout(data.user.addresses));
-    console.log(data);
   } catch (error) {
     const err = error as { response?: { data?: { message?: string } } };
     console.log(err?.response?.data?.message, "===");

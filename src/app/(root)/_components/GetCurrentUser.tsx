@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 const GetCurrentUser = ({ userType = "user" }: { userType?: string }) => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const { user, loading, UnauthorizedError, isAuthenticated } = useSelector(
+  const { user, loading, UnauthorizedError, isAuthenticated ,error} = useSelector(
     (state: RootState) => state.auth
   );
 
@@ -19,14 +19,15 @@ const GetCurrentUser = ({ userType = "user" }: { userType?: string }) => {
     }
   }, [isAuthenticated, dispatch]);
 
+
   useEffect(() => {
     if (
       UnauthorizedError === "jwtError" ||
-      (UnauthorizedError === "Unauthorized" && !loading)
+      (UnauthorizedError === "Unauthorized" && !loading || error)
     ) {
       router.push("/login");
     }
-  }, [UnauthorizedError, loading, router]);
+  }, [UnauthorizedError, loading, router,error]);
 
   useEffect(() => {
     if (isAuthenticated && !loading && user?.role !== userType) {
@@ -38,3 +39,5 @@ const GetCurrentUser = ({ userType = "user" }: { userType?: string }) => {
 };
 
 export default GetCurrentUser;
+
+

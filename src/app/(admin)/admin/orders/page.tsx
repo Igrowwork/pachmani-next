@@ -15,7 +15,6 @@ const UpdateProducts: React.FC = () => {
     try {
       const { data } = await api.get(`order`);
       setOrders(data);
-      console.log(data, "data");
     } catch (err) {
       console.log(err, "admin-order error");
     }
@@ -26,7 +25,6 @@ const UpdateProducts: React.FC = () => {
   }, []);
 
   const updateStatus = async (orderId: string, status: IOrder["status"]) => {
-    console.log(status, orderId, "==");
     try {
       await api.put(`order`, { status, orderId });
       setOrders((prevState) =>

@@ -42,7 +42,6 @@ export default function OrderProcess({ params }: proprs) {
     setError(null);
     try {
       const { data } = await api.get<IOrder>(`order/${params.id}`);
-      console.log(data, "==");
       setData(data);
     } catch (err) {
       setError("An error occurred while fetching orders.");

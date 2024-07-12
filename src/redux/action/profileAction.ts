@@ -7,7 +7,6 @@ export const getuserProfile = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
     const { data } = await api.patch(`user/profile`);
-    // console.log(data.user)
     dispatch(userProfile(data.user));
   } catch (error) {
     console.log(error, "===>");
