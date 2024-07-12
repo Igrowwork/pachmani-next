@@ -1,3 +1,4 @@
+// pages/product/[id]/page.tsx
 "use client";
 import CustomHead from "@/UI/customHead";
 import { forum, lato } from "@/app/font";
@@ -22,17 +23,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { MdOutlineShoppingBag, MdOutlineShoppingCart } from "react-icons/md";
-import { AddressModal } from "@/components/AddressModal/page";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
-// import required modules
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import OurIngradient from "@/components/ourIngradient/page";
@@ -43,7 +38,8 @@ import { Loader, Loader2 } from "lucide-react";
 import { IProduct } from "@/lib/types/products";
 import { addItemToCart } from "@/redux/slice/addToCartSlice";
 import { addToCartAsync } from "@/redux/action/addTocartAction";
-import axios from "axios";
+import { AddressFormModal } from "@/components/AddressModal/page";
+import { CheckoutModal } from "../../_components/CheckoutModal";
 
 export default function page({ params }: { params: { id: string } }) {
   const [isQuant, setIsQuant] = useState("");
@@ -61,6 +57,11 @@ export default function page({ params }: { params: { id: string } }) {
   const [product, setProduct] = useState<IProduct>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [address, setAddress] = useState<any>(null);
+  const [isPaymentLoading, setIsPaymentLoading] = useState(false);
+  const [isAddressOpen, setIsAddressOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const {
     cartItems,
@@ -76,8 +77,7 @@ export default function page({ params }: { params: { id: string } }) {
         const { data } = await api.get(`product/${params.id}`);
         setProduct(data.product);
         setPrice({
-          priceAfterDiscount:
-            data.product.variants[0].priceAfterDiscount.toFixed(2),
+          priceAfterDiscount: data.product.variants[0].priceAfterDiscount.toFixed(2),
           price: data.product.variants[0].price.toFixed(2),
           discount: data.product.variants[0].discount,
         });
@@ -103,6 +103,12 @@ export default function page({ params }: { params: { id: string } }) {
   const filteredImages = (product?.images ?? []).filter(
     (img): img is { fileId: string; url: string } => img !== undefined
   );
+
+  const handleAddressSubmit = (data: any) => {
+    setAddress(data);
+    setIsAddressOpen(false);
+    setIsCheckoutOpen(true);
+  };
 
   return (
     <div>
@@ -213,8 +219,7 @@ export default function page({ params }: { params: { id: string } }) {
                     <AlertDialog>
                       <div className="grid md:grid-cols-2 md:gap-8 gap-3 mt-8">
                         <AlertDialogTrigger asChild>
-                          {/* <Button variant="outline">Show Dialog</Button> */}
-                          <Button className="flex gap-3 p-3  bg-whitejustify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
+                          <Button className="flex gap-3 p-3  bg-white justify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
                             <MdOutlineShoppingBag /> Buy Now
                           </Button>
                         </AlertDialogTrigger>
@@ -222,7 +227,7 @@ export default function page({ params }: { params: { id: string } }) {
                           <AlertDialogHeader>
                             <AlertDialogTitle>Add Address</AlertDialogTitle>
                             <AlertDialogDescription>
-                              <AddressModal />
+                              <AddressFormModal onSubmit={handleAddressSubmit} />
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                         </AlertDialogContent>
@@ -265,6 +270,17 @@ export default function page({ params }: { params: { id: string } }) {
           </div>
         </div>
       )}
+     {product && <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        product={product}
+        variantId={product?.variants[0]?._id}
+        address={address}
+        price={sPrice}
+        isPaymentLoading={isPaymentLoading}
+        onUpdateQuantity={setQuantity}
+
+      />}
     </div>
   );
 }
