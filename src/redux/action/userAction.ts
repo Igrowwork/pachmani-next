@@ -56,7 +56,8 @@ export const logoutAsyn = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
     const { data } = await api.get(`user/logout`);
-    dispatch(logout(data.user));
+    dispatch(logout());
+    localStorage.removeItem("token");
   } catch (error) {
     dispatch(setError("Login failed"));
   } finally {

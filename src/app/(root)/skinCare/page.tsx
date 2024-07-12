@@ -62,17 +62,31 @@ const skinCare = () => {
       <div className="h-full max-w-7xl mx-auto md:p-0 p-6">
         <CustomHead name={"Skin Care"} className="w-10/12" />
         <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10 p-2">
-          {products?.map(
-            ({ productName, description, reviews, variants, _id , isLiked }, i) => (
-              <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
+        {products?.map(
+            (
+              {
+                productName,
+                description,
+                reviews,
+                variants,
+                _id,
+                isLiked,
+                thumbnail,
+              },
+              i
+            ) => (
+              <div
+                key={i}
+                className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out "
+              >
                 <div className="relative md:h-52 h-44 w-full">
                   <Image
-                    src={"/Assests/Images/HomeImage/27.png"}
+                    src={thumbnail?.url ?? ""}
                     alt="No Preview"
                     fill
                     className="object-cover rounded-t-2xl"
                   />
-                   {isAuthenticated && (
+                  {isAuthenticated && (
                     <div
                       className="absolute top-0 right-0 p-5 cursor-pointer"
                       onClick={() => addWish(_id, setProducts)}
@@ -91,13 +105,15 @@ const skinCare = () => {
                   </div>
                   <div className="my-2 ">
                     <div className="flex items-center gap-2">
-                      <span className="text-black font-semibold">₹252</span>
-                      <span className="text-[#858585] font-extralight line-through">
-                        ₹950
+                      <span className="text-black font-semibold">
+                        ₹{variants[0]?.priceAfterDiscount?.toFixed(2)}
+                      </span>
+                      <span className="text-[hsl(0,0%,52%)] font-extralight line-through">
+                        ₹{variants[0]?.price?.toFixed(2)}
                       </span>
                       <span className="text-[#858585]">|</span>
                       <span className="text-primaryMain font-extralight">
-                        35%
+                        {variants[0]?.discount}%
                       </span>
                     </div>
                     <div className="flex justify-between items-center">

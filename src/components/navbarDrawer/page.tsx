@@ -19,11 +19,12 @@ export default function NavbarDrawer({ val }: { val: () => void }) {
   const router = useRouter();
 
   function handleLogout() {
-    dispatch(logoutAsyn()).then(() => {
-      router.push("/login");
-    });
+    dispatch(logoutAsyn())
+    router.push("/login");
     return val;
   }
+
+  
 
   const arr = [
     {

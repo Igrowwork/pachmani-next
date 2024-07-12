@@ -62,7 +62,6 @@ export default function page({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
   const {
     cartItems,
     loading: loading2,
@@ -75,7 +74,6 @@ export default function page({ params }: { params: { id: string } }) {
     const fetchData = async () => {
       try {
         const { data } = await api.get(`product/${params.id}`);
-        console.log(data.product,"====");
         setProduct(data.product);
         setPrice({
           priceAfterDiscount:
@@ -102,13 +100,9 @@ export default function page({ params }: { params: { id: string } }) {
     );
   }
 
-  const imgArr = [
-    "Assests/Images/HairImage/01.png",
-    "Assests/Images/HairImage/02.jpg",
-    "Assests/Images/HairImage/03.jpg",
-    "Assests/Images/HairImage/04.jpg",
-    "Assests/Images/HairImage/05.jpg",
-  ];
+  const filteredImages = (product?.images ?? []).filter(
+    (img): img is { fileId: string; url: string } => img !== undefined
+  );
 
   return (
     <div>
@@ -117,11 +111,13 @@ export default function page({ params }: { params: { id: string } }) {
           <div className="max-w-7xl mx-auto w-full h-full md:p-2 p-6">
             <div>
               <div>
-                <CustomHead name={product.category + '' } className="w-10/12" />
+                <CustomHead name={product.category + ""} className="w-10/12" />
                 <div className=" grid md:grid-cols-7 gap-8 grid-cols-1">
                   <div className="col-span-3 w-full rounded-md overflow-hidden">
                     <div className="h-full w-full">
-                      <CardDetailSlider imgArr={imgArr} />
+                      {filteredImages.length > 0 && (
+                        <CardDetailSlider imgArr={filteredImages} />
+                      )}
                     </div>
                   </div>
                   <div className="grid col-span-4 w-[80%]">
@@ -131,13 +127,13 @@ export default function page({ params }: { params: { id: string } }) {
                         forum.className
                       )}
                     >
-                      {product.productName  + ''}
+                      {product.productName + ""}
                     </h1>
                     <div className="text-xs text-[#00AB55] mt-3">
                       4.3 &#9733;
                     </div>
                     <p className="md:text-xl text-sm text-[#4A3F3F] mt-2">
-                      {product.description  + ''}
+                      {product.description + ""}
                     </p>
                     <h2
                       className={cn(
@@ -152,7 +148,7 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        ₹{sPrice.priceAfterDiscount + ''}
+                        ₹{sPrice.priceAfterDiscount + ""}
                       </span>
                       <span
                         className={cn(
@@ -160,7 +156,7 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        ₹{sPrice.price + ''}
+                        ₹{sPrice.price + ""}
                       </span>
                       <span
                         className={cn(
@@ -168,7 +164,7 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        {sPrice.discount + ''}%
+                        {sPrice.discount + ""}%
                       </span>
                     </h2>
                     <p className="md:text-sm text-xs text-[#4A3F3F] mt-2">
@@ -187,7 +183,7 @@ export default function page({ params }: { params: { id: string } }) {
                             discount,
                             unit,
                             stock,
-                           _id,
+                            _id,
                           },
                           i
                         ) => (
@@ -208,8 +204,8 @@ export default function page({ params }: { params: { id: string } }) {
                               setIsQuant(_id);
                             }}
                           >
-                            {packSize + ''}
-                            {unit + ''}
+                            {packSize + ""}
+                            {unit + ""}
                           </span>
                         )
                       )}

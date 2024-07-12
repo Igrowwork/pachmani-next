@@ -14,8 +14,6 @@ export const addWish = async (
       )
     );
     const res = await api.post("product/wishlist/" + id);
- 
-    console.log(res, "==");
   } catch (err) {
     console.log(err, "wishlist error");
   }

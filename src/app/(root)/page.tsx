@@ -11,6 +11,7 @@ import Ayurvedexpert from "../(auth)/_components/ayurvedexpert";
 export default function Home() {
   return (
     <main className="">
+      
       <HomeSliderComp />
         <TopRanker />
         <OurBestSeller />

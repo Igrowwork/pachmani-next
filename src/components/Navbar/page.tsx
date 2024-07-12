@@ -2,7 +2,7 @@
 
 import { CircleUser, Loader, MenuIcon, ShoppingBag } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { IoMdMenu } from "react-icons/io";
 import MobileDrawer from "../mobileDrawer/page";
 import CartDrawer from "../cartDrawer/page";
@@ -30,16 +30,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logoutAsyn } from "@/redux/action/userAction";
 import NavbarDrawer from "../navbarDrawer/page";
+import axios from "axios";
+import debounce from "lodash.debounce";
+import api from "@/lib/axios";
+import { IProduct } from "@/lib/types/products";
 
 export default function Navbar() {
   const [isVal, setIsVal] = useState(false);
   const [showInput, setShowInput] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState<IProduct[] | []>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleIconClick = () => {
     setShowInput(!showInput);
   };
   const [isDraw, setIsDraw] = useState(false);
-  const [isDraw2, setIsDraw2] = useState(false);
   const [isMenu, setIsMenu] = useState(false);
 
   const { user, loading, error, isAuthenticated } = useSelector(
@@ -54,6 +60,28 @@ export default function Navbar() {
   const handelLogout = async () => {
     dispatch(logoutAsyn());
   };
+
+  const fetchProducts = async (query: string) => {
+    setIsLoading(true);
+    try {
+      const { data } = await api.get(`/product?search=${query}`);
+      setSearchResults(data.products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const debouncedFetchProducts = useCallback(debounce(fetchProducts, 300), []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      debouncedFetchProducts(searchTerm);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchTerm, debouncedFetchProducts]);
 
   return (
     <>
@@ -76,6 +104,8 @@ export default function Navbar() {
                   type="text"
                   placeholder="Search"
                   className="outline-none border-b border-b-[#E0E0E0] absolute left-10 max-sm:hidden"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               )}
             </div>
@@ -103,13 +133,6 @@ export default function Navbar() {
                 </Link>
               </>
             )}
-            {/* {loading ? (
-              <Loader className="w-4 h-4 animate-spin" />
-            ) : isAuthenticated ? (
-              <button onClick={handelLogout}>Logout</button>
-            ) : (
-              <Link href="/login">Log In</Link>
-            )} */}
           </div>
         </div>
       </div>
@@ -118,13 +141,45 @@ export default function Navbar() {
           <MobileDrawer />
         </div>
       )}
-      {showInput && (
-        <input
-          type="text"
-          placeholder="Search"
-          className="outline-none border-b border-b-[#E0E0E0] px-2 sm:hidden"
-        />
-      )}
+     {showInput && (
+  <>
+    <input
+      type="text"
+      placeholder="Search"
+      className="outline-none border-b border-b-[#E0E0E0] px-2 sm:hidden"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    {searchTerm && (
+      <div className="absolute bg-white shadow-md rounded-md p-4 mt-2 w-full max-w-md z-50 mx-10">
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          searchResults.map((product) => (
+            <Link href={`/AllProduct/${product._id}`} key={product._id}>
+              <div className="flex items-center gap-4 border-b last:border-none py-2">
+                <div className="w-16 h-16 flex-shrink-0">
+                  <Image
+                    src={product?.thumbnail?.url ?? ''} 
+                    alt={product.productName}
+                    width={64}
+                    height={64}
+                    className="object-cover rounded-md"
+                  />
+                </div>
+                <div>
+                  <p className="text-black font-semibold">{product.productName}</p>
+                  <p className="text-gray-500 text-sm">{product.description}</p> {/* Assuming the description is available */}
+                </div>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
+    )}
+  </>
+)}
+
       <AnimatePresence>
         {isMenu && <NavbarDrawer val={() => setIsMenu(false)} />}
       </AnimatePresence>

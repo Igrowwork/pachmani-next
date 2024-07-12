@@ -41,7 +41,6 @@ const OrderDetail: React.FC = () => {
       if (data.length === 0) {
         setError("No orders found.");
       } else {
-        console.log(data, "==");
         setData(data);
       }
     } catch (err) {

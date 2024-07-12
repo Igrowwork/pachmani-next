@@ -190,7 +190,6 @@ export default function ViewProduct({params} : {params:any}) {
     const isFetch = async () => {
       try{
         const res = await api.get(`product?category=${params?.id}`)
-        console.log(res?.data?.products , "dasdsa");
         setIsApi(res?.data?.products)
       }
       catch(err){

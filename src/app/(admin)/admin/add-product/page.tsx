@@ -157,7 +157,6 @@ const AddProducts: React.FC = () => {
       detailedImageFiles.forEach((file, index) => {
         formData.append(`detailedImage${index}`, file);
       });
-      console.log(formData, "formData");
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_URL}/api/product`,
         formData,
