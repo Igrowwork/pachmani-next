@@ -227,7 +227,7 @@ export default function page({ params }: { params: { id: string } }) {
                           <AlertDialogHeader>
                             <AlertDialogTitle>Add Address</AlertDialogTitle>
                             <AlertDialogDescription>
-                              <AddressFormModal onSubmit={handleAddressSubmit} />
+                              <AddressFormModal onClose={()=>()=>{}} onSubmit={handleAddressSubmit} />
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                         </AlertDialogContent>
