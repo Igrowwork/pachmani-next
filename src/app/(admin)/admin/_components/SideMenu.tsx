@@ -29,16 +29,16 @@ export default function SideMenu() {
     //   icon:"",
     //   path:"/admin/add-product",
     // },
-    // {
-    //   name:"Admin",
-    //   icon:"",
-    //   path:"/admin/admin-profile",
-    // },
-    // {
-    //   name:"Add Banners",
-    //   icon:"",
-    //   path:"/admin/add-banners",
-    // },
+    {
+      name:"Admin",
+      icon:"",
+      path:"/admin/admin-profile",
+    },
+    {
+      name:"Add Banners",
+      icon:"",
+      path:"/admin/add-banners",
+    },
   ]
   return (
     <div className='p-4'>
