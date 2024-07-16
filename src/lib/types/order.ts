@@ -9,6 +9,7 @@ export interface IOrderItem {
 }
 
 export interface IOrder extends Document {
+  thumbnail: any;
   _id: any;
   createdAt:string;
   order(createdAt: any): import("react").ReactNode;

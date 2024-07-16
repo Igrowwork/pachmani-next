@@ -4,7 +4,6 @@
 // import { verify } from 'jsonwebtoken';
 
 // const secret = 'your_secret_key';
-// console.log("middleware");
 // export async function middleware(req:NextRequest) {
 //   const token = req.cookies.get('authToken') || localStorage.getItem('token');
 //   if (!token) {
@@ -12,7 +11,6 @@
 //   }
 //   try {
 //     const decoded = verify(token as string, secret  as string);
-//     console.log(decoded,"===");
 //     if (decoded?.role !== 'admin') {
 //       return NextResponse.redirect(new URL('/unauthorized', req.url));
 //     }

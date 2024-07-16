@@ -19,7 +19,6 @@
 // }
 
 // const ViewProduct = ({params}: {params:any}) => {
-//   console.log(params.id)
 //   const [isVal, setIsVal] = useState(false);
 //   const [isData, setIsData] = useState<Product[]>([]);
 
@@ -186,7 +185,6 @@ export default function ViewProduct({params} : {params:any}) {
     
   const [isApi, setIsApi] = useState<IProduct[]>([]);
   const [error, setError] = useState<string | null>(null);
-    // console.log(params.id,"sdfsd")
     const isFetch = async () => {
       try{
         const res = await api.get(`product?category=${params?.id}`)

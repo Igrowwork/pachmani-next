@@ -25,18 +25,6 @@ export default function OrderProcess({ params }: proprs) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { isAuthenticated, loading: authLoading } = useSelector(
-    (state: RootState) => state.auth
-  );
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isAuthenticated && !authLoading) {
-      router.push("/login");
-    }
-  }, [isAuthenticated, authLoading, router]);
-
   const fetchOrders = async () => {
     setLoading(true);
     setError(null);
@@ -52,7 +40,7 @@ export default function OrderProcess({ params }: proprs) {
   };
 
   useEffect(() => {
-      fetchOrders();
+    fetchOrders();
   }, [params.id]);
 
   if (loading) {
@@ -133,6 +121,9 @@ export default function OrderProcess({ params }: proprs) {
           </p>
           <p className="text-[#332F32] text-xl font-medium my-1">
             paymentStatus : {data?.paymentStatus}
+          </p>
+          <p className="text-[#332F32] text-xl font-medium my-1">
+            Delivery status : {data?.status}
           </p>
           <p className="text-[#332F32] text-xl font-medium my-1">
             totalPrice : {data?.totalPrice}

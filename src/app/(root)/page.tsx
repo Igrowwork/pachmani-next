@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="">
       
-      <HomeSliderComp />
+      <HomeSliderComp pageName="home" />
         <TopRanker />
         <OurBestSeller />
 

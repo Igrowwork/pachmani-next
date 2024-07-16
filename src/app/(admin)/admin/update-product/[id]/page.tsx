@@ -8,6 +8,7 @@ import { toast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
+import { units } from "@/lib/constants/constants";
 
 interface Review {
   text: string;
@@ -60,7 +61,7 @@ const UpdateProducts: React.FC = () => {
   const [isVal, setIsVal] = useState<ProductState>(initialProductState);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [newImages, setNewImages] = useState<File[]>([]);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const params = useParams();
 
@@ -75,7 +76,7 @@ const UpdateProducts: React.FC = () => {
   };
 
   const handleArrayChange = (
-    e: ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     index: number,
     arrayName: keyof ProductState,
     fieldName?: keyof Review | keyof Variant
@@ -176,11 +177,15 @@ const UpdateProducts: React.FC = () => {
         const formData = new FormData();
         formData.append("heroImage", thumbnailFile);
         try {
-          const uploadRes = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          const uploadRes = await axios.post(
+            `${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           isVal.thumbnail = {
             fileId: uploadRes.data.fileId,
             url: uploadRes.data.url,
@@ -197,11 +202,15 @@ const UpdateProducts: React.FC = () => {
         const imageUploadPromises = newImages.map((file) => {
           const formData = new FormData();
           formData.append("heroImage", file);
-          return axios.post(`${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          return axios.post(
+            `${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
         });
         const imageUploadResponses = await Promise.all(imageUploadPromises);
         const uploadedImages = imageUploadResponses.map((res) => ({
@@ -314,13 +323,21 @@ const UpdateProducts: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-8 p-8 bg-white rounded-lg shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="grid grid-cols-2 gap-8 p-8 bg-white rounded-lg shadow-md"
+    >
       <div className="col-span-2">
         <h1 className="text-2xl font-bold text-center mb-6">Update Product</h1>
       </div>
 
       <div>
-        <label htmlFor="productName" className="block text-sm text-gray-700 font-medium">Product Name*</label>
+        <label
+          htmlFor="productName"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Product Name*
+        </label>
         <input
           type="text"
           name="productName"
@@ -333,7 +350,12 @@ const UpdateProducts: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor="category" className="block text-sm text-gray-700 font-medium">Category Name*</label>
+        <label
+          htmlFor="category"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Category Name*
+        </label>
         <select
           name="category"
           value={isVal.category}
@@ -341,15 +363,24 @@ const UpdateProducts: React.FC = () => {
           className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
           required
         >
-          <option value="" disabled>Please Select Your Category</option>
+          <option value="" disabled>
+            Please Select Your Category
+          </option>
           {categories.map((category) => (
-            <option key={category} value={category}>{category}</option>
+            <option key={category} value={category}>
+              {category}
+            </option>
           ))}
         </select>
       </div>
 
       <div className="col-span-2">
-        <label htmlFor="description" className="block text-sm text-gray-700 font-medium">Description*</label>
+        <label
+          htmlFor="description"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Description*
+        </label>
         <textarea
           name="description"
           value={isVal.description}
@@ -363,7 +394,12 @@ const UpdateProducts: React.FC = () => {
       <div className="col-span-2">
         {isVal.highlights.map((highlight, index) => (
           <div key={index} className="relative">
-            <label htmlFor={`highlight${index}`} className="block text-sm text-gray-700 font-medium">Highlight {index + 1}*</label>
+            <label
+              htmlFor={`highlight${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              Highlight {index + 1}*
+            </label>
             <input
               type="text"
               id={`highlight${index}`}
@@ -382,7 +418,11 @@ const UpdateProducts: React.FC = () => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => handleAddArrayItem("highlights")} className="bg-blue-500 text-white p-2 rounded mt-4">
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("highlights")}
+          className="bg-blue-500 text-white p-2 rounded mt-4"
+        >
           Add Highlight
         </button>
       </div>
@@ -390,7 +430,12 @@ const UpdateProducts: React.FC = () => {
       <div className="col-span-2">
         {isVal.ingredients.map((ingredient, index) => (
           <div key={index} className="relative">
-            <label htmlFor={`ingredient${index}`} className="block text-sm text-gray-700 font-medium">Ingredient {index + 1}*</label>
+            <label
+              htmlFor={`ingredient${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              Ingredient {index + 1}*
+            </label>
             <input
               type="text"
               id={`ingredient${index}`}
@@ -409,7 +454,11 @@ const UpdateProducts: React.FC = () => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => handleAddArrayItem("ingredients")} className="bg-blue-500 text-white p-2 rounded mt-4">
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("ingredients")}
+          className="bg-blue-500 text-white p-2 rounded mt-4"
+        >
           Add Ingredient
         </button>
       </div>
@@ -417,7 +466,12 @@ const UpdateProducts: React.FC = () => {
       <div className="col-span-2">
         {isVal.howToUse.map((step, index) => (
           <div key={index} className="relative">
-            <label htmlFor={`howToUse${index}`} className="block text-sm text-gray-700 font-medium">How To Use Step {index + 1}*</label>
+            <label
+              htmlFor={`howToUse${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              How To Use Step {index + 1}*
+            </label>
             <input
               type="text"
               id={`howToUse${index}`}
@@ -436,26 +490,60 @@ const UpdateProducts: React.FC = () => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => handleAddArrayItem("howToUse")} className="bg-blue-500 text-white p-2 rounded mt-4">
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("howToUse")}
+          className="bg-blue-500 text-white p-2 rounded mt-4"
+        >
           Add How To Use Step
         </button>
       </div>
 
       <div className="col-span-2">
-        <label htmlFor="thumbnail" className="block text-sm text-gray-700 font-medium">Product Thumbnail*</label>
-        <input type="file" name="thumbnail" onChange={handleThumbnailChange} className="border border-gray-300 outline-none p-2.5 rounded-lg w-1/2 mt-1.5" />
+        <label
+          htmlFor="thumbnail"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Product Thumbnail*
+        </label>
+        <input
+          type="file"
+          name="thumbnail"
+          onChange={handleThumbnailChange}
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-1/2 mt-1.5"
+        />
         {thumbnailFile ? (
           <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
-            <Image src={URL.createObjectURL(thumbnailFile)} alt="Selected Thumbnail" layout="fill" objectFit="cover" className="rounded-2xl" />
-            <button type="button" onClick={() => setThumbnailFile(null)} className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full">
+            <Image
+              src={URL.createObjectURL(thumbnailFile)}
+              alt="Selected Thumbnail"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-2xl"
+            />
+            <button
+              type="button"
+              onClick={() => setThumbnailFile(null)}
+              className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+            >
               <RxCross2 />
             </button>
           </div>
         ) : (
           isVal.thumbnail && (
             <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
-              <Image src={isVal.thumbnail.url} alt="Thumbnail" layout="fill" objectFit="cover" className="rounded-2xl" />
-              <button type="button" onClick={handleRemoveThumbnail} className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full">
+              <Image
+                src={isVal.thumbnail.url}
+                alt="Thumbnail"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
+              <button
+                type="button"
+                onClick={handleRemoveThumbnail}
+                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+              >
                 <RxCross2 />
               </button>
             </div>
@@ -464,21 +552,52 @@ const UpdateProducts: React.FC = () => {
       </div>
 
       <div className="col-span-2">
-        <label htmlFor="images" className="block text-sm text-gray-700 font-medium">Product Images</label>
-        <input type="file" name="images" onChange={handleImageChange} className="border border-gray-300 outline-none p-2.5 rounded-lg w-1/2 mt-1.5" multiple />
+        <label
+          htmlFor="images"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Product Images
+        </label>
+        <input
+          type="file"
+          name="images"
+          onChange={handleImageChange}
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-1/2 mt-1.5"
+          multiple
+        />
         <div className="grid grid-cols-3 gap-4 mt-4">
           {isVal.images?.map((image, index) => (
             <div key={index} className="relative h-32 w-32">
-              <Image src={image.url} alt={`Image ${index + 1}`} layout="fill" objectFit="cover" className="rounded-2xl" />
-              <button type="button" onClick={() => handleRemoveImage(index)} className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full">
+              <Image
+                src={image.url}
+                alt={`Image ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveImage(index)}
+                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+              >
                 <RxCross2 />
               </button>
             </div>
           ))}
           {newImages.map((file, index) => (
             <div key={index} className="relative h-32 w-32">
-              <Image src={URL.createObjectURL(file)} alt={`New Image ${index + 1}`} layout="fill" objectFit="cover" className="rounded-2xl" />
-              <button type="button" onClick={() => handleRemoveImage(index)} className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full">
+              <Image
+                src={URL.createObjectURL(file)}
+                alt={`New Image ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveImage(index)}
+                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+              >
                 <RxCross2 />
               </button>
             </div>
@@ -492,87 +611,156 @@ const UpdateProducts: React.FC = () => {
             <h3 className="text-lg font-medium mb-2">Variant {index + 1}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor={`packSize${index}`} className="block text-sm text-gray-700 font-medium">Pack Size*</label>
+                <label
+                  htmlFor={`packSize${index}`}
+                  className="block text-sm text-gray-700 font-medium"
+                >
+                  Pack Size*
+                </label>
                 <input
                   type="number"
                   id={`packSize${index}`}
                   value={variant.packSize}
-                  onChange={(e) => handleArrayChange(e, index, "variants", "packSize")}
+                  onChange={(e) =>
+                    handleArrayChange(e, index, "variants", "packSize")
+                  }
                   className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
                   placeholder={`Pack Size ${index + 1}`}
                   required
                 />
               </div>
               <div>
-                <label htmlFor={`price${index}`} className="block text-sm text-gray-700 font-medium">Price*</label>
+                <label
+                  htmlFor={`price${index}`}
+                  className="block text-sm text-gray-700 font-medium"
+                >
+                  Price*
+                </label>
                 <input
                   type="number"
                   id={`price${index}`}
                   value={variant.price}
-                  onChange={(e) => handleArrayChange(e, index, "variants", "price")}
+                  onChange={(e) =>
+                    handleArrayChange(e, index, "variants", "price")
+                  }
                   className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
                   placeholder={`Price ${index + 1}`}
                   required
                 />
               </div>
               <div>
-                <label htmlFor={`stock${index}`} className="block text-sm text-gray-700 font-medium">Stock*</label>
+                <label
+                  htmlFor={`stock${index}`}
+                  className="block text-sm text-gray-700 font-medium"
+                >
+                  Stock*
+                </label>
                 <input
                   type="number"
                   id={`stock${index}`}
                   value={variant.stock}
-                  onChange={(e) => handleArrayChange(e, index, "variants", "stock")}
+                  onChange={(e) =>
+                    handleArrayChange(e, index, "variants", "stock")
+                  }
                   className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
                   placeholder={`Stock ${index + 1}`}
                   required
                 />
               </div>
               <div>
-                <label htmlFor={`unit${index}`} className="block text-sm text-gray-700 font-medium">Unit*</label>
-                <input
-                  type="text"
+                <label
+                  htmlFor={`unit${index}`}
+                  className="block text-sm text-gray-700 font-medium"
+                >
+                  Unit*
+                </label>
+                <select
                   id={`unit${index}`}
                   value={variant.unit}
-                  onChange={(e) => handleArrayChange(e, index, "variants", "unit")}
+                  onChange={(e) =>
+                    handleArrayChange(e, index, "variants", "unit")
+                  }
                   className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-                  placeholder={`Unit ${index + 1}`}
                   required
-                />
+                >
+                  <option value="" disabled>
+                    Select Unit
+                  </option>
+                  {units.map((unit) => (
+                    <option key={unit} value={unit}>
+                      {unit}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
-                <label htmlFor={`discount${index}`} className="block text-sm text-gray-700 font-medium">Discount*</label>
+                <label
+                  htmlFor={`discount${index}`}
+                  className="block text-sm text-gray-700 font-medium"
+                >
+                  Discount*
+                </label>
                 <input
                   type="number"
                   id={`discount${index}`}
                   value={variant.discount}
-                  onChange={(e) => handleArrayChange(e, index, "variants", "discount")}
+                  onChange={(e) =>
+                    handleArrayChange(e, index, "variants", "discount")
+                  }
                   className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
                   placeholder={`Discount ${index + 1}`}
                   required
                 />
               </div>
             </div>
-            <button type="button" onClick={() => handleRemoveVariant(index)} className="absolute right-2 top-2 bg-red-500 text-white px-2 py-1 rounded-full">
+            <button
+              type="button"
+              onClick={() => handleRemoveVariant(index)}
+              className="absolute right-2 top-2 bg-red-500 text-white px-2 py-1 rounded-full"
+            >
               <RxCross2 />
             </button>
             {variant._id ? (
-              <button type="button" onClick={() => handleUpdateVariant(index, variant)} className="absolute right-2 top-10 bg-blue-500 text-white px-2 py-1 rounded-full">
+              <button
+                type="button"
+                onClick={() => handleUpdateVariant(index, variant)}
+                className="absolute right-2 top-10 bg-blue-500 text-white px-2 py-1 rounded-full"
+              >
                 Update
               </button>
             ) : (
-              <button type="button" onClick={() => handleAddVariant(index, variant)} className="absolute right-2 top-10 bg-green-500 text-white px-2 py-1 rounded-full">
+              <button
+                type="button"
+                onClick={() => handleAddVariant(index, variant)}
+                className="absolute right-2 top-10 bg-green-500 text-white px-2 py-1 rounded-full"
+              >
                 Submit
               </button>
             )}
           </div>
         ))}
-        <button type="button" onClick={() => handleAddArrayItem("variants", { packSize: 0, price: 0, stock: 0, unit: "", discount: 0 })} className="bg-blue-500 text-white p-2 rounded mt-4">
+        <button
+          type="button"
+          onClick={() =>
+            handleAddArrayItem("variants", {
+              packSize: 0,
+              price: 0,
+              stock: 0,
+              unit: "",
+              discount: 0,
+            })
+          }
+          className="bg-blue-500 text-white p-2 rounded mt-4"
+        >
           Add Variant
         </button>
       </div>
 
       <div className="w-full flex justify-end col-span-2">
-        <button type="submit" className="bg-green-500 text-white p-2 rounded w-44 flex items-center justify-center gap-1">
+        <button
+          type="submit"
+          className="bg-green-500 text-white p-2 rounded w-44 flex items-center justify-center gap-1"
+        >
           {isLoading && <Loader className="w-4 h-4 animate-spin" />}
           <p>Submit</p>
         </button>

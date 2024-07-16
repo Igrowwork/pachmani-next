@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { RootState } from "@/redux/store";
 import CustomHead from "@/UI/customHead";
 import axios from "axios";
+import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,18 +21,6 @@ const OrderDetail: React.FC = () => {
   const [data, setData] = useState<IOrder[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  const { isAuthenticated, loading: authLoading } = useSelector(
-    (state: RootState) => state.auth
-  );
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isAuthenticated && !authLoading) {
-      router.push("/login");
-    }
-  }, [isAuthenticated, authLoading, router]);
 
   const fetchOrders = async () => {
     setLoading(true);
@@ -56,15 +45,14 @@ const OrderDetail: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader className="animate-spin w-8 h-8"></Loader>
+      </div>
+    );
   }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
-    <div className="">
+    <div className="min-h-[50vh]">
       <AboutComp name="Orders Details" />
       <div className="max-w-5xl mx-auto w-full h-full my-10">
         <div className="grid gap-2 h-[70vh] overflow-y-scroll scroll-smooth p-2">
@@ -77,7 +65,7 @@ const OrderDetail: React.FC = () => {
               <div className="md:col-span-2 flex items-start">
                 <div className="relative w-full md:h-32 h-44">
                   <Image
-                    src="/Assests/Images/HomeImage/27.png"
+                    src={order?.items[0]?.product?.thumbnail?.url ?? ""}
                     alt="No Preview"
                     fill
                     className="object-cover rounded-sm"
@@ -94,6 +82,7 @@ const OrderDetail: React.FC = () => {
                   Payment Status
                   <p>{order.paymentStatus}</p>
                 </h1>
+
                 <div className="grid grid-cols-2 items-center">
                   <div className="text-xs flex items-center gap-1 text-ternary-main mt-2">
                     <span className="bg-[#2D8A40] text-white px-2 py-0.5 text-[0.625rem] rounded-full">
@@ -111,17 +100,23 @@ const OrderDetail: React.FC = () => {
                   <span className="h-2 w-2 bg-primaryMain rounded-full"></span>
                   Order at {formatMongoDate(order?.createdAt)}
                 </h1>
-                <h1 className="font-medium flex items-center gap-1">
+
+                {/* TODO */}
+                {/* <h1 className="font-medium flex items-center gap-1">
                   <span className="h-2 w-2 bg-primaryMain rounded-full"></span>
                   Delivered on Mon 11 Jun
-                </h1>
-
+                </h1> 
+                */}
                 <p className="text-[#625D60] text-xs my-2">
                   Your item has been delivered
                 </p>
                 <div className="text-primaryMain text-xs">
                   Rate & Review Product
                 </div>
+                <h1 className="text-base font-medium text-black">
+                  Delivery status
+                  <p>{order.status}</p>
+                </h1>
               </div>
             </Link>
           ))}

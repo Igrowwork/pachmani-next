@@ -156,7 +156,7 @@ export default function Navbar() {
           <p>Loading...</p>
         ) : (
           searchResults.map((product) => (
-            <Link href={`/AllProduct/${product._id}`} key={product._id}>
+            <Link href={`/AllProduct/${product?._id}`} key={product._id}>
               <div className="flex items-center gap-4 border-b last:border-none py-2">
                 <div className="w-16 h-16 flex-shrink-0">
                   <Image

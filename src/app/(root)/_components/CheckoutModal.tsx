@@ -37,7 +37,6 @@ const loadRazorpayScript = (src: string): Promise<boolean> => {
     const script = document.createElement("script");
     script.src = src;
     script.onload = () => {
-      console.log("Razorpay SDK loaded successfully.");
       resolve(true);
     };
     script.onerror = () => {
@@ -109,7 +108,6 @@ export function CheckoutModal({
         amount,
       };
 
-      console.log("Sending request data:", requestData);
 
       const response = await api.post("/order/direct-purchase", requestData);
 

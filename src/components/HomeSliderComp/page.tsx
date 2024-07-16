@@ -1,37 +1,54 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "../../app/(root)/style.css";
+import { Pagination } from "swiper/modules";
+import HomeSlideCard from "./HomeSlideCard/page";
+import { Carousel } from "@/lib/types/banner";
+import useFetchCarousel from "@/redux/action/bannerAction";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-import '../../app/(root)/style.css';
-
-// import required modules
-import { Pagination } from 'swiper/modules';
-import HomeSlideCard from './HomeSlideCard/page';
-
-export default function HomeSliderComp() {
-  const arr = ["02.png","24.png","25.png","26.png"]
-  return (
-    <div className='w-full '>
-        <Swiper
-      pagination={{
-        dynamicBullets: true,
-        el: '.swiper-pagination.custom-pagination'
-      }}
-      modules={[Pagination]}
-      className="mySwiper"
-    >
-      {
-        arr?.map((ele, i) => (
-          <SwiperSlide key={i}><HomeSlideCard img={ele} /></SwiperSlide>
-        ))
-      }
-      <div className="swiper-pagination custom-pagination"></div>
-    </Swiper>
-      
-    </div>
-  )
+interface HomeSliderCompProps {
+  pageName: string;
 }
+
+const HomeSliderComp: React.FC<HomeSliderCompProps> = ({ pageName }) => {
+  const { carousels, loading, error } = useFetchCarousel(pageName || "haircare");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Check initial window size
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <div className="w-full ">
+      <Swiper
+        pagination={{
+          dynamicBullets: true,
+          el: ".swiper-pagination.custom-pagination",
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        {carousels &&
+          carousels.map((carousel, i) => (
+            <SwiperSlide key={i}>
+              <HomeSlideCard img={isMobile ? carousel.mobileUrl : carousel.desktopUrl} />
+            </SwiperSlide>
+          ))}
+        <div className="swiper-pagination custom-pagination"></div>
+      </Swiper>
+    </div>
+  );
+};
+
+export default HomeSliderComp;
