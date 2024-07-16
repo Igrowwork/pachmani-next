@@ -328,7 +328,7 @@ const UpdateProducts: React.FC = () => {
       className="grid grid-cols-2 gap-8 p-8 bg-white rounded-lg shadow-md"
     >
       <div className="col-span-2">
-        <h1 className="text-xl font-medium text-[#1C2A53]">Update Product</h1>
+        <h1 className="text-2xl font-bold text-center mb-6">Update Product</h1>
       </div>
 
       <div>
@@ -366,13 +366,7 @@ const UpdateProducts: React.FC = () => {
           <option value="" disabled>
             Please Select Your Category
           </option>
-          <option value="" disabled>
-            Please Select Your Category
-          </option>
           {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
             <option key={category} value={category}>
               {category}
             </option>
@@ -391,19 +385,13 @@ const UpdateProducts: React.FC = () => {
           name="description"
           value={isVal.description}
           onChange={handleChange}
-          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5 resize-none h-28"
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
           placeholder="Please Enter Your Description"
           required
         />
       </div>
 
-      <div className="">
-      <label
-          htmlFor="description"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Highlights of Clinically Tested
-        </label>
+      <div className="col-span-2">
         {isVal.highlights.map((highlight, index) => (
           <div key={index} className="relative">
             <label
@@ -417,16 +405,16 @@ const UpdateProducts: React.FC = () => {
               id={`highlight${index}`}
               value={highlight}
               onChange={(e) => handleArrayChange(e, index, "highlights")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5 pr-12"
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
               placeholder={`Please Enter Highlight ${index + 1}`}
               required
             />
             <button
               type="button"
               onClick={() => handleRemoveArrayItem("highlights", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
             >
-              <RxCrossCircled className="text-2xl" />
+              <RxCross2 />
             </button>
           </div>
         ))}
@@ -438,55 +426,8 @@ const UpdateProducts: React.FC = () => {
           Add Highlight
         </button>
       </div>
-      <div className="col-span-2">
-      <label
-          htmlFor="description"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Highlights of How To Use
-        </label>
-        {isVal.howToUse.map((step, index) => (
-          <div key={index} className="relative">
-            {/* <label
-              htmlFor={`howToUse${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              How To Use Step {index + 1}*
-            </label> */}
-            <input
-              type="text"
-              id={`howToUse${index}`}
-              value={step}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleArrayChange(e, index, "howToUse")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5 pr-12"
-              placeholder={`How To Use Step ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("howToUse", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500 px-2 py-1 rounded-full"
-            >
-              <RxCrossCircled className="text-2xl" />
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("howToUse")}
-          className="w-full flex justify-center mt-2"
-        >
-          <IoAddCircleOutline className="text-2xl text-primaryMain" />
-        </button>
-      </div>
 
-      <div className="col-span-2 ">
-      <label
-          htmlFor="description"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Ingredients
-        </label>
+      <div className="col-span-2">
         {isVal.ingredients.map((ingredient, index) => (
           <div key={index} className="relative">
             <label
@@ -507,9 +448,9 @@ const UpdateProducts: React.FC = () => {
             <button
               type="button"
               onClick={() => handleRemoveArrayItem("ingredients", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500 px-2 py-1 rounded-full"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
             >
-              <RxCrossCircled className="text-2xl" />
+              <RxCross2 />
             </button>
           </div>
         ))}
@@ -557,8 +498,6 @@ const UpdateProducts: React.FC = () => {
           Add How To Use Step
         </button>
       </div>
-
-      
 
       <div className="col-span-2">
         <label
