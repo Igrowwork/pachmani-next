@@ -4,6 +4,8 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { Loader } from "lucide-react";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { RxCrossCircled } from "react-icons/rx";
 
 interface Review {
   text: string;
@@ -187,15 +189,15 @@ const AddProducts: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-2 gap-8 p-8 bg-white rounded-lg shadow-md"
+      className="grid grid-cols-2 gap-2 p-6 bg-white rounded-lg shadow-md"
     >
       <div className="col-span-2">
-        <h1 className="text-2xl font-bold text-center mb-6">Add New Product</h1>
+        <h1 className="text-xl font-medium text-[#1C2A53]">Add New Product</h1>
       </div>
-      <div>
+      <div className="my-6 col-span-2">
         <label
           htmlFor="productName"
-          className="block text-sm text-gray-700 font-medium"
+          className="block text-sm text-[#332F32] font-medium"
         >
           Product Name*
         </label>
@@ -209,10 +211,10 @@ const AddProducts: React.FC = () => {
           required
         />
       </div>
-      <div>
+      <div className="my-6 col-span-2">
         <label
           htmlFor="category"
-          className="block text-sm text-gray-700 font-medium"
+          className="block text-sm text-[#332F32] font-medium"
         >
           Category Name*
         </label>
@@ -233,203 +235,12 @@ const AddProducts: React.FC = () => {
           ))}
         </select>
       </div>
-      <div className="col-span-2">
-        <label
-          htmlFor="description"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Description*
-        </label>
-        <textarea
-          name="description"
-          value={isVal.description}
-          onChange={handleChange}
-          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-          placeholder="Please Enter Your Description"
-          required
-        />
-      </div>
-      <div className="col-span-2">
-        {isVal.highlights.map((highlight, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`highlight${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              Highlight {index + 1}*
-            </label>
-            <input
-              type="text"
-              id={`highlight${index}`}
-              value={highlight}
-              onChange={(e) => handleArrayChange(e, index, "highlights")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`Please Enter Highlight ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("highlights", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              Remove
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("highlights")}
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add Highlight
-        </button>
-      </div>
-
-      <div className="col-span-2">
-        <label
-          htmlFor="productHeroImage"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Product Hero Image*
-        </label>
-        <input
-          type="file"
-          name="productHeroImage"
-          onChange={handleHeroImageChange}
-          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-        />
-        {heroImageFile && (
-          <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
-            <Image
-              src={URL.createObjectURL(heroImageFile)}
-              alt="Selected"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-2xl"
-            />
-            <button
-              type="button"
-              onClick={handleResetHeroImage}
-              className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              Remove
-            </button>
-          </div>
-        )}
-      </div>
-
-      <div className="col-span-2">
-        {isVal.detailedImages.map((image, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`detailedImage${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              Detailed Image {index + 1}*
-            </label>
-            <input
-              type="file"
-              id={`detailedImage${index}`}
-              onChange={(e) => handleDetailedImageChange(e, index)}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`Detailed Image ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleResetDetailedImage(index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              Remove
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("detailedImages")}
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add Detailed Image
-        </button>
-      </div>
-
-      <div className="col-span-2">
-        {isVal.ingredients.map((ingredient, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`ingredient${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              Ingredient {index + 1}*
-            </label>
-            <input
-              type="text"
-              id={`ingredient${index}`}
-              value={ingredient}
-              onChange={(e) => handleArrayChange(e, index, "ingredients")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`Ingredient ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("ingredients", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              Remove
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("ingredients")}
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add Ingredient
-        </button>
-      </div>
-
-      <div className="col-span-2">
-        {isVal.howToUse.map((step, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`howToUse${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              How To Use Step {index + 1}*
-            </label>
-            <input
-              type="text"
-              id={`howToUse${index}`}
-              value={step}
-              onChange={(e) => handleArrayChange(e, index, "howToUse")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`How To Use Step ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("howToUse", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              Remove
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("howToUse")}
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add How To Use Step
-        </button>
-      </div>
-
+      
       <div className="col-span-2">
         {isVal.variants.map((variant, index) => (
-          <div key={index} className="border p-4 rounded-lg mb-4 relative">
+          <div key={index} className="border p-4 rounded-lg relative">
             <h3 className="text-lg font-medium mb-2">Variant {index + 1}</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-5 gap-4">
               <div>
                 <label
                   htmlFor={`packSize${index}`}
@@ -529,9 +340,9 @@ const AddProducts: React.FC = () => {
             <button
               type="button"
               onClick={() => handleRemoveArrayItem("variants", index)}
-              className="absolute right-2 top-2 bg-red-500 text-white px-2 py-1 rounded-full"
+              className="absolute right-2 top-2 text-red-500 px-2 py-1 rounded-full"
             >
-              Remove
+              <RxCrossCircled className="text-2xl" />
             </button>
           </div>
         ))}
@@ -546,11 +357,227 @@ const AddProducts: React.FC = () => {
               discount: 0,
             })
           }
-          className="bg-blue-500 text-white p-2 rounded mt-4"
+          className="w-full flex justify-center mt-2"
         >
-          Add Variant
+          <IoAddCircleOutline className="text-2xl text-primaryMain" />
         </button>
       </div>
+      <div className="col-span-2 my-4">
+        <label
+          htmlFor="description"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Description*
+        </label>
+        <textarea
+          name="description"
+          value={isVal.description}
+          onChange={handleChange}
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5 resize-none h-28"
+          placeholder="Please Enter Your Description"
+          required
+        />
+      </div>
+      <div className="">
+      <label
+          htmlFor="description"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Highlights of Clinically Tested
+        </label>
+        {isVal.highlights.map((highlight, index) => (
+          <div key={index} className="relative">
+            <label
+              htmlFor={`highlight${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              {/* Highlight {index + 1}* */}
+            </label>
+            <input
+              type="text"
+              id={`highlight${index}`}
+              value={highlight}
+              onChange={(e) => handleArrayChange(e, index, "highlights")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`Please Enter Highlight ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveArrayItem("highlights", index)}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("highlights")}
+          className="w-full flex justify-center mt-2"
+        >
+          <IoAddCircleOutline className="text-2xl text-primaryMain" />
+        </button>
+      </div>
+      
+      <div className="">
+      <label
+          htmlFor="description"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Highlights of How To Use
+        </label>
+        {isVal.howToUse.map((step, index) => (
+          <div key={index} className="relative">
+            {/* <label
+              htmlFor={`howToUse${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              How To Use Step {index + 1}*
+            </label> */}
+            <input
+              type="text"
+              id={`howToUse${index}`}
+              value={step}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => handleArrayChange(e, index, "howToUse")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`How To Use Step ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveArrayItem("howToUse", index)}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500 px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("howToUse")}
+          className="w-full flex justify-center mt-2"
+        >
+          <IoAddCircleOutline className="text-2xl text-primaryMain" />
+        </button>
+      </div>
+      
+      <div className="col-span-2 ">
+      <label
+          htmlFor="description"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Ingredients
+        </label>
+        {isVal.ingredients.map((ingredient, index) => (
+          <div key={index} className="relative">
+            <label
+              htmlFor={`ingredient${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              {/* Ingredient {index + 1}* */}
+            </label>
+            <input
+              type="text"
+              id={`ingredient${index}`}
+              value={ingredient}
+              onChange={(e) => handleArrayChange(e, index, "ingredients")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`Ingredient ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveArrayItem("ingredients", index)}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500 px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("ingredients")}
+          className="w-full flex justify-center mt-2"
+        >
+         <IoAddCircleOutline className="text-2xl text-primaryMain " />
+        </button>
+      </div>
+
+      <div className="col-span-2 my-4">
+        <label
+          htmlFor="productHeroImage"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Product Hero Image*
+        </label>
+        <input
+          type="file"
+          name="productHeroImage"
+          onChange={handleHeroImageChange}
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+        />
+        {heroImageFile && (
+          <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
+            <Image
+              src={URL.createObjectURL(heroImageFile)}
+              alt="Selected"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-2xl"
+            />
+            <button
+              type="button"
+              onClick={handleResetHeroImage}
+              className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        )}
+      </div>
+
+      <div className="col-span-2 my-4">
+      <label
+          htmlFor="productHeroImage"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Detailed Image*
+        </label>
+        {isVal.detailedImages.map((image, index) => (
+          <div key={index} className="relative">
+            {/* <label
+              htmlFor={`detailedImage${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              Detailed Image {index + 1}*
+            </label> */}
+            <input
+              type="file"
+              id={`detailedImage${index}`}
+              onChange={(e) => handleDetailedImageChange(e, index)}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`Detailed Image ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleResetDetailedImage(index)}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500 px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("detailedImages")}
+          className="mt-2 flex justify-center w-full"
+        >
+         <IoAddCircleOutline className="text-2xl text-primaryMain " />
+        </button>
+      </div>
+
 
       <div className="w-full flex justify-end col-span-2">
         <button
