@@ -1,14 +1,41 @@
 "use client";
 import { lato } from "@/app/font";
 import { Icons } from "@/app/icons";
+import api from "@/lib/axios";
 import { IProduct } from "@/lib/types/products";
 import { cn } from "@/lib/utils";
+import { RootState } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { useSelector } from "react-redux";
 
 export default function OurBestSellerCard({ product }: { product: IProduct }) {
+  const {isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const [loading, setLoading] = useState(false);
+  const [isLiked , setIsLiked] = useState(false);
+  
+  const toggleWishlist = async (_id: any) => {
+    if (!isAuthenticated || loading) return;
+    setLoading(true);
+    try {
+       const { data } =  await api.post(`/product/wishlist/${_id}`);
+      //  console.log(data)
+      setIsLiked(!isLiked);
+    } catch (error) {
+      console.error("Error updating wishlist", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(()=>{
+    setIsLiked(product.isLiked)
+  },[product])
+
   return (
     <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
       <div className="relative md:h-52 h-44 w-full">
@@ -18,21 +45,22 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
           fill
           className="object-cover rounded-t-2xl"
         />
-        {/* {isAuthenticated && (
+        {isAuthenticated && (
           <div
             className="absolute top-0 right-0 p-5 cursor-pointer"
-            onClick={() => addWish(_id, setProducts)}
+            onClick={() => toggleWishlist(product._id  )}
+            // onClick={toggleWishlist}
           >
             <> {isLiked ? <Icons.like /> : <Icons.notLike />}</>
           </div>
-        )} */}
+        )}
       </div>
       <div className="grid p-2 gap-1">
         <h3 className="text-xs text-primaryMain font-medium capitalize">
           {product?.productName}
         </h3>
         <h2 className="text-base font-medium mt-1">oil</h2>
-        <div className="md:text-sm text-xs text-[#313131] ">
+        <div className="md:text-sm text-xs text-[#313131] truncate">
           {product?.description}
         </div>
         <div className="my-2 ">

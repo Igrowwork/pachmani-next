@@ -172,7 +172,7 @@ export function CheckoutModal({
                   alt={product.productName}
                   className="w-16 h-16 mr-4"
                 />
-                <h2 className="text-lg font-bold">{product.productName}</h2>
+                <h2 className="text-lg font-bold text-black">{product.productName}</h2>
               </div>
               <p>{product.description}</p>
               <div className="flex justify-between mt-4">
@@ -192,14 +192,14 @@ export function CheckoutModal({
                 <div className="flex items-center">
                   <Button
                     onClick={() => handleQuantityChange(quantity - 1)}
-                    className="p-2"
+                    className="p-2 w-10 bg-transparent text-black hover:bg-transparent"
                   >
                     -
                   </Button>
                   <span className="mx-2">{quantity}</span>
                   <Button
                     onClick={() => handleQuantityChange(quantity + 1)}
-                    className="p-2"
+                    className="p-2 w-10 bg-transparent text-black hover:bg-transparent"
                   >
                     +
                   </Button>

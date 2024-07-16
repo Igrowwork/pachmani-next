@@ -89,7 +89,7 @@ export function AddressFormModal({ onSubmit, onClose }: { onSubmit: (data: any) 
     <div>
       {isModalOpen && (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full grid gap-5">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full grid gap-5  grid-cols-2">
             <FormField
               control={form.control}
               name="firstname"
@@ -210,7 +210,7 @@ export function AddressFormModal({ onSubmit, onClose }: { onSubmit: (data: any) 
                 </FormItem>
               )}
             />
-            <AlertDialogFooter>
+            <AlertDialogFooter className="col-span-2">
               <AlertDialogCancel onClick={handleCancel}>Cancel</AlertDialogCancel>
               <Button type="submit" className="mx-5 ml-4">
                 <AlertDialogAction>Next</AlertDialogAction>

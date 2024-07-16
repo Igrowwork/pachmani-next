@@ -46,12 +46,14 @@ export default function page({ params }: { params: { id: string } }) {
     priceAfterDiscount: string;
     price: string;
     discount: number;
+    stock: number;
   }
 
   const [sPrice, setPrice] = useState<Price>({
     priceAfterDiscount: "0.00",
     price: "0.00",
     discount: 0,
+    stock: 0,
   });
   const [product, setProduct] = useState<IProduct>();
   const [loading, setLoading] = useState(true);
@@ -79,7 +81,8 @@ export default function page({ params }: { params: { id: string } }) {
         setPrice({
           priceAfterDiscount: defaultVariant.priceAfterDiscount.toFixed(2),
           price: defaultVariant.price.toFixed(2),
-          discount: defaultVariant.discount,
+          discount: defaultVariant.discount.toFixed(2),
+          stock: defaultVariant.stock,
         });
         setIsQuant(defaultVariant._id);
         setLoading(false);
@@ -110,7 +113,9 @@ export default function page({ params }: { params: { id: string } }) {
     setIsCheckoutOpen(true);
   };
 
-  const selectedVariant = product?.variants.find(variant => variant._id === isQuant);
+  const selectedVariant = product?.variants.find(
+    (variant) => variant._id === isQuant
+  );
 
   return (
     <div>
@@ -156,18 +161,12 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        ₹{sPrice?.priceAfterDiscount + ""}
+                        ₹ {sPrice?.priceAfterDiscount}
                       </span>
+                      <span className="text-base">({sPrice?.stock})</span>
                       {sPrice?.discount > 0 && (
                         <>
-                          <span
-                            className={cn(
-                              "font-normal text-[1rem] line-through",
-                              lato.className
-                            )}
-                          >
-                            ₹{sPrice?.price + ""}
-                          </span>
+                          <span className={cn("font-normal text-[1rem] line-through",lato.className )}>  ₹{sPrice?.price + ""}</span>
                           <span
                             className={cn(
                               "font-normal text-[1rem] ",
@@ -202,7 +201,7 @@ export default function page({ params }: { params: { id: string } }) {
                           <span
                             key={i}
                             className={cn(
-                              "rounded-full flex justify-center items-center md:text-base md:h-14 md:w-14 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5" ,
+                              "rounded-full flex justify-center items-center md:text-base md:h-14 md:w-14 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5",
                               isQuant === _id ? "text-white bg-primaryMain" : ""
                             )}
                             onClick={() => {
@@ -212,6 +211,7 @@ export default function page({ params }: { params: { id: string } }) {
                                   price.toFixed(2),
                                 price: price.toFixed(2),
                                 discount: discount,
+                                stock: stock,
                               });
                               setIsQuant(_id);
                             }}
@@ -222,51 +222,55 @@ export default function page({ params }: { params: { id: string } }) {
                         )
                       )}
                     </div>
-                    <AlertDialog>
-                      <div className="grid md:grid-cols-2 md:gap-8 gap-3 mt-8">
-                        <AlertDialogTrigger asChild disabled={selectedVariant?.stock === 0}>
-                          <Button className="flex gap-3 p-3  bg-white justify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
-                            <MdOutlineShoppingBag /> Buy Now
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Add Address</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              <AddressFormModal
-                                onClose={() => () => {}}
-                                onSubmit={handleAddressSubmit}
-                              />
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                        </AlertDialogContent>
-
-                        <button
-                          onClick={() =>
-                            dispatch(
-                              addToCartAsync({
-                                productId: product._id,
-                                variantId: isQuant,
-                                quantity: 1,
-                                _id: undefined,
-                                variant: undefined,
-                                product: undefined,
-                              })
-                            )
-                          }
-                          className={cn(
-                            "flex gap-3 p-3 justify-center items-center bg-primaryMain  md:text-xl text-sm font-medium text-white border-[#00A958] border-2 rounded-md md:h-12 h-8",
-                            selectedVariant?.stock === 0 ? "cursor-not-allowed opacity-50" : ""
-                          )}
-                          disabled={selectedVariant?.stock === 0}
-                        >
-                          {loading2 && (
-                            <Loader2 className="w-4 h-4 animate-spin"></Loader2>
-                          )}
-                          <MdOutlineShoppingCart /> Add to Cart
-                        </button>
+                    {selectedVariant?.stock === 0 ? (
+                      <div className="text-2xl text-red-600 font-bold">
+                        Out Of Stock
                       </div>
-                    </AlertDialog>
+                    ) : (
+                      <AlertDialog>
+                        <div className="grid md:grid-cols-2 md:gap-8 gap-3 mt-8">
+                          <AlertDialogTrigger asChild>
+                            <Button className="flex gap-3 p-3 bg-white justify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
+                              <MdOutlineShoppingBag /> Buy Now
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Add Address</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                <AddressFormModal
+                                  onClose={() => () => {}}
+                                  onSubmit={handleAddressSubmit}
+                                />
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                          </AlertDialogContent>
+
+                          <button
+                            onClick={() =>
+                              dispatch(
+                                addToCartAsync({
+                                  productId: product._id,
+                                  variantId: isQuant,
+                                  quantity: 1,
+                                  _id: undefined,
+                                  variant: undefined,
+                                  product: undefined,
+                                })
+                              )
+                            }
+                            className={cn(
+                              "flex gap-3 p-3 justify-center items-center bg-primaryMain md:text-xl text-sm font-medium text-white border-[#00A958] border-2 rounded-md md:h-12 h-8"
+                            )}
+                          >
+                            {loading2 && (
+                              <Loader2 className="w-4 h-4 animate-spin"></Loader2>
+                            )}
+                            <MdOutlineShoppingCart /> Add to Cart
+                          </button>
+                        </div>
+                      </AlertDialog>
+                    )}
                   </div>
                 </div>
               </div>

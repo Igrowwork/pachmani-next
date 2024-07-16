@@ -38,7 +38,7 @@ export default function VerifyCode() {
       });
       router.push("/login");
     } catch (error: any) {
-      console.error(error.data.response.message);
+      console.error(error.data?.response?.message);
       setError(
         error.data.response.message || "An error occurred. Please try again."
       );
