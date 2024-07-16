@@ -62,8 +62,8 @@ const PhonePay = ({ shippingAddress }: { shippingAddress: number }) => {
       key: "rzp_test_tGN5HF7JdjxxRb",
       amount: order.amount,
       currency: "INR",
-      name: "aniket patidar",
-      description: "Tutorial of RazorPay",
+      name: "Your Company Name",
+      description: "Purchase Description",
       image: "https://avatars.githubusercontent.com/u/25058652?v=4",
       order_id: order.id,
       callback_url: `${process.env.NEXT_PUBLIC_URL}/api/order/paymentverification/${shippingAddress}`,
@@ -76,7 +76,7 @@ const PhonePay = ({ shippingAddress }: { shippingAddress: number }) => {
         address: "Razorpay Corporate Office",
       },
       theme: {
-        color: "#121212",
+        color: "#3399cc",
       },
     };
     const razor = new window.Razorpay(options);

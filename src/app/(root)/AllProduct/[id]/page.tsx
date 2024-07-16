@@ -1,4 +1,3 @@
-// pages/product/[id]/page.tsx
 "use client";
 import CustomHead from "@/UI/customHead";
 import { forum, lato } from "@/app/font";
@@ -76,12 +75,13 @@ export default function page({ params }: { params: { id: string } }) {
       try {
         const { data } = await api.get(`product/${params.id}`);
         setProduct(data.product);
+        const defaultVariant = data.product.variants[0];
         setPrice({
-          priceAfterDiscount: data.product.variants[0].priceAfterDiscount.toFixed(2),
-          price: data.product.variants[0].price.toFixed(2),
-          discount: data.product.variants[0].discount,
+          priceAfterDiscount: defaultVariant.priceAfterDiscount.toFixed(2),
+          price: defaultVariant.price.toFixed(2),
+          discount: defaultVariant.discount,
         });
-        setIsQuant(data.product.variants[0]._id);
+        setIsQuant(defaultVariant._id);
         setLoading(false);
       } catch (error: any) {
         setError(error);
@@ -110,6 +110,8 @@ export default function page({ params }: { params: { id: string } }) {
     setIsCheckoutOpen(true);
   };
 
+  const selectedVariant = product?.variants.find(variant => variant._id === isQuant);
+
   return (
     <div>
       {product && (
@@ -117,7 +119,7 @@ export default function page({ params }: { params: { id: string } }) {
           <div className="max-w-7xl mx-auto w-full h-full md:p-2 p-6">
             <div>
               <div>
-                <CustomHead name={product.category + ""} className="w-10/12" />
+                <CustomHead name={product?.category + ""} className="w-10/12" />
                 <div className=" grid md:grid-cols-7 gap-8 grid-cols-1">
                   <div className="col-span-3 w-full rounded-md overflow-hidden">
                     <div className="h-full w-full">
@@ -133,13 +135,13 @@ export default function page({ params }: { params: { id: string } }) {
                         forum.className
                       )}
                     >
-                      {product.productName + ""}
+                      {product?.productName + ""}
                     </h1>
                     <div className="text-xs text-[#00AB55] mt-3">
                       4.3 &#9733;
                     </div>
                     <p className="md:text-xl text-sm text-[#4A3F3F] mt-2">
-                      {product.description + ""}
+                      {product?.description + ""}
                     </p>
                     <h2
                       className={cn(
@@ -154,24 +156,28 @@ export default function page({ params }: { params: { id: string } }) {
                           lato.className
                         )}
                       >
-                        ₹{sPrice.priceAfterDiscount + ""}
+                        ₹{sPrice?.priceAfterDiscount + ""}
                       </span>
-                      <span
-                        className={cn(
-                          "font-normal text-[1rem] line-through",
-                          lato.className
-                        )}
-                      >
-                        ₹{sPrice.price + ""}
-                      </span>
-                      <span
-                        className={cn(
-                          "font-normal text-[1rem] ",
-                          lato.className
-                        )}
-                      >
-                        {sPrice.discount + ""}%
-                      </span>
+                      {sPrice?.discount > 0 && (
+                        <>
+                          <span
+                            className={cn(
+                              "font-normal text-[1rem] line-through",
+                              lato.className
+                            )}
+                          >
+                            ₹{sPrice?.price + ""}
+                          </span>
+                          <span
+                            className={cn(
+                              "font-normal text-[1rem] ",
+                              lato.className
+                            )}
+                          >
+                            {sPrice?.discount + ""}%
+                          </span>
+                        </>
+                      )}
                     </h2>
                     <p className="md:text-sm text-xs text-[#4A3F3F] mt-2">
                       (incl. off all taxes)
@@ -196,7 +202,7 @@ export default function page({ params }: { params: { id: string } }) {
                           <span
                             key={i}
                             className={cn(
-                              "rounded-full flex justify-center items-center md:text-base md:h-14 md:w-14 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5",
+                              "rounded-full flex justify-center items-center md:text-base md:h-14 md:w-14 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5" ,
                               isQuant === _id ? "text-white bg-primaryMain" : ""
                             )}
                             onClick={() => {
@@ -218,7 +224,7 @@ export default function page({ params }: { params: { id: string } }) {
                     </div>
                     <AlertDialog>
                       <div className="grid md:grid-cols-2 md:gap-8 gap-3 mt-8">
-                        <AlertDialogTrigger asChild>
+                        <AlertDialogTrigger asChild disabled={selectedVariant?.stock === 0}>
                           <Button className="flex gap-3 p-3  bg-white justify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
                             <MdOutlineShoppingBag /> Buy Now
                           </Button>
@@ -227,7 +233,10 @@ export default function page({ params }: { params: { id: string } }) {
                           <AlertDialogHeader>
                             <AlertDialogTitle>Add Address</AlertDialogTitle>
                             <AlertDialogDescription>
-                              <AddressFormModal onSubmit={handleAddressSubmit} />
+                              <AddressFormModal
+                                onClose={() => () => {}}
+                                onSubmit={handleAddressSubmit}
+                              />
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                         </AlertDialogContent>
@@ -245,7 +254,11 @@ export default function page({ params }: { params: { id: string } }) {
                               })
                             )
                           }
-                          className="flex gap-3 p-3 justify-center items-center bg-primaryMain  md:text-xl text-sm font-medium text-white border-[#00A958] border-2 rounded-md md:h-12 h-8"
+                          className={cn(
+                            "flex gap-3 p-3 justify-center items-center bg-primaryMain  md:text-xl text-sm font-medium text-white border-[#00A958] border-2 rounded-md md:h-12 h-8",
+                            selectedVariant?.stock === 0 ? "cursor-not-allowed opacity-50" : ""
+                          )}
+                          disabled={selectedVariant?.stock === 0}
                         >
                           {loading2 && (
                             <Loader2 className="w-4 h-4 animate-spin"></Loader2>
@@ -270,17 +283,18 @@ export default function page({ params }: { params: { id: string } }) {
           </div>
         </div>
       )}
-     {product && <CheckoutModal
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        product={product}
-        variantId={product?.variants[0]?._id}
-        address={address}
-        price={sPrice}
-        isPaymentLoading={isPaymentLoading}
-        onUpdateQuantity={setQuantity}
-
-      />}
+      {product && (
+        <CheckoutModal
+          isOpen={isCheckoutOpen}
+          onClose={() => setIsCheckoutOpen(false)}
+          product={product}
+          variantId={isQuant}
+          address={address}
+          price={sPrice}
+          isPaymentLoading={isPaymentLoading}
+          onUpdateQuantity={setQuantity}
+        />
+      )}
     </div>
   );
 }

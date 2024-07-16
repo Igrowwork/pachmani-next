@@ -102,7 +102,7 @@ export default function AllProduct() {
                         ₹{variants[0]?.priceAfterDiscount?.toFixed(2)}
                       </span>
                       <span className="text-[hsl(0,0%,52%)] font-extralight line-through">
-                        ₹{(variants[0]?.price).toFixed(2)}
+                        ₹{(variants[0]?.price)?.toFixed(2)}
                       </span>
                       <span className="text-[#858585]">|</span>
                       <span className="text-primaryMain font-extralight">

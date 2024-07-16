@@ -182,7 +182,6 @@ const AddProducts: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const { variants, ...productData } = isVal;
-    console.log({ productData, variantData: variants });
     isFetch();
     setIsVal(initialProductState)
   };

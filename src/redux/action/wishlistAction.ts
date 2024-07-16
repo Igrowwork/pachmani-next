@@ -21,7 +21,6 @@ export interface Product {
     try {
       dispatch(setIsLoading(true));
       const { data } = await api.post(`product/wishlist`);
-      // console.log(data?.wishlist)
       dispatch(getProducts(data?.wishlist));
     } catch (err) {
       console.log(err , "===")

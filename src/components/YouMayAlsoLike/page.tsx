@@ -19,9 +19,11 @@ export default function YouMayAlsoLike() {
     <div>
         <CustomHead name='You may also like' className='w-11/12' />
         <div className='max-w-7xl mx-auto grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8'>
-            { arr?.map((ele,i) => (
-                <OurBestSellerCard ele={ele} />
-            ))}
+           {/* todo */}
+        
+            {/* { arr?.map((ele,i) => (
+                
+            ))} */}
         </div>
     </div>
   )
