@@ -83,6 +83,10 @@ export default function Navbar() {
     }
   }, [searchTerm, debouncedFetchProducts]);
 
+  useEffect(()=>{
+
+  },[])
+
   return (
     <>
       <div className="bg-white">
@@ -125,7 +129,7 @@ export default function Navbar() {
                   {cartItems.length > 0 && <p>{cartItems.length}</p>}
                   <HiOutlineShoppingBag
                     className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
-                    onClick={() => cartItems.length > 0 && setIsDraw(true)}
+                    onClick={() => cartItems.length >= 0 && setIsDraw(true)}
                   />
                 </div>
                 <Link href={"/profile"}>

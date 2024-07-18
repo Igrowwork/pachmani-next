@@ -7,13 +7,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { getHomeCart } from "@/redux/action/homeProductAction";
-import Image from "next/image";
-import { Icons } from "@/app/icons";
-import { cn } from "@/lib/utils";
-import { lato } from "@/app/font";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
-import api from "@/lib/axios";
-import { addWish } from "@/redux/action/wishlistAddAction";
+
 import OurBestSellerCard from "../Card/OurBestSellerCard/page";
 
 export default function OurBestSeller() {
@@ -54,8 +48,8 @@ export default function OurBestSeller() {
           }}
           breakpoints={{
             320: {
-              slidesPerView: 1.3,
-              spaceBetween: 4,
+              slidesPerView: 1.1,
+              spaceBetween: 2,
             },
             600: {
               slidesPerView: 2,
@@ -78,8 +72,8 @@ export default function OurBestSeller() {
             nextEl: `.HomeSlideNext`,
           }}
           autoplay={{
-            delay: 3000, // Delay between slides in milliseconds
-            disableOnInteraction: false, // Continue autoplay after user interactions
+            delay: 3000,
+            disableOnInteraction: false,
           }}
           loop={true}
           modules={[Keyboard, Navigation, Autoplay]}

@@ -29,15 +29,16 @@ export default function OurIngradient() {
       <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-x-8 md:gap-y-5  sm:gap-3 gap-2">
         {arr.map((ele, i) => (
           <div className="grid gap-1 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)]  items-center rounded-md p-2 border-[#00AB5533] border">
-            <div className="relative w-full h-20">
+            <div className="relative h-20">
               <Image
                 src={`/Assests/Images/HomeImage/${ele.img}`}
                 alt="No Preview"
                 fill
+                layout="fill"
                 objectFit="contain"
-                className="md:scale-110 sm:scale-100 scale-100"
+                className=" md:scale-110 sm:scale-100 scale-100 bg-white drop-shadow-[0px_1px_1px_0px_rgba(0,0,0,0.15)]"
               />
-              {/* <div className=" h-full w-[60%] rounded-full mx-auto  shadow-[0px_1px_1px_0px_rgba(0,0,0,0.15)]" /> */}
+              {/* <div className=" h-full w-[60%] rounded-full mx-auto shadow-[0px_1px_1px_0px_rgba(0,0,0,0.15)]" /> */}
             </div>
             <div className="capitalize md:text-xl sm:text-lg text-base font-normal text-center">{ele?.name}</div>
           </div>

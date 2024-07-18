@@ -106,10 +106,13 @@ export default function CartDrawer({ val }: { val: () => void }) {
             onClick={val}
           />
           {loading ? (
-            <Loader className="w-4 h-4 animate-spin" />
+            <div className="h-screen w-full flex justify-center items-center">
+              <Loader className="w-8 h-8 animate-spin" />
+
+            </div>
           ) : (
             <div className="fixed top-0 right-0 md:w-[31.25rem] bg-white h-full">
-              <div className="bg-white">
+              <div className="bg-white shadow-xl">
                 <div className="flex text-xs text-center items-center gap-5 p-3 text-primaryMain font-normal shadow-lg w-full">
                   <h1 className="text-center w-full">
                     {cartItems?.length || 0} Items in your bag

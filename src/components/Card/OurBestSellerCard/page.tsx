@@ -38,7 +38,7 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
 
   return (
     <div className="rounded-2xl shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-3 overflow-auto hover:scale-105 transition-all duration-300 ease-in-out ">
-      <div className="relative md:h-52 h-44 w-full">
+      <div className="relative md:h-52 sm:h-44 h-40 w-full">
         <Image
           src={product?.thumbnail?.url ?? ""}
           alt="No Preview"
@@ -63,8 +63,8 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
         <div className="md:text-sm text-xs text-[#313131] truncate">
           {product?.description}
         </div>
-        <div className="my-2 ">
-          <div className="flex items-center gap-2">
+        <div className="md:my-2 my-1 ">
+          <div className="flex items-center md:gap-2 gap-1">
             <span className="text-black font-semibold">
               ₹{product?.variants[0]?.priceAfterDiscount?.toFixed(2)}
             </span>
@@ -81,14 +81,14 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
             )}
           </div>
           <div className="flex justify-between items-center">
-            <div className="flex gap-2 my-2.5">
+            <div className="flex gap-2 my-2.5 max-sm:overflow-x-scroll no-scrollbar max-md:w-28">
               {product?.variants?.map(({ price }, i) => (
                 <span className="font-normal text-primaryMain border border-primaryMain text-xs p-0.5 rounded-xl px-2">
                   {price}ml
                 </span>
               ))}
             </div>
-            <div className="flex text-xs items-center gap-2 pr-3">
+            <div className="flex md:text-xs text-[10px] items-center md:gap-2 md:pr-3">
               <span className="bg-[#2D8A40] text-white p-1 px-2 font-normal rounded-full">
                 2.5 &#x2605;
               </span>
@@ -100,7 +100,7 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
       <Link
         href={`AllProduct/${product?._id}`}
         className={cn(
-          "flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1 justify-center items-center text-lg font-medium text-white rounded-b-2xl",
+          "flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1.5 justify-center items-center md:text-lg text-base font-medium text-white rounded-b-2xl",
           lato.className
         )}
       >

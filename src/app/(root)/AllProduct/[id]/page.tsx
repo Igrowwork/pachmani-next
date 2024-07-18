@@ -133,7 +133,7 @@ export default function page({ params }: { params: { id: string } }) {
                       )}
                     </div>
                   </div>
-                  <div className="grid col-span-4 w-[80%]">
+                  <div className="grid col-span-4 md:w-[90%]">
                     <h1
                       className={cn(
                         "md:text-[2.5rem] text-3xl",
@@ -143,7 +143,7 @@ export default function page({ params }: { params: { id: string } }) {
                       {product?.productName + ""}
                     </h1>
                     <div className="text-xs text-[#00AB55] mt-3">
-                      4.3 &#9733;
+                      4.3 &#9733; ({product?.reviews?.length})
                     </div>
                     <p className="md:text-xl text-sm text-[#4A3F3F] mt-2">
                       {product?.description + ""}
@@ -157,7 +157,7 @@ export default function page({ params }: { params: { id: string } }) {
                       MRP
                       <span
                         className={cn(
-                          "font-normal text-[2rem]",
+                          "font-normal md:text-[2rem] sm:text-[1.5rem] text-base", 
                           lato.className
                         )}
                       >
@@ -272,15 +272,17 @@ export default function page({ params }: { params: { id: string } }) {
                       </AlertDialog>
                     )}
                   </div>
+
+                  
                 </div>
               </div>
             </div>
-            <ClinicallyTested howToUse={product?.howToUse} />
+            <ClinicallyTested howToUse={product?.howToUse} highLight={product?.highlights} ingradient={product?.ingredients} />
           </div>
-          <OurIngradient />
-          <Benifit />
+          {/* <OurIngradient /> */}
+          {/* <Benifit /> */}
           <div className="max-w-7xl mx-auto w-full h-full md:p-0 p-6">
-            <OurCertification />
+            {/* <OurCertification /> */}
             <YouMayAlsoLike />
             <Review />
             <FAQ />

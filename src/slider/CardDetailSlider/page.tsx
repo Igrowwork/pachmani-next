@@ -24,8 +24,8 @@ export default function CardDetailSlider({ imgArr }: { imgArr:{ fileId: string; 
           <Swiper
             spaceBetween={0}
             navigation={{
-              nextEl: "next",
-              prevEl: "prev",
+              prevEl: ".HomeSlidePrev",
+              nextEl: ".HomeSlideNext",
             }}
             thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
             modules={[FreeMode, Navigation, Thumbs]}
@@ -50,7 +50,7 @@ export default function CardDetailSlider({ imgArr }: { imgArr:{ fileId: string; 
               <FaArrowLeftLong className="px-1 " />
             </button>
             <button className="HomeSlideNext text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 -right-5 z-10 rounded-sm hover:bg-primaryMain/80 scale-75">
-              <FaArrowRightLong className="px-1 " />
+              <FaArrowRightLong className="px-1" />
             </button>
           </div>
           <Swiper
@@ -59,9 +59,6 @@ export default function CardDetailSlider({ imgArr }: { imgArr:{ fileId: string; 
             direction="horizontal"
             spaceBetween={16}
             slidesPerView={3}
-            // freeMode={true}
-            // watchSlidesProgress={true}
-            // loop={true}
             modules={[FreeMode, Navigation, Thumbs, Pagination]}
             navigation={{
               prevEl: `.HomeSlidePrev`,
