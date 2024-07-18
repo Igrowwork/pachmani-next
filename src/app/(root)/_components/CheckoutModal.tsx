@@ -14,6 +14,8 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import api from "@/lib/axios";
+import { cn } from "@/lib/utils";
+import { forum } from "@/app/font";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -163,7 +165,7 @@ export function CheckoutModal({
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent className="w-full max-w-lg p-6 bg-white">
         <AlertDialogHeader>
-          <AlertDialogTitle>Checkout</AlertDialogTitle>
+          <AlertDialogTitle className="w-full text-center">Checkout</AlertDialogTitle>
           <AlertDialogDescription>
             <div>
               <div className="flex items-center mb-4">
@@ -172,42 +174,42 @@ export function CheckoutModal({
                   alt={product.productName}
                   className="w-16 h-16 mr-4"
                 />
-                <h2 className="text-lg font-bold text-black">{product.productName}</h2>
+                <h2 className={cn("text-xl font-bold text-black" , forum.className)}>{product.productName}</h2>
               </div>
-              <p>{product.description}</p>
-              <div className="flex justify-between mt-4">
+              <p className="text-secondary-main">{product.description}</p>
+              <div className="flex justify-between mt-4 text-secondary-main ">
                 <span>Price:</span>
-                <span>₹{price.priceAfterDiscount}</span>
+                <span className="text-black">₹{ price.priceAfterDiscount}</span>
               </div>
-              <div className="flex justify-between mt-2">
+              <div className="flex justify-between mt-2 text-secondary-main ">
                 <span>Discount:</span>
-                <span>₹{discountAmount}</span>
+                <span className="text-black">₹{discountAmount}</span>
               </div>
-              <div className="flex justify-between mt-2">
+              <div className="flex justify-between mt-2 text-secondary-main ">
                 <span>Delivery Charges:</span>
-                <span>₹{deliveryCharges}</span>
+                <span className="text-black">₹{deliveryCharges}</span>
               </div>
-              <div className="flex justify-between mt-2">
+              <div className="flex justify-between mt-2 text-secondary-main ">
                 <span>Quantity:</span>
-                <div className="flex items-center">
-                  <Button
+                <div className="flex items-center border border-black rounded-sm gap-3 p-0.5 px-1">
+                  <span
                     onClick={() => handleQuantityChange(quantity - 1)}
-                    className="p-2 w-10 bg-transparent text-black hover:bg-transparent"
+                    className="bg-transparent text-black hover:bg-transparent"
                   >
                     -
-                  </Button>
+                  </span>
                   <span className="mx-2">{quantity}</span>
-                  <Button
+                  <span 
                     onClick={() => handleQuantityChange(quantity + 1)}
-                    className="p-2 w-10 bg-transparent text-black hover:bg-transparent"
+                    className="bg-transparent text-black hover:bg-transparent"
                   >
                     +
-                  </Button>
+                  </span>
                 </div>
               </div>
-              <div className="flex justify-between mt-2">
+              <div className="flex justify-between mt-2 text-secondary-main font-semibold text-lg">
                 <span>Total:</span>
-                <span>₹{totalPrice}</span>
+                <span className="">₹{totalPrice}</span>
               </div>
               {errorMessage && (
                 <div className="text-red-500 mt-2">{errorMessage}</div>
@@ -216,7 +218,7 @@ export function CheckoutModal({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <Button
+          <Button className="bg-primaryMain hover:bg-primaryMain text-white hover:text-white"
             onClick={() => {
               if (!address) {
                 alert("Please add a shipping address");
@@ -228,8 +230,8 @@ export function CheckoutModal({
           >
             {isPaymentLoading ? "Processing..." : "Pay Now"}
           </Button>
-          <AlertDialogAction asChild>
-            <Button onClick={onClose} variant="outline">
+          <AlertDialogAction asChild onClick={onClose} >
+            <Button className="bg-primaryMain hover:bg-primaryMain text-white hover:text-white" variant="outline">
               Cancel
             </Button>
           </AlertDialogAction>

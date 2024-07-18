@@ -125,7 +125,7 @@ export default function page({ params }: { params: { id: string } }) {
             <div>
               <div>
                 <CustomHead name={product?.category + ""} className="w-10/12" />
-                <div className=" grid md:grid-cols-7 gap-8 grid-cols-1">
+                <div className=" grid md:grid-cols-7 md:gap-8 sm:gap-6 gap-4 grid-cols-1">
                   <div className="col-span-3 w-full rounded-md overflow-hidden">
                     <div className="h-full w-full">
                       {filteredImages.length > 0 && (
@@ -133,7 +133,7 @@ export default function page({ params }: { params: { id: string } }) {
                       )}
                     </div>
                   </div>
-                  <div className="grid col-span-4 md:w-[90%]">
+                  <div className="grid col-span-4 md:w-[90%] w-full">
                     <h1
                       className={cn(
                         "md:text-[2.5rem] text-3xl",
@@ -150,7 +150,7 @@ export default function page({ params }: { params: { id: string } }) {
                     </p>
                     <h2
                       className={cn(
-                        "md:text-[1.75rem] text-xl mt-6 flex gap-4 items-center",
+                        "md:text-[1.75rem] text-xl md:mt-6 sm:mt-4 mt-2 flex gap-4 items-center",
                         forum.className
                       )}
                     >
@@ -181,10 +181,10 @@ export default function page({ params }: { params: { id: string } }) {
                     <p className="md:text-sm text-xs text-[#4A3F3F] mt-2">
                       (incl. off all taxes)
                     </p>
-                    <h4 className="md:text-xl text-lg text-[#4A3F3F] mt-6">
+                    <h4 className="xl:text-xl md:text-lg sm:text-base text-sm text-[#4A3F3F] md:mt-6 sm:mt-4 mt-2">
                       Available in : (Net Quantity)
                     </h4>
-                    <div className="flex md:gap-8 gap-2 mt-4">
+                    <div className="flex md:gap-8 gap-2 md:mt-4 mt-2">
                       {product.variants.map(
                         (
                           {
@@ -201,7 +201,7 @@ export default function page({ params }: { params: { id: string } }) {
                           <span
                             key={i}
                             className={cn(
-                              "rounded-full flex justify-center items-center md:text-base md:h-14 md:w-14 h-10 w-10 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] p-2.5",
+                              "rounded-full flex justify-center items-center md:text-base md:h-14 md:w-14 h-12 w-12 cursor-pointer hover:bg-[#00AB55] hover:text-white text-[#00AB55] border-[#00AB55] border-[1px] md:p-2.5 sm:p-2 p-1.5 text-sm ",
                               isQuant === _id ? "text-white bg-primaryMain" : ""
                             )}
                             onClick={() => {
@@ -209,9 +209,9 @@ export default function page({ params }: { params: { id: string } }) {
                                 priceAfterDiscount:
                                   priceAfterDiscount?.toFixed(2) ??
                                   price.toFixed(2),
-                                price: price.toFixed(2),
-                                discount: discount,
-                                stock: stock,
+                                  price: price.toFixed(2),
+                                  discount: discount,
+                                  stock: stock,
                               });
                               setIsQuant(_id);
                             }}
@@ -223,12 +223,12 @@ export default function page({ params }: { params: { id: string } }) {
                       )}
                     </div>
                     {selectedVariant?.stock === 0 ? (
-                      <div className="text-2xl text-red-600 font-bold">
+                      <div className="md:text-2xl sm:text-xl text-lg text-red-600 font-bold">
                         Out Of Stock
                       </div>
                     ) : (
                       <AlertDialog>
-                        <div className="grid md:grid-cols-2 md:gap-8 gap-3 mt-8">
+                        <div className="grid md:grid-cols-2 md:gap-8 gap-3 md:mt-8 sm:mt-6 mt-4">
                           <AlertDialogTrigger asChild>
                             <Button className="flex gap-3 p-3 bg-white justify-center items-center hover:bg-[#00A958] md:text-xl text-sm font-medium hover:text-white text-[#00A958] border-[#00A958] border-2 rounded-md md:h-12 h-8">
                               <MdOutlineShoppingBag /> Buy Now
@@ -236,7 +236,7 @@ export default function page({ params }: { params: { id: string } }) {
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
-                              <AlertDialogTitle>Add Address</AlertDialogTitle>
+                              <AlertDialogTitle className="text-center w-full">Add Address</AlertDialogTitle>
                               <AlertDialogDescription>
                                 <AddressFormModal
                                   onClose={() => () => {}}

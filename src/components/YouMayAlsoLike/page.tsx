@@ -37,8 +37,8 @@ export default function YouMayAlsoLike() {
           }}
           breakpoints={{
             320: {
-              slidesPerView: 1.3,
-              spaceBetween: 4,
+              slidesPerView: 1.1,
+              spaceBetween: 2,
             },
             600: {
               slidesPerView: 2,

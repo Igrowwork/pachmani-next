@@ -15,6 +15,7 @@ import { FreeMode, Navigation, Pagination } from "swiper/modules";
 import TestimonalCard from "../Card/TestimonalCard/page";
 
 export default function TestimonalSlider() {
+    
   const arr = [
     {
       name: "Mila McSabbu",
@@ -48,9 +49,9 @@ export default function TestimonalSlider() {
       
       <div className="relative mt-6 w-full h-full">
         <div className=' w-full h-full text-3xl'>
-            <button className='HomeSlidePrev text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 left-0 z-10 rounded-sm hover:bg-primaryMain/80 max-sm:hidden'><FaArrowLeftLong  className="px-1.5 "/></button>
-            <button className='HomeSlideNext text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 right-0 z-10 rounded-sm hover:bg-primaryMain/80 max-sm:hidden'><FaArrowRightLong className="px-1.5 " /></button>
-          </div>
+          <button className='HomeSlidePrev text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 left-0 z-10 rounded-sm hover:bg-primaryMain/80 max-sm:hidden'><FaArrowLeftLong  className="px-1.5 "/></button>
+          <button className='HomeSlideNext text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 right-0 z-10 rounded-sm hover:bg-primaryMain/80 max-sm:hidden'><FaArrowRightLong className="px-1.5 " /></button>
+        </div>
         <Swiper
           spaceBetween={20}
           freeMode={true}
@@ -78,12 +79,10 @@ export default function TestimonalSlider() {
         >
           {arr?.map((ele, i) => (
             <SwiperSlide className='p-4'>
-              <TestimonalCard key={i} val={ele} />
-                  
+              <TestimonalCard key={i} val={ele} /> 
             </SwiperSlide>
           ))}
         </Swiper>
-
       </div>
     </div>
   );

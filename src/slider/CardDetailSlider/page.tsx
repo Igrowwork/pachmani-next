@@ -20,7 +20,7 @@ export default function CardDetailSlider({ imgArr }: { imgArr:{ fileId: string; 
   return (
     <div>
       <div className="">
-        <div className="mt-4 relative h-80">
+        <div className="mt-4 relative md:h-80 sm:h-64 h-56">
           <Swiper
             spaceBetween={0}
             navigation={{
@@ -44,7 +44,7 @@ export default function CardDetailSlider({ imgArr }: { imgArr:{ fileId: string; 
             ))}
           </Swiper>
         </div>
-        <div className="relative w-[90%]  mx-auto">
+        <div className="relative w-[90%] mx-auto">
           <div className="w-full h-full text-3xl">
             <button className="HomeSlidePrev text-white bg-primaryMain absolute top-1/2 -translate-y-1/2 -left-5 z-10 rounded-sm hover:bg-primaryMain/80 scale-75">
               <FaArrowLeftLong className="px-1 " />
@@ -64,7 +64,7 @@ export default function CardDetailSlider({ imgArr }: { imgArr:{ fileId: string; 
               prevEl: `.HomeSlidePrev`,
               nextEl: `.HomeSlideNext`,
             }}
-            className="mySwiper2 h-32 w-full mt-4"
+            className="mySwiper2 md:h-32 h-24 w-full mt-4"
           >
             {imgArr.map(({url}, index) => (
               <SwiperSlide key={index} className="h-full w-full">

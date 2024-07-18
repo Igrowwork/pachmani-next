@@ -34,6 +34,7 @@ import axios from "axios";
 import debounce from "lodash.debounce";
 import api from "@/lib/axios";
 import { IProduct } from "@/lib/types/products";
+import { getAllCartItemsAsync } from "@/redux/action/addTocartAction";
 
 export default function Navbar() {
   const [isVal, setIsVal] = useState(false);
@@ -83,8 +84,9 @@ export default function Navbar() {
     }
   }, [searchTerm, debouncedFetchProducts]);
 
+  
   useEffect(()=>{
-
+     dispatch(getAllCartItemsAsync())
   },[])
 
   return (
@@ -95,7 +97,7 @@ export default function Navbar() {
             <AnimatePresence>
               <MenuIcon
                 className="text-black cursor-pointer h-6 w-6 max-sm:h-5 max-sm:w-5 "
-                onClick={() => setIsMenu(true)}
+                onClick={() => setIsMenu(!isMenu)}
               />
             </AnimatePresence>
             <div className="flex items-center gap-3 rounded-md p-2 relative cursor-pointer">
@@ -125,8 +127,8 @@ export default function Navbar() {
           <div className="flex justify-end gap-4 items-center">
             {isAuthenticated && (
               <>
-                <div>
-                  {cartItems.length > 0 && <p>{cartItems.length}</p>}
+                <div className="relative">
+                  {cartItems.length > 0 && <p className="bg-primaryMain text-white rounded-full flex justify-center items-center absolute w-4 h-4 -top-2 -right-2 text-xs">{cartItems.length}</p>}
                   <HiOutlineShoppingBag
                     className="cursor-pointer hover:text-[#00AB55] h-6 w-6"
                     onClick={() => cartItems.length >= 0 && setIsDraw(true)}

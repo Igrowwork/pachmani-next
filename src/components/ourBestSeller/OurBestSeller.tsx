@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { getHomeCart } from "@/redux/action/homeProductAction";
 
 import OurBestSellerCard from "../Card/OurBestSellerCard/page";
+import { Loader } from "lucide-react";
 
 export default function OurBestSeller() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,6 +27,14 @@ export default function OurBestSeller() {
   useEffect(() => {
     setProducts(product);
   }, [product]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-96 h-full w-full">
+        <Loader className="animate-spin w-6 h-6 text-primaryMain"></Loader>
+      </div>
+    );
+  }
   return (
     <div className="md:my-10 sm:my-8 my-6 w-full h-full max-w-7xl mx-auto xl:px-0 px-6">
       <div className="flex justify-between items-center">

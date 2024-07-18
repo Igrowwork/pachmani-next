@@ -210,10 +210,10 @@ export function AddressFormModal({ onSubmit, onClose }: { onSubmit: (data: any) 
                 </FormItem>
               )}
             />
-            <AlertDialogFooter className="col-span-2">
+            <AlertDialogFooter className="col-span-2 flex gap-2">
               <AlertDialogCancel onClick={handleCancel}>Cancel</AlertDialogCancel>
-              <Button type="submit" className="mx-5 ml-4">
-                <AlertDialogAction>Next</AlertDialogAction>
+              <Button type="submit" className="mx-5 ml-4 bg-primaryMain hover:bg-primaryMain">
+                <AlertDialogAction className="">Next</AlertDialogAction>
               </Button>
             </AlertDialogFooter>
           </form>
