@@ -84,7 +84,7 @@ const PhonePay = ({ shippingAddress }: { shippingAddress: number }) => {
   };
 
   return (
-    <div
+    <div className="bg-primaryMain text-white cursor-pointer p-2 rounded-sm flex justify-center"
       onClick={() => {
         if (shippingAddress == -1) {
           alert("Please select a shipping address");
@@ -93,7 +93,7 @@ const PhonePay = ({ shippingAddress }: { shippingAddress: number }) => {
         }
       }}
     >
-      PhonePay
+      Pay Now
     </div>
   );
 };

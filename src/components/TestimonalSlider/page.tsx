@@ -18,30 +18,41 @@ export default function TestimonalSlider() {
     
   const arr = [
     {
-      name: "Mila McSabbu",
-      title: "Freelance Designer",
-      img: "/Assests/Images/HairImage/02.jpeg",
-      data: "OMG! I cannot believe that I have got a brand new landing page after getting appmax. It was super easy to edit and publish.",
+      "name": "John Doe",
+      "title": "Health Enthusiast",
+      "image": "https://randomuser.me/api/portraits/men/1.jpg",
+      "data": "I have been using the products from Pachmarhi Ayurveda for a few months now, and I can confidently say that they are of top-notch quality. The natural ingredients used in the products have significantly improved my overall well-being. Highly recommend!"
     },
     {
-      name: "Robert Fox",
-      title: "UI/UX Designer",
-      img: "/Assests/Images/HairImage/12.jpeg",
-      data: "OMG! I cannot believe that I have got a brand new landing page after getting appmax. It was super easy to edit and publish.",
+      "name": "Jane Smith",
+      "title": "Yoga Instructor",
+      "image": "https://randomuser.me/api/portraits/women/2.jpg",
+      "data": "Pachmarhi Ayurveda's products have become an essential part of my daily routine. Their quality and effectiveness are unmatched. My skin and health have never felt better."
     },
     {
-      name: "Jenny Wilson",
-      title: "Web Developer",
-      img: "/Assests/Images/HairImage/13.jpeg",
-      data: "OMG! I cannot believe that I have got a brand new landing page after getting appmax. It was super easy to edit and publish.",
+      "name": "Michael Johnson",
+      "title": "Fitness Trainer",
+      "image": "https://randomuser.me/api/portraits/men/3.jpg",
+      "data": "As a fitness trainer, I am very particular about the products I use. Pachmarhi Ayurveda has exceeded my expectations with their all-natural and effective products. I highly recommend them to anyone looking to improve their health."
     },
     {
-      name: "Mila Web Developer",
-      title: "Freelance Designer",
-      img: "/Assests/Images/HairImage/02.jpeg",
-      data: "OMG! I cannot believe that I have got a brand new landing page after getting appmax. It was super easy to edit and publish.",
+      "name": "Emily Davis",
+      "title": "Nutritionist",
+      "image": "https://randomuser.me/api/portraits/women/4.jpg",
+      "data": "The quality and purity of Pachmarhi Ayurveda products are impressive. As a nutritionist, I appreciate their commitment to natural ingredients. Their products have positively impacted my clients and me."
     },
-  ];
+    {
+      "name": "Robert Brown",
+      "title": "Wellness Coach",
+      "image": "https://randomuser.me/api/portraits/men/5.jpg",
+      "data": "I am extremely satisfied with Pachmarhi Ayurveda's products. Their attention to detail and dedication to quality make them stand out. I recommend their products to all my clients."
+    },
+    {
+      "name": "Sophia Wilson",
+      "title": "Herbalist",
+      "image": "https://randomuser.me/api/portraits/women/6.jpg",
+      "data": "Pachmarhi Ayurveda offers the best Ayurvedic products I have ever used. Their natural formulations are highly effective, and I have noticed significant improvements in my health since using them."
+    }]
   return (
     <div>
       <CustomHead name="Testimonials" className="w-1/2" />

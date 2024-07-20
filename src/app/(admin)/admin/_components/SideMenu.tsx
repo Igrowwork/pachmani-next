@@ -53,6 +53,11 @@ export default function SideMenu() {
         },
       ],
     },
+    {
+      name: "Contact Us",
+      icon: "",
+      path: "/admin/contact-us",
+    },
   ];
 
   const handleBannerClick = () => {

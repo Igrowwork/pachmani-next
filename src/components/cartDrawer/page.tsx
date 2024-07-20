@@ -125,8 +125,8 @@ export default function CartDrawer({ val }: { val: () => void }) {
                 </div>
                 {
                   cartItems?.length > 0 ?
-                  <div className="h-screen w-full overflow-y-scroll custom-scrollbar p-4 pb-10">
-                    <div className="grid gap-4 ">
+                  <div className="h-screen overflow-y-scroll custom-y-scrollbar py-4 pb-10">
+                    <div className="grid gap-4 max-h-72 overflow-y-scroll">
                       {cartItems && cartItems.length > 0 ? (
                         // _id, product, variant, quantity
                         cartItems?.map((items, i) => (
@@ -137,7 +137,7 @@ export default function CartDrawer({ val }: { val: () => void }) {
                             <div className="col-span-3">
                               <div className="relative w-full md:h-28 h-28">
                                 <Image
-                                  src="/Assests/Images/HomeImage/27.png"
+                                  src={items?.product?.thumbnail?.url ?? ""}
                                   alt="No Preview"
                                   fill
                                   className="md:object-contain object-cover rounded-sm scale-105"
@@ -207,14 +207,14 @@ export default function CartDrawer({ val }: { val: () => void }) {
                         <div>No items in the cart.</div>
                       )}
                     </div>
-                    <div className="text-center rounded-lg text-[#332F32] font-medium cursor-pointer p-4 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-2 flex justify-between items-center">
+                    {/* <div className="text-center rounded-lg text-[#332F32] font-medium cursor-pointer p-4 shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] my-2 flex justify-between items-center">
                       <span className="flex items-center gap-2">
                         <Icons.discount /> Apply Promo code
                       </span>
                       <AiOutlineRight className="text-xl" />
-                    </div>
+                    </div> */}
 
-                    <div className="">
+                    <div className=" p-4 mt-2 ">
                       <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4 my-4">
                         <h1 className="text-[#332F32] text-base font-bold">
                           Payment detail

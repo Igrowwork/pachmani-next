@@ -5,7 +5,7 @@ interface CardProps {
     val:{
       name: string,
       title: string,
-      img: string,
+      image: string,
       data: string,
     }
 }
@@ -16,7 +16,7 @@ export default function TestimonalCard({val}:CardProps) {
       <div className="flex gap-5 items-center">
         <div className="relative h-14 w-14">
           <Image
-            src={val.img}
+            src={val?.image}
             alt="No Preview"
             fill
             className="object-cover rounded-full"
@@ -27,7 +27,7 @@ export default function TestimonalCard({val}:CardProps) {
           <h5 className="text-[#000B33] md:text-sm text-[10px]">{val.title}</h5>
         </div>
       </div>
-      <div className="text-[#000B33] md:text-base sm:text-sm text-xs text-justify">{val.data}</div>
+      <div className="text-[#000B33] md:text-base sm:text-sm text-xs text-justify ">{val.data}</div>
     </div>
   );
 }

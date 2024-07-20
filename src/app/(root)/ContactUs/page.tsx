@@ -5,18 +5,21 @@ import { Icons } from '@/app/icons'
 import AboutComp from '@/components/AboutComp/page'
 import { Toast } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
+import api from '@/lib/axios'
 import { cn } from '@/lib/utils'
-import axios from 'axios'
+import { Loader } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
 export default function ContactUs() {
   
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast()
   const [isVal , setIsVal] = useState({
     name:'',
     email:"",
-    pincode:''
+    phoneNumber:'',
+    message:''
   })
   const handleChange = (e: { target: { name: any; value: any } }) => {
     setIsVal({
@@ -27,7 +30,8 @@ export default function ContactUs() {
 
   const isFetch = async () => {
     try{
-      const res = await axios.post("https://sheetdb.io/api/v1/59aqknib5ssla" , isVal)
+      const res = await api.post("/contact" , isVal)
+      // console.log(res, "wertyu")
     }
     catch(err){
       console.log(err)
@@ -36,13 +40,17 @@ export default function ContactUs() {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    toast({title : "data submitted succeful"})
-    isFetch();
-    setIsVal({
-      name:'',
-      email:"",
-      pincode:''
-    })
+    setLoading(true);
+    toast({ title: "Data submitted successfully" });
+    isFetch().finally(() => {
+      setLoading(false);
+      setIsVal({
+        name: '',
+        email: '',
+        phoneNumber: '',
+        message: ''
+      });
+    });
     }
     
  
@@ -93,34 +101,49 @@ export default function ContactUs() {
                 required
               />
             </div>
+            <div className='grid md:grid-cols-2 grid-cols-1 md:gap-6 gap-4'>
+              <div>
+                  <h3 className="text-sm text-[#332F32] font-medium">Email</h3>
+                  <input
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    value={isVal.email}
+                    className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent"
+                    placeholder="Please Enter Your Email"
+                    required
+                  />
+                </div>
+              <div>
+                  <h3 className="text-sm text-[#332F32] font-medium">Number</h3>
+                  <input
+                    type="number"
+                    minLength={10}
+                    maxLength={10}
+                    value={isVal.phoneNumber}
+                    onChange={handleChange}
+                    name="phoneNumber"
+                    className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent"
+                    placeholder="Please Enter Your Number"
+                    required
+                  />
+                </div>
+
+            </div>
           <div>
-              <h3 className="text-sm text-[#332F32] font-medium">Email</h3>
-              <input
-                type="email"
-                name="email"
+              <h3 className="text-sm text-[#332F32] font-medium">Message</h3>
+              <textarea
+                value={isVal.message}
                 onChange={handleChange}
-                value={isVal.email}
-                className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent"
-                placeholder="Please Enter Your Email"
+                name="message"
+                className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent resize-none"
+                placeholder="Please Enter Your Message"
                 required
               />
             </div>
-          <div>
-              <h3 className="text-sm text-[#332F32] font-medium">Pincode</h3>
-              <input
-                type="number"
-                minLength={6}
-                maxLength={6}
-                value={isVal.pincode}
-                onChange={handleChange}
-                name="pincode"
-                className="border border-[#625D60] outline-none md:p-2.5 sm:p-2 p-1.5 rounded-lg w-full mt-1.5 bg-transparent"
-                placeholder="Please Enter Your Pincode"
-                required
-              />
-            </div>
-            <button type='submit' className='bg-primaryMain text-white md:text-xl text-base font-medium p-2 rounded-sm md:w-56 w-44'>
-            Submit
+            <button type='submit' disabled={loading} className='bg-primaryMain text-white md:text-xl text-base font-medium p-2 rounded-sm md:w-56 w-44 flex justify-center items-center gap-2'>
+            {loading && <Loader className='w-4 h-4 animate-spin'/>}
+            <p>Submit</p>
             </button>
           </form>
       </div>

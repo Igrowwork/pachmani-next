@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader } from "lucide-react";
+import Link from "next/link";
 
 export default function ShippingCost() {
   const dispatch = useDispatch<AppDispatch>();
@@ -261,6 +262,7 @@ export default function ShippingCost() {
       <div className=" md:col-span-2">
         <CheckOutCartItems></CheckOutCartItems>
         <PhonePay shippingAddress={selectedAddressIndex}></PhonePay>
+        <Link href={'/AllProduct'} className="text-primaryMain  p-2 w-full flex justify-center items-center cursor-pointer mt-2">Continue Shopping</Link>
       </div>
     </div>
   );

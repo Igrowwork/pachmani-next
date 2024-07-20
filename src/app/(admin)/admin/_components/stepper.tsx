@@ -14,7 +14,7 @@ const Stepper = ({ currentStep, steps } :StepperProps) => {
         {steps.map((step, index) => (
           <div key={index} className=' w-full'>
             
-            <p className={`my-2 float-left text-base font-medium ${index <= currentStep ? 'text-primaryMain' : 'text-gray-500'}`}>
+            <p className={`my-2 float-left md:text-base sm:text-sm text-xs font-medium ${index <= currentStep ? 'text-primaryMain' : 'text-gray-500'}`}>
               {step}
             </p>
             <div className="relative flex items-center w-full">
