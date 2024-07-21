@@ -1,3 +1,4 @@
+import exp from "constants";
 import { Address } from "./address";
 import { IProduct, IProductVariant } from "./products";
 import { IUser } from "./user";
@@ -22,4 +23,10 @@ export interface IOrder extends Document {
   totalPrice: number;
   status: "pending" | "processing" | "shipped" | "delivered";
   paymentStatus: "unpaid" | "paid" | "partially_paid";
+}
+
+export interface Allorder extends Document {
+  totalOrders:any,
+  totalPages:number,
+  orders: IOrder[];
 }

@@ -1,15 +1,29 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { logoutAsyn } from "@/redux/action/userAction";
+import { AppDispatch, RootState } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { IoIosLogOut } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SideMenu() {
+  const dispatch = useDispatch<AppDispatch>();
   const path = usePathname();
+  const router = useRouter();
   const [bannerDropdown, setBannerDropdown] = useState(false);
 
+  const {isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  const handelLogout = async () => {
+    dispatch(logoutAsyn());
+    router.push("/login");
+  };
   const arr = [
     {
       name: "Dashboard",
@@ -20,6 +34,16 @@ export default function SideMenu() {
       name: "Order",
       icon: "",
       path: "/admin/orders",
+    },
+    {
+      name: "Contact Us",
+      icon: "",
+      path: "/admin/contact-us",
+    },
+    {
+      name: "Add Product",
+      icon: "",
+      path: "/admin/add-product",
     },
     {
       name: "Category",
@@ -53,11 +77,6 @@ export default function SideMenu() {
         },
       ],
     },
-    {
-      name: "Contact Us",
-      icon: "",
-      path: "/admin/contact-us",
-    },
   ];
 
   const handleBannerClick = () => {
@@ -74,7 +93,7 @@ export default function SideMenu() {
           className="object-contain"
         />
       </div>
-      <div className="mt-6 grid gap-1">
+      <div className="mt-6 flex flex-col gap-1 h-[75vh]">
         {arr?.map((ele, i) =>
           ele.dropdown ? (
             <div key={i}>
@@ -118,6 +137,7 @@ export default function SideMenu() {
           )
         )}
       </div>
+      <span className="h-full w-full p-4 cursor-pointer text-gray-600 hover:text-black flex items-center gap-2" onClick={handelLogout}>Logout <IoIosLogOut /></span>
     </div>
   );
 }

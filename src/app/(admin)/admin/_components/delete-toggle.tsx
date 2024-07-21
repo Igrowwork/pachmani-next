@@ -32,7 +32,7 @@ export default function DeleteToggle({ onDelete, id } : DeleteToggleProps) {
             >
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
                     {/* <ExclamationTriangleIcon aria-hidden="true" className="h-6 w-6 text-red-600" /> */}
                     </div>
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -50,7 +50,7 @@ export default function DeleteToggle({ onDelete, id } : DeleteToggleProps) {
                         onDelete(id);
                         setOpen(false);
                       }}
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                    className="inline-flex w-full justify-center rounded-md bg-primaryMain px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
                 >
                     Delete
                 </button>

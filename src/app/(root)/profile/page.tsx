@@ -12,6 +12,7 @@ import { Loader } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { IoIosLogOut } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Profile() {
@@ -154,7 +155,7 @@ export default function Profile() {
               {loading ? (
                 <Loader className="w-4 h-4 animate-spin" />
               ) : isAuthenticated ? (
-                <button onClick={handelLogout}>Log Out</button>
+                <button onClick={handelLogout}>Log Out <IoIosLogOut /></button>
               ) : (
                 <Link href="/login" className="">Log In</Link>
               )}
