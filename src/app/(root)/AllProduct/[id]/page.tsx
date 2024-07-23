@@ -277,7 +277,8 @@ export default function page({ params }: { params: { id: string } }) {
                 </div>
               </div>
             </div>
-            <ClinicallyTested howToUse={product?.howToUse} highLight={product?.highlights} ingradient={product?.ingredients} />
+            <ClinicallyTested howToUse={product?.howToUse} highLight={product?.highlights} />
+            {/* <ClinicallyTested howToUse={product?.howToUse} highLight={product?.highlights} ingradient={product?.ingredients} /> */}
           </div>
           {/* <OurIngradient /> */}
           {/* <Benifit /> */}

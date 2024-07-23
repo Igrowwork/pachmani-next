@@ -16,6 +16,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader } from "lucide-react";
 import Link from "next/link";
+import { RxCross2 } from "react-icons/rx";
 
 export default function ShippingCost() {
   const dispatch = useDispatch<AppDispatch>();
@@ -238,22 +239,26 @@ export default function ShippingCost() {
               Submit
             </button>
           </form>
-          <div className="space-y-2">
+          <div className="space-y-2 grid grid-cols-2 items-center gap-12 w-full mt-4 ">
             {address?.map((addr, index) => (
-              <div key={index} className="mb-4">
-                <input
-                  type="radio"
-                  id={`address_${index}`}
-                  name="selectedAddress"
-                  checked={selectedAddressIndex === index}
-                  onChange={() => handleSelectAddress(index)}
-                />
-                <label htmlFor={`address_${index}`}>
-                  <p>{addr.firstname}</p>
-                  <p>{addr.email}</p>
-                </label>
-                <button onClick={() => handleDelete(index)}>Delete</button>
-                <button onClick={() => handleEdit(index)}>Edit</button>
+              <div key={index} className=" flex justify-between shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] p-4 rounded">
+                <div className="flex gap-6"  onClick={() => handleEdit(index)}>
+                  <input
+                    type="radio"
+                    id={`address_${index}`}
+                    name="selectedAddress"
+                    checked={selectedAddressIndex === index}
+                    onChange={() => handleSelectAddress(index)}
+                  />
+                  <label htmlFor={`address_${index}`}>
+                    <p className="text-[#332F32] text-sm">Deliver to : {addr.firstname + " " + addr.lastname}</p>
+                    <p className="text-sm text-[#625D60] my-1">{addr.address}</p>
+                    <p className="text-[#332F32] text-sm font-medium">{addr.pincode}</p>
+                  </label>
+
+                </div>
+                <button onClick={() => handleDelete(index)} className="h-full flex items-center"><RxCross2 /></button>
+                {/* <button onClick={() => handleEdit(index)}>Edit</button> */}
               </div>
             ))}
           </div>

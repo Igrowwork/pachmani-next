@@ -7,6 +7,8 @@ import Image from "next/image";
 import api from "@/lib/axios";
 import { Carousel } from "@/lib/types/banner";
 import { Loader } from "lucide-react";
+import { RxCrossCircled } from "react-icons/rx";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 const Page: React.FC = () => {
   const params = useParams();
@@ -21,6 +23,7 @@ const Page: React.FC = () => {
     if (pageName) {
       const fetchData = async () => {
         try {
+          setLoading(true);
           const response = await api.get(`carousel/pages/name/${pageName}`);
           setCarousels(response.data.page.carousels);
           setLoading(false);
@@ -50,6 +53,7 @@ const Page: React.FC = () => {
     }
 
     try {
+      setLoading(true);
       const uploadDesktopRes = await uploadImage(selectedFiles[0]);
       const uploadMobileRes = await uploadImage(selectedFiles[1]);
 
@@ -70,8 +74,10 @@ const Page: React.FC = () => {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+      setLoading(false);
     } catch (error) {
       console.error("Failed to upload images:", error);
+      setLoading(false);
     }
   };
 
@@ -183,19 +189,64 @@ const Page: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-4xl font-bold mb-8 text-center">{pageName}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="container mx-auto">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-semibold text-[#1C2A53] capitalize">
+          {pageName}
+        </h1>
+        <div title="Select Two Image " className="flex flex-col items-center">
+          <input
+            type="file"
+            multiple
+            onChange={handleFileChange}
+            className="hidden"
+            ref={fileInputRef}
+            id="fileInput"
+          />
+          {!selectedFiles && (
+            <button
+              onClick={handleUploadButtonClick}
+              className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 flex items-center gap-2 text-sm"
+            >
+              <IoAddCircleOutline /> Select and Upload Images
+            </button>
+          )}
+          {selectedFiles && (
+            <button
+              onClick={handleUpload}
+              disabled={loading}
+              className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 flex items-center gap-2 text-sm"
+            >
+              {loading && (
+                <div className="flex items-center justify-center h-screen">
+                  <Loader className="w-8 h-8 animate-spin" />
+                </div>
+              )}
+              <IoAddCircleOutline /> Confirm Selected Images
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className="grid gap-6">
+        <div className="grid grid-cols-5">
+          <h1 className="col-span-3 text-xl font-semibold text-[#1C2A53] capitalize">Desktop Image</h1>
+          <h1 className="col-span-2 text-xl font-semibold text-[#1C2A53] capitalize">Mobile Image</h1>
+
+        </div>
         {carousels?.map((carousel, index) => (
           <div
             key={index}
-            className="relative grid grid-cols-1 md:grid-cols-2 gap-4 rounded-xl overflow-hidden shadow-md border p-4"
+            className="relative grid grid-cols-5 gap-4"
             draggable
             onDragStart={(event) => handleDragStart(event, index)}
             onDrop={(event) => handleDrop(event, index)}
             onDragOver={handleDragOver}
           >
-            <div className="relative h-64 w-full md:h-64 md:w-64">
+            <div
+              title="Desktop View"
+              className="relative h-64 w-full border-2 rounded-xl overflow-hidden border-primaryMain col-span-3"
+            >
               <Image
                 src={carousel.desktopUrl}
                 alt={`Desktop view ${carousel.desktopFileId}`}
@@ -203,7 +254,10 @@ const Page: React.FC = () => {
                 className="object-cover"
               />
             </div>
-            <div className="relative h-96 w-full md:h-64 md:w-64">
+            <div
+              title="Phone View"
+              className="relative h-64 w-full border-2 col-span-2 rounded-xl overflow-hidden border-primaryMain "
+            >
               <Image
                 src={carousel.mobileUrl}
                 alt={`Mobile view ${carousel.mobileFileId}`}
@@ -218,14 +272,14 @@ const Page: React.FC = () => {
                   carousel.mobileFileId
                 )
               }
-              className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-700"
+              className="absolute top-2 right-2 "
             >
-              Remove
+              <RxCrossCircled className="text-2xl text-red-600" />
             </button>
           </div>
         ))}
       </div>
-      <div className="mt-10 flex flex-col items-center">
+      {/* <div className="mt-10 flex flex-col items-center">
         <input
           type="file"
           multiple
@@ -248,10 +302,9 @@ const Page: React.FC = () => {
             Upload Selected Images
           </button>
         )}
-      </div>
+      </div> */}
     </div>
   );
-  
 };
 
 export default Page;
