@@ -155,7 +155,7 @@ export default function Profile() {
               {loading ? (
                 <Loader className="w-4 h-4 animate-spin" />
               ) : isAuthenticated ? (
-                <button onClick={handelLogout}>Log Out <IoIosLogOut /></button>
+                <button onClick={handelLogout} className="flex items-center gap-2">Log Out <IoIosLogOut /></button>
               ) : (
                 <Link href="/login" className="">Log In</Link>
               )}

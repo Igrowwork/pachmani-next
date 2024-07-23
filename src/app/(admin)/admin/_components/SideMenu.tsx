@@ -56,23 +56,23 @@ export default function SideMenu() {
       path: "#",
       dropdown: [
         {
-          name: "home",
+          name: "Home",
           path: "/admin/add-banners/home",
         },
         {
-          name: "haircare",
+          name: "Haircare",
           path: "/admin/add-banners/haircare",
         },
         {
-          name: "skinecare",
+          name: "Skincare",
           path: "/admin/add-banners/skinecare",
         },
         {
-          name: "healthcare",
+          name: "Healthcare",
           path: "/admin/add-banners/healthcare",
         },
         {
-          name: "mens",
+          name: "Men's",
           path: "/admin/add-banners/mens",
         },
       ],
@@ -113,8 +113,8 @@ export default function SideMenu() {
                       href={item.path}
                       key={j}
                       className={cn(
-                        "p-2 hover:bg-primaryMain hover:text-white rounded-sm cursor-pointer block",
-                        item.path === path ? "bg-primaryMain text-white" : ""
+                        "p-2 text-primaryMain rounded-sm cursor-pointer block hover:underline",
+                        item.path === path ? "underline " : ""
                       )}
                     >
                       {item.name}

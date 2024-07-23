@@ -7,8 +7,9 @@ import api from "@/lib/axios";
 import { toast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import axios from "axios";
-import { RxCross2 } from "react-icons/rx";
+import { RxCross2, RxCrossCircled } from "react-icons/rx";
 import { units } from "@/lib/constants/constants";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 interface Review {
   text: string;
@@ -325,13 +326,14 @@ const UpdateProducts: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-2 gap-8 p-8 bg-white rounded-lg shadow-md"
+      className="grid grid-cols-2 gap-2 p-6 bg-white rounded-lg shadow-md"
     >
-      <div className="col-span-2">
-        <h1 className="text-2xl font-bold text-center mb-6">Update Product</h1>
+     
+     <div className="col-span-2">
+        <h1 className="text-xl font-medium text-[#1C2A53]">Add New Product</h1>
       </div>
 
-      <div>
+      <div className="my-6 col-span-2">
         <label
           htmlFor="productName"
           className="block text-sm text-gray-700 font-medium"
@@ -349,7 +351,7 @@ const UpdateProducts: React.FC = () => {
         />
       </div>
 
-      <div>
+      <div className="my-6 col-span-2">
         <label
           htmlFor="category"
           className="block text-sm text-gray-700 font-medium"
@@ -373,243 +375,12 @@ const UpdateProducts: React.FC = () => {
           ))}
         </select>
       </div>
-
-      <div className="col-span-2">
-        <label
-          htmlFor="description"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Description*
-        </label>
-        <textarea
-          name="description"
-          value={isVal.description}
-          onChange={handleChange}
-          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-          placeholder="Please Enter Your Description"
-          required
-        />
-      </div>
-
-      <div className="col-span-2">
-        {isVal.highlights.map((highlight, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`highlight${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              Highlight {index + 1}*
-            </label>
-            <input
-              type="text"
-              id={`highlight${index}`}
-              value={highlight}
-              onChange={(e) => handleArrayChange(e, index, "highlights")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`Please Enter Highlight ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("highlights", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              <RxCross2 />
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("highlights")}
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add Highlight
-        </button>
-      </div>
-
-      <div className="col-span-2">
-        {isVal.ingredients.map((ingredient, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`ingredient${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              Ingredient {index + 1}*
-            </label>
-            <input
-              type="text"
-              id={`ingredient${index}`}
-              value={ingredient}
-              onChange={(e) => handleArrayChange(e, index, "ingredients")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`Ingredient ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("ingredients", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              <RxCross2 />
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("ingredients")}
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add Ingredient
-        </button>
-      </div>
-
-      <div className="col-span-2">
-        {isVal.howToUse.map((step, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`howToUse${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              How To Use Step {index + 1}*
-            </label>
-            <input
-              type="text"
-              id={`howToUse${index}`}
-              value={step}
-              onChange={(e) => handleArrayChange(e, index, "howToUse")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`How To Use Step ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("howToUse", index)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              <RxCross2 />
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => handleAddArrayItem("howToUse")}
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add How To Use Step
-        </button>
-      </div>
-
-      <div className="col-span-2">
-        <label
-          htmlFor="thumbnail"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Product Thumbnail*
-        </label>
-        <input
-          type="file"
-          name="thumbnail"
-          onChange={handleThumbnailChange}
-          className="border border-gray-300 outline-none p-2.5 rounded-lg w-1/2 mt-1.5"
-        />
-        {thumbnailFile ? (
-          <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
-            <Image
-              src={URL.createObjectURL(thumbnailFile)}
-              alt="Selected Thumbnail"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-2xl"
-            />
-            <button
-              type="button"
-              onClick={() => setThumbnailFile(null)}
-              className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              <RxCross2 />
-            </button>
-          </div>
-        ) : (
-          isVal.thumbnail && (
-            <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
-              <Image
-                src={isVal.thumbnail.url}
-                alt="Thumbnail"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-2xl"
-              />
-              <button
-                type="button"
-                onClick={handleRemoveThumbnail}
-                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
-              >
-                <RxCross2 />
-              </button>
-            </div>
-          )
-        )}
-      </div>
-
-      <div className="col-span-2">
-        <label
-          htmlFor="images"
-          className="block text-sm text-gray-700 font-medium"
-        >
-          Product Images
-        </label>
-        <input
-          type="file"
-          name="images"
-          onChange={handleImageChange}
-          className="border border-gray-300 outline-none p-2.5 rounded-lg w-1/2 mt-1.5"
-          multiple
-        />
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          {isVal.images?.map((image, index) => (
-            <div key={index} className="relative h-32 w-32">
-              <Image
-                src={image.url}
-                alt={`Image ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-2xl"
-              />
-              <button
-                type="button"
-                onClick={() => handleRemoveImage(index)}
-                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
-              >
-                <RxCross2 />
-              </button>
-            </div>
-          ))}
-          {newImages.map((file, index) => (
-            <div key={index} className="relative h-32 w-32">
-              <Image
-                src={URL.createObjectURL(file)}
-                alt={`New Image ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-2xl"
-              />
-              <button
-                type="button"
-                onClick={() => handleRemoveImage(index)}
-                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
-              >
-                <RxCross2 />
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-
+      
       <div className="col-span-2">
         {isVal.variants?.map((variant, index) => (
           <div key={index} className="border p-4 rounded-lg mb-4 relative">
             <h3 className="text-lg font-medium mb-2">Variant {index + 1}</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-5 gap-4">
               <div>
                 <label
                   htmlFor={`packSize${index}`}
@@ -716,17 +487,17 @@ const UpdateProducts: React.FC = () => {
             <button
               type="button"
               onClick={() => handleRemoveVariant(index)}
-              className="absolute right-2 top-2 bg-red-500 text-white px-2 py-1 rounded-full"
-            >
-              <RxCross2 />
+              className="absolute right-2 top-4 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+              >
+              <RxCrossCircled className="text-2xl" />
             </button>
             {variant._id ? (
               <button
                 type="button"
                 onClick={() => handleUpdateVariant(index, variant)}
-                className="absolute right-2 top-10 bg-blue-500 text-white px-2 py-1 rounded-full"
-              >
-                Update
+                className="absolute right-2 top-full mt-2 bg-primaryMain text-white px-2 py-1 rounded-sm"
+              > 
+                Update Variant
               </button>
             ) : (
               <button
@@ -750,10 +521,243 @@ const UpdateProducts: React.FC = () => {
               discount: 0,
             })
           }
-          className="bg-blue-500 text-white p-2 rounded mt-4"
-        >
-          Add Variant
+          className="w-full flex justify-center mt-2"
+          >
+            <IoAddCircleOutline className="text-2xl text-primaryMain" />
         </button>
+      </div>
+
+      <div className="col-span-2">
+        <label
+          htmlFor="description"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Description*
+        </label>
+        <textarea
+          name="description"
+          value={isVal.description}
+          onChange={handleChange}
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+          placeholder="Please Enter Your Description"
+          required
+        />
+      </div>
+      
+
+
+      <div className="col-span-2">
+        {isVal.highlights.map((highlight, index) => (
+          <div key={index} className="relative">
+            <label
+              htmlFor={`highlight${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              Highlight {index + 1}*
+            </label>
+            <input
+              type="text"
+              id={`highlight${index}`}
+              value={highlight}
+              onChange={(e) => handleArrayChange(e, index, "highlights")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`Please Enter Highlight ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveArrayItem("highlights", index)}
+              className="bg-white absolute right-2 top-2/3 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+              >
+                <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("highlights")}
+          className="w-full flex justify-center mt-2"
+        >
+          <IoAddCircleOutline className="text-2xl text-primaryMain" />
+        </button>
+      </div>
+
+      <div className="col-span-2">
+        {isVal.ingredients.map((ingredient, index) => (
+          <div key={index} className="relative">
+            <label
+              htmlFor={`ingredient${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              Ingredient {index + 1}*
+            </label>
+            <input
+              type="text"
+              id={`ingredient${index}`}
+              value={ingredient}
+              onChange={(e) => handleArrayChange(e, index, "ingredients")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`Ingredient ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveArrayItem("ingredients", index)}
+              className="bg-white absolute right-2 top-2/3 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("ingredients")}
+          className="w-full flex justify-center mt-2"
+        >
+          <IoAddCircleOutline className="text-2xl text-primaryMain" />
+        </button>
+      </div>
+
+      <div className="col-span-2">
+        {isVal.howToUse.map((step, index) => (
+          <div key={index} className="relative">
+            <label
+              htmlFor={`howToUse${index}`}
+              className="block text-sm text-gray-700 font-medium"
+            >
+              How To Use Step {index + 1}*
+            </label>
+            <input
+              type="text"
+              id={`howToUse${index}`}
+              value={step}
+              onChange={(e) => handleArrayChange(e, index, "howToUse")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`How To Use Step ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveArrayItem("howToUse", index)}
+              className="bg-white absolute right-2 top-2/3 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+              >
+                <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddArrayItem("howToUse")}
+          className="w-full flex justify-center mt-2"
+        >
+          <IoAddCircleOutline className="text-2xl text-primaryMain" />
+        </button>
+      </div>
+
+      <div className="col-span-2">
+        <label
+          htmlFor="thumbnail"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Product Thumbnail*
+        </label>
+        <input
+          type="file"
+          name="thumbnail"
+          onChange={handleThumbnailChange}
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+        />
+        {thumbnailFile ? (
+          <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
+            <Image
+              src={URL.createObjectURL(thumbnailFile)}
+              alt="Selected Thumbnail"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-2xl"
+            />
+            <button
+              type="button"
+              onClick={() => setThumbnailFile(null)}
+              className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+            >
+              <RxCross2 />
+            </button>
+          </div>
+        ) : (
+          isVal.thumbnail && (
+            <div className="h-32 w-32 rounded-2xl border-dashed border-gray-300 bg-gray-100 mt-2 relative">
+              <Image
+                src={isVal.thumbnail.url}
+                alt="Thumbnail"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
+              <button
+                type="button"
+                onClick={handleRemoveThumbnail}
+                className="absolute right-2 top-5 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+              </button>
+            </div>
+          )
+        )}
+      </div>
+
+      <div className="col-span-2">
+        <label
+          htmlFor="images"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Product Images
+        </label>
+        <input
+          type="file"
+          name="images"
+          onChange={handleImageChange}
+          className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+          multiple
+        />
+        <div className="grid grid-cols-6 gap-4 mt-4">
+          {isVal.images?.map((image, index) => (
+            <div key={index} className="relative h-32 w-32">
+              <Image
+                src={image.url}
+                alt={`Image ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveImage(index)}
+                className="absolute right-2 top-5 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+                >
+                  <RxCrossCircled className="text-2xl" />
+              </button>
+            </div>
+          ))}
+          {newImages.map((file, index) => (
+            <div key={index} className="relative h-32 w-32">
+              <Image
+                src={URL.createObjectURL(file)}
+                alt={`New Image ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveImage(index)}
+                className="absolute right-2 top-5 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
+                >
+                  <RxCrossCircled className="text-2xl" />
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="w-full flex justify-end col-span-2">
@@ -762,7 +766,7 @@ const UpdateProducts: React.FC = () => {
           className="bg-green-500 text-white p-2 rounded w-44 flex items-center justify-center gap-1"
         >
           {isLoading && <Loader className="w-4 h-4 animate-spin" />}
-          <p>Submit</p>
+          <p>Update</p>
         </button>
       </div>
     </form>

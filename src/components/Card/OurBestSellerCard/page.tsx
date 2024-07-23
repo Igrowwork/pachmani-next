@@ -55,12 +55,12 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
           </div>
         )}
       </div>
-      <div className="grid p-2 gap-1">
+      <div className="grid p-2 gap-1 min-h-44">
         <h3 className="text-xs text-primaryMain font-medium capitalize">
           {product?.productName}
         </h3>
         <h2 className="text-base font-medium mt-1">oil</h2>
-        <div className="md:text-sm text-xs text-[#313131] truncate">
+        <div className="md:text-sm text-xs text-[#313131] truncate ">
           {product?.description}
         </div>
         <div className="md:my-2 my-1 ">

@@ -95,7 +95,7 @@ export default function CartDrawer({ val }: { val: () => void }) {
 
   return (
     <>
-      <div className="fixed top-0 left-0 h-screen w-full z-50 bg-white/20">
+      <div className="fixed top-0 left-0 h-screen w-full z-50 bg-black/40">
         <motion.div
           animate={{ x: "-100" }}
           exit={{ x: "100%", opacity: 0 }}
@@ -120,7 +120,7 @@ export default function CartDrawer({ val }: { val: () => void }) {
                   </h1>
                   <RxCross1
                     onClick={val}
-                    className="cursor-pointer text-2xl text-[#625D60] hover:text-red-400"
+                    className="cursor-pointer text-2xl text-[#625D60] hover:text-primaryMain"
                   />
                 </div>
                 {

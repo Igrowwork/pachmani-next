@@ -183,10 +183,10 @@ const UpdateProducts: React.FC = () => {
                 Qty
               </th>
               <th scope="col" className="px-6 py-3">
-                Time
+                Date
               </th>
               <th scope="col" className="px-6 py-3">
-                Date
+                Time
               </th>
               <th scope="col" className="px-6 py-3">
                 Price
@@ -221,12 +221,12 @@ const UpdateProducts: React.FC = () => {
                 {/* <td className="px-6 py-4">{order?.items}</td> */}
                 <td className="px-6 py-4">{order?.items?.[0]?.quantity}</td>
                 <td className="px-6 py-4">
-                  {new Date(order?.createdAt).toLocaleTimeString()}
-                </td>
-                <td className="px-6 py-4">
                   {new Date(order?.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-6 py-4">{order?.totalPrice}</td>
+                <td className="px-6 py-4">
+                  {new Date(order?.createdAt).toLocaleTimeString()}
+                </td>
+                <td className="px-6 py-4">{order?.totalPrice} &#8377; </td>
                 <td className="px-6 py-4">
                   <select
                     value={order.status}

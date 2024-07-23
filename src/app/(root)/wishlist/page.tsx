@@ -61,7 +61,7 @@ export default function WishList() {
                 {ele?.category}
               </h3>
               <h2 className="text-base font-medium mt-1">{ele?.productName}</h2>
-              <div className="md:text-sm text-xs text-[#313131] ">
+              <div className="md:text-sm text-xs text-[#313131] truncate">
                 {ele?.description}
               </div>
               <div className="my-2 ">

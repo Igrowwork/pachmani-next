@@ -41,7 +41,7 @@ export default function OurBestSeller() {
         <CustomHead name="Our Bestsellers" className="w-2/3" />
         <Link
           href={"/our-best-seller"}
-          className="md:text-xl sm:text-base text-sm text-primaryMain font-medium hover:underline transition-transform"
+          className="md:text-xl sm:text-base text-sm text-primaryMain font-normal hover:underline transition-transform"
         >
           View More
         </Link>

@@ -173,7 +173,7 @@ export default function OrderProcess({ params }: proprs) {
                 </div>
               </div>
             </div>
-
+            <div></div>
             <div className=" md:col-span-4">
               <div className="container mx-auto p-4">
                 <h1 className="md:text-2xl text-xl font-bold md:mb-4 ">Order Tracking</h1>

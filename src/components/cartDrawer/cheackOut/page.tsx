@@ -120,7 +120,7 @@ export default function CheckOutCartItems() {
                   <h1 className="text-base font-semibold">
                     {product.productName}
                   </h1>
-                  <p className="text-xs text-ternary-main">
+                  <p className="text-xs text-ternary-main truncate">
                     {product.description}
                   </p>
                   <div className="text-xs flex items-center gap-1 text-ternary-main mt-2">
@@ -159,7 +159,7 @@ export default function CheckOutCartItems() {
                           ₹ {calculateTotal().toFixed(2)}
                         </span>
                       </span>
-                      <Icons.delete />
+                      {/* <Icons.delete /> */}
                     </div>
                   </div>
                 </div>

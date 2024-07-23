@@ -67,7 +67,7 @@ export default function ShippingCost() {
       lastname: "",
       email: "",
       mobile: "",
-      pincode: "",  
+      pincode: "",
       city: "",
       street: "",
       zip: "",
@@ -92,6 +92,24 @@ export default function ShippingCost() {
     setSelectedAddressIndex(index);
   };
 
+  const handelResetForm = () => {
+    setIsEditing(false);
+    setEditIndex(null);
+    setSelectedAddressIndex(-1);
+    reset({
+      firstname: "",
+      lastname: "",
+      email: "",
+      mobile: "",
+      pincode: "",
+      city: "",
+      street: "",
+      zip: "",
+      state: "",
+      address: "",
+    });
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -104,7 +122,15 @@ export default function ShippingCost() {
     <div className="shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] grid md:grid-cols-5 p-6 gap-12">
       <div className="md:col-span-3">
         <div>
-          <CustomHead name="Sign in or Checkout as guest" className="w-1/2" />
+          <div className="flex items-center w-full justify-between">
+            <CustomHead name="Sign in or Checkout as guest" className="w-1/2" />
+            <button
+              onClick={handelResetForm}
+              className="text-primaryMain font-medium"
+            >
+              Add Address
+            </button>
+          </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="grid md:grid-cols-2 gap-6"
@@ -241,8 +267,11 @@ export default function ShippingCost() {
           </form>
           <div className="space-y-2 grid grid-cols-2 items-center gap-12 w-full mt-4 ">
             {address?.map((addr, index) => (
-              <div key={index} className=" flex justify-between shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] p-4 rounded">
-                <div className="flex gap-6"  onClick={() => handleEdit(index)}>
+              <div
+                key={index}
+                className=" flex justify-between shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] p-4 rounded"
+              >
+                <div className="flex gap-6" onClick={() => handleEdit(index)}>
                   <input
                     type="radio"
                     id={`address_${index}`}
@@ -251,23 +280,38 @@ export default function ShippingCost() {
                     onChange={() => handleSelectAddress(index)}
                   />
                   <label htmlFor={`address_${index}`}>
-                    <p className="text-[#332F32] text-sm">Deliver to : {addr.firstname + " " + addr.lastname}</p>
-                    <p className="text-sm text-[#625D60] my-1">{addr.address}</p>
-                    <p className="text-[#332F32] text-sm font-medium">{addr.pincode}</p>
+                    <p className="text-[#332F32] text-sm">
+                      Deliver to : {addr.firstname + " " + addr.lastname}
+                    </p>
+                    <p className="text-sm text-[#625D60] my-1">
+                      {addr.address}
+                    </p>
+                    <p className="text-[#332F32] text-sm font-medium">
+                      {addr.pincode}
+                    </p>
                   </label>
-
                 </div>
-                <button onClick={() => handleDelete(index)} className="h-full flex items-center"><RxCross2 /></button>
+                <button
+                  onClick={() => handleDelete(index)}
+                  className="h-full flex items-center"
+                >
+                  <RxCross2 />
+                </button>
                 {/* <button onClick={() => handleEdit(index)}>Edit</button> */}
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className=" md:col-span-2">
+      <div className="md:col-span-2">
         <CheckOutCartItems></CheckOutCartItems>
         <PhonePay shippingAddress={selectedAddressIndex}></PhonePay>
-        <Link href={'/AllProduct'} className="text-primaryMain  p-2 w-full flex justify-center items-center cursor-pointer mt-2">Continue Shopping</Link>
+        <Link
+          href={"/AllProduct"}
+          className="text-primaryMain  p-2 w-full flex justify-center items-center cursor-pointer mt-2"
+        >
+          Continue Shopping
+        </Link>
       </div>
     </div>
   );

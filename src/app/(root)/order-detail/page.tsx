@@ -26,11 +26,12 @@ const OrderDetail: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const { data } = await api.get<IOrder[]>("order");
+      const { data } = await api.get("order");
+      console.log(data.orders);
       if (data.length === 0) {
         setError("No orders found.");
       } else {
-        setData(data);
+        setData(data.orders);
       }
     } catch (err) {
       setError("An error occurred while fetching orders.");
@@ -54,8 +55,8 @@ const OrderDetail: React.FC = () => {
   return (
     <div className="min-h-[50vh]">
       <AboutComp name="Orders Details" />
-      <div className="max-w-5xl mx-auto w-full h-full my-10">
-        <div className="grid gap-2 h-[70vh] overflow-y-scroll scroll-smooth p-2">
+      <div className="max-w-7xl mx-auto w-full h-full my-10">
+        <div className="grid gap-2 p-2">
           {data?.map((order) => (
             <Link
               key={order.id}

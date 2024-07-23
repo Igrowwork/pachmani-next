@@ -1,25 +1,11 @@
 "use client";
 // import React from 'react'
 import CustomHead from "@/UI/customHead";
-import { lato, opensans } from "@/app/font";
-import { Icons } from "@/app/icons";
-import AllProductComp from "@/components/AllProductComp/page";
-import HairCareCard from "@/components/Card/HairCareCard/page";
 import OurBestSellerCard from "@/components/Card/OurBestSellerCard/page";
-import Banner from "@/components/banner/page";
-import api from "@/lib/axios";
-import { IProductVariant } from "@/lib/types/products";
-import { cn } from "@/lib/utils";
 import { getAllProductsAsyn } from "@/redux/action/productAction";
-import { addWish } from "@/redux/action/wishlistAddAction";
 import { AppDispatch, RootState } from "@/redux/store";
-import axios from "axios";
 import { Loader } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { MdAddShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function AllProduct() {
@@ -54,20 +40,21 @@ export default function AllProduct() {
           <OurBestSellerCard product={product} />
         ))}
       </div>
-      {products.totalPages > 1 &&
-        Array.from(Array(products.totalPages).keys()).map((pageNumber) => (
-          <button
-            onClick={() =>
-              dispatch(getAllProductsAsyn({ page: pageNumber + 1 }))
-            }
-            key={pageNumber}
-            style={{
-              color: products.currentPage === pageNumber + 1 ? "red" : "black",
-            }}
-          >
-            {pageNumber + 1}
-          </button>
-        ))}
+      <div className="flex">
+        {products.totalPages > 1 &&
+          Array.from(Array(products.totalPages).keys()).map((pageNumber , index) => (
+            <button
+              onClick={() =>
+                dispatch(getAllProductsAsyn({ page: pageNumber + 1 }))
+              }
+              className={`flex items-center justify-center px-3 h-8 leading-tight border ${products.currentPage === pageNumber + 1 ? 'text-blue-600 bg-blue-50' : 'text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'}`}
+              key={pageNumber}
+            >
+              {pageNumber + 1}
+            </button>
+          ))}
+
+      </div>
     </div>
   );
 }

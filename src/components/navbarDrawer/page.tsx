@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { useRouter } from 'next/navigation';
 import { logoutAsyn } from '@/redux/action/userAction';
+import styles from './styles.module.css';
 // import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const products = [
@@ -93,7 +94,7 @@ export default function NavbarDrawer({ val }: { val: () => void }) {
               transition
               className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:-translate-x-full sm:duration-700"
             >
-              <div className="bg-white h-full p-6 overflow-y-scroll">
+              <div className="bg-white h-full p-6 overflow-y-scroll no-scrollbar">
                 <div className="flex text-xs justify-between text-primaryMain font-normal w-full">
                   <div className="relative h-16 w-40">
                     <Image
