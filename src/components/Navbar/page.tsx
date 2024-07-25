@@ -101,7 +101,8 @@ export default function Navbar() {
               />
             </AnimatePresence>
             <div className="flex items-center gap-3 rounded-md p-2 relative cursor-pointer">
-              <FiSearch
+             <Link href={'/search-product'}><FiSearch className="maxsm h-6 w-6 max-sm:h-5 max-sm:w-5 text-black" /></Link>
+              {/* <FiSearch
                 className="maxsm h-6 w-6 max-sm:h-5 max-sm:w-5 text-black"
                 onClick={handleIconClick}
               />
@@ -113,7 +114,7 @@ export default function Navbar() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-              )}
+              )} */}
             </div>
           </div>
           <Link href={"/"} className="relative h-16 w-40 ">

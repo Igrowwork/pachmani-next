@@ -13,6 +13,7 @@ import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 // import required modules
 import { FreeMode, Navigation, Pagination } from "swiper/modules";
 import TestimonalCard from "../Card/TestimonalCard/page";
+import ReviewPopup from "../review-popup/page";
 
 export default function TestimonalSlider() {
     
@@ -94,6 +95,10 @@ export default function TestimonalSlider() {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className="w-full flex justify-center mt-2">
+        {/* <button className="bg-transparent text-primaryMain font-semibold border-2 border-primaryMain p-2 rounded-md mx-auto bg-white">Write Your Review</button> */}
+        <ReviewPopup />
       </div>
     </div>
   );

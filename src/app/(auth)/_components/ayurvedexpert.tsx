@@ -14,8 +14,6 @@ export default function Ayurvedexpert() {
         <div className='sm:col-span-4 relative h-auto w-full'>
             <Image src={'/Assests/Images/HomeImage/doctor.png'} alt='No Preview' fill className=' object-cover '/>
         </div>
-
-      
     </div>
   )
 }
