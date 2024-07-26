@@ -10,6 +10,7 @@ import axios from "axios";
 import { RxCross2, RxCrossCircled } from "react-icons/rx";
 import { units } from "@/lib/constants/constants";
 import { IoAddCircleOutline } from "react-icons/io5";
+import ItsLoader from "@/app/(root)/_components/itsLoader";
 
 interface Review {
   text: string;
@@ -318,7 +319,8 @@ const UpdateProducts: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader className="animate-spin w-8 h-8"></Loader>
+        
+        <ItsLoader />
       </div>
     );
   }

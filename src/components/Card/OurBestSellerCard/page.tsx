@@ -57,9 +57,9 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
       </div>
       <div className="grid p-2 gap-1 min-h-44">
         <h3 className="text-xs text-primaryMain font-medium capitalize">
-          {product?.productName}
+          {product?.category}
         </h3>
-        <h2 className="text-base font-medium mt-1">oil</h2>
+        <h2 className="text-base font-medium mt-1"> {product?.productName} </h2>
         <div className="md:text-sm text-xs text-[#313131] truncate ">
           {product?.description}
         </div>
@@ -98,7 +98,7 @@ export default function OurBestSellerCard({ product }: { product: IProduct }) {
         </div>
       </div>
       <Link
-        href={`AllProduct/${product?._id}`}
+        href={`/AllProduct/${product?._id}`}
         className={cn(
           "flex gap-2 bg-[#00AB55] w-full md:p-2.5 p-1.5 justify-center items-center md:text-lg text-base font-medium text-white rounded-b-2xl",
           lato.className

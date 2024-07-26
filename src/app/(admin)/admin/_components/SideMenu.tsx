@@ -51,6 +51,10 @@ export default function SideMenu() {
       path: "/admin/categories",
     },
     {
+      name: "Blogs",
+      path: "/admin/blogs",
+    },
+    {
       name: "Add Banners",
       icon: "",
       path: "#",

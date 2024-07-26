@@ -10,6 +10,8 @@ import { getHomeCart } from "@/redux/action/homeProductAction";
 
 import OurBestSellerCard from "../Card/OurBestSellerCard/page";
 import { Loader } from "lucide-react";
+import ItsLoader from "@/app/(root)/_components/itsLoader";
+import ItsLoaderSmall from "@/app/(root)/_components/ItsLoaderSmall";
 
 export default function OurBestSeller() {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,7 +33,7 @@ export default function OurBestSeller() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-96 h-full w-full">
-        <Loader className="animate-spin w-6 h-6 text-primaryMain"></Loader>
+       <ItsLoaderSmall />
       </div>
     );
   }

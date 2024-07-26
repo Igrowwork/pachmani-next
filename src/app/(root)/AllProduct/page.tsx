@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ItsLoader from "../_components/itsLoader";
 
 export default function AllProduct() {
   const dispatch = useDispatch<AppDispatch>();
@@ -27,7 +28,8 @@ export default function AllProduct() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader className="animate-spin w-8 h-8"></Loader>
+        
+        <ItsLoader />
       </div>
     );
   }

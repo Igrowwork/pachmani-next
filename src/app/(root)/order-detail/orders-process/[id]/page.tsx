@@ -1,5 +1,6 @@
 "use client";
 import Stepper from "@/app/(admin)/admin/_components/stepper";
+import ItsLoader from "@/app/(root)/_components/itsLoader";
 import { forum } from "@/app/font";
 import AboutComp from "@/components/AboutComp/page";
 import api from "@/lib/axios";
@@ -55,7 +56,8 @@ export default function OrderProcess({ params }: proprs) {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader className="animate-spin w-8 h-8"></Loader>
+        
+        <ItsLoader />
       </div>
     );
   }

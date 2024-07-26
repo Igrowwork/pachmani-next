@@ -27,6 +27,7 @@ import {
 } from "@/redux/action/productAction";
 import api from "@/lib/axios";
 import { addWish } from "@/redux/action/wishlistAddAction";
+import ItsLoader from "../_components/itsLoader";
 
 interface Product {
   category: string;
@@ -56,7 +57,8 @@ const healthCare = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader className="animate-spin w-8 h-8"></Loader>
+        
+        <ItsLoader />
       </div>
     );
   }

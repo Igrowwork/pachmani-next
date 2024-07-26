@@ -16,7 +16,7 @@ import {
 } from "@/redux/action/addTocartAction";
 import Link from "next/link";
 import { Loader } from "lucide-react";
-import { BiSolidCartAlt } from "react-icons/bi";
+import ItsLoader from "@/app/(root)/_components/itsLoader";
 
 const DELIVERY_CHARGE = 100;
 
@@ -108,7 +108,7 @@ export default function CartDrawer({ val }: { val: () => void }) {
           />
           {loading ? (
             <div className="h-screen w-full flex justify-center items-center">
-              <Loader className="w-8 h-8 animate-spin" />
+             <ItsLoader />
 
             </div>
           ) : (
