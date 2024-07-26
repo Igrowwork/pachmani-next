@@ -16,7 +16,7 @@ interface HomeSliderCompProps {
 
 const HomeSliderComp: React.FC<HomeSliderCompProps> = ({ pageName }) => {
   /* TODO */ 
-  const { carousels, loading, error } = useFetchCarousel(/* pageName ||  */"haircare");
+  const { carousels, loading, error } = useFetchCarousel(pageName);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

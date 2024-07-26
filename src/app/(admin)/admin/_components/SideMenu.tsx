@@ -36,7 +36,7 @@ export default function SideMenu() {
       path: "/admin/orders",
     },
     {
-      name: "Contact Us",
+      name: "Leads",
       icon: "",
       path: "/admin/contact-us",
     },
@@ -141,7 +141,7 @@ export default function SideMenu() {
           )
         )}
       </div>
-      <span className="h-full w-full p-4 cursor-pointer text-gray-600 hover:text-black flex items-center gap-2" onClick={handelLogout}>Logout <IoIosLogOut /></span>
+      {/* <span className="h-full w-full p-4 cursor-pointer text-gray-600 hover:text-black flex items-center gap-2" onClick={handelLogout}>Logout <IoIosLogOut /></span> */}
     </div>
   );
 }
