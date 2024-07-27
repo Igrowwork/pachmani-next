@@ -229,15 +229,16 @@ const Page: React.FC = () => {
       </div>
 
       <div className="grid gap-6">
-        <div className="grid grid-cols-5">
-          <h1 className="col-span-3 text-xl font-semibold text-[#1C2A53] capitalize">Desktop Image</h1>
-          <h1 className="col-span-2 text-xl font-semibold text-[#1C2A53] capitalize">Mobile Image</h1>
+        <div className="grid grid-cols-3">
+          <h1 className="col-span-1 text-xl font-semibold text-[#1C2A53] capitalize">Desktop Image</h1>
+          <h1 className="col-span-1 text-xl font-semibold text-[#1C2A53] capitalize">Phone Image</h1>
+          <h1 className="col-span-1 text-xl font-semibold text-[#1C2A53] capitalize">Product OverView Image</h1>
 
         </div>
         {carousels?.map((carousel, index) => (
           <div
             key={index}
-            className="relative grid grid-cols-5 gap-4"
+            className="relative grid grid-cols-3 gap-4"
             draggable
             onDragStart={(event) => handleDragStart(event, index)}
             onDrop={(event) => handleDrop(event, index)}
@@ -245,7 +246,7 @@ const Page: React.FC = () => {
           >
             <div
               title="Desktop View"
-              className="relative h-64 w-full border-2 rounded-xl overflow-hidden border-primaryMain col-span-3"
+              className="relative h-64 w-full border-2 rounded-xl overflow-hidden border-primaryMain col-span-1"
             >
               <Image
                 src={carousel.desktopUrl}
@@ -256,7 +257,7 @@ const Page: React.FC = () => {
             </div>
             <div
               title="Phone View"
-              className="relative h-64 w-full border-2 col-span-2 rounded-xl overflow-hidden border-primaryMain "
+              className="relative h-64 w-full border-2 col-span-1 rounded-xl overflow-hidden border-primaryMain "
             >
               <Image
                 src={carousel.mobileUrl}
@@ -264,6 +265,8 @@ const Page: React.FC = () => {
                 layout="fill"
                 className="object-cover"
               />
+            </div>
+            <div className="relative h-64 w-full border-2 col-span-1 rounded-xl overflow-hidden border-primaryMain ">
             </div>
             <button
               onClick={() =>

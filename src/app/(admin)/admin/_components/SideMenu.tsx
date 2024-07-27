@@ -57,29 +57,29 @@ export default function SideMenu() {
     {
       name: "Add Banners",
       icon: "",
-      path: "#",
-      dropdown: [
-        {
-          name: "Home",
-          path: "/admin/add-banners/home",
-        },
-        {
-          name: "Haircare",
-          path: "/admin/add-banners/haircare",
-        },
-        {
-          name: "Skincare",
-          path: "/admin/add-banners/skinecare",
-        },
-        {
-          name: "Healthcare",
-          path: "/admin/add-banners/healthcare",
-        },
-        {
-          name: "Men's",
-          path: "/admin/add-banners/mens",
-        },
-      ],
+      path: "/admin/add-banners",
+      // dropdown: [
+      //   {
+      //     name: "Home",
+      //     path: "/admin/add-banners/home",
+      //   },
+      //   {
+      //     name: "Haircare",
+      //     path: "/admin/add-banners/haircare",
+      //   },
+      //   {
+      //     name: "Skincare",
+      //     path: "/admin/add-banners/skinecare",
+      //   },
+      //   {
+      //     name: "Healthcare",
+      //     path: "/admin/add-banners/healthcare",
+      //   },
+      //   {
+      //     name: "Men's",
+      //     path: "/admin/add-banners/mens",
+      //   },
+      // ],
     },
   ];
 
@@ -99,35 +99,36 @@ export default function SideMenu() {
       </div>
       <div className="mt-6 flex flex-col gap-1 h-[75vh]">
         {arr?.map((ele, i) =>
-          ele.dropdown ? (
-            <div key={i}>
-              <div
-                className={cn(
-                  "p-3 hover:bg-primaryMain hover:text-white rounded-sm cursor-pointer block",
-                  bannerDropdown ? "bg-primaryMain text-white" : ""
-                )}
-                onClick={handleBannerClick}
-              >
-                {ele.name}
-              </div>
-              {bannerDropdown && (
-                <div className="ml-4">
-                  {ele.dropdown.map((item, j) => (
-                    <Link
-                      href={item.path}
-                      key={j}
-                      className={cn(
-                        "p-2 text-primaryMain rounded-sm cursor-pointer block hover:underline",
-                        item.path === path ? "underline " : ""
-                      )}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
+          // ele.dropdown ? (
+          //   <div key={i}>
+          //     <div
+          //       className={cn(
+          //         "p-3 hover:bg-primaryMain hover:text-white rounded-sm cursor-pointer block",
+          //         bannerDropdown ? "bg-primaryMain text-white" : ""
+          //       )}
+          //       onClick={handleBannerClick}
+          //     >
+          //       {ele.name}
+          //     </div>
+          //     {bannerDropdown && (
+          //       <div className="ml-4">
+          //         {ele.dropdown.map((item, j) => (
+          //           <Link
+          //             href={item.path}
+          //             key={j}
+          //             className={cn(
+          //               "p-2 text-primaryMain rounded-sm cursor-pointer block hover:underline",
+          //               item.path === path ? "underline " : ""
+          //             )}
+          //           >
+          //             {item.name}
+          //           </Link>
+          //         ))}
+          //       </div>
+          //     )}
+          //   </div>
+          // ) : (
+
             <Link
               href={ele.path}
               key={i}
@@ -138,7 +139,7 @@ export default function SideMenu() {
             >
               {ele.name}
             </Link>
-          )
+          // )
         )}
       </div>
       {/* <span className="h-full w-full p-4 cursor-pointer text-gray-600 hover:text-black flex items-center gap-2" onClick={handelLogout}>Logout <IoIosLogOut /></span> */}
