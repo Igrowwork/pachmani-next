@@ -9,6 +9,7 @@ import { Carousel } from "@/lib/types/banner";
 import { Loader } from "lucide-react";
 import { RxCrossCircled } from "react-icons/rx";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { RiPencilLine } from "react-icons/ri";
 
 const Page: React.FC = () => {
   const params = useParams();
@@ -174,6 +175,28 @@ const Page: React.FC = () => {
     );
   }
 
+  const handleImageChange = (type: 'desktop' | 'mobile', index: number) => {
+    // Open a file picker dialog
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.onchange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      const file = target.files?.[0];
+      if (!file) return;
+  
+      // Update the image URL
+      if (type === 'desktop') {
+        carousels[index].desktopUrl = URL.createObjectURL(file);
+      } else {
+        carousels[index].mobileUrl = URL.createObjectURL(file);
+      }
+      // Update the state
+      setCarousels([...carousels]);
+    };
+    fileInput.click();
+  };
+
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -236,51 +259,63 @@ const Page: React.FC = () => {
 
         </div>
         {carousels?.map((carousel, index) => (
-          <div
-            key={index}
-            className="relative grid grid-cols-3 gap-4"
-            draggable
-            onDragStart={(event) => handleDragStart(event, index)}
-            onDrop={(event) => handleDrop(event, index)}
-            onDragOver={handleDragOver}
-          >
-            <div
-              title="Desktop View"
-              className="relative h-64 w-full border-2 rounded-xl overflow-hidden border-primaryMain col-span-1"
-            >
-              <Image
-                src={carousel.desktopUrl}
-                alt={`Desktop view ${carousel.desktopFileId}`}
-                layout="fill"
-                className="object-cover"
-              />
-            </div>
-            <div
-              title="Phone View"
-              className="relative h-64 w-full border-2 col-span-1 rounded-xl overflow-hidden border-primaryMain "
-            >
-              <Image
-                src={carousel.mobileUrl}
-                alt={`Mobile view ${carousel.mobileFileId}`}
-                layout="fill"
-                className="object-cover"
-              />
-            </div>
-            <div className="relative h-64 w-full border-2 col-span-1 rounded-xl overflow-hidden border-primaryMain ">
-            </div>
-            <button
-              onClick={() =>
-                handleRemoveThumbnail(
-                  carousel.desktopFileId,
-                  carousel.mobileFileId
-                )
-              }
-              className="absolute top-2 right-2 "
-            >
-              <RxCrossCircled className="text-2xl text-red-600" />
-            </button>
-          </div>
-        ))}
+  <div
+    key={index}
+    className="relative grid grid-cols-3 gap-4"
+    draggable
+    onDragStart={(event) => handleDragStart(event, index)}
+    onDrop={(event) => handleDrop(event, index)}
+    onDragOver={handleDragOver}
+  >
+    <div
+      title="Desktop View"
+      className="relative h-64 w-full border-2 rounded-xl overflow-hidden border-primaryMain col-span-1"
+    >
+      <Image
+        src={carousel.desktopUrl}
+        alt={`Desktop view ${carousel.desktopFileId}`}
+        layout="fill"
+        className="object-cover"
+      />
+      <button
+        onClick={() => handleImageChange('desktop', index)}
+        className="absolute top-2 left-2"
+      >
+        <RiPencilLine className="text-2xl text-primaryMain" />
+      </button>
+    </div>
+    <div
+      title="Phone View"
+      className="relative h-64 w-full border-2 col-span-1 rounded-xl overflow-hidden border-primaryMain "
+    >
+      <Image
+        src={carousel.mobileUrl}
+        alt={`Mobile view ${carousel.mobileFileId}`}
+        layout="fill"
+        className="object-cover"
+      />
+      <button
+        onClick={() => handleImageChange('mobile', index)}
+        className="absolute top-2 left-2"
+      >
+        <RiPencilLine className="text-2xl text-primaryMain" />
+      </button>
+    </div>
+    <div className="relative h-64 w-full border-2 col-span-1 rounded-xl overflow-hidden border-primaryMain ">
+    </div>
+    <button
+      onClick={() =>
+        handleRemoveThumbnail(
+          carousel.desktopFileId,
+          carousel.mobileFileId
+        )
+      }
+      className="absolute top-2 right-2 "
+    >
+      <RxCrossCircled className="text-2xl text-red-600" />
+    </button>
+  </div>
+))}
       </div>
       {/* <div className="mt-10 flex flex-col items-center">
         <input

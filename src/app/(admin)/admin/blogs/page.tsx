@@ -34,7 +34,7 @@ export default function page() {
       finally {
         setLoading(false);
       }
-  }
+    }
     useEffect(()=>{
         isFetch();
     },[])
@@ -68,6 +68,11 @@ export default function page() {
                     <th
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white truncate"
+                    style={{
+                      maxWidth: '35rem',  /* Adjust the max-width as needed */
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                  }}
                     >
                     {ele?.content}
                     </th>

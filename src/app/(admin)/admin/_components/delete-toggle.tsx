@@ -17,7 +17,7 @@ export default function DeleteToggle({ onDelete, id } : DeleteToggleProps) {
 
   return (
     <div>
-        <button onClick={() => setOpen(true)}><MdDelete className='text-xl' /></button>
+        <button onClick={() => setOpen(true)}><MdDelete className='text-xl mt-1' /></button>
         <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
             transition

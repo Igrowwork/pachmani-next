@@ -4,5 +4,6 @@ export interface blogs {
     author:string,
     title:string,
     tag:[],
+    image:string,
     createdAt:string,
 }
