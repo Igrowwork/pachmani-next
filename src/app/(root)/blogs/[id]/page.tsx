@@ -39,7 +39,7 @@ export default function page({params} : {params :{id: string}}) {
         </div>
       <div className='max-w-7xl mx-auto w-full h-full grid md:grid-cols-5 gap-6 my-10 xl:px-0 px-6'>
         <span className='w-full md:h-96 sm:h-80 h-56 col-span-2 rounded-md overflow-hidden  md:sticky relative top-5'>
-            <Image src={'/Assests/Images/HomeImage/04.png'} alt='No Preview' fill className='object-cover' />
+            <Image src={isVal?.image?.url} alt='No Preview' fill className='object-cover' />
         </span>
         <div className='md:col-span-3 sticky top-2 h-auto text-xl text-[#625D60]'>
           <span className='md:text-2xl text-xl font-semibold block '>{isVal?.title}</span>

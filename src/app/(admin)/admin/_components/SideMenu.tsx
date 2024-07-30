@@ -58,28 +58,11 @@ export default function SideMenu() {
       name: "Add Banners",
       icon: "",
       path: "/admin/add-banners",
-      // dropdown: [
-      //   {
-      //     name: "Home",
-      //     path: "/admin/add-banners/home",
-      //   },
-      //   {
-      //     name: "Haircare",
-      //     path: "/admin/add-banners/haircare",
-      //   },
-      //   {
-      //     name: "Skincare",
-      //     path: "/admin/add-banners/skinecare",
-      //   },
-      //   {
-      //     name: "Healthcare",
-      //     path: "/admin/add-banners/healthcare",
-      //   },
-      //   {
-      //     name: "Men's",
-      //     path: "/admin/add-banners/mens",
-      //   },
-      // ],
+    },
+    {
+      name: "Add Faq",
+      icon: "",
+      path: "/admin/faq",
     },
   ];
 

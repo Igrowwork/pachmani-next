@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Loader } from "lucide-react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { RxCrossCircled } from "react-icons/rx";
+import IngredientsComponent from "../_components/IngredientsComponent";
 
 interface Review {
   text: string;
@@ -20,6 +21,11 @@ interface Variant {
   discount: number;
 }
 
+interface Ingradient {
+ file:File,
+ name:string
+}
+
 interface ProductState {
   productName: string;
   description: string;
@@ -28,7 +34,7 @@ interface ProductState {
   reviews: Review[];
   productHeroImage: string; // Single image
   detailedImages: string[];
-  ingredients: string[];
+  ingredients: Ingradient[];
   howToUse: string[];
   variants: Variant[];
 }
@@ -41,7 +47,7 @@ const initialProductState: ProductState = {
   reviews: [{ text: "", rating: 1 }],
   productHeroImage: "",
   detailedImages: [""],
-  ingredients: [""],
+  ingredients: [],
   howToUse: [""],
   variants: [{ packSize: 0, price: 0, stock: 0, unit: "", discount: 0 }],
 };
@@ -182,8 +188,10 @@ const AddProducts: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const { variants, ...productData } = isVal;
-    isFetch();
-    setIsVal(initialProductState)
+    console.log(isVal)
+    // isFetch();
+    // setIsVal(initialProductState)
+    console.log(isVal, "dfghjk")
   };
 
   return (
@@ -463,7 +471,8 @@ const AddProducts: React.FC = () => {
       </div>
       
       <div className="col-span-2 ">
-      <label
+      {/* <IngredientsComponent /> */}
+      {/* <label
           htmlFor="description"
           className="block text-sm text-gray-700 font-medium"
         >
@@ -475,7 +484,6 @@ const AddProducts: React.FC = () => {
               htmlFor={`ingredient${index}`}
               className="block text-sm text-gray-700 font-medium"
             >
-              {/* Ingredient {index + 1}* */}
             </label>
             <input
               type="text"
@@ -501,7 +509,7 @@ const AddProducts: React.FC = () => {
           className="w-full flex justify-center mt-2"
         >
          <IoAddCircleOutline className="text-2xl text-primaryMain " />
-        </button>
+        </button> */}
       </div>
 
       <div className="col-span-2 my-4">
@@ -529,7 +537,7 @@ const AddProducts: React.FC = () => {
             <button
               type="button"
               onClick={handleResetHeroImage}
-              className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full"
+              className="absolute top-2 right-2 text-red-500 px-2 py-1 rounded-full"
             >
               <RxCrossCircled className="text-2xl" />
             </button>

@@ -125,7 +125,7 @@ export default function CartDrawer({ val }: { val: () => void }) {
                 </div>
                 {
                   cartItems?.length > 0 ?
-                  <div className="h-screen overflow-y-scroll custom-y-scrollbar py-4 pb-10">
+                  <div className="h-screen overflow-y-scroll custom-y-scrollbar py-4 pb-20 flex flex-col justify-between">
                     <div className="grid gap-4 max-h-72 overflow-y-scroll">
                       {cartItems && cartItems.length > 0 ? (
                         // _id, product, variant, quantity
@@ -213,63 +213,65 @@ export default function CartDrawer({ val }: { val: () => void }) {
                       </span>
                       <AiOutlineRight className="text-xl" />
                     </div> */}
-
-                    <div className=" p-4 mt-2 ">
-                      <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4 my-4">
-                        <h1 className="text-[#332F32] text-base font-bold">
-                          Payment detail
-                        </h1>
-                        <div className="text-sm grid gap-1 mt-4">
-                          <div className="flex justify-between text-[#625D60] font-medium">
-                            MRP Total
-                            <span className="text-[#332F32] font-semibold">
-                              ₹ {calculateTotal().toFixed(2)}
-                            </span>
+                    <div>
+                      <div className=" p-4 mt-2 ">
+                        <div className="rounded-lg w-full shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)] bg-white p-4 my-4">
+                          <h1 className="text-[#332F32] text-base font-bold">
+                            Payment detail
+                          </h1>
+                          <div className="text-sm grid gap-1 mt-4">
+                            <div className="flex justify-between text-[#625D60] font-medium">
+                              MRP Total
+                              <span className="text-[#332F32] font-semibold">
+                                ₹ {calculateTotal().toFixed(2)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-[#625D60] font-medium">
+                              Discount
+                              <span className="text-[#332F32] font-semibold">
+                                ₹ {calculateDiscount().toFixed(2)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-[#625D60] font-medium">
+                              Delivery charge
+                              <span className="text-[#332F32] font-semibold">
+                                ₹ {DELIVERY_CHARGE.toFixed(2)}
+                              </span>
+                            </div>
+                            <div className="border-primaryMain/25 border w-full h-[0.5px] border-dashed" />
+                            <div className="flex justify-between text-primaryMain">
+                              Total Payable
+                              <span className="font-semibold">
+                                ₹ {calculateTotalPayable().toFixed(2)}
+                              </span>
+                            </div>
+                            <p className="text-xs font-normal text-[#625D60] mt-1">
+                              You are saving ₹ {calculateSavings().toFixed(2)} on
+                              this order
+                            </p>
                           </div>
-                          <div className="flex justify-between text-[#625D60] font-medium">
-                            Discount
-                            <span className="text-[#332F32] font-semibold">
-                              ₹ {calculateDiscount().toFixed(2)}
-                            </span>
-                          </div>
-                          <div className="flex justify-between text-[#625D60] font-medium">
-                            Delivery charge
-                            <span className="text-[#332F32] font-semibold">
-                              ₹ {DELIVERY_CHARGE.toFixed(2)}
-                            </span>
-                          </div>
-                          <div className="border-primaryMain/25 border w-full h-[0.5px] border-dashed" />
-                          <div className="flex justify-between text-primaryMain">
-                            Total Payable
-                            <span className="font-semibold">
-                              ₹ {calculateTotalPayable().toFixed(2)}
-                            </span>
-                          </div>
-                          <p className="text-xs font-normal text-[#625D60] mt-1">
-                            You are saving ₹ {calculateSavings().toFixed(2)} on
-                            this order
-                          </p>
                         </div>
                       </div>
-                    </div>
-                    <div className="grid grid-cols-2 drop-shadow-xl bg-white rounded-md shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]  bottom-1 md:w-[29rem] right-6">
-                      <div className="flex flex-col justify-center items-center rounded-l-md">
-                        <span className="text-[#625D60] text-sm">Grand Total</span>
-                        <span className="text-primaryMain md:text-xl font-semibold my-1.5">
-                          ₹ {calculateTotalPayable().toFixed(2)}
-                        </span>
+                      <div className="grid grid-cols-2 drop-shadow-xl bg-white rounded-md shadow-[2px_2px_20px_0px_rgba(0,0,0,0.10)]  bottom-1 md:w-[29rem] right-6">
+                        <div className="flex flex-col justify-center items-center rounded-l-md">
+                          <span className="text-[#625D60] text-sm">Grand Total</span>
+                          <span className="text-primaryMain md:text-xl font-semibold my-1.5">
+                            ₹ {calculateTotalPayable().toFixed(2)}
+                          </span>
+                        </div>
+
+                        <Link
+                          href={"/myCart/shipping-cost"}
+                          className="text-white bg-primaryMain p-3 flex gap-2 w-full justify-center items-center font-medium rounded-r-md"
+                          onClick={val}
+                        >
+                          <span className="md:text-xl" >Checkout</span>
+                          <span className="mt-1.5">
+                            <AiOutlineRight className="text-xl" />
+                          </span>
+                        </Link>
                       </div>
 
-                      <Link
-                        href={"/myCart/shipping-cost"}
-                        className="text-white bg-primaryMain p-3 flex gap-2 w-full justify-center items-center font-medium rounded-r-md"
-                        onClick={val}
-                      >
-                        <span className="md:text-xl" >Checkout</span>
-                        <span className="mt-1.5">
-                          <AiOutlineRight className="text-xl" />
-                        </span>
-                      </Link>
                     </div>
                   </div>
                   :
