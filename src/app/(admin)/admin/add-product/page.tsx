@@ -22,8 +22,8 @@ interface Variant {
 }
 
 interface Ingradient {
- file:File,
- name:string
+  file: File;
+  name: string;
 }
 
 interface ProductState {
@@ -37,6 +37,11 @@ interface ProductState {
   ingredients: Ingradient[];
   howToUse: string[];
   variants: Variant[];
+}
+
+interface ingredientRes {
+  image: { fileId: string; url: string };
+  name: string;
 }
 
 const initialProductState: ProductState = {
@@ -59,6 +64,7 @@ const AddProducts: React.FC = () => {
   const [heroImageFile, setHeroImageFile] = useState<File | null>(null);
   const [detailedImageFiles, setDetailedImageFiles] = useState<File[]>([]);
   const [isLoading, setLoading] = useState(false);
+  const [ingredientData, setIngredientsData] = useState<ingredientRes[]>();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -150,21 +156,58 @@ const AddProducts: React.FC = () => {
   };
 
   const isFetch = async () => {
+    setLoading(true);
+
     try {
-      setLoading(true);
+      // Prepare form data for product information
       const formData = new FormData();
       const { variants, ...productDataWithoutVariants } = isVal;
+
+      // Upload ingredient images if any
+      let ingredientsData: { image: { fileId: any; url: any; }; name: string; }[] = [];
+      if (isVal.ingredients.length > 0) {
+        ingredientsData = await Promise.all(
+          isVal.ingredients.map(async ({ file, name }) => {
+            const ingredientFormData  = new FormData();
+            ingredientFormData.append("heroImage", file);
+
+            const { data } = await axios.post(
+              `${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`,
+              ingredientFormData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+            console.log(data, "image upload ");
+            return {
+              image: { fileId: data.fileId, url: data.url },
+              name,
+            };
+          })
+        );
+      }
+
+      // Append data to formData
       formData.append(
         "productData",
-        JSON.stringify(productDataWithoutVariants)
+        JSON.stringify({
+          ...productDataWithoutVariants,
+          ingredients: ingredientsData,
+        })
       );
       formData.append("variantData", JSON.stringify(variants));
+
       if (heroImageFile) {
         formData.append("heroImage", heroImageFile);
       }
+
       detailedImageFiles.forEach((file, index) => {
         formData.append(`detailedImage${index}`, file);
       });
+
+      // Send data to server
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_URL}/api/product`,
         formData,
@@ -178,10 +221,12 @@ const AddProducts: React.FC = () => {
           },
         }
       );
-      setLoading(false);
+
+      console.log(res, "===");
     } catch (err) {
+      console.error(err, "error");
+    } finally {
       setLoading(false);
-      console.log(err, "error");
     }
   };
 
@@ -221,10 +266,9 @@ const AddProducts: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const { variants, ...productData } = isVal;
-    console.log(isVal)
-    // isFetch();
+    console.log(isVal);
+    isFetch();
     // setIsVal(initialProductState)
-    console.log(isVal, "dfghjk")
   };
 
   return (
@@ -276,7 +320,7 @@ const AddProducts: React.FC = () => {
           ))}
         </select>
       </div>
-      
+
       <div className="col-span-2">
         {isVal.variants.map((variant, index) => (
           <div key={index} className="border p-4 rounded-lg relative">
@@ -420,7 +464,7 @@ const AddProducts: React.FC = () => {
         />
       </div>
       <div className="">
-      <label
+        <label
           htmlFor="description"
           className="block text-sm text-gray-700 font-medium"
         >
@@ -460,9 +504,9 @@ const AddProducts: React.FC = () => {
           <IoAddCircleOutline className="text-2xl text-primaryMain" />
         </button>
       </div>
-      
+
       <div className="">
-      <label
+        <label
           htmlFor="description"
           className="block text-sm text-gray-700 font-medium"
         >
@@ -480,7 +524,9 @@ const AddProducts: React.FC = () => {
               type="text"
               id={`howToUse${index}`}
               value={step}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleArrayChange(e, index, "howToUse")}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                handleArrayChange(e, index, "howToUse")
+              }
               className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
               placeholder={`How To Use Step ${index + 1}`}
               required
@@ -502,10 +548,10 @@ const AddProducts: React.FC = () => {
           <IoAddCircleOutline className="text-2xl text-primaryMain" />
         </button>
       </div>
-      
+
       <div className="col-span-2 ">
-      {/* <IngredientsComponent /> */}
-      {/* <label
+        {/* <IngredientsComponent /> */}
+        {/* <label
           htmlFor="description"
           className="block text-sm text-gray-700 font-medium"
         >
@@ -544,7 +590,7 @@ const AddProducts: React.FC = () => {
          <IoAddCircleOutline className="text-2xl text-primaryMain " />
         </button> */}
       </div>
-      
+
       <div className="col-span-2 my-4">
         <label
           htmlFor="ingredients"
@@ -589,7 +635,6 @@ const AddProducts: React.FC = () => {
         </button>
       </div>
 
-
       <div className="col-span-2 my-4">
         <label
           htmlFor="productHeroImage"
@@ -624,7 +669,7 @@ const AddProducts: React.FC = () => {
       </div>
 
       <div className="col-span-2 my-4">
-      <label
+        <label
           htmlFor="productHeroImage"
           className="block text-sm text-gray-700 font-medium"
         >
@@ -660,10 +705,9 @@ const AddProducts: React.FC = () => {
           onClick={() => handleAddArrayItem("detailedImages")}
           className="mt-2 flex justify-center w-full"
         >
-         <IoAddCircleOutline className="text-2xl text-primaryMain " />
+          <IoAddCircleOutline className="text-2xl text-primaryMain " />
         </button>
       </div>
-
 
       <div className="w-full flex justify-end col-span-2">
         <button
