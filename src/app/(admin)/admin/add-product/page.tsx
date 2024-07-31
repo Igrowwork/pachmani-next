@@ -185,6 +185,39 @@ const AddProducts: React.FC = () => {
     }
   };
 
+  const handleIngredientChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    index: number,
+    field: "file" | "name"
+  ) => {
+    const newIngredients = [...isVal.ingredients];
+    if (field === "file" && e.target.files) {
+      newIngredients[index].file = e.target.files[0];
+    } else {
+      newIngredients[index].name = e.target.value;
+    }
+    setIsVal({
+      ...isVal,
+      ingredients: newIngredients,
+    });
+  };
+
+  const handleAddIngredient = () => {
+    setIsVal({
+      ...isVal,
+      ingredients: [...isVal.ingredients, { file: {} as File, name: "" }],
+    });
+  };
+
+  const handleRemoveIngredient = (index: number) => {
+    const newIngredients = [...isVal.ingredients];
+    newIngredients.splice(index, 1);
+    setIsVal({
+      ...isVal,
+      ingredients: newIngredients,
+    });
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const { variants, ...productData } = isVal;
@@ -511,6 +544,51 @@ const AddProducts: React.FC = () => {
          <IoAddCircleOutline className="text-2xl text-primaryMain " />
         </button> */}
       </div>
+      
+      <div className="col-span-2 my-4">
+        <label
+          htmlFor="ingredients"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Ingredients*
+        </label>
+        {isVal.ingredients.map((ingredient, index) => (
+          <div key={index} className="relative">
+            <input
+              type="file"
+              id={`ingredientFile${index}`}
+              onChange={(e) => handleIngredientChange(e, index, "file")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`Ingredient File ${index + 1}`}
+              required
+            />
+            <input
+              type="text"
+              id={`ingredientName${index}`}
+              value={ingredient.name}
+              onChange={(e) => handleIngredientChange(e, index, "name")}
+              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              placeholder={`Ingredient Name ${index + 1}`}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveIngredient(index)}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500 px-2 py-1 rounded-full"
+            >
+              <RxCrossCircled className="text-2xl" />
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={handleAddIngredient}
+          className="mt-2 flex justify-center w-full"
+        >
+          <IoAddCircleOutline className="text-2xl text-primaryMain " />
+        </button>
+      </div>
+
 
       <div className="col-span-2 my-4">
         <label

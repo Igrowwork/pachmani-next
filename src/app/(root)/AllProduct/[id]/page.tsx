@@ -40,6 +40,7 @@ import { addToCartAsync } from "@/redux/action/addTocartAction";
 import { AddressFormModal } from "@/components/AddressModal/page";
 import { CheckoutModal } from "../../_components/CheckoutModal";
 import ItsLoader from "../../_components/itsLoader";
+import TestimonalSlider from "@/components/TestimonalSlider/page";
 
 export default function page({ params }: { params: { id: string } }) {
   const [isQuant, setIsQuant] = useState("");
@@ -78,6 +79,7 @@ export default function page({ params }: { params: { id: string } }) {
       try {
         const { data } = await api.get(`product/${params.id}`);
         setProduct(data.product);
+        console.log(data.product,"wertyuioiuyg")
         const defaultVariant = data.product.variants[0];
         setPrice({
           priceAfterDiscount: defaultVariant.priceAfterDiscount.toFixed(2),
@@ -287,7 +289,8 @@ export default function page({ params }: { params: { id: string } }) {
           <div className="max-w-7xl mx-auto w-full h-full md:p-0 p-6">
             {/* <OurCertification /> */}
             <YouMayAlsoLike />
-            <Review />
+            {/* <Review /> */}
+            <TestimonalSlider />
             <FAQ />
           </div>
         </div>
