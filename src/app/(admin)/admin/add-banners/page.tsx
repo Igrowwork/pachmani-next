@@ -91,15 +91,15 @@ export default function AddBanner() {
             <div className='grid grid-cols-3 gap-4 my-4'>
     {
         arr2?.map((ele, i) => (
-            <div key={i}>
+            <Link href={`/admin/add-banners/${ele?.link}`}  key={i}>
                 <div className='relative h-48 w-full rounded-xl overflow-hidden cursor-pointer'>
                     <Image src={'/Assests/Images/HairImage/05.png'} alt='No Preview' fill className='object-cover' />
-                    <Link href={`/admin/add-banners/${ele?.link}`} className='absolute top-0 right-0 p-3'>
+                    <div className='absolute top-0 right-0 p-3'>
                         <CiMenuKebab className='cursor-pointer bg-white rounded-full p-0.5'/>
-                    </Link>
+                    </div>
                 </div>
                 <h1 className='text-[#332F32] text-2xl font-medium text-center w-full my-4'>{ele?.name}</h1>
-            </div>
+            </Link>
         ))
     }
     {isPopupVisible && <Popup item={currentItem} onClose={() => setIsPopupVisible(false)} />}

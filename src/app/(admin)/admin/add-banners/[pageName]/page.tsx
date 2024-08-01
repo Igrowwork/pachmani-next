@@ -47,7 +47,7 @@ const Page: React.FC = () => {
 
   const handleUpload = async () => {
     if (!selectedFiles || selectedFiles.length !== 2) {
-      console.error(
+      alert(
         "Please select exactly two files: one for desktop and one for mobile."
       );
       return;
@@ -229,7 +229,7 @@ const Page: React.FC = () => {
           {!selectedFiles && (
             <button
               onClick={handleUploadButtonClick}
-              className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 flex items-center gap-2 text-sm"
+              className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 flex items-center gap-2 text-sm"
             >
               <IoAddCircleOutline /> Select and Upload Images
             </button>

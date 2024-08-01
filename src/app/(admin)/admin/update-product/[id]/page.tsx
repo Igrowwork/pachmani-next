@@ -37,11 +37,19 @@ interface ProductState {
   category: string;
   highlights: string[];
   reviews: Review[];
-  ingredients: string[];
+  ingredients: Ingradient[];
   howToUse: string[];
   variants: Variant[];
   thumbnail?: ProductImage;
   images?: ProductImage[];
+}
+interface Ingradient {
+  file: File;
+  name: string;
+  image: {
+    fileId: string;
+    url: string;
+  };
 }
 
 const initialProductState: ProductState = {
@@ -50,7 +58,7 @@ const initialProductState: ProductState = {
   category: "",
   highlights: [""],
   reviews: [{ text: "", rating: 1 }],
-  ingredients: [""],
+  ingredients: [],
   howToUse: [""],
   variants: [{ packSize: 0, price: 0, stock: 0, unit: "", discount: 0 }],
   thumbnail: undefined,
@@ -60,11 +68,16 @@ const initialProductState: ProductState = {
 const categories = ["hairCare", "skincare", "mens"];
 
 const UpdateProducts: React.FC = () => {
+  const [isImg, setIsImg] = useState<any>("");
   const [isVal, setIsVal] = useState<ProductState>(initialProductState);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [newImages, setNewImages] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [ingredientData, setIngredientsData] = useState<Ingradient[]>();
+
+  console.log(isVal, "isVal");
+
   const params = useParams();
 
   const handleChange = (
@@ -174,10 +187,13 @@ const UpdateProducts: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
     try {
+      // Handle thumbnail file upload
       if (thumbnailFile) {
         const formData = new FormData();
         formData.append("heroImage", thumbnailFile);
+
         try {
           const uploadRes = await axios.post(
             `${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`,
@@ -188,6 +204,8 @@ const UpdateProducts: React.FC = () => {
               },
             }
           );
+
+          // Update isVal with the thumbnail image details
           isVal.thumbnail = {
             fileId: uploadRes.data.fileId,
             url: uploadRes.data.url,
@@ -196,14 +214,17 @@ const UpdateProducts: React.FC = () => {
           console.error("Failed to upload thumbnail:", uploadError);
           toast({ title: "Failed to upload thumbnail" });
           setIsLoading(false);
-          return;
+          return; // Exit if thumbnail upload fails
         }
       }
 
+      // Handle new images upload
       if (newImages.length > 0) {
+        // Create an array of promises for uploading each image
         const imageUploadPromises = newImages.map((file) => {
           const formData = new FormData();
           formData.append("heroImage", file);
+
           return axios.post(
             `${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`,
             formData,
@@ -214,20 +235,74 @@ const UpdateProducts: React.FC = () => {
             }
           );
         });
+
+        // Wait for all uploads to complete
         const imageUploadResponses = await Promise.all(imageUploadPromises);
+
+        // Extract fileId and url from each response
         const uploadedImages = imageUploadResponses.map((res) => ({
           fileId: res.data.fileId,
           url: res.data.url,
         }));
+
+        // Add the uploaded images to isVal.images
         isVal.images = [...(isVal.images || []), ...uploadedImages];
       }
 
-      await api.patch(`/product/${params.id}`, isVal);
+      // Handle ingredient images upload
+      if (isVal.ingredients.length > 0) {
+        const ingredientImageUploadPromises = isVal.ingredients.map(async (ingredient) => {
+            if (ingredient.file) {
+              const formData = new FormData();
+              formData.append("heroImage", ingredient.file);
+
+              try {
+                const uploadRes = await axios.post(
+                  `${process.env.NEXT_PUBLIC_URL}/api/cloudinary/upload-image`,
+                  formData,
+                  {
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                    },
+                  }
+                );
+
+                return {
+                  ...ingredient,
+                  image: {
+                    fileId: uploadRes.data.fileId,
+                    url: uploadRes.data.url,
+                  },
+                };
+              } catch (uploadError) {
+                console.error(
+                  `Failed to upload image for ingredient ${ingredient.name}:`,
+                  uploadError
+                );
+                toast({
+                  title: `Failed to upload image for ingredient ${ingredient.name}`,
+                });
+                return ingredient; // Return the ingredient unchanged if upload fails
+              }
+            }
+            return ingredient; // Return the ingredient unchanged if no image
+          }
+        );
+        const updatedIngredients = await Promise.all(ingredientImageUploadPromises);
+        isVal.ingredients = updatedIngredients;
+      }
+
+      console.log(isVal,"isVal")
+
+      // Update product with the new values
+      const res = await api.patch(`/product/${params.id}`, isVal);
       setIsLoading(false);
+      console.log(res, "res");
       toast({ title: "Product is updated successfully" });
     } catch (err) {
       setIsLoading(false);
-      console.log(err);
+      console.error("Error updating product:", err);
+      toast({ title: "Failed to update product" });
     }
   };
 
@@ -304,12 +379,79 @@ const UpdateProducts: React.FC = () => {
     }
   };
 
+  const handleRemoveIngredient = (index: number) => {
+    const newIngredients = [...isVal.ingredients];
+    newIngredients.splice(index, 1);
+    setIsVal({
+      ...isVal,
+      ingredients: newIngredients,
+    });
+  };
+
+  const handleAddIngredient = () => {
+    setIsVal({
+      ...isVal,
+      ingredients: [
+        ...isVal.ingredients,
+        {
+          file: {} as File,
+          name: "",
+          image: {
+            fileId: "",
+            url: "",
+          },
+        },
+      ],
+    });
+  };
+
+  const handleIngredientChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    index: number,
+    fieldName: keyof Ingradient
+  ) => {
+    const newIngredients = [...isVal.ingredients];
+    const { value, files } = e.target;
+  
+    if (fieldName === "file" && files?.length) {
+      const file = files[0];
+      const fileURL = URL.createObjectURL(file);
+  
+      // Ensure that image field is properly initialized
+      newIngredients[index] = {
+        ...newIngredients[index],
+        file,
+        image: {
+          ...newIngredients[index].image, // Maintain existing image properties
+          url: fileURL,
+        },
+      };
+  
+      console.log(`Ingredient ${index + 1} File:`, file);
+      console.log(`Ingredient ${index + 1} Image Preview URL:`, fileURL);
+    } else {
+      newIngredients[index] = {
+        ...newIngredients[index],
+        [fieldName]: value,
+      };
+  
+      console.log(`Ingredient ${index + 1} ${fieldName}:`, value);
+    }
+  
+    setIsVal({
+      ...isVal,
+      ingredients: newIngredients,
+    });
+  };
+  
+
   useEffect(() => {
     async function getProduct() {
       setLoading(true);
       const { data } = await api.get(
         `${process.env.NEXT_PUBLIC_URL}/api/product/${params.id}`
       );
+      console.log(data, "dfghjk");
       setIsVal(data.product);
       setLoading(false);
     }
@@ -319,7 +461,6 @@ const UpdateProducts: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        
         <ItsLoader />
       </div>
     );
@@ -330,9 +471,8 @@ const UpdateProducts: React.FC = () => {
       onSubmit={handleSubmit}
       className="grid grid-cols-2 gap-2 p-6 bg-white rounded-lg shadow-md"
     >
-     
-     <div className="col-span-2">
-        <h1 className="text-xl font-medium text-[#1C2A53]">Add New Product</h1>
+      <div className="col-span-2">
+        <h1 className="text-xl font-medium text-[#1C2A53]">Update Product</h1>
       </div>
 
       <div className="my-6 col-span-2">
@@ -377,7 +517,7 @@ const UpdateProducts: React.FC = () => {
           ))}
         </select>
       </div>
-      
+
       <div className="col-span-2">
         {isVal.variants?.map((variant, index) => (
           <div key={index} className="border p-4 rounded-lg mb-4 relative">
@@ -399,7 +539,7 @@ const UpdateProducts: React.FC = () => {
                   }
                   className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
                   placeholder={`Pack Size ${index + 1}`}
-                  required
+                  // required
                 />
               </div>
               <div>
@@ -490,7 +630,7 @@ const UpdateProducts: React.FC = () => {
               type="button"
               onClick={() => handleRemoveVariant(index)}
               className="absolute right-2 top-4 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
-              >
+            >
               <RxCrossCircled className="text-2xl" />
             </button>
             {variant._id ? (
@@ -498,7 +638,7 @@ const UpdateProducts: React.FC = () => {
                 type="button"
                 onClick={() => handleUpdateVariant(index, variant)}
                 className="absolute right-2 top-full mt-2 bg-primaryMain text-white px-2 py-1 rounded-sm"
-              > 
+              >
                 Update Variant
               </button>
             ) : (
@@ -524,8 +664,8 @@ const UpdateProducts: React.FC = () => {
             })
           }
           className="w-full flex justify-center mt-2"
-          >
-            <IoAddCircleOutline className="text-2xl text-primaryMain" />
+        >
+          <IoAddCircleOutline className="text-2xl text-primaryMain" />
         </button>
       </div>
 
@@ -545,8 +685,6 @@ const UpdateProducts: React.FC = () => {
           required
         />
       </div>
-      
-
 
       <div className="col-span-2">
         {isVal.highlights.map((highlight, index) => (
@@ -570,8 +708,8 @@ const UpdateProducts: React.FC = () => {
               type="button"
               onClick={() => handleRemoveArrayItem("highlights", index)}
               className="bg-white absolute right-2 top-2/3 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
-              >
-                <RxCrossCircled className="text-2xl" />
+            >
+              <RxCrossCircled className="text-2xl" />
             </button>
           </div>
         ))}
@@ -584,39 +722,53 @@ const UpdateProducts: React.FC = () => {
         </button>
       </div>
 
-      <div className="col-span-2">
-        {isVal.ingredients.map((ingredient, index) => (
-          <div key={index} className="relative">
-            <label
-              htmlFor={`ingredient${index}`}
-              className="block text-sm text-gray-700 font-medium"
-            >
-              Ingredient {index + 1}*
-            </label>
-            <input
-              type="text"
-              id={`ingredient${index}`}
-              value={ingredient}
-              onChange={(e) => handleArrayChange(e, index, "ingredients")}
-              className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
-              placeholder={`Ingredient ${index + 1}`}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveArrayItem("ingredients", index)}
-              className="bg-white absolute right-2 top-2/3 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
-            >
-              <RxCrossCircled className="text-2xl" />
-            </button>
-          </div>
-        ))}
+      <div className="col-span-2 my-4">
+        <label
+          htmlFor="ingredients"
+          className="block text-sm text-gray-700 font-medium"
+        >
+          Ingredients*
+        </label>
+        <div className="grid grid-cols-6 gap-4 my-4">
+          {isVal.ingredients.map((ingredient, index) => (
+            <div key={index} className="relative">
+              <input
+                type="file"
+                id={`ingredientFile${index}`}
+                onChange={(e) => handleIngredientChange(e, index, "file")}
+                className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+              />
+              {ingredient.image.url && (
+                <img
+                  src={ingredient.image.url}
+                  alt={`Ingredient ${index + 1} Preview`}
+                  className="object-cover h-40 w-full rounded-md mt-2"
+                />
+              )}
+              <input
+                type="text"
+                id={`ingredientName${index}`}
+                value={ingredient.name}
+                onChange={(e) => handleIngredientChange(e, index, "name")}
+                className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5"
+                placeholder={`Ingredient Name ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveIngredient(index)}
+                className="absolute right-2 top-4 transform -translate-y-1/2 text-red-500 px-2 py-1 rounded-full"
+              >
+                <RxCrossCircled className="text-2xl" />
+              </button>
+            </div>
+          ))}
+        </div>
         <button
           type="button"
-          onClick={() => handleAddArrayItem("ingredients")}
-          className="w-full flex justify-center mt-2"
+          onClick={handleAddIngredient}
+          className="mt-2 flex justify-center w-full"
         >
-          <IoAddCircleOutline className="text-2xl text-primaryMain" />
+          <IoAddCircleOutline className="text-2xl text-primaryMain " />
         </button>
       </div>
 
@@ -642,8 +794,8 @@ const UpdateProducts: React.FC = () => {
               type="button"
               onClick={() => handleRemoveArrayItem("howToUse", index)}
               className="bg-white absolute right-2 top-2/3 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
-              >
-                <RxCrossCircled className="text-2xl" />
+            >
+              <RxCrossCircled className="text-2xl" />
             </button>
           </div>
         ))}
@@ -700,8 +852,8 @@ const UpdateProducts: React.FC = () => {
                 type="button"
                 onClick={handleRemoveThumbnail}
                 className="absolute right-2 top-5 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
-            >
-              <RxCrossCircled className="text-2xl" />
+              >
+                <RxCrossCircled className="text-2xl" />
               </button>
             </div>
           )
@@ -736,8 +888,8 @@ const UpdateProducts: React.FC = () => {
                 type="button"
                 onClick={() => handleRemoveImage(index)}
                 className="absolute right-2 top-5 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
-                >
-                  <RxCrossCircled className="text-2xl" />
+              >
+                <RxCrossCircled className="text-2xl" />
               </button>
             </div>
           ))}
@@ -754,8 +906,8 @@ const UpdateProducts: React.FC = () => {
                 type="button"
                 onClick={() => handleRemoveImage(index)}
                 className="absolute right-2 top-5 transform -translate-y-1/2 text-red-500  px-2 py-1 rounded-full"
-                >
-                  <RxCrossCircled className="text-2xl" />
+              >
+                <RxCrossCircled className="text-2xl" />
               </button>
             </div>
           ))}
@@ -776,13 +928,6 @@ const UpdateProducts: React.FC = () => {
 };
 
 export default UpdateProducts;
-
-
-
-
-
-
-
 
 // "use client";
 
@@ -1115,7 +1260,6 @@ export default UpdateProducts;
 //         <h1 className="text-xl font-medium text-[#1C2A53]">Update Product</h1>
 //       </div>
 
-      
 //       <div className="my-4 col-span-2">
 //         <label
 //           htmlFor="productName"
@@ -1134,7 +1278,6 @@ export default UpdateProducts;
 //         />
 //       </div>
 
-      
 //       <div className="my-4 col-span-2">
 //         <label
 //           htmlFor="category"
@@ -1159,7 +1302,7 @@ export default UpdateProducts;
 //           ))}
 //         </select>
 //       </div>
-     
+
 //      <div className="col-span-2">
 //        {isVal.variants.map((variant, index) => (
 //          <div key={index} className="border p-4 rounded-lg relative">
@@ -1429,8 +1572,6 @@ export default UpdateProducts;
 //         </button>
 //       </div>
 
-      
-
 //       <div className="col-span-2">
 //         <label htmlFor="thumbnail" className="block text-sm text-gray-700 font-medium"> Product Hero Image*</label>
 //         <input type="file" name="thumbnail" onChange={handleThumbnailChange} className="border border-gray-300 outline-none p-2.5 rounded-lg w-full mt-1.5" />
@@ -1475,7 +1616,6 @@ export default UpdateProducts;
 //           ))}
 //         </div>
 //       </div>
-
 
 //       <div className="w-full flex justify-end col-span-2">
 //         <button type="submit" className="bg-green-500 text-white p-2 rounded w-44 flex items-center justify-center gap-1">
