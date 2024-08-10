@@ -20,6 +20,9 @@ export default function ClinicallyTested({ howToUse , highLight }: { howToUse: s
           ))}
         </ul>
       </div>
+      <div>
+        
+      </div>
     </div>
   );
 }

@@ -15,6 +15,15 @@ export interface IProductVariant extends Document {
   priceAfterDiscount?: number;
 }
 
+interface Ingradient {
+  file: File;
+  name: string;
+  image: {
+    fileId: string;
+    url: string;
+  };
+}
+
 export interface IProduct {
   isLike: any;
   _id: string;
@@ -27,7 +36,7 @@ export interface IProduct {
   discount?: number;
   thumbnail?: { fileId: string; url: string };
   images?: { fileId: string; url: string }[];
-  ingredients?: string[];
+  ingredients?: Ingradient[];
   howToUse: string[];
   isLiked:boolean
 }

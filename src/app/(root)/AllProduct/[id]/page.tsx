@@ -79,7 +79,7 @@ export default function page({ params }: { params: { id: string } }) {
       try {
         const { data } = await api.get(`product/${params.id}`);
         setProduct(data.product);
-        console.log(data.product,"wertyuioiuyg")
+        console.log(data.product.ingredients[0].image,"wertyuioiuyg")
         const defaultVariant = data.product.variants[0];
         setPrice({
           priceAfterDiscount: defaultVariant.priceAfterDiscount.toFixed(2),
@@ -101,7 +101,6 @@ export default function page({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        
         <ItsLoader />
       </div>
     );
@@ -284,6 +283,29 @@ export default function page({ params }: { params: { id: string } }) {
             <ClinicallyTested howToUse={product?.howToUse} highLight={product?.highlights} />
             {/* <ClinicallyTested howToUse={product?.howToUse} highLight={product?.highlights} ingradient={product?.ingredients} /> */}
           </div>
+          <div className="md:my-10 sm:my-8 my-6 max-w-7xl mx-auto w-full h-full xl:px-0 px-6">
+            <CustomHead name="Ingredients" className="w-11/12" /> 
+            <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-x-8 md:gap-y-5 sm:gap-3 gap-2">
+              { (product?.ingredients || []).map((ele, i) => (
+                <div className="grid gap-1 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.07)]  items-center rounded-md p-4 border-[#00AB5533] border">
+                  <div className="relative h-20">
+                    <Image
+                      src={ele?.image.url}
+                      alt="No Preview"
+                      fill
+                      layout="fill"
+                      objectFit="contain"
+                      className=" md:scale-110 sm:scale-100 scale-100 bg-white rounded-sm drop-shadow-[0px_1px_1px_0px_rgba(0,0,0,0.15)]"
+                    />
+                    {/* <div className=" h-full w-[60%] rounded-full mx-auto shadow-[0px_1px_1px_0px_rgba(0,0,0,0.15)]" /> */}
+                  </div>
+                  {/* <div className="capitalize md:text-xl sm:text-lg text-base font-normal text-center">{ele?.name}</div> */}
+                </div>
+              ))}
+            </div>
+
+          </div>
+
           {/* <OurIngradient /> */}
           {/* <Benifit /> */}
           <div className="max-w-7xl mx-auto w-full h-full md:p-0 p-6">
